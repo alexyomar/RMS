@@ -1,5 +1,80 @@
-﻿@{
+﻿@model IEnumerable<Regional.Models.Hotel>
+@{
     ViewBag.Title = "Index";
 }
-
-<h2>Index</h2>
+<h2>
+    Hoteles</h2>
+<p>
+    @Html.ActionLink("Agregar Hotel", "Editar")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Contact
+        </th>
+        <th>
+            Ubicación
+        </th>
+        <th>
+            Activo
+        </th>
+        <th>
+            ¿Cotiza?
+        </th>
+        <th>
+        </th>
+    </tr>
+    @if (Model.Count() < 1)
+    { 
+        <tr>
+            <td colspan="6">
+                No hay hoteles creados   :-(
+                
+            </td>
+        </tr>
+    }
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contact)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.State.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Active)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CanSell)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Editar", new { IdHotel = item.Id })
+                |
+                @Html.ActionLink("Eliminar", "Eliminar", new { IdHotel = item.Id }, new { @class = "delete" })
+                |
+                @Html.ActionLink("Tarifas", "Tarifas", new { IdHotel = item.Id })
+            </td>
+        </tr>
+    }
+</table>
+<script type="text/javascript">
+    $(".delete").click(function (e) {
+        if (confirm("¿Está seguro que desea eliminar el Hotel?\n Esta acción no se puede deshacer.")) {
+            $.post($(this).attr("href"), $(this).serialize(), function (json) {
+                if (json.Success = "true")
+                    window.location.reload();
+                else {
+                    alert("El hotel no pudo ser eliminado.");
+                }
+            });
+        }
+        e.preventDefault();
+    });
+</script>

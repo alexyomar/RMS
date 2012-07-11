@@ -6,10 +6,10 @@ using Regional.Models;
 
 namespace Regional.Controllers
 {
-    public static class Helpers
+    public class Helpers
     {
 
-       public static DBDataContext BD = new DBDataContext();
+       public DBDataContext BD = new DBDataContext();
     
     }
 }

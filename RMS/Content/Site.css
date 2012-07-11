@@ -80,7 +80,7 @@ input[type="submit"] { font-size: 1.2em; padding: 5px; }
 /* TABLE
 ----------------------------------------------------------*/
 
-.table { border: solid 1px #e8eef4; border-collapse: collapse; }
+.table { border: solid 1px #e8eef4; border-collapse: collapse; width: 100%; }
 
 .table td { padding: 5px; border: solid 1px #e8eef4; }
 

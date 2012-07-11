@@ -1,0 +1,70 @@
+﻿@model Regional.Models.Room
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Room</legend>
+
+    <div class="display-label">Name</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">Description</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+
+    <div class="display-label">IdHotel</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IdHotel)
+    </div>
+
+    <div class="display-label">Active</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Active)
+    </div>
+
+    <div class="display-label">Capacity</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Capacity)
+    </div>
+
+    <div class="display-label">LowSeasonPrice</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LowSeasonPrice)
+    </div>
+
+    <div class="display-label">HighSeasonPrice</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.HighSeasonPrice)
+    </div>
+
+    <div class="display-label">Discount1</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Discount1)
+    </div>
+
+    <div class="display-label">Discount2</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Discount2)
+    </div>
+
+    <div class="display-label">Discount3</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Discount3)
+    </div>
+
+    <div class="display-label">Discount4</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Discount4)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

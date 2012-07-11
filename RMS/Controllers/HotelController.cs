@@ -11,19 +11,21 @@ namespace Regional.Controllers
     {
         //
         // GET: /Hotel/
+        Helpers __helpers = new Helpers();
 
         public ActionResult Index()
         {
-            IQueryable<Models.Hotel> __hoteles = Helpers.BD.Hotels.AsQueryable();
+            IQueryable<Models.Hotel> __hoteles = __helpers.BD.Hotels.AsQueryable();
             ViewData.Model = __hoteles;
             return View();
         }
 
         public ActionResult Editar(int? IdHotel)
         {
+            ViewBag.Estados = __helpers.BD.States.OrderBy(u => u.Name).AsQueryable();
             if (IdHotel != null)
             {
-                Models.Hotel __hotel = Helpers.BD.Hotels.Where(u => u.Id.Equals(IdHotel.Value)).SingleOrDefault();
+                Models.Hotel __hotel = __helpers.BD.Hotels.Where(u => u.Id.Equals(IdHotel.Value)).SingleOrDefault();
                 ViewData.Model = __hotel;
             }
             return View();
@@ -36,10 +38,10 @@ namespace Regional.Controllers
             try
             {
                 if (__hotel.Id.Equals(0))
-                    Helpers.BD.Hotels.InsertOnSubmit(__hotel);
+                    __helpers.BD.Hotels.InsertOnSubmit(__hotel);
                 else
                 {
-                    Models.Hotel __update = Helpers.BD.Hotels.Where(u => u.Id.Equals(__hotel.Id)).SingleOrDefault();
+                    Models.Hotel __update = __helpers.BD.Hotels.Where(u => u.Id.Equals(__hotel.Id)).SingleOrDefault();
 
                     __update.Active = __hotel.Active;
                     __update.Address = __hotel.Address;
@@ -53,7 +55,7 @@ namespace Regional.Controllers
                     __update.TripAdvisorEng = __hotel.TripAdvisorEng;
                 }
 
-                Helpers.BD.SubmitChanges();
+                __helpers.BD.SubmitChanges();
                 return Json(new { Success = "true" }); ;
             }
             catch (Exception ex)
@@ -61,10 +63,23 @@ namespace Regional.Controllers
                 return Json(new { Success = "false", Message = ex.Message, Stacktrace = ex.StackTrace }); ;
 
             }
+        }
 
+        [HttpPost]
+        public ActionResult Eliminar(int IdHotel)
+        {
 
+            try
+            {
+                __helpers.BD.Hotels.DeleteOnSubmit(__helpers.BD.Hotels.Where(u => u.Id.Equals(IdHotel)).SingleOrDefault());
+                __helpers.BD.SubmitChanges();
+                return Json(new { Success = "true" }); ;
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Success = "false", Message = ex.Message, Stacktrace = ex.StackTrace }); ;
 
-
+            }
         }
 
     }
