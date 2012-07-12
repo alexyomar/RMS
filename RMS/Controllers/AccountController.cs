@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
-using Regional.Models;
+using RMS.Models;
 
-namespace Regional.Controllers
+namespace RMS.Controllers
 {
     public class AccountController : Controller
     {

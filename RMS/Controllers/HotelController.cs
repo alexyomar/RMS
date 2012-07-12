@@ -1,87 +1,114 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using RMS.Models;
 
-
-namespace Regional.Controllers
-{
+namespace RMS.Controllers
+{ 
     public class HotelController : Controller
     {
+        private RegionalEntities db = new RegionalEntities();
+
         //
         // GET: /Hotel/
-        Helpers __helpers = new Helpers();
 
-        public ActionResult Index()
+        public ViewResult Index()
         {
-            IQueryable<Models.Hotel> __hoteles = __helpers.BD.Hotels.AsQueryable();
-            ViewData.Model = __hoteles;
-            return View();
+            var hotels = db.Hotels.Include("State");
+            return View(hotels.ToList());
         }
 
-        public ActionResult Editar(int? IdHotel)
+        //
+        // GET: /Hotel/Details/5
+
+        public ViewResult Details(int id)
         {
-            ViewBag.Estados = __helpers.BD.States.OrderBy(u => u.Name).AsQueryable();
-            if (IdHotel != null)
-            {
-                Models.Hotel __hotel = __helpers.BD.Hotels.Where(u => u.Id.Equals(IdHotel.Value)).SingleOrDefault();
-                ViewData.Model = __hotel;
-            }
-            return View();
+            Hotel hotel = db.Hotels.Single(h => h.Id == id);
+            return View(hotel);
         }
+
+        //
+        // GET: /Hotel/Create
+
+        public ActionResult Create()
+        {
+            ViewBag.IdState = new SelectList(db.States, "Id", "Name");
+            return View();
+        } 
+
+        //
+        // POST: /Hotel/Create
 
         [HttpPost]
-        public ActionResult Editar(Models.Hotel __hotel)
+        public ActionResult Create(Hotel hotel)
         {
-
-            try
+            if (ModelState.IsValid)
             {
-                if (__hotel.Id.Equals(0))
-                    __helpers.BD.Hotels.InsertOnSubmit(__hotel);
-                else
-                {
-                    Models.Hotel __update = __helpers.BD.Hotels.Where(u => u.Id.Equals(__hotel.Id)).SingleOrDefault();
-
-                    __update.Active = __hotel.Active;
-                    __update.Address = __hotel.Address;
-                    __update.CanSell = __hotel.CanSell;
-                    __update.Contact = __hotel.Contact;
-                    __update.Description = __hotel.Description;
-                    __update.IdState = __hotel.IdState;
-                    __update.Map = __hotel.Map;
-                    __update.Name = __hotel.Name;
-                    __update.TripAdvisor = __hotel.TripAdvisor;
-                    __update.TripAdvisorEng = __hotel.TripAdvisorEng;
-                }
-
-                __helpers.BD.SubmitChanges();
-                return Json(new { Success = "true" }); ;
+                db.Hotels.AddObject(hotel);
+                db.SaveChanges();
+                return RedirectToAction("Index");  
             }
-            catch (Exception ex)
-            {
-                return Json(new { Success = "false", Message = ex.Message, Stacktrace = ex.StackTrace }); ;
 
-            }
+            ViewBag.IdState = new SelectList(db.States, "Id", "Name", hotel.IdState);
+            return View(hotel);
         }
+        
+        //
+        // GET: /Hotel/Edit/5
+ 
+        public ActionResult Edit(int id)
+        {
+            Hotel hotel = db.Hotels.Single(h => h.Id == id);
+            ViewBag.IdState = new SelectList(db.States, "Id", "Name", hotel.IdState);
+            return View(hotel);
+        }
+
+        //
+        // POST: /Hotel/Edit/5
 
         [HttpPost]
-        public ActionResult Eliminar(int IdHotel)
+        public ActionResult Edit(Hotel hotel)
         {
-
-            try
+            if (ModelState.IsValid)
             {
-                __helpers.BD.Hotels.DeleteOnSubmit(__helpers.BD.Hotels.Where(u => u.Id.Equals(IdHotel)).SingleOrDefault());
-                __helpers.BD.SubmitChanges();
-                return Json(new { Success = "true" }); ;
+                db.Hotels.Attach(hotel);
+                db.ObjectStateManager.ChangeObjectState(hotel, EntityState.Modified);
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
-            catch (Exception ex)
-            {
-                return Json(new { Success = "false", Message = ex.Message, Stacktrace = ex.StackTrace }); ;
-
-            }
+            ViewBag.IdState = new SelectList(db.States, "Id", "Name", hotel.IdState);
+            return View(hotel);
         }
 
+        //
+        // GET: /Hotel/Delete/5
+ 
+        public ActionResult Delete(int id)
+        {
+            Hotel hotel = db.Hotels.Single(h => h.Id == id);
+            return View(hotel);
+        }
+
+        //
+        // POST: /Hotel/Delete/5
+
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int id)
+        {            
+            Hotel hotel = db.Hotels.Single(h => h.Id == id);
+            db.Hotels.DeleteObject(hotel);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            db.Dispose();
+            base.Dispose(disposing);
+        }
     }
 }
-

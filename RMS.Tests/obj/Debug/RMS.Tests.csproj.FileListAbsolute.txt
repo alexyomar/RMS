@@ -1,0 +1,8 @@
+C:\Files\Documents\GitHub\RMS\RMS.Tests\bin\Debug\RMS.Tests.dll.config
+C:\Files\Documents\GitHub\RMS\RMS.Tests\bin\Debug\RMS.Tests.dll
+C:\Files\Documents\GitHub\RMS\RMS.Tests\bin\Debug\RMS.Tests.pdb
+C:\Files\Documents\GitHub\RMS\RMS.Tests\bin\Debug\RMS.dll
+C:\Files\Documents\GitHub\RMS\RMS.Tests\bin\Debug\RMS.pdb
+C:\Files\Documents\GitHub\RMS\RMS.Tests\obj\Debug\ResolveAssemblyReference.cache
+C:\Files\Documents\GitHub\RMS\RMS.Tests\obj\Debug\RMS.Tests.dll
+C:\Files\Documents\GitHub\RMS\RMS.Tests\obj\Debug\RMS.Tests.pdb

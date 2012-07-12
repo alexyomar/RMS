@@ -1,0 +1,659 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RegionalModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="RegionalEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="aspnet_Applications" EntityType="RegionalModel.aspnet_Applications" />
+    <EntitySet Name="aspnet_Membership" EntityType="RegionalModel.aspnet_Membership" />
+    <EntitySet Name="aspnet_Paths" EntityType="RegionalModel.aspnet_Paths" />
+    <EntitySet Name="aspnet_PersonalizationAllUsers" EntityType="RegionalModel.aspnet_PersonalizationAllUsers" />
+    <EntitySet Name="aspnet_PersonalizationPerUser" EntityType="RegionalModel.aspnet_PersonalizationPerUser" />
+    <EntitySet Name="aspnet_Profile" EntityType="RegionalModel.aspnet_Profile" />
+    <EntitySet Name="aspnet_Roles" EntityType="RegionalModel.aspnet_Roles" />
+    <EntitySet Name="aspnet_SchemaVersions" EntityType="RegionalModel.aspnet_SchemaVersions" />
+    <EntitySet Name="aspnet_Users" EntityType="RegionalModel.aspnet_Users" />
+    <EntitySet Name="aspnet_WebEvent_Events" EntityType="RegionalModel.aspnet_WebEvent_Events" />
+    <EntitySet Name="Customers" EntityType="RegionalModel.Customer" />
+    <EntitySet Name="Hotels" EntityType="RegionalModel.Hotel" />
+    <EntitySet Name="PaymentMethods" EntityType="RegionalModel.PaymentMethod" />
+    <EntitySet Name="Periods" EntityType="RegionalModel.Period" />
+    <EntitySet Name="Promotions" EntityType="RegionalModel.Promotion" />
+    <EntitySet Name="Reservations" EntityType="RegionalModel.Reservation" />
+    <EntitySet Name="ReservationsBuyeds" EntityType="RegionalModel.ReservationsBuyed" />
+    <EntitySet Name="ReservationStatus" EntityType="RegionalModel.ReservationStatu" />
+    <EntitySet Name="Rooms" EntityType="RegionalModel.Room" />
+    <EntitySet Name="Services" EntityType="RegionalModel.Service" />
+    <EntitySet Name="States" EntityType="RegionalModel.State" />
+    <EntitySet Name="sysdiagrams" EntityType="RegionalModel.sysdiagram" />
+    <AssociationSet Name="FK__aspnet_Me__Appli__42E1EEFE" Association="RegionalModel.FK__aspnet_Me__Appli__42E1EEFE">
+      <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+      <End Role="aspnet_Membership" EntitySet="aspnet_Membership" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Pa__Appli__57DD0BE4" Association="RegionalModel.FK__aspnet_Pa__Appli__57DD0BE4">
+      <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+      <End Role="aspnet_Paths" EntitySet="aspnet_Paths" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Ro__Appli__56E8E7AB" Association="RegionalModel.FK__aspnet_Ro__Appli__56E8E7AB">
+      <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+      <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Us__Appli__55F4C372" Association="RegionalModel.FK__aspnet_Us__Appli__55F4C372">
+      <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Me__UserI__43D61337" Association="RegionalModel.FK__aspnet_Me__UserI__43D61337">
+      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+      <End Role="aspnet_Membership" EntitySet="aspnet_Membership" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Pe__PathI__3F115E1A" Association="RegionalModel.FK__aspnet_Pe__PathI__3F115E1A">
+      <End Role="aspnet_Paths" EntitySet="aspnet_Paths" />
+      <End Role="aspnet_PersonalizationPerUser" EntitySet="aspnet_PersonalizationPerUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Pe__PathI__4E53A1AA" Association="RegionalModel.FK__aspnet_Pe__PathI__4E53A1AA">
+      <End Role="aspnet_Paths" EntitySet="aspnet_Paths" />
+      <End Role="aspnet_PersonalizationAllUsers" EntitySet="aspnet_PersonalizationAllUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Pe__UserI__40058253" Association="RegionalModel.FK__aspnet_Pe__UserI__40058253">
+      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+      <End Role="aspnet_PersonalizationPerUser" EntitySet="aspnet_PersonalizationPerUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Pr__UserI__44CA3770" Association="RegionalModel.FK__aspnet_Pr__UserI__44CA3770">
+      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+      <End Role="aspnet_Profile" EntitySet="aspnet_Profile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reservations_Customers" Association="RegionalModel.FK_Reservations_Customers">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Reservation" EntitySet="Reservations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Periods_Posadas" Association="RegionalModel.FK_Periods_Posadas">
+      <End Role="Hotel" EntitySet="Hotels" />
+      <End Role="Periods" EntitySet="Periods" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Posadas_States" Association="RegionalModel.FK_Posadas_States">
+      <End Role="State" EntitySet="States" />
+      <End Role="Hotel" EntitySet="Hotels" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rooms_Posadas" Association="RegionalModel.FK_Rooms_Posadas">
+      <End Role="Hotel" EntitySet="Hotels" />
+      <End Role="Room" EntitySet="Rooms" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tours_Posadas" Association="RegionalModel.FK_Tours_Posadas">
+      <End Role="Hotel" EntitySet="Hotels" />
+      <End Role="Service" EntitySet="Services" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReservationsBuyed_PaymentMethods" Association="RegionalModel.FK_ReservationsBuyed_PaymentMethods">
+      <End Role="PaymentMethod" EntitySet="PaymentMethods" />
+      <End Role="ReservationsBuyed" EntitySet="ReservationsBuyeds" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Promotion_Room" Association="RegionalModel.FK_Promotion_Room">
+      <End Role="Room" EntitySet="Rooms" />
+      <End Role="Promotion" EntitySet="Promotions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reservations_ReservationStatus" Association="RegionalModel.FK_Reservations_ReservationStatus">
+      <End Role="ReservationStatus" EntitySet="ReservationStatus" />
+      <End Role="Reservation" EntitySet="Reservations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reservations_Rooms" Association="RegionalModel.FK_Reservations_Rooms">
+      <End Role="Room" EntitySet="Rooms" />
+      <End Role="Reservation" EntitySet="Reservations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReservationsBuyed_Reservations" Association="RegionalModel.FK_ReservationsBuyed_Reservations">
+      <End Role="Reservation" EntitySet="Reservations" />
+      <End Role="ReservationsBuyed" EntitySet="ReservationsBuyeds" />
+    </AssociationSet>
+    <AssociationSet Name="aspnet_UsersInRoles" Association="RegionalModel.aspnet_UsersInRoles">
+      <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
+      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="aspnet_Applications">
+    <Key>
+      <PropertyRef Name="ApplicationId" />
+    </Key>
+    <Property Name="ApplicationName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+    <Property Name="LoweredApplicationName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+    <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="aspnet_Membership" Relationship="RegionalModel.FK__aspnet_Me__Appli__42E1EEFE" FromRole="aspnet_Applications" ToRole="aspnet_Membership" />
+    <NavigationProperty Name="aspnet_Paths" Relationship="RegionalModel.FK__aspnet_Pa__Appli__57DD0BE4" FromRole="aspnet_Applications" ToRole="aspnet_Paths" />
+    <NavigationProperty Name="aspnet_Roles" Relationship="RegionalModel.FK__aspnet_Ro__Appli__56E8E7AB" FromRole="aspnet_Applications" ToRole="aspnet_Roles" />
+    <NavigationProperty Name="aspnet_Users" Relationship="RegionalModel.FK__aspnet_Us__Appli__55F4C372" FromRole="aspnet_Applications" ToRole="aspnet_Users" />
+  </EntityType>
+  <EntityType Name="aspnet_Membership">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+    <Property Name="UserId" Type="Guid" Nullable="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="PasswordFormat" Type="Int32" Nullable="false" />
+    <Property Name="PasswordSalt" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="MobilePIN" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+    <Property Name="Email" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+    <Property Name="LoweredEmail" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+    <Property Name="PasswordQuestion" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+    <Property Name="PasswordAnswer" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="IsApproved" Type="Boolean" Nullable="false" />
+    <Property Name="IsLockedOut" Type="Boolean" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+    <Property Name="LastLoginDate" Type="DateTime" Nullable="false" />
+    <Property Name="LastPasswordChangedDate" Type="DateTime" Nullable="false" />
+    <Property Name="LastLockoutDate" Type="DateTime" Nullable="false" />
+    <Property Name="FailedPasswordAttemptCount" Type="Int32" Nullable="false" />
+    <Property Name="FailedPasswordAttemptWindowStart" Type="DateTime" Nullable="false" />
+    <Property Name="FailedPasswordAnswerAttemptCount" Type="Int32" Nullable="false" />
+    <Property Name="FailedPasswordAnswerAttemptWindowStart" Type="DateTime" Nullable="false" />
+    <Property Name="Comment" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="aspnet_Applications" Relationship="RegionalModel.FK__aspnet_Me__Appli__42E1EEFE" FromRole="aspnet_Membership" ToRole="aspnet_Applications" />
+    <NavigationProperty Name="aspnet_Users" Relationship="RegionalModel.FK__aspnet_Me__UserI__43D61337" FromRole="aspnet_Membership" ToRole="aspnet_Users" />
+  </EntityType>
+  <EntityType Name="aspnet_Paths">
+    <Key>
+      <PropertyRef Name="PathId" />
+    </Key>
+    <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+    <Property Name="PathId" Type="Guid" Nullable="false" />
+    <Property Name="Path" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+    <Property Name="LoweredPath" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="aspnet_Applications" Relationship="RegionalModel.FK__aspnet_Pa__Appli__57DD0BE4" FromRole="aspnet_Paths" ToRole="aspnet_Applications" />
+    <NavigationProperty Name="aspnet_PersonalizationPerUser" Relationship="RegionalModel.FK__aspnet_Pe__PathI__3F115E1A" FromRole="aspnet_Paths" ToRole="aspnet_PersonalizationPerUser" />
+    <NavigationProperty Name="aspnet_PersonalizationAllUsers" Relationship="RegionalModel.FK__aspnet_Pe__PathI__4E53A1AA" FromRole="aspnet_Paths" ToRole="aspnet_PersonalizationAllUsers" />
+  </EntityType>
+  <EntityType Name="aspnet_PersonalizationAllUsers">
+    <Key>
+      <PropertyRef Name="PathId" />
+    </Key>
+    <Property Name="PathId" Type="Guid" Nullable="false" />
+    <Property Name="PageSettings" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="aspnet_Paths" Relationship="RegionalModel.FK__aspnet_Pe__PathI__4E53A1AA" FromRole="aspnet_PersonalizationAllUsers" ToRole="aspnet_Paths" />
+  </EntityType>
+  <EntityType Name="aspnet_PersonalizationPerUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="PathId" Type="Guid" />
+    <Property Name="UserId" Type="Guid" />
+    <Property Name="PageSettings" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="aspnet_Paths" Relationship="RegionalModel.FK__aspnet_Pe__PathI__3F115E1A" FromRole="aspnet_PersonalizationPerUser" ToRole="aspnet_Paths" />
+    <NavigationProperty Name="aspnet_Users" Relationship="RegionalModel.FK__aspnet_Pe__UserI__40058253" FromRole="aspnet_PersonalizationPerUser" ToRole="aspnet_Users" />
+  </EntityType>
+  <EntityType Name="aspnet_Profile">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Guid" Nullable="false" />
+    <Property Name="PropertyNames" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="PropertyValuesString" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="PropertyValuesBinary" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="aspnet_Users" Relationship="RegionalModel.FK__aspnet_Pr__UserI__44CA3770" FromRole="aspnet_Profile" ToRole="aspnet_Users" />
+  </EntityType>
+  <EntityType Name="aspnet_Roles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+    <Property Name="RoleId" Type="Guid" Nullable="false" />
+    <Property Name="RoleName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+    <Property Name="LoweredRoleName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="aspnet_Applications" Relationship="RegionalModel.FK__aspnet_Ro__Appli__56E8E7AB" FromRole="aspnet_Roles" ToRole="aspnet_Applications" />
+    <NavigationProperty Name="aspnet_Users" Relationship="RegionalModel.aspnet_UsersInRoles" FromRole="aspnet_Roles" ToRole="aspnet_Users" />
+  </EntityType>
+  <EntityType Name="aspnet_SchemaVersions">
+    <Key>
+      <PropertyRef Name="Feature" />
+      <PropertyRef Name="CompatibleSchemaVersion" />
+    </Key>
+    <Property Name="Feature" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="CompatibleSchemaVersion" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="IsCurrentVersion" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="aspnet_Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+    <Property Name="UserId" Type="Guid" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+    <Property Name="LoweredUserName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+    <Property Name="MobileAlias" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+    <Property Name="IsAnonymous" Type="Boolean" Nullable="false" />
+    <Property Name="LastActivityDate" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="aspnet_Applications" Relationship="RegionalModel.FK__aspnet_Us__Appli__55F4C372" FromRole="aspnet_Users" ToRole="aspnet_Applications" />
+    <NavigationProperty Name="aspnet_Membership" Relationship="RegionalModel.FK__aspnet_Me__UserI__43D61337" FromRole="aspnet_Users" ToRole="aspnet_Membership" />
+    <NavigationProperty Name="aspnet_PersonalizationPerUser" Relationship="RegionalModel.FK__aspnet_Pe__UserI__40058253" FromRole="aspnet_Users" ToRole="aspnet_PersonalizationPerUser" />
+    <NavigationProperty Name="aspnet_Profile" Relationship="RegionalModel.FK__aspnet_Pr__UserI__44CA3770" FromRole="aspnet_Users" ToRole="aspnet_Profile" />
+    <NavigationProperty Name="aspnet_Roles" Relationship="RegionalModel.aspnet_UsersInRoles" FromRole="aspnet_Users" ToRole="aspnet_Roles" />
+  </EntityType>
+  <EntityType Name="aspnet_WebEvent_Events">
+    <Key>
+      <PropertyRef Name="EventId" />
+    </Key>
+    <Property Name="EventId" Type="String" Nullable="false" MaxLength="32" Unicode="false" FixedLength="true" />
+    <Property Name="EventTimeUtc" Type="DateTime" Nullable="false" />
+    <Property Name="EventTime" Type="DateTime" Nullable="false" />
+    <Property Name="EventType" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+    <Property Name="EventSequence" Type="Decimal" Nullable="false" Precision="19" Scale="0" />
+    <Property Name="EventOccurrence" Type="Decimal" Nullable="false" Precision="19" Scale="0" />
+    <Property Name="EventCode" Type="Int32" Nullable="false" />
+    <Property Name="EventDetailCode" Type="Int32" Nullable="false" />
+    <Property Name="Message" Type="String" MaxLength="1024" Unicode="true" FixedLength="false" />
+    <Property Name="ApplicationPath" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+    <Property Name="ApplicationVirtualPath" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+    <Property Name="MachineName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+    <Property Name="RequestUrl" Type="String" MaxLength="1024" Unicode="true" FixedLength="false" />
+    <Property Name="ExceptionType" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+    <Property Name="Details" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="PersonalId" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Phone" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Reservations" Relationship="RegionalModel.FK_Reservations_Customers" FromRole="Customer" ToRole="Reservation" />
+  </EntityType>
+  <EntityType Name="Hotel">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Contact" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="IdState" Type="Int32" Nullable="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="CanSell" Type="Boolean" Nullable="false" />
+    <Property Name="TripAdvisor" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="TripAdvisorEng" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Map" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Periods" Relationship="RegionalModel.FK_Periods_Posadas" FromRole="Hotel" ToRole="Periods" />
+    <NavigationProperty Name="State" Relationship="RegionalModel.FK_Posadas_States" FromRole="Hotel" ToRole="State" />
+    <NavigationProperty Name="Rooms" Relationship="RegionalModel.FK_Rooms_Posadas" FromRole="Hotel" ToRole="Room" />
+    <NavigationProperty Name="Services" Relationship="RegionalModel.FK_Tours_Posadas" FromRole="Hotel" ToRole="Service" />
+  </EntityType>
+  <EntityType Name="PaymentMethod">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Notes" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="ReservationsBuyeds" Relationship="RegionalModel.FK_ReservationsBuyed_PaymentMethods" FromRole="PaymentMethod" ToRole="ReservationsBuyed" />
+  </EntityType>
+  <EntityType Name="Period">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BeginDay" Type="Int32" Nullable="false" />
+    <Property Name="EndDay" Type="Int32" Nullable="false" />
+    <Property Name="IdHotel" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="BeginMonth" Type="Int32" Nullable="false" />
+    <Property Name="EndMonth" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Hotel" Relationship="RegionalModel.FK_Periods_Posadas" FromRole="Periods" ToRole="Hotel" />
+  </EntityType>
+  <EntityType Name="Promotion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="LowSeasonPrice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="HighSeasonPrice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="IdRoom" Type="Int32" Nullable="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Room" Relationship="RegionalModel.FK_Promotion_Room" FromRole="Promotion" ToRole="Room" />
+  </EntityType>
+  <EntityType Name="Reservation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="IdCustomer" Type="Int32" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Arrival" Type="DateTime" Nullable="false" />
+    <Property Name="Departure" Type="DateTime" Nullable="false" />
+    <Property Name="ReservationDate" Type="DateTime" Nullable="false" />
+    <Property Name="Adults" Type="Int32" Nullable="false" />
+    <Property Name="Childrens" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="IdRoom" Type="Int32" Nullable="false" />
+    <Property Name="IdReservationStatus" Type="Int32" Nullable="false" />
+    <Property Name="ClientNumber" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Agency" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Customer" Relationship="RegionalModel.FK_Reservations_Customers" FromRole="Reservation" ToRole="Customer" />
+    <NavigationProperty Name="ReservationStatu" Relationship="RegionalModel.FK_Reservations_ReservationStatus" FromRole="Reservation" ToRole="ReservationStatus" />
+    <NavigationProperty Name="Room" Relationship="RegionalModel.FK_Reservations_Rooms" FromRole="Reservation" ToRole="Room" />
+    <NavigationProperty Name="ReservationsBuyeds" Relationship="RegionalModel.FK_ReservationsBuyed_Reservations" FromRole="Reservation" ToRole="ReservationsBuyed" />
+  </EntityType>
+  <EntityType Name="ReservationsBuyed">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="IdReservation" Type="Int32" Nullable="false" />
+    <Property Name="IdPaymentMethod" Type="Int32" Nullable="false" />
+    <Property Name="TransactionNumber" Type="Int32" Nullable="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Date" Type="DateTime" />
+    <Property Name="TotalPayed" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="PaymentMethod" Relationship="RegionalModel.FK_ReservationsBuyed_PaymentMethods" FromRole="ReservationsBuyed" ToRole="PaymentMethod" />
+    <NavigationProperty Name="Reservation" Relationship="RegionalModel.FK_ReservationsBuyed_Reservations" FromRole="ReservationsBuyed" ToRole="Reservation" />
+  </EntityType>
+  <EntityType Name="ReservationStatu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Reservations" Relationship="RegionalModel.FK_Reservations_ReservationStatus" FromRole="ReservationStatus" ToRole="Reservation" />
+  </EntityType>
+  <EntityType Name="Room">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="IdHotel" Type="Int32" Nullable="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="Capacity" Type="Int32" Nullable="false" />
+    <Property Name="LowSeasonPrice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="HighSeasonPrice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="Discount1" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Discount2" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Discount3" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Discount4" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="Hotel" Relationship="RegionalModel.FK_Rooms_Posadas" FromRole="Room" ToRole="Hotel" />
+    <NavigationProperty Name="Promotions" Relationship="RegionalModel.FK_Promotion_Room" FromRole="Room" ToRole="Promotion" />
+    <NavigationProperty Name="Reservations" Relationship="RegionalModel.FK_Reservations_Rooms" FromRole="Room" ToRole="Reservation" />
+  </EntityType>
+  <EntityType Name="Service">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="IdPosada" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="DurationDays" Type="Int32" />
+    <Property Name="BuyLater" Type="Boolean" />
+    <NavigationProperty Name="Hotel" Relationship="RegionalModel.FK_Tours_Posadas" FromRole="Service" ToRole="Hotel" />
+  </EntityType>
+  <EntityType Name="State">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Hotels" Relationship="RegionalModel.FK_Posadas_States" FromRole="State" ToRole="Hotel" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK__aspnet_Me__Appli__42E1EEFE">
+    <End Role="aspnet_Applications" Type="RegionalModel.aspnet_Applications" Multiplicity="1" />
+    <End Role="aspnet_Membership" Type="RegionalModel.aspnet_Membership" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Applications">
+        <PropertyRef Name="ApplicationId" />
+      </Principal>
+      <Dependent Role="aspnet_Membership">
+        <PropertyRef Name="ApplicationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Pa__Appli__57DD0BE4">
+    <End Role="aspnet_Applications" Type="RegionalModel.aspnet_Applications" Multiplicity="1" />
+    <End Role="aspnet_Paths" Type="RegionalModel.aspnet_Paths" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Applications">
+        <PropertyRef Name="ApplicationId" />
+      </Principal>
+      <Dependent Role="aspnet_Paths">
+        <PropertyRef Name="ApplicationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Ro__Appli__56E8E7AB">
+    <End Role="aspnet_Applications" Type="RegionalModel.aspnet_Applications" Multiplicity="1" />
+    <End Role="aspnet_Roles" Type="RegionalModel.aspnet_Roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Applications">
+        <PropertyRef Name="ApplicationId" />
+      </Principal>
+      <Dependent Role="aspnet_Roles">
+        <PropertyRef Name="ApplicationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Us__Appli__55F4C372">
+    <End Role="aspnet_Applications" Type="RegionalModel.aspnet_Applications" Multiplicity="1" />
+    <End Role="aspnet_Users" Type="RegionalModel.aspnet_Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Applications">
+        <PropertyRef Name="ApplicationId" />
+      </Principal>
+      <Dependent Role="aspnet_Users">
+        <PropertyRef Name="ApplicationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Me__UserI__43D61337">
+    <End Role="aspnet_Users" Type="RegionalModel.aspnet_Users" Multiplicity="1" />
+    <End Role="aspnet_Membership" Type="RegionalModel.aspnet_Membership" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="aspnet_Membership">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Pe__PathI__3F115E1A">
+    <End Role="aspnet_Paths" Type="RegionalModel.aspnet_Paths" Multiplicity="0..1" />
+    <End Role="aspnet_PersonalizationPerUser" Type="RegionalModel.aspnet_PersonalizationPerUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Paths">
+        <PropertyRef Name="PathId" />
+      </Principal>
+      <Dependent Role="aspnet_PersonalizationPerUser">
+        <PropertyRef Name="PathId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Pe__PathI__4E53A1AA">
+    <End Role="aspnet_Paths" Type="RegionalModel.aspnet_Paths" Multiplicity="1" />
+    <End Role="aspnet_PersonalizationAllUsers" Type="RegionalModel.aspnet_PersonalizationAllUsers" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Paths">
+        <PropertyRef Name="PathId" />
+      </Principal>
+      <Dependent Role="aspnet_PersonalizationAllUsers">
+        <PropertyRef Name="PathId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Pe__UserI__40058253">
+    <End Role="aspnet_Users" Type="RegionalModel.aspnet_Users" Multiplicity="0..1" />
+    <End Role="aspnet_PersonalizationPerUser" Type="RegionalModel.aspnet_PersonalizationPerUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="aspnet_PersonalizationPerUser">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Pr__UserI__44CA3770">
+    <End Role="aspnet_Users" Type="RegionalModel.aspnet_Users" Multiplicity="1" />
+    <End Role="aspnet_Profile" Type="RegionalModel.aspnet_Profile" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="aspnet_Profile">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reservations_Customers">
+    <End Role="Customer" Type="RegionalModel.Customer" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Reservation" Type="RegionalModel.Reservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reservation">
+        <PropertyRef Name="IdCustomer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Periods_Posadas">
+    <End Role="Hotel" Type="RegionalModel.Hotel" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Periods" Type="RegionalModel.Period" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Periods">
+        <PropertyRef Name="IdHotel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Posadas_States">
+    <End Role="State" Type="RegionalModel.State" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Hotel" Type="RegionalModel.Hotel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Hotel">
+        <PropertyRef Name="IdState" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rooms_Posadas">
+    <End Role="Hotel" Type="RegionalModel.Hotel" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Room" Type="RegionalModel.Room" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Room">
+        <PropertyRef Name="IdHotel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tours_Posadas">
+    <End Role="Hotel" Type="RegionalModel.Hotel" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Service" Type="RegionalModel.Service" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Service">
+        <PropertyRef Name="IdPosada" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReservationsBuyed_PaymentMethods">
+    <End Role="PaymentMethod" Type="RegionalModel.PaymentMethod" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ReservationsBuyed" Type="RegionalModel.ReservationsBuyed" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentMethod">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReservationsBuyed">
+        <PropertyRef Name="IdPaymentMethod" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Promotion_Room">
+    <End Role="Room" Type="RegionalModel.Room" Multiplicity="1" />
+    <End Role="Promotion" Type="RegionalModel.Promotion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Promotion">
+        <PropertyRef Name="IdRoom" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reservations_ReservationStatus">
+    <End Role="ReservationStatus" Type="RegionalModel.ReservationStatu" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Reservation" Type="RegionalModel.Reservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ReservationStatus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reservation">
+        <PropertyRef Name="IdReservationStatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reservations_Rooms">
+    <End Role="Room" Type="RegionalModel.Room" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Reservation" Type="RegionalModel.Reservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reservation">
+        <PropertyRef Name="IdRoom" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReservationsBuyed_Reservations">
+    <End Role="Reservation" Type="RegionalModel.Reservation" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ReservationsBuyed" Type="RegionalModel.ReservationsBuyed" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Reservation">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReservationsBuyed">
+        <PropertyRef Name="IdReservation" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="aspnet_UsersInRoles">
+    <End Role="aspnet_Roles" Type="RegionalModel.aspnet_Roles" Multiplicity="*" />
+    <End Role="aspnet_Users" Type="RegionalModel.aspnet_Users" Multiplicity="*" />
+  </Association>
+</Schema>
