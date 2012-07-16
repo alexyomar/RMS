@@ -1,0 +1,55 @@
+﻿@model RMS.Models.Reservation
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Reservation</legend>
+
+    <div class="display-label">Customer</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Customer.Name)
+    </div>
+
+    <div class="display-label">Arrival</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Arrival)
+    </div>
+
+    <div class="display-label">Departure</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Departure)
+    </div>
+
+    <div class="display-label">ReservationDate</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ReservationDate)
+    </div>
+
+    <div class="display-label">Adults</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Adults)
+    </div>
+
+    <div class="display-label">Childrens</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Childrens)
+    </div>
+
+    <div class="display-label">Price</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Price)
+    </div>
+
+    <div class="display-label">ReservationStatu</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ReservationStatu.Name)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

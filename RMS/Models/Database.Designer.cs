@@ -8,12 +8,13 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.ComponentModel;
+using System.Data.EntityClient;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
-using System.Data.EntityClient;
-using System.ComponentModel;
-using System.Xml.Serialization;
+using System.Linq;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
@@ -28,16 +29,16 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("RegionalModel", "FK__aspnet_Pe__UserI__40058253", "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(RMS.Models.aspnet_Users), "aspnet_PersonalizationPerUser", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.aspnet_PersonalizationPerUser), true)]
 [assembly: EdmRelationshipAttribute("RegionalModel", "FK__aspnet_Pr__UserI__44CA3770", "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(RMS.Models.aspnet_Users), "aspnet_Profile", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(RMS.Models.aspnet_Profile), true)]
 [assembly: EdmRelationshipAttribute("RegionalModel", "FK_Reservations_Customers", "Customer", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(RMS.Models.Customer), "Reservation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.Reservation), true)]
-[assembly: EdmRelationshipAttribute("RegionalModel", "FK_Periods_Posadas", "Hotel", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(RMS.Models.Hotel), "Periods", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.Period), true)]
+[assembly: EdmRelationshipAttribute("RegionalModel", "FK_Periods_Posadas", "Hotel", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(RMS.Models.Hotel), "Period", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.Period), true)]
 [assembly: EdmRelationshipAttribute("RegionalModel", "FK_Posadas_States", "State", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(RMS.Models.State), "Hotel", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.Hotel), true)]
 [assembly: EdmRelationshipAttribute("RegionalModel", "FK_Rooms_Posadas", "Hotel", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(RMS.Models.Hotel), "Room", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.Room), true)]
 [assembly: EdmRelationshipAttribute("RegionalModel", "FK_Tours_Posadas", "Hotel", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(RMS.Models.Hotel), "Service", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.Service), true)]
 [assembly: EdmRelationshipAttribute("RegionalModel", "FK_ReservationsBuyed_PaymentMethods", "PaymentMethod", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(RMS.Models.PaymentMethod), "ReservationsBuyed", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.ReservationsBuyed), true)]
 [assembly: EdmRelationshipAttribute("RegionalModel", "FK_Promotion_Room", "Room", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(RMS.Models.Room), "Promotion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.Promotion), true)]
-[assembly: EdmRelationshipAttribute("RegionalModel", "FK_Reservations_ReservationStatus", "ReservationStatus", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(RMS.Models.ReservationStatu), "Reservation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.Reservation), true)]
-[assembly: EdmRelationshipAttribute("RegionalModel", "FK_Reservations_Rooms", "Room", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(RMS.Models.Room), "Reservation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.Reservation), true)]
+[assembly: EdmRelationshipAttribute("RegionalModel", "FK_Reservations_ReservationStatus", "ReservationStatu", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(RMS.Models.ReservationStatu), "Reservation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.Reservation), true)]
 [assembly: EdmRelationshipAttribute("RegionalModel", "FK_ReservationsBuyed_Reservations", "Reservation", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(RMS.Models.Reservation), "ReservationsBuyed", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.ReservationsBuyed), true)]
 [assembly: EdmRelationshipAttribute("RegionalModel", "aspnet_UsersInRoles", "aspnet_Roles", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.aspnet_Roles), "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.aspnet_Users))]
+[assembly: EdmRelationshipAttribute("RegionalModel", "ReservationRoom", "Reservation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.Reservation), "Room", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.Room))]
 
 #endregion
 
@@ -442,6 +443,7 @@ namespace RMS.Models
         private ObjectSet<sysdiagram> _sysdiagrams;
 
         #endregion
+
         #region AddTo Methods
     
         /// <summary>
@@ -621,11 +623,11 @@ namespace RMS.Models
         }
 
         #endregion
+
     }
-    
 
     #endregion
-    
+
     #region Entities
     
     /// <summary>
@@ -654,6 +656,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -756,6 +759,7 @@ namespace RMS.Models
         partial void OnDescriptionChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -848,6 +852,7 @@ namespace RMS.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -900,6 +905,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1410,6 +1416,7 @@ namespace RMS.Models
         partial void OnCommentChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -1490,6 +1497,7 @@ namespace RMS.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -1520,6 +1528,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1622,6 +1631,7 @@ namespace RMS.Models
         partial void OnLoweredPathChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -1724,6 +1734,7 @@ namespace RMS.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -1752,6 +1763,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1830,6 +1842,7 @@ namespace RMS.Models
         partial void OnLastUpdatedDateChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -1872,6 +1885,7 @@ namespace RMS.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -1900,6 +1914,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2026,6 +2041,7 @@ namespace RMS.Models
         partial void OnLastUpdatedDateChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -2106,6 +2122,7 @@ namespace RMS.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2138,6 +2155,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2264,6 +2282,7 @@ namespace RMS.Models
         partial void OnLastUpdatedDateChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -2306,6 +2325,7 @@ namespace RMS.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2336,6 +2356,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2462,6 +2483,7 @@ namespace RMS.Models
         partial void OnDescriptionChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -2526,6 +2548,7 @@ namespace RMS.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2554,6 +2577,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2635,6 +2659,7 @@ namespace RMS.Models
         partial void OnIsCurrentVersionChanged();
 
         #endregion
+
     
     }
     
@@ -2670,6 +2695,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2844,6 +2870,7 @@ namespace RMS.Models
         partial void OnLastActivityDateChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -3006,6 +3033,7 @@ namespace RMS.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -3046,6 +3074,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -3412,6 +3441,7 @@ namespace RMS.Models
         partial void OnDetailsChanged();
 
         #endregion
+
     
     }
     
@@ -3449,6 +3479,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -3623,6 +3654,7 @@ namespace RMS.Models
         partial void OnEmailChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -3649,6 +3681,7 @@ namespace RMS.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -3687,6 +3720,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -3957,6 +3991,7 @@ namespace RMS.Models
         partial void OnMapChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -3966,18 +4001,18 @@ namespace RMS.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("RegionalModel", "FK_Periods_Posadas", "Periods")]
+        [EdmRelationshipNavigationPropertyAttribute("RegionalModel", "FK_Periods_Posadas", "Period")]
         public EntityCollection<Period> Periods
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Period>("RegionalModel.FK_Periods_Posadas", "Periods");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Period>("RegionalModel.FK_Periods_Posadas", "Period");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Period>("RegionalModel.FK_Periods_Posadas", "Periods", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Period>("RegionalModel.FK_Periods_Posadas", "Period", value);
                 }
             }
         }
@@ -4065,6 +4100,7 @@ namespace RMS.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -4093,6 +4129,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -4171,6 +4208,7 @@ namespace RMS.Models
         partial void OnNotesChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -4197,6 +4235,7 @@ namespace RMS.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -4231,6 +4270,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -4405,6 +4445,7 @@ namespace RMS.Models
         partial void OnEndMonthChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -4447,6 +4488,7 @@ namespace RMS.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -4479,6 +4521,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -4605,6 +4648,7 @@ namespace RMS.Models
         partial void OnIdChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -4647,6 +4691,7 @@ namespace RMS.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -4668,10 +4713,8 @@ namespace RMS.Models
         /// <param name="reservationDate">Initial value of the ReservationDate property.</param>
         /// <param name="adults">Initial value of the Adults property.</param>
         /// <param name="childrens">Initial value of the Childrens property.</param>
-        /// <param name="price">Initial value of the Price property.</param>
-        /// <param name="idRoom">Initial value of the IdRoom property.</param>
         /// <param name="idReservationStatus">Initial value of the IdReservationStatus property.</param>
-        public static Reservation CreateReservation(global::System.Int32 id, global::System.DateTime arrival, global::System.DateTime departure, global::System.DateTime reservationDate, global::System.Int32 adults, global::System.Int32 childrens, global::System.Decimal price, global::System.Int32 idRoom, global::System.Int32 idReservationStatus)
+        public static Reservation CreateReservation(global::System.Int32 id, global::System.DateTime arrival, global::System.DateTime departure, global::System.DateTime reservationDate, global::System.Int32 adults, global::System.Int32 childrens, global::System.Int32 idReservationStatus)
         {
             Reservation reservation = new Reservation();
             reservation.Id = id;
@@ -4680,38 +4723,13 @@ namespace RMS.Models
             reservation.ReservationDate = reservationDate;
             reservation.Adults = adults;
             reservation.Childrens = childrens;
-            reservation.Price = price;
-            reservation.IdRoom = idRoom;
             reservation.IdReservationStatus = idReservationStatus;
             return reservation;
         }
 
         #endregion
+
         #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> IdCustomer
-        {
-            get
-            {
-                return _IdCustomer;
-            }
-            set
-            {
-                OnIdCustomerChanging(value);
-                ReportPropertyChanging("IdCustomer");
-                _IdCustomer = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("IdCustomer");
-                OnIdCustomerChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _IdCustomer;
-        partial void OnIdCustomerChanging(Nullable<global::System.Int32> value);
-        partial void OnIdCustomerChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -4739,6 +4757,30 @@ namespace RMS.Models
         private global::System.Int32 _Id;
         partial void OnIdChanging(global::System.Int32 value);
         partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> IdCustomer
+        {
+            get
+            {
+                return _IdCustomer;
+            }
+            set
+            {
+                OnIdCustomerChanging(value);
+                ReportPropertyChanging("IdCustomer");
+                _IdCustomer = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IdCustomer");
+                OnIdCustomerChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _IdCustomer;
+        partial void OnIdCustomerChanging(Nullable<global::System.Int32> value);
+        partial void OnIdCustomerChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -4863,9 +4905,9 @@ namespace RMS.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Decimal Price
+        public Nullable<global::System.Decimal> Price
         {
             get
             {
@@ -4880,33 +4922,9 @@ namespace RMS.Models
                 OnPriceChanged();
             }
         }
-        private global::System.Decimal _Price;
-        partial void OnPriceChanging(global::System.Decimal value);
+        private Nullable<global::System.Decimal> _Price;
+        partial void OnPriceChanging(Nullable<global::System.Decimal> value);
         partial void OnPriceChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 IdRoom
-        {
-            get
-            {
-                return _IdRoom;
-            }
-            set
-            {
-                OnIdRoomChanging(value);
-                ReportPropertyChanging("IdRoom");
-                _IdRoom = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("IdRoom");
-                OnIdRoomChanged();
-            }
-        }
-        private global::System.Int32 _IdRoom;
-        partial void OnIdRoomChanging(global::System.Int32 value);
-        partial void OnIdRoomChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -4931,56 +4949,9 @@ namespace RMS.Models
         private global::System.Int32 _IdReservationStatus;
         partial void OnIdReservationStatusChanging(global::System.Int32 value);
         partial void OnIdReservationStatusChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String ClientNumber
-        {
-            get
-            {
-                return _ClientNumber;
-            }
-            set
-            {
-                OnClientNumberChanging(value);
-                ReportPropertyChanging("ClientNumber");
-                _ClientNumber = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("ClientNumber");
-                OnClientNumberChanged();
-            }
-        }
-        private global::System.String _ClientNumber;
-        partial void OnClientNumberChanging(global::System.String value);
-        partial void OnClientNumberChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String Agency
-        {
-            get
-            {
-                return _Agency;
-            }
-            set
-            {
-                OnAgencyChanging(value);
-                ReportPropertyChanging("Agency");
-                _Agency = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Agency");
-                OnAgencyChanged();
-            }
-        }
-        private global::System.String _Agency;
-        partial void OnAgencyChanging(global::System.String value);
-        partial void OnAgencyChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -5028,16 +4999,16 @@ namespace RMS.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("RegionalModel", "FK_Reservations_ReservationStatus", "ReservationStatus")]
+        [EdmRelationshipNavigationPropertyAttribute("RegionalModel", "FK_Reservations_ReservationStatus", "ReservationStatu")]
         public ReservationStatu ReservationStatu
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ReservationStatu>("RegionalModel.FK_Reservations_ReservationStatus", "ReservationStatus").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ReservationStatu>("RegionalModel.FK_Reservations_ReservationStatus", "ReservationStatu").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ReservationStatu>("RegionalModel.FK_Reservations_ReservationStatus", "ReservationStatus").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ReservationStatu>("RegionalModel.FK_Reservations_ReservationStatus", "ReservationStatu").Value = value;
             }
         }
         /// <summary>
@@ -5049,51 +5020,13 @@ namespace RMS.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ReservationStatu>("RegionalModel.FK_Reservations_ReservationStatus", "ReservationStatus");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ReservationStatu>("RegionalModel.FK_Reservations_ReservationStatus", "ReservationStatu");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ReservationStatu>("RegionalModel.FK_Reservations_ReservationStatus", "ReservationStatus", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("RegionalModel", "FK_Reservations_Rooms", "Room")]
-        public Room Room
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Room>("RegionalModel.FK_Reservations_Rooms", "Room").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Room>("RegionalModel.FK_Reservations_Rooms", "Room").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Room> RoomReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Room>("RegionalModel.FK_Reservations_Rooms", "Room");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Room>("RegionalModel.FK_Reservations_Rooms", "Room", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ReservationStatu>("RegionalModel.FK_Reservations_ReservationStatus", "ReservationStatu", value);
                 }
             }
         }
@@ -5119,8 +5052,31 @@ namespace RMS.Models
                 }
             }
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RegionalModel", "ReservationRoom", "Room")]
+        public EntityCollection<Room> Rooms
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Room>("RegionalModel.ReservationRoom", "Room");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Room>("RegionalModel.ReservationRoom", "Room", value);
+                }
+            }
+        }
 
         #endregion
+
     }
     
     /// <summary>
@@ -5151,6 +5107,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -5301,6 +5258,7 @@ namespace RMS.Models
         partial void OnTotalPayedChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -5381,6 +5339,7 @@ namespace RMS.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -5407,6 +5366,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -5461,6 +5421,7 @@ namespace RMS.Models
         partial void OnNameChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -5487,6 +5448,7 @@ namespace RMS.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -5525,6 +5487,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -5819,6 +5782,7 @@ namespace RMS.Models
         partial void OnDiscount4Changed();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -5888,23 +5852,24 @@ namespace RMS.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("RegionalModel", "FK_Reservations_Rooms", "Reservation")]
+        [EdmRelationshipNavigationPropertyAttribute("RegionalModel", "ReservationRoom", "Reservation")]
         public EntityCollection<Reservation> Reservations
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Reservation>("RegionalModel.FK_Reservations_Rooms", "Reservation");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Reservation>("RegionalModel.ReservationRoom", "Reservation");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Reservation>("RegionalModel.FK_Reservations_Rooms", "Reservation", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Reservation>("RegionalModel.ReservationRoom", "Reservation", value);
                 }
             }
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -5935,6 +5900,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -6109,6 +6075,7 @@ namespace RMS.Models
         partial void OnBuyLaterChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -6151,6 +6118,7 @@ namespace RMS.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -6177,6 +6145,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -6231,6 +6200,7 @@ namespace RMS.Models
         partial void OnNameChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -6257,6 +6227,7 @@ namespace RMS.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -6285,6 +6256,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -6411,9 +6383,11 @@ namespace RMS.Models
         partial void OndefinitionChanged();
 
         #endregion
+
     
     }
 
     #endregion
+
     
 }

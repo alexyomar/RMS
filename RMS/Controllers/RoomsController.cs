@@ -63,6 +63,7 @@ namespace RMS.Controllers
         public ActionResult Edit(int id)
         {
             Room room = db.Rooms.Single(r => r.Id == id);
+            ViewBag.Hotel = db.Hotels.Where(u => u.Id.Equals(room.IdHotel)).SingleOrDefault();
             ViewBag.IdHotel = new SelectList(db.Hotels, "Id", "Name", room.IdHotel);
             return View(room);
         }

@@ -1,45 +1,38 @@
 ﻿@model RMS.Models.Customer
-
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalles del Cliente";
 }
-
-<h2>Details</h2>
-
+<h2>
+    Detalles del cliente</h2>
 <fieldset>
-    <legend>Customer</legend>
-
-    <div class="display-label">Name</div>
+    <legend>Cliente</legend>
+    <div class="display-label">@Html.LabelFor(model => model.Name)</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Name)
     </div>
-
-    <div class="display-label">LastName</div>
+    <div class="display-label">@Html.LabelFor(model => model.LastName)</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.LastName)
     </div>
-
-    <div class="display-label">PersonalId</div>
+    <div class="display-label">@Html.LabelFor(model => model.PersonalId)</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.PersonalId)
     </div>
-
-    <div class="display-label">Phone</div>
+    <div class="display-label">@Html.LabelFor(model => model.Phone)</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Phone)
     </div>
-
-    <div class="display-label">Address</div>
+    <div class="display-label">@Html.LabelFor(model => model.Address)</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Address)
     </div>
-
-    <div class="display-label">Email</div>
+    <div class="display-label">
+        Email</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Email)
     </div>
 </fieldset>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Volver al listado", "Index")
 </p>

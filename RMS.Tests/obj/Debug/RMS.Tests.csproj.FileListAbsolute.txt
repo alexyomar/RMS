@@ -6,3 +6,11 @@ C:\Files\Documents\GitHub\RMS\RMS.Tests\bin\Debug\RMS.pdb
 C:\Files\Documents\GitHub\RMS\RMS.Tests\obj\Debug\ResolveAssemblyReference.cache
 C:\Files\Documents\GitHub\RMS\RMS.Tests\obj\Debug\RMS.Tests.dll
 C:\Files\Documents\GitHub\RMS\RMS.Tests\obj\Debug\RMS.Tests.pdb
+C:\Users\Alexyomar\Documents\GitHub\RMS\RMS.Tests\bin\Debug\RMS.Tests.dll.config
+C:\Users\Alexyomar\Documents\GitHub\RMS\RMS.Tests\bin\Debug\RMS.Tests.dll
+C:\Users\Alexyomar\Documents\GitHub\RMS\RMS.Tests\bin\Debug\RMS.Tests.pdb
+C:\Users\Alexyomar\Documents\GitHub\RMS\RMS.Tests\bin\Debug\RMS.dll
+C:\Users\Alexyomar\Documents\GitHub\RMS\RMS.Tests\bin\Debug\RMS.pdb
+C:\Users\Alexyomar\Documents\GitHub\RMS\RMS.Tests\obj\Debug\RMS.Tests.csprojResolveAssemblyReference.cache
+C:\Users\Alexyomar\Documents\GitHub\RMS\RMS.Tests\obj\Debug\RMS.Tests.dll
+C:\Users\Alexyomar\Documents\GitHub\RMS\RMS.Tests\obj\Debug\RMS.Tests.pdb

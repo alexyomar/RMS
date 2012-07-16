@@ -17,7 +17,8 @@ namespace RMS.Controllers
         // GET: /Hotel/
 
         public ViewResult Index()
-        {
+        {            
+
             var hotels = db.Hotels.Include("State");
             return View(hotels.ToList());
         }
@@ -36,7 +37,7 @@ namespace RMS.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.IdState = new SelectList(db.States, "Id", "Name");
+            ViewBag.IdState = new SelectList(db.States, "Id", "Name").OrderBy(u => u.Text);
             return View();
         } 
 
