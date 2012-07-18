@@ -41,9 +41,15 @@
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
-    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -86,8 +92,54 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\images\banner.jpg" />
+    <Content Include="Content\images\bg.jpg" />
+    <Content Include="Content\images\bg_c.gif" />
+    <Content Include="Content\images\bg_c_b.gif" />
+    <Content Include="Content\images\big.jpg" />
+    <Content Include="Content\images\button.gif" />
+    <Content Include="Content\images\Home-01_23.jpg" />
+    <Content Include="Content\images\homesplash.jpg" />
+    <Content Include="Content\images\l1.gif" />
+    <Content Include="Content\images\l2.gif" />
+    <Content Include="Content\images\l3.gif" />
+    <Content Include="Content\images\l4.gif" />
+    <Content Include="Content\images\l5.gif" />
+    <Content Include="Content\images\logo.jpg" />
+    <Content Include="Content\images\menu_bg.gif" />
+    <Content Include="Content\images\menu_bg.png" />
+    <Content Include="Content\images\more_bg.gif" />
+    <Content Include="Content\images\p1.jpg" />
+    <Content Include="Content\images\p2.jpg" />
+    <Content Include="Content\images\p3.jpg" />
+    <Content Include="Content\images\p4.jpg" />
+    <Content Include="Content\images\p5.jpg" />
+    <Content Include="Content\images\p6.jpg" />
+    <Content Include="Content\images\p7.jpg" />
+    <Content Include="Content\images\p8.jpg" />
+    <Content Include="Content\images\photo1.jpg" />
+    <Content Include="Content\images\photo2.jpg" />
+    <Content Include="Content\images\photo3.jpg" />
+    <Content Include="Content\images\photo4.jpg" />
+    <Content Include="Content\images\pic1.jpg" />
+    <Content Include="Content\images\pic2.jpg" />
+    <Content Include="Content\images\pic3.jpg" />
+    <Content Include="Content\images\search_bg.gif" />
+    <Content Include="Content\images\spacer.gif" />
+    <Content Include="Content\images\title10.gif" />
+    <Content Include="Content\images\title11.gif" />
+    <Content Include="Content\images\title1_bg.gif" />
+    <Content Include="Content\images\title2_bg.gif" />
+    <Content Include="Content\images\title3_bg.gif" />
+    <Content Include="Content\images\title4.gif" />
+    <Content Include="Content\images\title5.gif" />
+    <Content Include="Content\images\title6.gif" />
+    <Content Include="Content\images\title7.gif" />
+    <Content Include="Content\images\title8.gif" />
+    <Content Include="Content\images\title9.gif" />
     <Content Include="Content\img\103.gif" />
     <Content Include="Content\img\logoadmin.png" />
+    <Content Include="Content\webstyle.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -249,6 +301,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Reservation\Ocupacion.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_website.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\images\Thumbs.db" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

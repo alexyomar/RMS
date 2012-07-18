@@ -12,3 +12,9 @@ C:\Users\Alexyomar\Documents\GitHub\RMS\RMS\bin\EntityFramework.xml
 C:\Users\Alexyomar\Documents\GitHub\RMS\RMS\obj\Debug\RMS.csprojResolveAssemblyReference.cache
 C:\Users\Alexyomar\Documents\GitHub\RMS\RMS\obj\Debug\RMS.dll
 C:\Users\Alexyomar\Documents\GitHub\RMS\RMS\obj\Debug\RMS.pdb
+C:\Files\Documents\GitHub\RMS\RMS\bin\System.Web.Helpers.dll
+C:\Files\Documents\GitHub\RMS\RMS\bin\System.Web.Mvc.dll
+C:\Files\Documents\GitHub\RMS\RMS\bin\System.Web.WebPages.dll
+C:\Files\Documents\GitHub\RMS\RMS\bin\System.Web.Mvc.xml
+C:\Files\Documents\GitHub\RMS\RMS\bin\System.Web.WebPages.xml
+C:\Files\Documents\GitHub\RMS\RMS\bin\System.Web.Helpers.xml
