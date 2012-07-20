@@ -18,8 +18,7 @@ namespace RMS.Controllers
 
         public ViewResult Index()
         {
-            db.DeleteDatabase();
-            db.CreateDatabase();
+
             var hotels = db.Hotels.Include("State");
             return View(hotels.ToList());
         }

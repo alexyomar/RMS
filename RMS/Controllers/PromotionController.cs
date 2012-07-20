@@ -8,7 +8,7 @@ using System.Web.Mvc;
 using RMS.Models;
 
 namespace RMS.Controllers
-{ 
+{
     public class PromotionController : Controller
     {
         private RegionalEntities db = new RegionalEntities();
@@ -16,9 +16,9 @@ namespace RMS.Controllers
         //
         // GET: /Promotion/
 
-        public ViewResult Index()
+        public ViewResult Index(int IdRoom)
         {
-            var promotions = db.Promotions.Include("Room");
+            var promotions = db.Promotions.Include("Room").Where(x => x.IdRoom.Equals(IdRoom));
             return View(promotions.ToList());
         }
 
@@ -34,11 +34,11 @@ namespace RMS.Controllers
         //
         // GET: /Promotion/Create
 
-        public ActionResult Create()
+        public ActionResult Create(int IdRoom)
         {
-            ViewBag.IdRoom = new SelectList(db.Rooms, "Id", "Name");
+            ViewBag.IdRoom = IdRoom;
             return View();
-        } 
+        }
 
         //
         // POST: /Promotion/Create
@@ -50,16 +50,16 @@ namespace RMS.Controllers
             {
                 db.Promotions.AddObject(promotion);
                 db.SaveChanges();
-                return RedirectToAction("Index");  
+                return RedirectToAction("Index");
             }
 
             ViewBag.IdRoom = new SelectList(db.Rooms, "Id", "Name", promotion.IdRoom);
             return View(promotion);
         }
-        
+
         //
         // GET: /Promotion/Edit/5
- 
+
         public ActionResult Edit(int id)
         {
             Promotion promotion = db.Promotions.Single(p => p.Id == id);
@@ -77,8 +77,9 @@ namespace RMS.Controllers
             {
                 db.Promotions.Attach(promotion);
                 db.ObjectStateManager.ChangeObjectState(promotion, EntityState.Modified);
+                int IdRoom = promotion.IdRoom;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { IdRoom = IdRoom });
             }
             ViewBag.IdRoom = new SelectList(db.Rooms, "Id", "Name", promotion.IdRoom);
             return View(promotion);
@@ -86,7 +87,7 @@ namespace RMS.Controllers
 
         //
         // GET: /Promotion/Delete/5
- 
+
         public ActionResult Delete(int id)
         {
             Promotion promotion = db.Promotions.Single(p => p.Id == id);
@@ -98,11 +99,13 @@ namespace RMS.Controllers
 
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
-        {            
+        {
+
             Promotion promotion = db.Promotions.Single(p => p.Id == id);
+            int IdRoom = promotion.IdRoom;
             db.Promotions.DeleteObject(promotion);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { IdRoom = IdRoom });
         }
 
         protected override void Dispose(bool disposing)
