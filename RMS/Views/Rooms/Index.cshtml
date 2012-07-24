@@ -66,9 +66,11 @@
                 @Html.DisplayFor(modelItem => item.Active)
             </td>
             <td>
+                @Html.ActionLink("Promociones", "Index","Promotion", new { IdRoom = item.Id }, null) |
                 @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
                 @Html.ActionLink("Detalles", "Details", new { id = item.Id }) |
                 @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
+
             </td>
         </tr>
     }

@@ -74,7 +74,7 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HotelController.cs" />
-    <Compile Include="Controllers\PromotionController.cs" />
+    <Compile Include="Controllers\PromoController.cs" />
     <Compile Include="Controllers\ReservationController.cs" />
     <Compile Include="Controllers\RoomsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -87,6 +87,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Database.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\PromoModel.cs" />
     <Compile Include="Models\ReservationModel.cs" />
     <Compile Include="Models\RoomModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -270,21 +271,6 @@
     <Content Include="Views\Rooms\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Promotion\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Promotion\Details.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Promotion\Create.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Promotion\Edit.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Promotion\Delete.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Reservation\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -307,6 +293,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\images\Thumbs.db" />
+    <Content Include="Views\Promo\Index.cshtml" />
+    <Content Include="Views\Promo\Details.cshtml" />
+    <Content Include="Views\Promo\Create.cshtml" />
+    <Content Include="Views\Promo\Edit.cshtml" />
+    <Content Include="Views\Promo\Delete.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

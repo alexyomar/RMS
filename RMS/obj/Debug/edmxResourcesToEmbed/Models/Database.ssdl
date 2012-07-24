@@ -297,11 +297,14 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="IdRoom" Type="int" Nullable="false" />
     <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="LowSeasonPrice" Type="money" Nullable="false" />
     <Property Name="HighSeasonPrice" Type="money" Nullable="false" />
-    <Property Name="IdRoom" Type="int" Nullable="false" />
-    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="DateStart" Type="datetime" Nullable="false" />
+    <Property Name="DateEnd" Type="datetime" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Reservation">
     <Key>

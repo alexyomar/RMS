@@ -18,7 +18,7 @@ namespace RMS.Controllers
 
         public ViewResult Index()
         {
-
+            
             var hotels = db.Hotels.Include("State");
             return View(hotels.ToList());
         }

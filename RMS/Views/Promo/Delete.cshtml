@@ -1,0 +1,53 @@
+﻿@model RMS.Models.Promotion
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Promotion</legend>
+
+    <div class="display-label">Room</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Room.Name)
+    </div>
+
+    <div class="display-label">Name</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">LowSeasonPrice</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LowSeasonPrice)
+    </div>
+
+    <div class="display-label">HighSeasonPrice</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.HighSeasonPrice)
+    </div>
+
+    <div class="display-label">DateStart</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DateStart)
+    </div>
+
+    <div class="display-label">DateEnd</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DateEnd)
+    </div>
+
+    <div class="display-label">Active</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Active)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

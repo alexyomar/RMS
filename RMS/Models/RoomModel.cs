@@ -21,10 +21,10 @@ namespace RMS.Models
         [DisplayName("Capacidad")]
         public string Capacity { get; set; }
 
-        [Range(0.0, Double.MaxValue, ErrorMessage = "Valor inválido."), Required(ErrorMessage = "Debe inidicar este valor."), DisplayName("Precio Temporada Baja")]
+        [Range(0.0, Double.MaxValue, ErrorMessage = "Valor inválido."), Required(ErrorMessage = "Debe indicar este valor."), DisplayName("Precio Temporada Baja")]
         public decimal LowSeasonPrice { get; set; }
 
-        [Range(0.0, Double.MaxValue, ErrorMessage = "Valor inválido."), Required(ErrorMessage = "Debe inidicar este valor."), DisplayName("Precio Temporada Alta")]
+        [Range(0.0, Double.MaxValue, ErrorMessage = "Valor inválido."), Required(ErrorMessage = "Debe indicar este valor."), DisplayName("Precio Temporada Alta")]
         public decimal HighSeasonPrice { get; set; }
 
         [DisplayName("% Descuento 3 Noches")]
