@@ -23,3 +23,4 @@ C:\Users\Alexyomar\Documents\GitHub\RMS\RMS\bin\System.Web.WebPages.xml
 C:\Users\Alexyomar\Documents\GitHub\RMS\RMS\bin\System.Web.Helpers.xml
 C:\Users\Alexyomar\Documents\GitHub\RMS\RMS\obj\Debug\RMS.dll
 C:\Users\Alexyomar\Documents\GitHub\RMS\RMS\obj\Debug\RMS.pdb
+C:\Users\Alexyomar\Documents\GitHub\RMS\RMS\obj\Debug\RMS.csprojResolveAssemblyReference.cache

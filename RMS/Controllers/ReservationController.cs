@@ -34,11 +34,11 @@ namespace RMS.Controllers
         //
         // GET: /Reservation/Create
 
-        public ActionResult Create(int IdHotel)
+        public ActionResult Create()
         {
             ViewBag.IdCustomer = new SelectList(db.Customers, "Id", "Name");
             ViewBag.IdReservationStatus = new SelectList(db.ReservationStatus, "Id", "Name");
-            ViewBag.Rooms = db.Rooms.Where(u => u.IdHotel.Equals(IdHotel)).ToList();
+            ViewBag.Hotels = db.Hotels.OrderBy(u => u.Name);
             return View();
         }
 
@@ -67,6 +67,13 @@ namespace RMS.Controllers
             ViewBag.IdCustomer = new SelectList(db.Customers, "Id", "Name", reservation.Trip.IdCustomer);
             ViewBag.IdReservationStatus = new SelectList(db.ReservationStatus, "Id", "Name", reservation.Trip.IdReservationStatus);
             return View(reservation);
+        }
+
+        public ActionResult PartialHabitaciones(int IdHotel)
+        {
+            ViewBag.Rooms = db.Rooms.Where(u => u.IdHotel.Equals(IdHotel));
+            return PartialView();
+
         }
 
         //

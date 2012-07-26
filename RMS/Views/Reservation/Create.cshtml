@@ -68,40 +68,18 @@
             @Html.ValidationMessageFor(model => model.Trip.IdReservationStatus)
         </div>
         <div class="editor-label">
-            Habitaciones
+            Hotel
         </div>
         <div class="editor-field">
-            <table border="0" cellpadding="0" cellspacing="0">
-                @foreach (RMS.Models.Room item in (List<RMS.Models.Room>)ViewBag.Rooms)
+            <select id="ddlhotel" name="hotel">
+                <option value="0"></option>
+                @foreach (RMS.Models.Hotel item in (IEnumerable<RMS.Models.Hotel>)ViewBag.Hotels)
                 {
-                    int counter = 0;
-                    <tr>
-                        <td>
-                            <input type="checkbox" id="@item.Id" name="Rooms[@counter].IdRoom" value="@item.Id"  />
-                            @item.Name
-                        </td>
-                        <td>
-                            Adultos:&nbsp;
-                            <select name="Rooms[@counter].Adultos">
-                                @for (int i = 1; i <= item.Capacity; i++)
-                                {
-                                    <option value="@i">@i</option>    
-                                }
-                            </select>
-                        </td>
-                        <td>
-                            Infantes:
-                            <select name="Rooms[@counter].Infantes">
-                                @for (int j = 1; j <= 3; j++)
-                                {
-                                    <option value="@j">@j</option>    
-                                }
-                            </select>
-                        </td>
-                    </tr>
-                                counter = counter + 1;
+                    <option value="@item.Id">@item.Name</option>
                 }
-            </table>
+            </select>
+        </div>
+        <div id="habitaciones">
         </div>
         <p>
             <input type="submit" value="Create" />
@@ -113,4 +91,10 @@
 </div>
 <script type="text/javascript">
     $(".datepicker").datepicker();
+    $("#ddlhotel").change(function () {
+        $("#habitaciones").html("<img src='@Url.Content("~/Content/img/103.gif")'></img>");
+        $.get("@Url.Action("PartialHabitaciones")", { IdHotel: $(this).val() }, function (data) {
+            $("#habitaciones").html(data);
+        });
+    });
 </script>
