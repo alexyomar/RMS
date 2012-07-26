@@ -8,7 +8,7 @@ using System.Web.Mvc;
 using RMS.Models;
 
 namespace RMS.Controllers
-{ 
+{
     public class HotelController : Controller
     {
         private RegionalEntities db = new RegionalEntities();
@@ -18,7 +18,6 @@ namespace RMS.Controllers
 
         public ViewResult Index()
         {
-            
             var hotels = db.Hotels.Include("State");
             return View(hotels.ToList());
         }
@@ -39,7 +38,7 @@ namespace RMS.Controllers
         {
             ViewBag.IdState = new SelectList(db.States, "Id", "Name").OrderBy(u => u.Text);
             return View();
-        } 
+        }
 
         //
         // POST: /Hotel/Create
@@ -51,16 +50,16 @@ namespace RMS.Controllers
             {
                 db.Hotels.AddObject(hotel);
                 db.SaveChanges();
-                return RedirectToAction("Index");  
+                return RedirectToAction("Index");
             }
 
             ViewBag.IdState = new SelectList(db.States, "Id", "Name", hotel.IdState);
             return View(hotel);
         }
-        
+
         //
         // GET: /Hotel/Edit/5
- 
+
         public ActionResult Edit(int id)
         {
             Hotel hotel = db.Hotels.Single(h => h.Id == id);
@@ -87,7 +86,7 @@ namespace RMS.Controllers
 
         //
         // GET: /Hotel/Delete/5
- 
+
         public ActionResult Delete(int id)
         {
             Hotel hotel = db.Hotels.Single(h => h.Id == id);
@@ -99,7 +98,7 @@ namespace RMS.Controllers
 
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
-        {            
+        {
             Hotel hotel = db.Hotels.Single(h => h.Id == id);
             db.Hotels.DeleteObject(hotel);
             db.SaveChanges();

@@ -1,12 +1,12 @@
 ﻿<div style="margin-right: 15px;">
     <div id="accordion">
-        <h3>
+        @*<h3>
             <a href="#">Inicio</a></h3>
         <div>
             <ul>
                 <li><a href="@Url.Action("Index", "Home")">Clientes</a></li>
             </ul>
-        </div>
+        </div>*@
         <h3>
             <a href="#">Hoteles</a></h3>
         <div>
@@ -18,7 +18,9 @@
             <a href="#">Reservaciones</a></h3>
         <div>
             <ul>
+                <li><a href="@Url.Action("Index", "Reservation")">Crear</a></li>
                 <li><a href="@Url.Action("Index", "Customer")">Clientes</a></li>
+                
             </ul>
         </div>
         <h3>

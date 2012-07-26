@@ -29,6 +29,13 @@ namespace RMS
 
         }
 
+        protected void Application_BeginRequest()
+        {
+            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("es-VE");
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("es-VE");
+        
+        }
+
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();

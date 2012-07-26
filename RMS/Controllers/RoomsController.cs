@@ -18,6 +18,7 @@ namespace RMS.Controllers
 
         public ViewResult Index(int IdHotel)
         {
+            ViewBag.Hotel = db.Hotels.SingleOrDefault(u => u.Id.Equals(IdHotel));
             var rooms = db.Rooms.Include("Hotel").Where(u => u.IdHotel.Equals(IdHotel));
             return View(rooms.ToList());
         }

@@ -1,15 +1,14 @@
 ﻿@model IEnumerable<RMS.Models.Promotion>
-
 @{
     ViewBag.Title = "Index";
+    RMS.Models.Room __room = ViewBag.Room as RMS.Models.Room;
 }
-
-<h2>Index</h2>
-
+<h2>
+    Promociones para la habitación: @__room.Name (@__room.Hotel.Name)</h2>
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear Nueva", "Create", new { IdRoom = __room.Id })
 </p>
-<table>
+<table class="table">
     <tr>
         <th>
             Promoción
@@ -29,35 +28,38 @@
         <th>
             Activo
         </th>
-        <th></th>
+        <th>
+        </th>
     </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LowSeasonPrice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HighSeasonPrice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateStart)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateEnd)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Active)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Detalles", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Eliminar", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
-
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LowSeasonPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HighSeasonPrice)
+            </td>
+            <td>
+                @Html.Label(item.DateStart.ToShortDateString())
+            </td>
+            <td>
+                @Html.Label(item.DateEnd.ToShortDateString())
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Active)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 </table>
+<p>
+    @Html.ActionLink("Volver a Habitaciones", "Index", "Rooms", new { IdHotel = __room.IdHotel }, null)
+</p>

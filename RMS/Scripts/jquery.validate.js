@@ -255,23 +255,23 @@ $.extend($.validator, {
 	},
 
 	messages: {
-		required: "This field is required.",
-		remote: "Please fix this field.",
-		email: "Please enter a valid email address.",
-		url: "Please enter a valid URL.",
-		date: "Please enter a valid date.",
-		dateISO: "Please enter a valid date (ISO).",
-		number: "Please enter a valid number.",
-		digits: "Please enter only digits.",
-		creditcard: "Please enter a valid credit card number.",
-		equalTo: "Please enter the same value again.",
-		accept: "Please enter a value with a valid extension.",
-		maxlength: $.validator.format("Please enter no more than {0} characters."),
-		minlength: $.validator.format("Please enter at least {0} characters."),
-		rangelength: $.validator.format("Please enter a value between {0} and {1} characters long."),
-		range: $.validator.format("Please enter a value between {0} and {1}."),
-		max: $.validator.format("Please enter a value less than or equal to {0}."),
-		min: $.validator.format("Please enter a value greater than or equal to {0}.")
+	    required: "Este campo es requerido",
+	    remote: "Por favor corrije el valor de este campo.",
+	    email: "Ingresa una dirección de correo válida.",
+	    url: "Ingresa una URL válida.",
+	    date: "Ingresa una fecha válida.",
+	    dateISO: "Ingresa una fehca válida (ISO).",
+	    number: "Ingresa un número válido.",
+	    digits: "Ingresa sólo letras.",
+	    creditcard: "Ingresa un número de tarjeta de crédito válido.",
+	    equalTo: "Ingresa el nuevo valor de nuevo.",
+	    accept: "Ingresa un valor con extensión válida.",
+	    maxlength: $.validator.format("Porfavor ingresa menos de {0} caractéres."),
+	    minlength: $.validator.format("Porfavor ingresa almenos {0} caractéres."),
+	    rangelength: $.validator.format("Porfavor ingresa un valor entre {0} y {1} caractéres de longitud."),
+	    range: $.validator.format("Ingresa un valor entre {0} y {1}."),
+	    max: $.validator.format("Ingresa un valor menor o igual que {0}."),
+	    min: $.validator.format("Ingresa un valor mayor o igual a {0}.")
 	},
 
 	autoCreateRanges: false,
@@ -1160,3 +1160,20 @@ $.format = $.validator.format;
 		}
 	});
 })(jQuery);
+1.
+
+$.validator.methods.range = function (value, element, param) {
+    2.
+    var globalizedValue = value.replace(",", ".");
+    3.
+    return this.optional(element) || (globalizedValue >= param[0] && globalizedValue <= param[1]);
+    4.
+}
+5.
+
+6.
+$.validator.methods.number = function (value, element) {
+    7.
+    return this.optional(element) || /^-?(?:\d+|\d{1,3}(?:[\s\.,]\d{3})+)(?:[\.,]\d+)?$/.test(value);
+    8.
+}
