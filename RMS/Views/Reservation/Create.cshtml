@@ -33,34 +33,6 @@
             @Html.ValidationMessageFor(model => model.Trip.Departure)
         </div>
         <div class="editor-label">
-            @Html.LabelFor(model => model.Trip.ReservationDate)
-        </div>
-        <div class="editor-field">
-            @Html.TextBoxFor(model => model.Trip.ReservationDate, new { @class = "datepicker" })
-            @Html.ValidationMessageFor(model => model.Trip.ReservationDate)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Trip.Adults)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Trip.Adults)
-            @Html.ValidationMessageFor(model => model.Trip.Adults)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Trip.Childrens)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Trip.Childrens)
-            @Html.ValidationMessageFor(model => model.Trip.Childrens)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Trip.Price)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Trip.Price)
-            @Html.ValidationMessageFor(model => model.Trip.Price)
-        </div>
-        <div class="editor-label">
             @Html.LabelFor(model => model.Trip.IdReservationStatus, "ReservationStatu")
         </div>
         <div class="editor-field">
@@ -79,7 +51,10 @@
                 }
             </select>
         </div>
-        <div id="habitaciones">
+        <div class="editor-label">
+            Habitaciones
+        </div>
+        <div class="editor-field" id="habitaciones">
         </div>
         <p>
             <input type="submit" value="Create" />

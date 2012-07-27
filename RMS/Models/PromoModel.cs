@@ -22,15 +22,20 @@ namespace RMS.Models
         [Range(0.0, Double.MaxValue, ErrorMessage = "Valor inválido."), Required(ErrorMessage = "Debe indicar este valor."), DisplayName("Precio Temporada Alta")]
         public decimal HighSeasonPrice { get; set; }
 
-
         [Required(ErrorMessage = "Debe indicar este valor."), DisplayName("Válido desde")]
         public DateTime DateStart { get; set; }
 
         [Required(ErrorMessage = "Debe indicar este valor."), DisplayName("Válido hasta")]
         public DateTime DateEnd { get; set; }
 
-        [ DisplayName("Activo")]
+        [DisplayName("Activo")]
         public Boolean Active { get; set; }
+
+        [Range(0, int.MaxValue, ErrorMessage = "Valor inválido."),Required(ErrorMessage = "Debe indicar este valor."), DisplayName("Minimo de Adultos")]
+        public int MinAdults { get; set; }
+
+        [Range(0, int.MaxValue, ErrorMessage = "Valor inválido."), Required(ErrorMessage = "Debe indicar este valor."), DisplayName("Minimo de Noches")]
+        public int MinDays { get; set; }
 
     }
 }

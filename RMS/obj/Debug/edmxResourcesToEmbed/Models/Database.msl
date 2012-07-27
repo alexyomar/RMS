@@ -185,6 +185,22 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Promotions">
+      <EntityTypeMapping TypeName="RegionalModel.Promotion">
+        <MappingFragment StoreEntitySet="Promotion">
+          <ScalarProperty Name="MinDays" ColumnName="MinDays" />
+          <ScalarProperty Name="MinAdults" ColumnName="MinAdults" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
+          <ScalarProperty Name="DateStart" ColumnName="DateStart" />
+          <ScalarProperty Name="HighSeasonPrice" ColumnName="HighSeasonPrice" />
+          <ScalarProperty Name="LowSeasonPrice" ColumnName="LowSeasonPrice" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IdRoom" ColumnName="IdRoom" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Reservations">
       <EntityTypeMapping TypeName="RegionalModel.Reservation">
         <MappingFragment StoreEntitySet="Reservation">
@@ -286,19 +302,5 @@
         <ScalarProperty Name="Id" ColumnName="IdReservation" />
       </EndProperty>
     </AssociationSetMapping>
-    <EntitySetMapping Name="Promotions">
-      <EntityTypeMapping TypeName="RegionalModel.Promotion">
-        <MappingFragment StoreEntitySet="Promotion">
-          <ScalarProperty Name="Active" ColumnName="Active" />
-          <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
-          <ScalarProperty Name="DateStart" ColumnName="DateStart" />
-          <ScalarProperty Name="HighSeasonPrice" ColumnName="HighSeasonPrice" />
-          <ScalarProperty Name="LowSeasonPrice" ColumnName="LowSeasonPrice" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="IdRoom" ColumnName="IdRoom" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

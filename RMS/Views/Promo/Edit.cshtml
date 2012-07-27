@@ -49,6 +49,20 @@
             @Html.ValidationMessageFor(model => model.DateEnd)
         </div>
         <div class="editor-label">
+            @Html.LabelFor(model => model.MinAdults)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MinAdults)
+            @Html.ValidationMessageFor(model => model.MinAdults)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MinDays)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MinDays)
+            @Html.ValidationMessageFor(model => model.MinDays)
+        </div>
+        <div class="editor-label">
             @Html.LabelFor(model => model.Active)
         </div>
         <div class="editor-field">

@@ -51,16 +51,66 @@ namespace RMS.Controllers
             if (ModelState.IsValid)
             {
 
-                foreach (var item in db.Rooms.Where(u => reservation.Rooms.Select(a => a.IdRoom).Contains(u.Id)))
+                foreach (var item in reservation.Rooms)
                 {
-                    reservation.Trip.Rooms.Add(item);
+                    Room __room = db.Rooms.SingleOrDefault(u => u.Id.Equals(item.IdRoom));
+                    Room __roominfante = db.Rooms.SingleOrDefault(u => u.Name.ToLower().Equals("infante") && u.IdHotel.Equals(__room.IdHotel));
+
+                    if (item.Adultos <= __room.Capacity)
+                    {
+                        reservation.Trip.Rooms.Add(__room);
+                        reservation.Trip.Adults = reservation.Trip.Adults + item.Adultos;
+                        reservation.Trip.Childrens = reservation.Trip.Childrens + item.Infantes;
+
+                        IEnumerable<DateTime> __tripdays = EachDay(reservation.Trip.Arrival, reservation.Trip.Departure);
+                        __tripdays = __tripdays.Take(__tripdays.Count() - 1);
+
+                        //Obtenemos los precios por dia
+                        foreach (DateTime __day in __tripdays)
+                        {
+
+                            var __temporada = __room.Hotel.Periods.Where(u => __day.IsBetween(new DateTime(DateTime.Now.Year, u.BeginMonth, u.BeginDay), new DateTime(DateTime.Now.Year, u.EndMonth, u.EndDay)));
+                            var __promo = __room.Promotions.Where(u => __day.IsBetween(u.DateStart, u.DateEnd) && u.Active.Equals(true));
+
+                            if (__temporada.Count() > 0)
+                            {
+                                if (__promo.Count() > 0)
+                                    if (__promo.FirstOrDefault().MinAdults >= item.Adultos && __promo.FirstOrDefault().MinDays >= __tripdays.Count())
+                                        reservation.Trip.Price = (__promo.FirstOrDefault().HighSeasonPrice * item.Adultos) + reservation.Trip.Price;
+                                    else
+                                        reservation.Trip.Price = (__room.HighSeasonPrice * item.Adultos) + reservation.Trip.Price;
+                                else
+                                    reservation.Trip.Price = (__room.HighSeasonPrice * item.Adultos) + reservation.Trip.Price;
+                                if (item.Infantes > 0)
+                                    reservation.Trip.Price = (__roominfante.HighSeasonPrice * item.Infantes) + reservation.Trip.Price;
+                            }
+                            else
+                            {
+                                if (__promo.Count() > 0)
+                                    reservation.Trip.Price = (__promo.FirstOrDefault().LowSeasonPrice * item.Adultos) + reservation.Trip.Price;
+                                else
+                                    reservation.Trip.Price = (__room.LowSeasonPrice * item.Adultos) + reservation.Trip.Price;
+
+                                if (item.Infantes > 0)
+                                    reservation.Trip.Price = (__roominfante.LowSeasonPrice * item.Infantes) + reservation.Trip.Price;
+                            }
+                        }
+
+                        db.Reservations.AddObject(reservation.Trip);
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.IdCustomer = new SelectList(db.Customers, "Id", "Name", reservation.Trip.IdCustomer);
+                        ViewBag.IdReservationStatus = new SelectList(db.ReservationStatus, "Id", "Name", reservation.Trip.IdReservationStatus);
+                        ViewBag.Error = "El numero de Adultos excede la capacidad de alguna de las habitaciones.";
+                        return View(reservation);
+                    }
+
+
+
                 }
-
-
-                db.Reservations.AddObject(reservation.Trip);
-                db.SaveChanges();
-
-
                 return RedirectToAction("Index");
             }
 
@@ -71,7 +121,12 @@ namespace RMS.Controllers
 
         public ActionResult PartialHabitaciones(int IdHotel)
         {
-            ViewBag.Rooms = db.Rooms.Where(u => u.IdHotel.Equals(IdHotel));
+            ViewBag.Rooms = db.Rooms.Where(u => u.IdHotel.Equals(IdHotel) && !u.Name.ToLower().Contains("infante") && u.Active.Equals(true));
+            if (db.Rooms.Where(u => u.Name.ToLower().Contains("infante")).Count() > 0)
+                ViewBag.ShowInfantes = true;
+            else
+                ViewBag.ShowInfantes = false;
+
             return PartialView();
 
         }
@@ -131,5 +186,22 @@ namespace RMS.Controllers
             db.Dispose();
             base.Dispose(disposing);
         }
+
+        public IEnumerable<DateTime> EachDay(DateTime from, DateTime thru)
+        {
+            for (var day = from.Date; day.Date <= thru.Date; day = day.AddDays(1))
+                yield return day;
+        }
+
+
     }
+
+    public static class MyExtensions
+    {
+        public static bool IsBetween(this DateTime dt, DateTime start, DateTime end)
+        {
+            return dt >= start && dt <= end;
+        }
+    }
+
 }

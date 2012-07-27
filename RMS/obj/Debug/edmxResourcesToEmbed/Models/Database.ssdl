@@ -305,19 +305,21 @@
     <Property Name="DateStart" Type="datetime" Nullable="false" />
     <Property Name="DateEnd" Type="datetime" Nullable="false" />
     <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="MinAdults" Type="int" Nullable="false" />
+    <Property Name="MinDays" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Reservation">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="IdCustomer" Type="int" />
+    <Property Name="IdCustomer" Type="int" Nullable="false" />
     <Property Name="Arrival" Type="datetime" Nullable="false" />
     <Property Name="Departure" Type="datetime" Nullable="false" />
     <Property Name="ReservationDate" Type="datetime" Nullable="false" />
     <Property Name="Adults" Type="int" Nullable="false" />
     <Property Name="Childrens" Type="int" Nullable="false" />
-    <Property Name="Price" Type="money" />
+    <Property Name="Price" Type="money" Nullable="false" />
     <Property Name="IdReservationStatus" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="ReservationRoom">
@@ -589,7 +591,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Reservations_Customers">
-    <End Role="Customer" Type="RegionalModel.Store.Customer" Multiplicity="0..1">
+    <End Role="Customer" Type="RegionalModel.Store.Customer" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
     <End Role="Reservation" Type="RegionalModel.Store.Reservation" Multiplicity="*" />

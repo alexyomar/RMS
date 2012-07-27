@@ -36,6 +36,18 @@
     <div class="editor-field">
         @Html.Label(Model.DateEnd.ToShortDateString())
     </div>
+        <div class="editor-label">
+        @Html.LabelFor(model => model.MinAdults)
+    </div>
+    <div class="editor-field">
+        @Html.DisplayFor(model => model.MinAdults)
+    </div>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.MinDays)
+    </div>
+    <div class="editor-field">
+        @Html.DisplayFor(model => model.MinDays)
+    </div>
     <div class="editor-label">
         @Html.LabelFor(model => model.Active)
     </div>

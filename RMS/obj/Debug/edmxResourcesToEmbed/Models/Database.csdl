@@ -15,6 +15,7 @@
     <EntitySet Name="Hotels" EntityType="RegionalModel.Hotel" />
     <EntitySet Name="PaymentMethods" EntityType="RegionalModel.PaymentMethod" />
     <EntitySet Name="Periods" EntityType="RegionalModel.Period" />
+    <EntitySet Name="Promotions" EntityType="RegionalModel.Promotion" />
     <EntitySet Name="Reservations" EntityType="RegionalModel.Reservation" />
     <EntitySet Name="ReservationsBuyeds" EntityType="RegionalModel.ReservationsBuyed" />
     <EntitySet Name="ReservationStatus" EntityType="RegionalModel.ReservationStatu" />
@@ -82,6 +83,10 @@
       <End Role="PaymentMethod" EntitySet="PaymentMethods" />
       <End Role="ReservationsBuyed" EntitySet="ReservationsBuyeds" />
     </AssociationSet>
+    <AssociationSet Name="FK_Promotion_Room" Association="RegionalModel.FK_Promotion_Room">
+      <End Role="Room" EntitySet="Rooms" />
+      <End Role="Promotion" EntitySet="Promotions" />
+    </AssociationSet>
     <AssociationSet Name="FK_Reservations_ReservationStatus" Association="RegionalModel.FK_Reservations_ReservationStatus">
       <End Role="ReservationStatu" EntitySet="ReservationStatus" />
       <End Role="Reservation" EntitySet="Reservations" />
@@ -97,11 +102,6 @@
     <AssociationSet Name="ReservationRoom" Association="RegionalModel.ReservationRoom">
       <End Role="Reservation" EntitySet="Reservations" />
       <End Role="Room" EntitySet="Rooms" />
-    </AssociationSet>
-    <EntitySet Name="Promotions" EntityType="RegionalModel.Promotion" />
-    <AssociationSet Name="FK_Promotion_Room" Association="RegionalModel.FK_Promotion_Room">
-      <End Role="Room" EntitySet="Rooms" />
-      <End Role="Promotion" EntitySet="Promotions" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="aspnet_Applications">
@@ -302,18 +302,34 @@
     <Property Type="Int32" Name="EndMonth" Nullable="false" />
     <NavigationProperty Name="Hotel" Relationship="RegionalModel.FK_Periods_Posadas" FromRole="Period" ToRole="Hotel" />
   </EntityType>
+  <EntityType Name="Promotion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="IdRoom" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="LowSeasonPrice" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="HighSeasonPrice" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="DateTime" Name="DateStart" Nullable="false" />
+    <Property Type="DateTime" Name="DateEnd" Nullable="false" />
+    <Property Type="Boolean" Name="Active" Nullable="false" />
+    <Property Type="Int32" Name="MinAdults" Nullable="false" />
+    <Property Type="Int32" Name="MinDays" Nullable="false" />
+    <NavigationProperty Name="Room" Relationship="RegionalModel.FK_Promotion_Room" FromRole="Promotion" ToRole="Room" />
+  </EntityType>
   <EntityType Name="Reservation">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Type="Int32" Name="IdCustomer" />
+    <Property Type="Int32" Name="IdCustomer" Nullable="false" />
     <Property Type="DateTime" Name="Arrival" Nullable="false" />
     <Property Type="DateTime" Name="Departure" Nullable="false" />
     <Property Type="DateTime" Name="ReservationDate" Nullable="false" />
     <Property Type="Int32" Name="Adults" Nullable="false" />
     <Property Type="Int32" Name="Childrens" Nullable="false" />
-    <Property Type="Decimal" Name="Price" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="Price" Nullable="false" Precision="19" Scale="4" />
     <Property Type="Int32" Name="IdReservationStatus" Nullable="false" />
     <NavigationProperty Name="Customer" Relationship="RegionalModel.FK_Reservations_Customers" FromRole="Reservation" ToRole="Customer" />
     <NavigationProperty Name="ReservationStatu" Relationship="RegionalModel.FK_Reservations_ReservationStatus" FromRole="Reservation" ToRole="ReservationStatu" />
@@ -358,8 +374,8 @@
     <Property Type="Decimal" Name="Discount3" Precision="19" Scale="4" />
     <Property Type="Decimal" Name="Discount4" Precision="19" Scale="4" />
     <NavigationProperty Name="Hotel" Relationship="RegionalModel.FK_Rooms_Posadas" FromRole="Room" ToRole="Hotel" />
-    <NavigationProperty Name="Reservations" Relationship="RegionalModel.ReservationRoom" FromRole="Room" ToRole="Reservation" />
     <NavigationProperty Name="Promotions" Relationship="RegionalModel.FK_Promotion_Room" FromRole="Room" ToRole="Promotion" />
+    <NavigationProperty Name="Reservations" Relationship="RegionalModel.ReservationRoom" FromRole="Room" ToRole="Reservation" />
   </EntityType>
   <EntityType Name="Service">
     <Key>
@@ -501,7 +517,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Reservations_Customers">
-    <End Type="RegionalModel.Customer" Role="Customer" Multiplicity="0..1" />
+    <End Type="RegionalModel.Customer" Role="Customer" Multiplicity="1" />
     <End Type="RegionalModel.Reservation" Role="Reservation" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Customer">
@@ -572,6 +588,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Promotion_Room">
+    <End Type="RegionalModel.Room" Role="Room" Multiplicity="1" />
+    <End Type="RegionalModel.Promotion" Role="Promotion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Promotion">
+        <PropertyRef Name="IdRoom" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Reservations_ReservationStatus">
     <End Type="RegionalModel.ReservationStatu" Role="ReservationStatu" Multiplicity="1" />
     <End Type="RegionalModel.Reservation" Role="Reservation" Multiplicity="*" />
@@ -603,31 +631,5 @@
   <Association Name="ReservationRoom">
     <End Type="RegionalModel.Reservation" Role="Reservation" Multiplicity="*" />
     <End Type="RegionalModel.Room" Role="Room" Multiplicity="*" />
-  </Association>
-  <EntityType Name="Promotion">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Type="Int32" Name="Id" Nullable="false" />
-    <Property Type="Int32" Name="IdRoom" Nullable="false" />
-    <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Type="Decimal" Name="LowSeasonPrice" Nullable="false" Precision="19" Scale="4" />
-    <Property Type="Decimal" Name="HighSeasonPrice" Nullable="false" Precision="19" Scale="4" />
-    <Property Type="DateTime" Name="DateStart" Nullable="false" />
-    <Property Type="DateTime" Name="DateEnd" Nullable="false" />
-    <Property Type="Boolean" Name="Active" Nullable="false" />
-    <NavigationProperty Name="Room" Relationship="RegionalModel.FK_Promotion_Room" FromRole="Promotion" ToRole="Room" />
-  </EntityType>
-  <Association Name="FK_Promotion_Room">
-    <End Type="RegionalModel.Room" Role="Room" Multiplicity="1" />
-    <End Type="RegionalModel.Promotion" Role="Promotion" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Room">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Promotion">
-        <PropertyRef Name="IdRoom" />
-      </Dependent>
-    </ReferentialConstraint>
   </Association>
 </Schema>
