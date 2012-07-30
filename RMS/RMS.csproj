@@ -94,12 +94,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\colorbox.css" />
     <Content Include="Content\images\banner.jpg" />
     <Content Include="Content\images\bg.jpg" />
     <Content Include="Content\images\bg_c.gif" />
     <Content Include="Content\images\bg_c_b.gif" />
     <Content Include="Content\images\big.jpg" />
+    <Content Include="Content\images\border.png" />
     <Content Include="Content\images\button.gif" />
+    <Content Include="Content\images\controls.png" />
     <Content Include="Content\images\Home-01_23.jpg" />
     <Content Include="Content\images\homesplash.jpg" />
     <Content Include="Content\images\l1.gif" />
@@ -107,6 +110,8 @@
     <Content Include="Content\images\l3.gif" />
     <Content Include="Content\images\l4.gif" />
     <Content Include="Content\images\l5.gif" />
+    <Content Include="Content\images\loading.gif" />
+    <Content Include="Content\images\loading_background.png" />
     <Content Include="Content\images\logo.jpg" />
     <Content Include="Content\images\menu_bg.gif" />
     <Content Include="Content\images\menu_bg.png" />
@@ -141,6 +146,10 @@
     <Content Include="Content\images\title9.gif" />
     <Content Include="Content\img\103.gif" />
     <Content Include="Content\img\logoadmin.png" />
+    <Content Include="Content\Promociones\homepromo.jpg" />
+    <Content Include="Content\Promociones\Navidad20212.jpg" />
+    <Content Include="Content\Promociones\octubre2012.jpg" />
+    <Content Include="Content\Promociones\VirgenValle2012.jpg" />
     <Content Include="Content\webstyle.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -176,6 +185,8 @@
     <Content Include="Scripts\jquery-1.5.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.11.js" />
     <Content Include="Scripts\jquery-ui-1.8.11.min.js" />
+    <Content Include="Scripts\jquery.colorbox-min.js" />
+    <Content Include="Scripts\jquery.colorbox.js" />
     <Content Include="Scripts\jQuery.glob.es-VE.js" />
     <Content Include="Scripts\jquery.glob.js" />
     <Content Include="Scripts\jQuery.glob.min.js" />

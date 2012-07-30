@@ -1,0 +1,65 @@
+﻿@model IEnumerable<RMS.Models.Promotion>
+@{
+    ViewBag.Title = "Index";
+    RMS.Models.Room __room = ViewBag.Room as RMS.Models.Room;
+}
+<h2>
+    Promociones para la habitación: @__room.Name (@__room.Hotel.Name)</h2>
+<p>
+    @Html.ActionLink("Crear Nueva", "Create", new { IdRoom = __room.Id })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Promoción
+        </th>
+        <th>
+            Precio Temp. Baja.
+        </th>
+        <th>
+            Precio Temp. Alta
+        </th>
+        <th>
+            Inicio
+        </th>
+        <th>
+            Fin
+        </th>
+        <th>
+            Activo
+        </th>
+        <th>
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LowSeasonPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HighSeasonPrice)
+            </td>
+            <td>
+                @Html.Label(item.DateStart.ToShortDateString())
+            </td>
+            <td>
+                @Html.Label(item.DateEnd.ToShortDateString())
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Active)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+</table>
+<p>
+    @Html.ActionLink("Volver a Habitaciones", "Index", "Rooms", new { IdHotel = __room.IdHotel }, null)
+</p>

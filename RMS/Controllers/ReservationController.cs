@@ -36,7 +36,7 @@ namespace RMS.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.IdCustomer = new SelectList(db.Customers, "Id", "Name");
+            ViewBag.Customers = db.Customers.OrderBy(u => u.Name);
             ViewBag.IdReservationStatus = new SelectList(db.ReservationStatus, "Id", "Name");
             ViewBag.Hotels = db.Hotels.OrderBy(u => u.Name);
             return View();
@@ -96,6 +96,18 @@ namespace RMS.Controllers
                             }
                         }
 
+                        //Descuentos por dias
+
+                        if (__tripdays.Count() >= 7)
+                            reservation.Trip.Price = reservation.Trip.Price - (reservation.Trip.Price * (__room.Discount3.HasValue ? __room.Discount3.Value : 200) / 100);
+                        else
+                            if (__tripdays.Count() <= 7 && __tripdays.Count() >= 5)
+                                reservation.Trip.Price = reservation.Trip.Price - (reservation.Trip.Price * (__room.Discount3.HasValue ? __room.Discount2.Value : 200) / 100);
+                            else
+                                if (__tripdays.Count() <= 5 && __tripdays.Count() >= 3)
+                                    reservation.Trip.Price = reservation.Trip.Price - (reservation.Trip.Price * (__room.Discount3.HasValue ? __room.Discount1.Value : 200) / 100);
+
+                        reservation.Trip.ReservationDate = DateTime.Now;
                         db.Reservations.AddObject(reservation.Trip);
                         db.SaveChanges();
                         return RedirectToAction("Index");
