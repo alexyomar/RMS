@@ -58,6 +58,8 @@ namespace RMS.Controllers
 
                     if (item.Adultos <= __room.Capacity)
                     {
+                        decimal __priceroom = new decimal();
+
                         reservation.Trip.Rooms.Add(__room);
                         reservation.Trip.Adults = reservation.Trip.Adults + item.Adultos;
                         reservation.Trip.Childrens = reservation.Trip.Childrens + item.Infantes;
@@ -76,41 +78,40 @@ namespace RMS.Controllers
                             {
                                 if (__promo.Count() > 0)
                                     if (__promo.FirstOrDefault().MinAdults >= item.Adultos && __promo.FirstOrDefault().MinDays >= __tripdays.Count())
-                                        reservation.Trip.Price = (__promo.FirstOrDefault().HighSeasonPrice * item.Adultos) + reservation.Trip.Price;
+                                        __priceroom = (__promo.FirstOrDefault().HighSeasonPrice * item.Adultos) + reservation.Trip.Price;
                                     else
-                                        reservation.Trip.Price = (__room.HighSeasonPrice * item.Adultos) + reservation.Trip.Price;
+                                        __priceroom = (__room.HighSeasonPrice * item.Adultos) + reservation.Trip.Price;
                                 else
-                                    reservation.Trip.Price = (__room.HighSeasonPrice * item.Adultos) + reservation.Trip.Price;
+                                    __priceroom = (__room.HighSeasonPrice * item.Adultos) + reservation.Trip.Price;
                                 if (item.Infantes > 0)
-                                    reservation.Trip.Price = (__roominfante.HighSeasonPrice * item.Infantes) + reservation.Trip.Price;
+                                    __priceroom = (__roominfante.HighSeasonPrice * item.Infantes) + reservation.Trip.Price;
                             }
                             else
                             {
                                 if (__promo.Count() > 0)
-                                    reservation.Trip.Price = (__promo.FirstOrDefault().LowSeasonPrice * item.Adultos) + reservation.Trip.Price;
+                                    __priceroom = (__promo.FirstOrDefault().LowSeasonPrice * item.Adultos) + reservation.Trip.Price;
                                 else
-                                    reservation.Trip.Price = (__room.LowSeasonPrice * item.Adultos) + reservation.Trip.Price;
+                                    __priceroom = (__room.LowSeasonPrice * item.Adultos) + reservation.Trip.Price;
 
                                 if (item.Infantes > 0)
-                                    reservation.Trip.Price = (__roominfante.LowSeasonPrice * item.Infantes) + reservation.Trip.Price;
+                                    __priceroom = (__roominfante.LowSeasonPrice * item.Infantes) + reservation.Trip.Price;
                             }
                         }
 
                         //Descuentos por dias
 
                         if (__tripdays.Count() >= 7)
-                            reservation.Trip.Price = reservation.Trip.Price - (reservation.Trip.Price * (__room.Discount3.HasValue ? __room.Discount3.Value : 200) / 100);
+                            __priceroom = __priceroom - (__priceroom * (__room.Discount3.HasValue ? __room.Discount3.Value : 200) / 100);
                         else
                             if (__tripdays.Count() <= 7 && __tripdays.Count() >= 5)
-                                reservation.Trip.Price = reservation.Trip.Price - (reservation.Trip.Price * (__room.Discount3.HasValue ? __room.Discount2.Value : 200) / 100);
+                                __priceroom = __priceroom - (__priceroom * (__room.Discount3.HasValue ? __room.Discount2.Value : 200) / 100);
                             else
                                 if (__tripdays.Count() <= 5 && __tripdays.Count() >= 3)
-                                    reservation.Trip.Price = reservation.Trip.Price - (reservation.Trip.Price * (__room.Discount3.HasValue ? __room.Discount1.Value : 200) / 100);
+                                    __priceroom = __priceroom - (__priceroom * (__room.Discount3.HasValue ? __room.Discount1.Value : 200) / 100);
 
-                        reservation.Trip.ReservationDate = DateTime.Now;
-                        db.Reservations.AddObject(reservation.Trip);
-                        db.SaveChanges();
-                        return RedirectToAction("Index");
+                        // Precio Final
+                        reservation.Trip.Price = __priceroom + reservation.Trip.Price;
+
                     }
                     else
                     {
@@ -123,6 +124,10 @@ namespace RMS.Controllers
 
 
                 }
+
+                reservation.Trip.ReservationDate = DateTime.Now;
+                db.Reservations.AddObject(reservation.Trip);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 

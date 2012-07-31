@@ -150,6 +150,7 @@
     <Content Include="Content\Promociones\Navidad20212.jpg" />
     <Content Include="Content\Promociones\octubre2012.jpg" />
     <Content Include="Content\Promociones\VirgenValle2012.jpg" />
+    <Content Include="Content\uiCss.css" />
     <Content Include="Content\webstyle.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -190,6 +191,8 @@
     <Content Include="Scripts\jQuery.glob.es-VE.js" />
     <Content Include="Scripts\jquery.glob.js" />
     <Content Include="Scripts\jQuery.glob.min.js" />
+    <Content Include="Scripts\jquery.ui.ufd.js" />
+    <Content Include="Scripts\jquery.ui.ufd.min.js" />
     <Content Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />

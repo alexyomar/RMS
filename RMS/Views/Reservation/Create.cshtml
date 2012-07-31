@@ -23,6 +23,11 @@
                     <option value="@item.Id">@item.Name @item.LastName</option>    
                 }
             </select>
+            <script type="text/javascript">
+                $(function () {
+                    $("#Trip_IdCustomer").ufd({ useUiCss: true, log: false });
+                });    
+            </script>
         </div>
         <div class="editor-label">
             Fecha de Llegada
