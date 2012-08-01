@@ -6,6 +6,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using RMS.Models;
+using System.IO;
+using System.Web.UI;
+using iTextSharp.text;
+using iTextSharp.text.html.simpleparser;
+using iTextSharp.text.pdf;
+using System.Text;
+using System.Xml;
 
 namespace RMS.Controllers
 {
@@ -208,6 +215,59 @@ namespace RMS.Controllers
         {
             for (var day = from.Date; day.Date <= thru.Date; day = day.AddDays(1))
                 yield return day;
+        }
+
+        public string RenderRazorViewToString(string viewName, object model)
+        {
+            ViewData.Model = model;
+            using (var sw = new StringWriter())
+            {
+                var viewResult = ViewEngines.Engines.FindPartialView(ControllerContext, viewName);
+                var viewContext = new ViewContext(ControllerContext, viewResult.View, ViewData, TempData, sw);
+                viewResult.View.Render(viewContext, sw);
+                viewResult.ViewEngine.ReleaseView(ControllerContext, viewResult.View);
+                return sw.GetStringBuilder().ToString();
+            }
+        }
+
+        public ActionResult PrintPDF(int id)
+        {
+            MemoryStream __memoria = new MemoryStream();
+
+            // step 1: creation of a document-object
+            Document document = new Document(PageSize.LETTER, 30, 30, 30, 30);
+
+            // step 2:
+            // we create a writer that listens to the document
+            // and directs a XML-stream to a file
+            PdfWriter __writer = PdfWriter.GetInstance(document, __memoria);
+            __writer.CloseStream = false;
+
+            var model = db.Reservations.SingleOrDefault(u => u.Id.Equals(id));
+
+            string strB = RenderRazorViewToString("Details", model);
+
+            document.Open();
+
+            // step 3: we parse the document
+            using (TextReader sReader = new StringReader(strB))
+            {
+
+                List<IElement> list = HTMLWorker.ParseToList(sReader, new StyleSheet());
+
+                foreach (IElement elm in list)
+                {
+
+                    document.Add(elm);
+                }
+
+            }
+
+            document.Close();
+
+            __memoria.Flush(); //Always catches me out
+            __memoria.Position = 0; //Not sure if this is required
+            return File(__memoria, "application/pdf", "resumen.pdf");
         }
 
 
