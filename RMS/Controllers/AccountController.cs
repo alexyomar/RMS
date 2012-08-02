@@ -38,12 +38,12 @@ namespace RMS.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "Reservation");
                     }
                 }
                 else
                 {
-                    ModelState.AddModelError("", "The user name or password provided is incorrect.");
+                    ModelState.AddModelError("", "Los datos indicados no son válidos.");
                 }
             }
 
@@ -63,7 +63,7 @@ namespace RMS.Controllers
 
         //
         // GET: /Account/Register
-
+        [Authorize]
         public ActionResult Register()
         {
             return View();
@@ -71,7 +71,7 @@ namespace RMS.Controllers
 
         //
         // POST: /Account/Register
-
+        [Authorize]
         [HttpPost]
         public ActionResult Register(RegisterModel model)
         {
@@ -83,8 +83,7 @@ namespace RMS.Controllers
 
                 if (createStatus == MembershipCreateStatus.Success)
                 {
-                    FormsAuthentication.SetAuthCookie(model.UserName, false /* createPersistentCookie */);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("RegisterSuccess");
                 }
                 else
                 {
@@ -144,7 +143,7 @@ namespace RMS.Controllers
 
         //
         // GET: /Account/ChangePasswordSuccess
-
+        [Authorize]
         public ActionResult ChangePasswordSuccess()
         {
             return View();

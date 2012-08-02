@@ -15,7 +15,7 @@ namespace RMS.Controllers
 
         //
         // GET: /Hotel/
-
+        [Authorize]
         public ViewResult Index()
         {
 
@@ -25,7 +25,7 @@ namespace RMS.Controllers
 
         //
         // GET: /Hotel/Details/5
-
+        [Authorize]
         public ViewResult Details(int id)
         {
             Hotel hotel = db.Hotels.Single(h => h.Id == id);
@@ -34,7 +34,7 @@ namespace RMS.Controllers
 
         //
         // GET: /Hotel/Create
-
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.IdState = new SelectList(db.States, "Id", "Name").OrderBy(u => u.Text);
@@ -43,7 +43,7 @@ namespace RMS.Controllers
 
         //
         // POST: /Hotel/Create
-
+        [Authorize]
         [HttpPost]
         public ActionResult Create(Hotel hotel)
         {
@@ -60,7 +60,7 @@ namespace RMS.Controllers
 
         //
         // GET: /Hotel/Edit/5
-
+        [Authorize]
         public ActionResult Edit(int id)
         {
             Hotel hotel = db.Hotels.Single(h => h.Id == id);
@@ -70,7 +70,7 @@ namespace RMS.Controllers
 
         //
         // POST: /Hotel/Edit/5
-
+        [Authorize]
         [HttpPost]
         public ActionResult Edit(Hotel hotel)
         {
@@ -87,7 +87,7 @@ namespace RMS.Controllers
 
         //
         // GET: /Hotel/Delete/5
-
+        [Authorize]
         public ActionResult Delete(int id)
         {
             Hotel hotel = db.Hotels.Single(h => h.Id == id);
@@ -96,7 +96,7 @@ namespace RMS.Controllers
 
         //
         // POST: /Hotel/Delete/5
-
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
@@ -105,7 +105,7 @@ namespace RMS.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
+        [Authorize]
         protected override void Dispose(bool disposing)
         {
             db.Dispose();

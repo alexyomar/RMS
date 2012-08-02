@@ -15,7 +15,7 @@ namespace RMS.Controllers
 
         //
         // GET: /Rooms/
-
+        [Authorize]
         public ViewResult Index(int IdHotel)
         {
             ViewBag.Hotel = db.Hotels.SingleOrDefault(u => u.Id.Equals(IdHotel));
@@ -25,7 +25,7 @@ namespace RMS.Controllers
 
         //
         // GET: /Rooms/Details/5
-
+        [Authorize]
         public ViewResult Details(int id)
         {
             Room room = db.Rooms.Single(r => r.Id == id);
@@ -34,7 +34,7 @@ namespace RMS.Controllers
 
         //
         // GET: /Rooms/Create
-
+        [Authorize]
         public ActionResult Create(int IdHotel)
         {
             ViewBag.Hotel = db.Hotels.Where(u => u.Id.Equals(IdHotel)).SingleOrDefault();
@@ -43,7 +43,7 @@ namespace RMS.Controllers
 
         //
         // POST: /Rooms/Create
-
+        [Authorize]
         [HttpPost]
         public ActionResult Create(Room room)
         {
@@ -60,7 +60,7 @@ namespace RMS.Controllers
 
         //
         // GET: /Rooms/Edit/5
-
+        [Authorize]
         public ActionResult Edit(int id)
         {
             Room room = db.Rooms.Single(r => r.Id == id);
@@ -71,7 +71,7 @@ namespace RMS.Controllers
 
         //
         // POST: /Rooms/Edit/5
-
+        [Authorize]
         [HttpPost]
         public ActionResult Edit(Room room)
         {
@@ -88,7 +88,7 @@ namespace RMS.Controllers
 
         //
         // GET: /Rooms/Delete/5
-
+        [Authorize]
         public ActionResult Delete(int id)
         {
             Room room = db.Rooms.Single(r => r.Id == id);
@@ -97,7 +97,7 @@ namespace RMS.Controllers
 
         //
         // POST: /Rooms/Delete/5
-
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {

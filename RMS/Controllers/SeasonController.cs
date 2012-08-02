@@ -15,7 +15,7 @@ namespace RMS.Controllers
 
         //
         // GET: /Season/
-
+        [Authorize]
         public ViewResult Index(int IdHotel)
         {
             ViewBag.Hotel = db.Hotels.SingleOrDefault(u => u.Id.Equals(IdHotel));
@@ -25,7 +25,7 @@ namespace RMS.Controllers
 
         //
         // GET: /Season/Details/5
-
+        [Authorize]
         public ViewResult Details(int id)
         {
             Period period = db.Periods.Single(p => p.Id == id);
@@ -34,7 +34,7 @@ namespace RMS.Controllers
 
         //
         // GET: /Season/Create
-
+        [Authorize]
         public ActionResult Create(int IdHotel)
         {
             ViewBag.Hotel = db.Hotels.SingleOrDefault(u => u.Id.Equals(IdHotel));
@@ -43,7 +43,7 @@ namespace RMS.Controllers
 
         //
         // POST: /Season/Create
-
+        [Authorize]
         [HttpPost]
         public ActionResult Create(Period period)
         {
@@ -60,7 +60,7 @@ namespace RMS.Controllers
 
         //
         // GET: /Season/Edit/5
-
+        [Authorize]
         public ActionResult Edit(int id)
         {
             Period period = db.Periods.Single(p => p.Id == id);
@@ -70,7 +70,7 @@ namespace RMS.Controllers
 
         //
         // POST: /Season/Edit/5
-
+        [Authorize]
         [HttpPost]
         public ActionResult Edit(Period period)
         {
@@ -87,7 +87,7 @@ namespace RMS.Controllers
 
         //
         // GET: /Season/Delete/5
-
+        [Authorize]
         public ActionResult Delete(int id)
         {
             Period period = db.Periods.Single(p => p.Id == id);
@@ -96,7 +96,7 @@ namespace RMS.Controllers
 
         //
         // POST: /Season/Delete/5
-
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {

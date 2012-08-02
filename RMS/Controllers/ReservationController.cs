@@ -22,16 +22,16 @@ namespace RMS.Controllers
 
         //
         // GET: /Reservation/
-
+        [Authorize]
         public ViewResult Index()
         {
             var reservations = db.Reservations.Include("Customer").Include("ReservationStatu");
-            return View(reservations.ToList());
+            return View(reservations.OrderByDescending(u => u.ReservationDate).ToList());
         }
 
         //
         // GET: /Reservation/Details/5
-
+        [Authorize]
         public ViewResult Details(int id)
         {
             Reservation reservation = db.Reservations.Single(r => r.Id == id);
@@ -40,7 +40,7 @@ namespace RMS.Controllers
 
         //
         // GET: /Reservation/Create
-
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.Customers = db.Customers.OrderBy(u => u.Name);
@@ -51,7 +51,7 @@ namespace RMS.Controllers
 
         //
         // POST: /Reservation/Create
-
+        [Authorize]
         [HttpPost]
         public ActionResult Create(ReservationModel reservation)
         {
@@ -60,76 +60,81 @@ namespace RMS.Controllers
 
                 foreach (var item in reservation.Rooms)
                 {
-                    Room __room = db.Rooms.SingleOrDefault(u => u.Id.Equals(item.IdRoom));
-                    Room __roominfante = db.Rooms.SingleOrDefault(u => u.Name.ToLower().Equals("infante") && u.IdHotel.Equals(__room.IdHotel));
-
-                    if (item.Adultos <= __room.Capacity)
+                    if (item.IdRoom != 0)
                     {
-                        decimal __priceroom = new decimal();
+                        Room __room = db.Rooms.SingleOrDefault(u => u.Id.Equals(item.IdRoom));
+                        Room __roominfante = new Room();
+                        if (item.Infantes > 0)
+                            __roominfante = db.Rooms.SingleOrDefault(u => u.Name.ToLower().Equals("infante") && u.IdHotel.Equals(__room.IdHotel));
 
-                        reservation.Trip.Rooms.Add(__room);
-                        reservation.Trip.Adults = reservation.Trip.Adults + item.Adultos;
-                        reservation.Trip.Childrens = reservation.Trip.Childrens + item.Infantes;
-
-                        IEnumerable<DateTime> __tripdays = EachDay(reservation.Trip.Arrival, reservation.Trip.Departure);
-                        __tripdays = __tripdays.Take(__tripdays.Count() - 1);
-
-                        //Obtenemos los precios por dia
-                        foreach (DateTime __day in __tripdays)
+                        if (item.Adultos <= __room.Capacity)
                         {
+                            decimal __priceroom = new decimal();
 
-                            var __temporada = __room.Hotel.Periods.Where(u => __day.IsBetween(new DateTime(DateTime.Now.Year, u.BeginMonth, u.BeginDay), new DateTime(DateTime.Now.Year, u.EndMonth, u.EndDay)));
-                            var __promo = __room.Promotions.Where(u => __day.IsBetween(u.DateStart, u.DateEnd) && u.Active.Equals(true));
+                            reservation.Trip.Rooms.Add(__room);
+                            reservation.Trip.Adults = reservation.Trip.Adults + item.Adultos;
+                            reservation.Trip.Childrens = reservation.Trip.Childrens + item.Infantes;
 
-                            if (__temporada.Count() > 0)
+                            IEnumerable<DateTime> __tripdays = EachDay(reservation.Trip.Arrival, reservation.Trip.Departure);
+                            __tripdays = __tripdays.Take(__tripdays.Count() - 1);
+
+                            //Obtenemos los precios por dia
+                            foreach (DateTime __day in __tripdays)
                             {
-                                if (__promo.Count() > 0)
-                                    if (__promo.FirstOrDefault().MinAdults >= item.Adultos && __promo.FirstOrDefault().MinDays >= __tripdays.Count())
-                                        __priceroom = (__promo.FirstOrDefault().HighSeasonPrice * item.Adultos) + reservation.Trip.Price;
+
+                                var __temporada = __room.Hotel.Periods.Where(u => __day.IsBetween(new DateTime(DateTime.Now.Year, u.BeginMonth, u.BeginDay), new DateTime(DateTime.Now.Year, u.EndMonth, u.EndDay)));
+                                var __promo = __room.Promotions.Where(u => __day.IsBetween(u.DateStart, u.DateEnd) && u.Active.Equals(true));
+
+                                if (__temporada.Count() > 0)
+                                {
+                                    if (__promo.Count() > 0)
+                                        if (__promo.FirstOrDefault().MinAdults >= item.Adultos && __promo.FirstOrDefault().MinDays >= __tripdays.Count())
+                                            __priceroom = (__promo.FirstOrDefault().HighSeasonPrice * item.Adultos) + reservation.Trip.Price;
+                                        else
+                                            __priceroom = (__room.HighSeasonPrice * item.Adultos) + reservation.Trip.Price;
                                     else
                                         __priceroom = (__room.HighSeasonPrice * item.Adultos) + reservation.Trip.Price;
+                                    if (item.Infantes > 0)
+                                        __priceroom = (__roominfante.HighSeasonPrice * item.Infantes) + reservation.Trip.Price;
+                                }
                                 else
-                                    __priceroom = (__room.HighSeasonPrice * item.Adultos) + reservation.Trip.Price;
-                                if (item.Infantes > 0)
-                                    __priceroom = (__roominfante.HighSeasonPrice * item.Infantes) + reservation.Trip.Price;
-                            }
-                            else
-                            {
-                                if (__promo.Count() > 0)
-                                    __priceroom = (__promo.FirstOrDefault().LowSeasonPrice * item.Adultos) + reservation.Trip.Price;
-                                else
-                                    __priceroom = (__room.LowSeasonPrice * item.Adultos) + reservation.Trip.Price;
+                                {
+                                    if (__promo.Count() > 0)
+                                        __priceroom = (__promo.FirstOrDefault().LowSeasonPrice * item.Adultos) + reservation.Trip.Price;
+                                    else
+                                        __priceroom = (__room.LowSeasonPrice * item.Adultos) + reservation.Trip.Price;
 
-                                if (item.Infantes > 0)
-                                    __priceroom = (__roominfante.LowSeasonPrice * item.Infantes) + reservation.Trip.Price;
+                                    if (item.Infantes > 0)
+                                        __priceroom = (__roominfante.LowSeasonPrice * item.Infantes) + reservation.Trip.Price;
+                                }
                             }
+
+                            //Descuentos por dias
+
+                            if (__tripdays.Count() >= 7)
+                                __priceroom = __priceroom - (__priceroom * (__room.Discount3.HasValue ? __room.Discount3.Value : 200) / 100);
+                            else
+                                if (__tripdays.Count() <= 7 && __tripdays.Count() >= 5)
+                                    __priceroom = __priceroom - (__priceroom * (__room.Discount3.HasValue ? __room.Discount2.Value : 200) / 100);
+                                else
+                                    if (__tripdays.Count() <= 5 && __tripdays.Count() >= 3)
+                                        __priceroom = __priceroom - (__priceroom * (__room.Discount3.HasValue ? __room.Discount1.Value : 200) / 100);
+
+                            // Precio Final
+                            reservation.Trip.Price = __priceroom + reservation.Trip.Price;
+
+                        }
+                        else
+                        {
+                            ViewBag.IdCustomer = new SelectList(db.Customers, "Id", "Name", reservation.Trip.IdCustomer);
+                            ViewBag.IdReservationStatus = new SelectList(db.ReservationStatus, "Id", "Name", reservation.Trip.IdReservationStatus);
+                            ViewBag.Error = "El numero de Adultos excede la capacidad de alguna de las habitaciones.";
+                            return View(reservation);
                         }
 
-                        //Descuentos por dias
 
-                        if (__tripdays.Count() >= 7)
-                            __priceroom = __priceroom - (__priceroom * (__room.Discount3.HasValue ? __room.Discount3.Value : 200) / 100);
-                        else
-                            if (__tripdays.Count() <= 7 && __tripdays.Count() >= 5)
-                                __priceroom = __priceroom - (__priceroom * (__room.Discount3.HasValue ? __room.Discount2.Value : 200) / 100);
-                            else
-                                if (__tripdays.Count() <= 5 && __tripdays.Count() >= 3)
-                                    __priceroom = __priceroom - (__priceroom * (__room.Discount3.HasValue ? __room.Discount1.Value : 200) / 100);
-
-                        // Precio Final
-                        reservation.Trip.Price = __priceroom + reservation.Trip.Price;
 
                     }
-                    else
-                    {
-                        ViewBag.IdCustomer = new SelectList(db.Customers, "Id", "Name", reservation.Trip.IdCustomer);
-                        ViewBag.IdReservationStatus = new SelectList(db.ReservationStatus, "Id", "Name", reservation.Trip.IdReservationStatus);
-                        ViewBag.Error = "El numero de Adultos excede la capacidad de alguna de las habitaciones.";
-                        return View(reservation);
-                    }
-
-
-
                 }
 
                 reservation.Trip.ReservationDate = DateTime.Now;
@@ -142,7 +147,7 @@ namespace RMS.Controllers
             ViewBag.IdReservationStatus = new SelectList(db.ReservationStatus, "Id", "Name", reservation.Trip.IdReservationStatus);
             return View(reservation);
         }
-
+        [Authorize]
         public ActionResult PartialHabitaciones(int IdHotel)
         {
             ViewBag.Rooms = db.Rooms.Where(u => u.IdHotel.Equals(IdHotel) && !u.Name.ToLower().Contains("infante") && u.Active.Equals(true));
@@ -157,7 +162,7 @@ namespace RMS.Controllers
 
         //
         // GET: /Reservation/Edit/5
-
+        [Authorize]
         public ActionResult Edit(int id)
         {
             Reservation reservation = db.Reservations.Single(r => r.Id == id);
@@ -168,7 +173,7 @@ namespace RMS.Controllers
 
         //
         // POST: /Reservation/Edit/5
-
+        [Authorize]
         [HttpPost]
         public ActionResult Edit(Reservation reservation)
         {
@@ -186,7 +191,7 @@ namespace RMS.Controllers
 
         //
         // GET: /Reservation/Delete/5
-
+        [Authorize]
         public ActionResult Delete(int id)
         {
             Reservation reservation = db.Reservations.Single(r => r.Id == id);
@@ -195,7 +200,7 @@ namespace RMS.Controllers
 
         //
         // POST: /Reservation/Delete/5
-
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
@@ -204,17 +209,23 @@ namespace RMS.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
+        [Authorize]
         protected override void Dispose(bool disposing)
         {
             db.Dispose();
             base.Dispose(disposing);
         }
-
+        [Authorize]
         public IEnumerable<DateTime> EachDay(DateTime from, DateTime thru)
         {
             for (var day = from.Date; day.Date <= thru.Date; day = day.AddDays(1))
                 yield return day;
+        }
+        [Authorize]
+        public ActionResult PrintableVersion(int id)
+        {
+            Reservation reservation = db.Reservations.Single(r => r.Id == id);
+            return View(reservation);
         }
 
         public string RenderRazorViewToString(string viewName, object model)
@@ -229,7 +240,7 @@ namespace RMS.Controllers
                 return sw.GetStringBuilder().ToString();
             }
         }
-
+        [Authorize]
         public ActionResult PrintPDF(int id)
         {
             MemoryStream __memoria = new MemoryStream();
@@ -245,7 +256,7 @@ namespace RMS.Controllers
 
             var model = db.Reservations.SingleOrDefault(u => u.Id.Equals(id));
 
-            string strB = RenderRazorViewToString("Details", model);
+            string strB = RenderRazorViewToString("PrintableVersion", model);
 
             document.Open();
 

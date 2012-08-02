@@ -15,7 +15,7 @@ namespace RMS.Controllers
 
         //
         // GET: /Promo/
-
+        [Authorize]
         public ViewResult Index(int IdRoom)
         {
             ViewBag.Room = db.Rooms.SingleOrDefault(u => u.Id.Equals(IdRoom));
@@ -25,7 +25,7 @@ namespace RMS.Controllers
 
         //
         // GET: /Promo/Details/5
-
+        [Authorize]
         public ViewResult Details(int id)
         {
             Promotion promotion = db.Promotions.Single(p => p.Id == id);
@@ -34,7 +34,7 @@ namespace RMS.Controllers
 
         //
         // GET: /Promo/Create
-
+        [Authorize]
         public ActionResult Create(int IdRoom)
         {
             ViewBag.Room = db.Rooms.SingleOrDefault(u => u.Id.Equals(IdRoom));
@@ -43,7 +43,7 @@ namespace RMS.Controllers
 
         //
         // POST: /Promo/Create
-
+        [Authorize]
         [HttpPost]
         public ActionResult Create(Promotion promotion)
         {
@@ -60,7 +60,7 @@ namespace RMS.Controllers
 
         //
         // GET: /Promo/Edit/5
-
+        [Authorize]
         public ActionResult Edit(int id)
         {
             Promotion promotion = db.Promotions.Single(p => p.Id == id);
@@ -69,7 +69,7 @@ namespace RMS.Controllers
 
         //
         // POST: /Promo/Edit/5
-
+        [Authorize]
         [HttpPost]
         public ActionResult Edit(Promotion promotion)
         {
@@ -85,7 +85,7 @@ namespace RMS.Controllers
 
         //
         // GET: /Promo/Delete/5
-
+        [Authorize]
         public ActionResult Delete(int id)
         {
             Promotion promotion = db.Promotions.Single(p => p.Id == id);
@@ -94,7 +94,7 @@ namespace RMS.Controllers
 
         //
         // POST: /Promo/Delete/5
-
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
