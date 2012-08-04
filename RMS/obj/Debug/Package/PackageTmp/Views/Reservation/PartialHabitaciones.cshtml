@@ -41,16 +41,17 @@
                             <option value="@j">@j</option>    
                         }
                     </select>
-                    <span style="display: none">
-                        @(counter = counter + 1)
-                    </span>
                 </td>
             }
             else
             { 
                 <input type="hidden" name="Rooms[@counter].Infantes" value="0" />
             }
+            <span style="display: none">
+                @(counter = counter + 1)
+            </span>
         </tr>
+     
         }
     }
     else

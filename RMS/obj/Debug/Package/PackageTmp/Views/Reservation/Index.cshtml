@@ -10,6 +10,9 @@
 <table class="table">
     <tr>
         <th>
+            Fecha de creación
+        </th>
+        <th>
             Cliente
         </th>
         <th>
@@ -17,9 +20,6 @@
         </th>
         <th>
             Salida
-        </th>
-        <th>
-            Fecha de creación
         </th>
         <th>
             Adultos
@@ -40,17 +40,17 @@
     {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.ReservationDate)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Customer.Name) @Html.DisplayFor(modelItem => item.Customer.LastName)
                 (@Html.DisplayFor(modelItem => item.Customer.PersonalId))
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Arrival)
+                @Html.Label(item.Arrival.ToShortDateString())
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Departure)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReservationDate)
+                @Html.Label(item.Departure.ToShortDateString())
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Adults)
@@ -65,9 +65,9 @@
                 @Html.DisplayFor(modelItem => item.ReservationStatu.Name)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @Html.ActionLink("Detalles", "PrintableVersion", new { id = item.Id }, new { target = "_blank" })
+                |
+                @Html.ActionLink("Descargar PDF", "PrintPDF", new { id = item.Id })
             </td>
         </tr>
     }

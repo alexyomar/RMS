@@ -5,681 +5,665 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="RegionalModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
-        <EntityContainer Name="RegionalModelStoreContainer">
-          <EntitySet Name="aspnet_Applications" EntityType="RegionalModel.Store.aspnet_Applications" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="aspnet_Membership" EntityType="RegionalModel.Store.aspnet_Membership" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="aspnet_Paths" EntityType="RegionalModel.Store.aspnet_Paths" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="aspnet_PersonalizationAllUsers" EntityType="RegionalModel.Store.aspnet_PersonalizationAllUsers" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="aspnet_PersonalizationPerUser" EntityType="RegionalModel.Store.aspnet_PersonalizationPerUser" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="aspnet_Profile" EntityType="RegionalModel.Store.aspnet_Profile" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="aspnet_Roles" EntityType="RegionalModel.Store.aspnet_Roles" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="aspnet_SchemaVersions" EntityType="RegionalModel.Store.aspnet_SchemaVersions" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="aspnet_Users" EntityType="RegionalModel.Store.aspnet_Users" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="aspnet_UsersInRoles" EntityType="RegionalModel.Store.aspnet_UsersInRoles" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="aspnet_WebEvent_Events" EntityType="RegionalModel.Store.aspnet_WebEvent_Events" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Customer" EntityType="RegionalModel.Store.Customer" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Hotel" EntityType="RegionalModel.Store.Hotel" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="PaymentMethod" EntityType="RegionalModel.Store.PaymentMethod" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Periods" EntityType="RegionalModel.Store.Periods" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Promotion" EntityType="RegionalModel.Store.Promotion" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Reservation" EntityType="RegionalModel.Store.Reservation" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="ReservationRoom" EntityType="RegionalModel.Store.ReservationRoom" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="ReservationsBuyed" EntityType="RegionalModel.Store.ReservationsBuyed" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="ReservationStatus" EntityType="RegionalModel.Store.ReservationStatus" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Room" EntityType="RegionalModel.Store.Room" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Service" EntityType="RegionalModel.Store.Service" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="State" EntityType="RegionalModel.Store.State" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="sysdiagrams" EntityType="RegionalModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK__aspnet_Me__Appli__42E1EEFE" Association="RegionalModel.Store.FK__aspnet_Me__Appli__42E1EEFE">
-            <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
-            <End Role="aspnet_Membership" EntitySet="aspnet_Membership" />
-          </AssociationSet>
-          <AssociationSet Name="FK__aspnet_Me__UserI__43D61337" Association="RegionalModel.Store.FK__aspnet_Me__UserI__43D61337">
-            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
-            <End Role="aspnet_Membership" EntitySet="aspnet_Membership" />
-          </AssociationSet>
-          <AssociationSet Name="FK__aspnet_Pa__Appli__57DD0BE4" Association="RegionalModel.Store.FK__aspnet_Pa__Appli__57DD0BE4">
-            <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
-            <End Role="aspnet_Paths" EntitySet="aspnet_Paths" />
-          </AssociationSet>
-          <AssociationSet Name="FK__aspnet_Pe__PathI__3F115E1A" Association="RegionalModel.Store.FK__aspnet_Pe__PathI__3F115E1A">
-            <End Role="aspnet_Paths" EntitySet="aspnet_Paths" />
-            <End Role="aspnet_PersonalizationPerUser" EntitySet="aspnet_PersonalizationPerUser" />
-          </AssociationSet>
-          <AssociationSet Name="FK__aspnet_Pe__PathI__4E53A1AA" Association="RegionalModel.Store.FK__aspnet_Pe__PathI__4E53A1AA">
-            <End Role="aspnet_Paths" EntitySet="aspnet_Paths" />
-            <End Role="aspnet_PersonalizationAllUsers" EntitySet="aspnet_PersonalizationAllUsers" />
-          </AssociationSet>
-          <AssociationSet Name="FK__aspnet_Pe__UserI__40058253" Association="RegionalModel.Store.FK__aspnet_Pe__UserI__40058253">
-            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
-            <End Role="aspnet_PersonalizationPerUser" EntitySet="aspnet_PersonalizationPerUser" />
-          </AssociationSet>
-          <AssociationSet Name="FK__aspnet_Pr__UserI__44CA3770" Association="RegionalModel.Store.FK__aspnet_Pr__UserI__44CA3770">
-            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
-            <End Role="aspnet_Profile" EntitySet="aspnet_Profile" />
-          </AssociationSet>
-          <AssociationSet Name="FK__aspnet_Ro__Appli__56E8E7AB" Association="RegionalModel.Store.FK__aspnet_Ro__Appli__56E8E7AB">
-            <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
-            <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
-          </AssociationSet>
-          <AssociationSet Name="FK__aspnet_Us__Appli__55F4C372" Association="RegionalModel.Store.FK__aspnet_Us__Appli__55F4C372">
-            <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
-            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
-          </AssociationSet>
-          <AssociationSet Name="FK__aspnet_Us__RoleI__40F9A68C" Association="RegionalModel.Store.FK__aspnet_Us__RoleI__40F9A68C">
-            <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
-            <End Role="aspnet_UsersInRoles" EntitySet="aspnet_UsersInRoles" />
-          </AssociationSet>
-          <AssociationSet Name="FK__aspnet_Us__UserI__41EDCAC5" Association="RegionalModel.Store.FK__aspnet_Us__UserI__41EDCAC5">
-            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
-            <End Role="aspnet_UsersInRoles" EntitySet="aspnet_UsersInRoles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Periods_Posadas" Association="RegionalModel.Store.FK_Periods_Posadas">
-            <End Role="Hotel" EntitySet="Hotel" />
-            <End Role="Periods" EntitySet="Periods" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Posadas_States" Association="RegionalModel.Store.FK_Posadas_States">
-            <End Role="State" EntitySet="State" />
-            <End Role="Hotel" EntitySet="Hotel" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Promotion_Room" Association="RegionalModel.Store.FK_Promotion_Room">
-            <End Role="Room" EntitySet="Room" />
-            <End Role="Promotion" EntitySet="Promotion" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ReservationRoom_Reservation" Association="RegionalModel.Store.FK_ReservationRoom_Reservation">
-            <End Role="Reservation" EntitySet="Reservation" />
-            <End Role="ReservationRoom" EntitySet="ReservationRoom" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ReservationRoom_Room" Association="RegionalModel.Store.FK_ReservationRoom_Room">
-            <End Role="Room" EntitySet="Room" />
-            <End Role="ReservationRoom" EntitySet="ReservationRoom" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Reservations_Customers" Association="RegionalModel.Store.FK_Reservations_Customers">
-            <End Role="Customer" EntitySet="Customer" />
-            <End Role="Reservation" EntitySet="Reservation" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Reservations_ReservationStatus" Association="RegionalModel.Store.FK_Reservations_ReservationStatus">
-            <End Role="ReservationStatus" EntitySet="ReservationStatus" />
-            <End Role="Reservation" EntitySet="Reservation" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ReservationsBuyed_PaymentMethods" Association="RegionalModel.Store.FK_ReservationsBuyed_PaymentMethods">
-            <End Role="PaymentMethod" EntitySet="PaymentMethod" />
-            <End Role="ReservationsBuyed" EntitySet="ReservationsBuyed" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ReservationsBuyed_Reservations" Association="RegionalModel.Store.FK_ReservationsBuyed_Reservations">
-            <End Role="Reservation" EntitySet="Reservation" />
-            <End Role="ReservationsBuyed" EntitySet="ReservationsBuyed" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Rooms_Posadas" Association="RegionalModel.Store.FK_Rooms_Posadas">
-            <End Role="Hotel" EntitySet="Hotel" />
-            <End Role="Room" EntitySet="Room" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Tours_Posadas" Association="RegionalModel.Store.FK_Tours_Posadas">
-            <End Role="Hotel" EntitySet="Hotel" />
-            <End Role="Service" EntitySet="Service" />
-          </AssociationSet>
-        </EntityContainer>
-        <EntityType Name="aspnet_Applications">
-          <Key>
-            <PropertyRef Name="ApplicationId" />
-          </Key>
-          <Property Name="ApplicationName" Type="nvarchar" Nullable="false" MaxLength="256" />
-          <Property Name="LoweredApplicationName" Type="nvarchar" Nullable="false" MaxLength="256" />
-          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Description" Type="nvarchar" MaxLength="256" />
-        </EntityType>
-        <EntityType Name="aspnet_Membership">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="128" />
-          <Property Name="PasswordFormat" Type="int" Nullable="false" />
-          <Property Name="PasswordSalt" Type="nvarchar" Nullable="false" MaxLength="128" />
-          <Property Name="MobilePIN" Type="nvarchar" MaxLength="16" />
-          <Property Name="Email" Type="nvarchar" MaxLength="256" />
-          <Property Name="LoweredEmail" Type="nvarchar" MaxLength="256" />
-          <Property Name="PasswordQuestion" Type="nvarchar" MaxLength="256" />
-          <Property Name="PasswordAnswer" Type="nvarchar" MaxLength="128" />
-          <Property Name="IsApproved" Type="bit" Nullable="false" />
-          <Property Name="IsLockedOut" Type="bit" Nullable="false" />
-          <Property Name="CreateDate" Type="datetime" Nullable="false" />
-          <Property Name="LastLoginDate" Type="datetime" Nullable="false" />
-          <Property Name="LastPasswordChangedDate" Type="datetime" Nullable="false" />
-          <Property Name="LastLockoutDate" Type="datetime" Nullable="false" />
-          <Property Name="FailedPasswordAttemptCount" Type="int" Nullable="false" />
-          <Property Name="FailedPasswordAttemptWindowStart" Type="datetime" Nullable="false" />
-          <Property Name="FailedPasswordAnswerAttemptCount" Type="int" Nullable="false" />
-          <Property Name="FailedPasswordAnswerAttemptWindowStart" Type="datetime" Nullable="false" />
-          <Property Name="Comment" Type="ntext" />
-        </EntityType>
-        <EntityType Name="aspnet_Paths">
-          <Key>
-            <PropertyRef Name="PathId" />
-          </Key>
-          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="PathId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Path" Type="nvarchar" Nullable="false" MaxLength="256" />
-          <Property Name="LoweredPath" Type="nvarchar" Nullable="false" MaxLength="256" />
-        </EntityType>
-        <EntityType Name="aspnet_PersonalizationAllUsers">
-          <Key>
-            <PropertyRef Name="PathId" />
-          </Key>
-          <Property Name="PathId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="PageSettings" Type="image" Nullable="false" />
-          <Property Name="LastUpdatedDate" Type="datetime" Nullable="false" />
-        </EntityType>
-        <EntityType Name="aspnet_PersonalizationPerUser">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="PathId" Type="uniqueidentifier" />
-          <Property Name="UserId" Type="uniqueidentifier" />
-          <Property Name="PageSettings" Type="image" Nullable="false" />
-          <Property Name="LastUpdatedDate" Type="datetime" Nullable="false" />
-        </EntityType>
-        <EntityType Name="aspnet_Profile">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="PropertyNames" Type="ntext" Nullable="false" />
-          <Property Name="PropertyValuesString" Type="ntext" Nullable="false" />
-          <Property Name="PropertyValuesBinary" Type="image" Nullable="false" />
-          <Property Name="LastUpdatedDate" Type="datetime" Nullable="false" />
-        </EntityType>
-        <EntityType Name="aspnet_Roles">
-          <Key>
-            <PropertyRef Name="RoleId" />
-          </Key>
-          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="RoleName" Type="nvarchar" Nullable="false" MaxLength="256" />
-          <Property Name="LoweredRoleName" Type="nvarchar" Nullable="false" MaxLength="256" />
-          <Property Name="Description" Type="nvarchar" MaxLength="256" />
-        </EntityType>
-        <EntityType Name="aspnet_SchemaVersions">
-          <Key>
-            <PropertyRef Name="Feature" />
-            <PropertyRef Name="CompatibleSchemaVersion" />
-          </Key>
-          <Property Name="Feature" Type="nvarchar" Nullable="false" MaxLength="128" />
-          <Property Name="CompatibleSchemaVersion" Type="nvarchar" Nullable="false" MaxLength="128" />
-          <Property Name="IsCurrentVersion" Type="bit" Nullable="false" />
-        </EntityType>
-        <EntityType Name="aspnet_Users">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="256" />
-          <Property Name="LoweredUserName" Type="nvarchar" Nullable="false" MaxLength="256" />
-          <Property Name="MobileAlias" Type="nvarchar" MaxLength="16" />
-          <Property Name="IsAnonymous" Type="bit" Nullable="false" />
-          <Property Name="LastActivityDate" Type="datetime" Nullable="false" />
-        </EntityType>
-        <EntityType Name="aspnet_UsersInRoles">
-          <Key>
-            <PropertyRef Name="UserId" />
-            <PropertyRef Name="RoleId" />
-          </Key>
-          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
-        </EntityType>
-        <EntityType Name="aspnet_WebEvent_Events">
-          <Key>
-            <PropertyRef Name="EventId" />
-          </Key>
-          <Property Name="EventId" Type="char" Nullable="false" MaxLength="32" />
-          <Property Name="EventTimeUtc" Type="datetime" Nullable="false" />
-          <Property Name="EventTime" Type="datetime" Nullable="false" />
-          <Property Name="EventType" Type="nvarchar" Nullable="false" MaxLength="256" />
-          <Property Name="EventSequence" Type="decimal" Nullable="false" Precision="19" />
-          <Property Name="EventOccurrence" Type="decimal" Nullable="false" Precision="19" />
-          <Property Name="EventCode" Type="int" Nullable="false" />
-          <Property Name="EventDetailCode" Type="int" Nullable="false" />
-          <Property Name="Message" Type="nvarchar" MaxLength="1024" />
-          <Property Name="ApplicationPath" Type="nvarchar" MaxLength="256" />
-          <Property Name="ApplicationVirtualPath" Type="nvarchar" MaxLength="256" />
-          <Property Name="MachineName" Type="nvarchar" Nullable="false" MaxLength="256" />
-          <Property Name="RequestUrl" Type="nvarchar" MaxLength="1024" />
-          <Property Name="ExceptionType" Type="nvarchar" MaxLength="256" />
-          <Property Name="Details" Type="ntext" />
-        </EntityType>
-        <EntityType Name="Customer">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="PersonalId" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="Phone" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="Address" Type="text" Nullable="false" />
-          <Property Name="Email" Type="varchar" Nullable="false" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="Hotel">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Contact" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="IdState" Type="int" Nullable="false" />
-          <Property Name="Active" Type="bit" Nullable="false" />
-          <Property Name="CanSell" Type="bit" Nullable="false" />
-          <Property Name="TripAdvisor" Type="text" />
-          <Property Name="TripAdvisorEng" Type="text" />
-          <Property Name="Map" Type="text" />
-        </EntityType>
-        <EntityType Name="PaymentMethod">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="Notes" Type="text" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Periods">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="BeginDay" Type="int" Nullable="false" />
-          <Property Name="EndDay" Type="int" Nullable="false" />
-          <Property Name="IdHotel" Type="int" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="50" />
-          <Property Name="BeginMonth" Type="int" Nullable="false" />
-          <Property Name="EndMonth" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Promotion">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="IdRoom" Type="int" Nullable="false" />
-          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="LowSeasonPrice" Type="money" Nullable="false" />
-          <Property Name="HighSeasonPrice" Type="money" Nullable="false" />
-          <Property Name="DateStart" Type="datetime" Nullable="false" />
-          <Property Name="DateEnd" Type="datetime" Nullable="false" />
-          <Property Name="Active" Type="bit" Nullable="false" />
-          <Property Name="MinAdults" Type="int" Nullable="false" />
-          <Property Name="MinDays" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Reservation">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="IdCustomer" Type="int" Nullable="false" />
-          <Property Name="Arrival" Type="datetime" Nullable="false" />
-          <Property Name="Departure" Type="datetime" Nullable="false" />
-          <Property Name="ReservationDate" Type="datetime" Nullable="false" />
-          <Property Name="Adults" Type="int" Nullable="false" />
-          <Property Name="Childrens" Type="int" Nullable="false" />
-          <Property Name="Price" Type="money" Nullable="false" />
-          <Property Name="IdReservationStatus" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="ReservationRoom">
-          <Key>
-            <PropertyRef Name="IdRoom" />
-            <PropertyRef Name="IdReservation" />
-          </Key>
-          <Property Name="IdRoom" Type="int" Nullable="false" />
-          <Property Name="IdReservation" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="ReservationsBuyed">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="IdReservation" Type="int" Nullable="false" />
-          <Property Name="IdPaymentMethod" Type="int" Nullable="false" />
-          <Property Name="TransactionNumber" Type="int" Nullable="false" />
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Date" Type="datetime" />
-          <Property Name="TotalPayed" Type="money" />
-        </EntityType>
-        <EntityType Name="ReservationStatus">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="Room">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="IdHotel" Type="int" Nullable="false" />
-          <Property Name="Active" Type="bit" Nullable="false" />
-          <Property Name="Capacity" Type="int" Nullable="false" />
-          <Property Name="LowSeasonPrice" Type="money" Nullable="false" />
-          <Property Name="HighSeasonPrice" Type="money" Nullable="false" />
-          <Property Name="Discount1" Type="money" />
-          <Property Name="Discount2" Type="money" />
-          <Property Name="Discount3" Type="money" />
-          <Property Name="Discount4" Type="money" />
-        </EntityType>
-        <EntityType Name="Service">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="Description" Type="text" Nullable="false" />
-          <Property Name="IdPosada" Type="int" Nullable="false" />
-          <Property Name="Price" Type="money" />
-          <Property Name="DurationDays" Type="int" />
-          <Property Name="BuyLater" Type="bit" />
-        </EntityType>
-        <EntityType Name="State">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
-        <Association Name="FK__aspnet_Me__Appli__42E1EEFE">
-          <End Role="aspnet_Applications" Type="RegionalModel.Store.aspnet_Applications" Multiplicity="1" />
-          <End Role="aspnet_Membership" Type="RegionalModel.Store.aspnet_Membership" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="aspnet_Applications">
-              <PropertyRef Name="ApplicationId" />
-            </Principal>
-            <Dependent Role="aspnet_Membership">
-              <PropertyRef Name="ApplicationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__aspnet_Me__UserI__43D61337">
-          <End Role="aspnet_Users" Type="RegionalModel.Store.aspnet_Users" Multiplicity="1" />
-          <End Role="aspnet_Membership" Type="RegionalModel.Store.aspnet_Membership" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="aspnet_Users">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="aspnet_Membership">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__aspnet_Pa__Appli__57DD0BE4">
-          <End Role="aspnet_Applications" Type="RegionalModel.Store.aspnet_Applications" Multiplicity="1" />
-          <End Role="aspnet_Paths" Type="RegionalModel.Store.aspnet_Paths" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="aspnet_Applications">
-              <PropertyRef Name="ApplicationId" />
-            </Principal>
-            <Dependent Role="aspnet_Paths">
-              <PropertyRef Name="ApplicationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__aspnet_Pe__PathI__3F115E1A">
-          <End Role="aspnet_Paths" Type="RegionalModel.Store.aspnet_Paths" Multiplicity="0..1" />
-          <End Role="aspnet_PersonalizationPerUser" Type="RegionalModel.Store.aspnet_PersonalizationPerUser" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="aspnet_Paths">
-              <PropertyRef Name="PathId" />
-            </Principal>
-            <Dependent Role="aspnet_PersonalizationPerUser">
-              <PropertyRef Name="PathId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__aspnet_Pe__PathI__4E53A1AA">
-          <End Role="aspnet_Paths" Type="RegionalModel.Store.aspnet_Paths" Multiplicity="1" />
-          <End Role="aspnet_PersonalizationAllUsers" Type="RegionalModel.Store.aspnet_PersonalizationAllUsers" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="aspnet_Paths">
-              <PropertyRef Name="PathId" />
-            </Principal>
-            <Dependent Role="aspnet_PersonalizationAllUsers">
-              <PropertyRef Name="PathId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__aspnet_Pe__UserI__40058253">
-          <End Role="aspnet_Users" Type="RegionalModel.Store.aspnet_Users" Multiplicity="0..1" />
-          <End Role="aspnet_PersonalizationPerUser" Type="RegionalModel.Store.aspnet_PersonalizationPerUser" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="aspnet_Users">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="aspnet_PersonalizationPerUser">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__aspnet_Pr__UserI__44CA3770">
-          <End Role="aspnet_Users" Type="RegionalModel.Store.aspnet_Users" Multiplicity="1" />
-          <End Role="aspnet_Profile" Type="RegionalModel.Store.aspnet_Profile" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="aspnet_Users">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="aspnet_Profile">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__aspnet_Ro__Appli__56E8E7AB">
-          <End Role="aspnet_Applications" Type="RegionalModel.Store.aspnet_Applications" Multiplicity="1" />
-          <End Role="aspnet_Roles" Type="RegionalModel.Store.aspnet_Roles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="aspnet_Applications">
-              <PropertyRef Name="ApplicationId" />
-            </Principal>
-            <Dependent Role="aspnet_Roles">
-              <PropertyRef Name="ApplicationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__aspnet_Us__Appli__55F4C372">
-          <End Role="aspnet_Applications" Type="RegionalModel.Store.aspnet_Applications" Multiplicity="1" />
-          <End Role="aspnet_Users" Type="RegionalModel.Store.aspnet_Users" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="aspnet_Applications">
-              <PropertyRef Name="ApplicationId" />
-            </Principal>
-            <Dependent Role="aspnet_Users">
-              <PropertyRef Name="ApplicationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__aspnet_Us__RoleI__40F9A68C">
-          <End Role="aspnet_Roles" Type="RegionalModel.Store.aspnet_Roles" Multiplicity="1" />
-          <End Role="aspnet_UsersInRoles" Type="RegionalModel.Store.aspnet_UsersInRoles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="aspnet_Roles">
-              <PropertyRef Name="RoleId" />
-            </Principal>
-            <Dependent Role="aspnet_UsersInRoles">
-              <PropertyRef Name="RoleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__aspnet_Us__UserI__41EDCAC5">
-          <End Role="aspnet_Users" Type="RegionalModel.Store.aspnet_Users" Multiplicity="1" />
-          <End Role="aspnet_UsersInRoles" Type="RegionalModel.Store.aspnet_UsersInRoles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="aspnet_Users">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="aspnet_UsersInRoles">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Periods_Posadas">
-          <End Role="Hotel" Type="RegionalModel.Store.Hotel" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Periods" Type="RegionalModel.Store.Periods" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Hotel">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Periods">
-              <PropertyRef Name="IdHotel" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Posadas_States">
-          <End Role="State" Type="RegionalModel.Store.State" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Hotel" Type="RegionalModel.Store.Hotel" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="State">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Hotel">
-              <PropertyRef Name="IdState" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Promotion_Room">
-          <End Role="Room" Type="RegionalModel.Store.Room" Multiplicity="1" />
-          <End Role="Promotion" Type="RegionalModel.Store.Promotion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Room">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Promotion">
-              <PropertyRef Name="IdRoom" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ReservationRoom_Reservation">
-          <End Role="Reservation" Type="RegionalModel.Store.Reservation" Multiplicity="1" />
-          <End Role="ReservationRoom" Type="RegionalModel.Store.ReservationRoom" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Reservation">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ReservationRoom">
-              <PropertyRef Name="IdReservation" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ReservationRoom_Room">
-          <End Role="Room" Type="RegionalModel.Store.Room" Multiplicity="1" />
-          <End Role="ReservationRoom" Type="RegionalModel.Store.ReservationRoom" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Room">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ReservationRoom">
-              <PropertyRef Name="IdRoom" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Reservations_Customers">
-          <End Role="Customer" Type="RegionalModel.Store.Customer" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Reservation" Type="RegionalModel.Store.Reservation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customer">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Reservation">
-              <PropertyRef Name="IdCustomer" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Reservations_ReservationStatus">
-          <End Role="ReservationStatus" Type="RegionalModel.Store.ReservationStatus" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Reservation" Type="RegionalModel.Store.Reservation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ReservationStatus">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Reservation">
-              <PropertyRef Name="IdReservationStatus" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ReservationsBuyed_PaymentMethods">
-          <End Role="PaymentMethod" Type="RegionalModel.Store.PaymentMethod" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="ReservationsBuyed" Type="RegionalModel.Store.ReservationsBuyed" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PaymentMethod">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ReservationsBuyed">
-              <PropertyRef Name="IdPaymentMethod" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ReservationsBuyed_Reservations">
-          <End Role="Reservation" Type="RegionalModel.Store.Reservation" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="ReservationsBuyed" Type="RegionalModel.Store.ReservationsBuyed" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Reservation">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ReservationsBuyed">
-              <PropertyRef Name="IdReservation" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Rooms_Posadas">
-          <End Role="Hotel" Type="RegionalModel.Store.Hotel" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Room" Type="RegionalModel.Store.Room" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Hotel">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Room">
-              <PropertyRef Name="IdHotel" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Tours_Posadas">
-          <End Role="Hotel" Type="RegionalModel.Store.Hotel" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Service" Type="RegionalModel.Store.Service" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Hotel">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Service">
-              <PropertyRef Name="IdPosada" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-      </Schema></edmx:StorageModels>
+  <EntityContainer Name="RegionalModelStoreContainer">
+    <EntitySet Name="aspnet_Applications" EntityType="RegionalModel.Store.aspnet_Applications" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="aspnet_Membership" EntityType="RegionalModel.Store.aspnet_Membership" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="aspnet_Paths" EntityType="RegionalModel.Store.aspnet_Paths" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="aspnet_PersonalizationAllUsers" EntityType="RegionalModel.Store.aspnet_PersonalizationAllUsers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="aspnet_PersonalizationPerUser" EntityType="RegionalModel.Store.aspnet_PersonalizationPerUser" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="aspnet_Profile" EntityType="RegionalModel.Store.aspnet_Profile" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="aspnet_Roles" EntityType="RegionalModel.Store.aspnet_Roles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="aspnet_SchemaVersions" EntityType="RegionalModel.Store.aspnet_SchemaVersions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="aspnet_Users" EntityType="RegionalModel.Store.aspnet_Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="aspnet_WebEvent_Events" EntityType="RegionalModel.Store.aspnet_WebEvent_Events" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Customers" EntityType="RegionalModel.Store.Customers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Hotels" EntityType="RegionalModel.Store.Hotels" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PaymentMethods" EntityType="RegionalModel.Store.PaymentMethods" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Periods" EntityType="RegionalModel.Store.Periods" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Promotions" EntityType="RegionalModel.Store.Promotions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Reservations" EntityType="RegionalModel.Store.Reservations" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ReservationsBuyeds" EntityType="RegionalModel.Store.ReservationsBuyeds" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ReservationStatus" EntityType="RegionalModel.Store.ReservationStatus" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Rooms" EntityType="RegionalModel.Store.Rooms" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Services" EntityType="RegionalModel.Store.Services" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="States" EntityType="RegionalModel.Store.States" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="sysdiagrams" EntityType="RegionalModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="aspnet_UsersInRoles" EntityType="RegionalModel.Store.aspnet_UsersInRoles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ReservationRoom" EntityType="RegionalModel.Store.ReservationRoom" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK__aspnet_Me__Appli__42E1EEFE" Association="RegionalModel.Store.FK__aspnet_Me__Appli__42E1EEFE">
+      <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+      <End Role="aspnet_Membership" EntitySet="aspnet_Membership" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Pa__Appli__57DD0BE4" Association="RegionalModel.Store.FK__aspnet_Pa__Appli__57DD0BE4">
+      <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+      <End Role="aspnet_Paths" EntitySet="aspnet_Paths" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Ro__Appli__56E8E7AB" Association="RegionalModel.Store.FK__aspnet_Ro__Appli__56E8E7AB">
+      <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+      <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Us__Appli__55F4C372" Association="RegionalModel.Store.FK__aspnet_Us__Appli__55F4C372">
+      <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Me__UserI__43D61337" Association="RegionalModel.Store.FK__aspnet_Me__UserI__43D61337">
+      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+      <End Role="aspnet_Membership" EntitySet="aspnet_Membership" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Pe__PathI__3F115E1A" Association="RegionalModel.Store.FK__aspnet_Pe__PathI__3F115E1A">
+      <End Role="aspnet_Paths" EntitySet="aspnet_Paths" />
+      <End Role="aspnet_PersonalizationPerUser" EntitySet="aspnet_PersonalizationPerUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Pe__PathI__4E53A1AA" Association="RegionalModel.Store.FK__aspnet_Pe__PathI__4E53A1AA">
+      <End Role="aspnet_Paths" EntitySet="aspnet_Paths" />
+      <End Role="aspnet_PersonalizationAllUsers" EntitySet="aspnet_PersonalizationAllUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Pe__UserI__40058253" Association="RegionalModel.Store.FK__aspnet_Pe__UserI__40058253">
+      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+      <End Role="aspnet_PersonalizationPerUser" EntitySet="aspnet_PersonalizationPerUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Pr__UserI__44CA3770" Association="RegionalModel.Store.FK__aspnet_Pr__UserI__44CA3770">
+      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+      <End Role="aspnet_Profile" EntitySet="aspnet_Profile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reservations_Customers" Association="RegionalModel.Store.FK_Reservations_Customers">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Reservation" EntitySet="Reservations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Periods_Posadas" Association="RegionalModel.Store.FK_Periods_Posadas">
+      <End Role="Hotel" EntitySet="Hotels" />
+      <End Role="Period" EntitySet="Periods" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Posadas_States" Association="RegionalModel.Store.FK_Posadas_States">
+      <End Role="State" EntitySet="States" />
+      <End Role="Hotel" EntitySet="Hotels" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rooms_Posadas" Association="RegionalModel.Store.FK_Rooms_Posadas">
+      <End Role="Hotel" EntitySet="Hotels" />
+      <End Role="Room" EntitySet="Rooms" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tours_Posadas" Association="RegionalModel.Store.FK_Tours_Posadas">
+      <End Role="Hotel" EntitySet="Hotels" />
+      <End Role="Service" EntitySet="Services" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReservationsBuyed_PaymentMethods" Association="RegionalModel.Store.FK_ReservationsBuyed_PaymentMethods">
+      <End Role="PaymentMethod" EntitySet="PaymentMethods" />
+      <End Role="ReservationsBuyed" EntitySet="ReservationsBuyeds" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Promotion_Room" Association="RegionalModel.Store.FK_Promotion_Room">
+      <End Role="Room" EntitySet="Rooms" />
+      <End Role="Promotion" EntitySet="Promotions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reservations_ReservationStatus" Association="RegionalModel.Store.FK_Reservations_ReservationStatus">
+      <End Role="ReservationStatu" EntitySet="ReservationStatus" />
+      <End Role="Reservation" EntitySet="Reservations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReservationsBuyed_Reservations" Association="RegionalModel.Store.FK_ReservationsBuyed_Reservations">
+      <End Role="Reservation" EntitySet="Reservations" />
+      <End Role="ReservationsBuyed" EntitySet="ReservationsBuyeds" />
+    </AssociationSet>
+    <AssociationSet Name="FK_aspnet_UsersInRoles_aspnet_Roles" Association="RegionalModel.Store.FK_aspnet_UsersInRoles_aspnet_Roles">
+      <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
+      <End Role="aspnet_UsersInRoles" EntitySet="aspnet_UsersInRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_aspnet_UsersInRoles_aspnet_Users" Association="RegionalModel.Store.FK_aspnet_UsersInRoles_aspnet_Users">
+      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+      <End Role="aspnet_UsersInRoles" EntitySet="aspnet_UsersInRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReservationRoom_Reservation" Association="RegionalModel.Store.FK_ReservationRoom_Reservation">
+      <End Role="Reservation" EntitySet="Reservations" />
+      <End Role="ReservationRoom" EntitySet="ReservationRoom" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReservationRoom_Room" Association="RegionalModel.Store.FK_ReservationRoom_Room">
+      <End Role="Room" EntitySet="Rooms" />
+      <End Role="ReservationRoom" EntitySet="ReservationRoom" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="aspnet_Applications">
+    <Key>
+      <PropertyRef Name="ApplicationId" />
+    </Key>
+    <Property Name="ApplicationName" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="LoweredApplicationName" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" Nullable="true" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="aspnet_Membership">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="PasswordFormat" Type="int" Nullable="false" />
+    <Property Name="PasswordSalt" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="MobilePIN" Type="nvarchar" Nullable="true" MaxLength="16" />
+    <Property Name="Email" Type="nvarchar" Nullable="true" MaxLength="256" />
+    <Property Name="LoweredEmail" Type="nvarchar" Nullable="true" MaxLength="256" />
+    <Property Name="PasswordQuestion" Type="nvarchar" Nullable="true" MaxLength="256" />
+    <Property Name="PasswordAnswer" Type="nvarchar" Nullable="true" MaxLength="128" />
+    <Property Name="IsApproved" Type="bit" Nullable="false" />
+    <Property Name="IsLockedOut" Type="bit" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" Nullable="false" />
+    <Property Name="LastLoginDate" Type="datetime" Nullable="false" />
+    <Property Name="LastPasswordChangedDate" Type="datetime" Nullable="false" />
+    <Property Name="LastLockoutDate" Type="datetime" Nullable="false" />
+    <Property Name="FailedPasswordAttemptCount" Type="int" Nullable="false" />
+    <Property Name="FailedPasswordAttemptWindowStart" Type="datetime" Nullable="false" />
+    <Property Name="FailedPasswordAnswerAttemptCount" Type="int" Nullable="false" />
+    <Property Name="FailedPasswordAnswerAttemptWindowStart" Type="datetime" Nullable="false" />
+    <Property Name="Comment" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="aspnet_Paths">
+    <Key>
+      <PropertyRef Name="PathId" />
+    </Key>
+    <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="PathId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Path" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="LoweredPath" Type="nvarchar" Nullable="false" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="aspnet_PersonalizationAllUsers">
+    <Key>
+      <PropertyRef Name="PathId" />
+    </Key>
+    <Property Name="PathId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="PageSettings" Type="varbinary(max)" Nullable="false" />
+    <Property Name="LastUpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="aspnet_PersonalizationPerUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="PathId" Type="uniqueidentifier" Nullable="true" />
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="true" />
+    <Property Name="PageSettings" Type="varbinary(max)" Nullable="false" />
+    <Property Name="LastUpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="aspnet_Profile">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="PropertyNames" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PropertyValuesString" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PropertyValuesBinary" Type="varbinary(max)" Nullable="false" />
+    <Property Name="LastUpdatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="aspnet_Roles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="LoweredRoleName" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="Description" Type="nvarchar" Nullable="true" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="aspnet_SchemaVersions">
+    <Key>
+      <PropertyRef Name="Feature" />
+      <PropertyRef Name="CompatibleSchemaVersion" />
+    </Key>
+    <Property Name="Feature" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="CompatibleSchemaVersion" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="IsCurrentVersion" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="aspnet_Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="LoweredUserName" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="MobileAlias" Type="nvarchar" Nullable="true" MaxLength="16" />
+    <Property Name="IsAnonymous" Type="bit" Nullable="false" />
+    <Property Name="LastActivityDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="aspnet_WebEvent_Events">
+    <Key>
+      <PropertyRef Name="EventId" />
+    </Key>
+    <Property Name="EventId" Type="char" Nullable="false" MaxLength="32" />
+    <Property Name="EventTimeUtc" Type="datetime" Nullable="false" />
+    <Property Name="EventTime" Type="datetime" Nullable="false" />
+    <Property Name="EventType" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="EventSequence" Type="decimal" Nullable="false" Precision="19" Scale="0" />
+    <Property Name="EventOccurrence" Type="decimal" Nullable="false" Precision="19" Scale="0" />
+    <Property Name="EventCode" Type="int" Nullable="false" />
+    <Property Name="EventDetailCode" Type="int" Nullable="false" />
+    <Property Name="Message" Type="nvarchar" Nullable="true" MaxLength="1024" />
+    <Property Name="ApplicationPath" Type="nvarchar" Nullable="true" MaxLength="256" />
+    <Property Name="ApplicationVirtualPath" Type="nvarchar" Nullable="true" MaxLength="256" />
+    <Property Name="MachineName" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="RequestUrl" Type="nvarchar" Nullable="true" MaxLength="1024" />
+    <Property Name="ExceptionType" Type="nvarchar" Nullable="true" MaxLength="256" />
+    <Property Name="Details" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Customers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="PersonalId" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Phone" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Address" Type="varchar(max)" Nullable="false" />
+    <Property Name="Email" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Hotels">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Contact" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IdState" Type="int" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="CanSell" Type="bit" Nullable="false" />
+    <Property Name="TripAdvisor" Type="varchar(max)" Nullable="true" />
+    <Property Name="TripAdvisorEng" Type="varchar(max)" Nullable="true" />
+    <Property Name="Map" Type="varchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="PaymentMethods">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Notes" Type="varchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Periods">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BeginDay" Type="int" Nullable="false" />
+    <Property Name="EndDay" Type="int" Nullable="false" />
+    <Property Name="IdHotel" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="BeginMonth" Type="int" Nullable="false" />
+    <Property Name="EndMonth" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Promotions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdRoom" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="LowSeasonPrice" Type="decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="HighSeasonPrice" Type="decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="DateStart" Type="datetime" Nullable="false" />
+    <Property Name="DateEnd" Type="datetime" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="MinAdults" Type="int" Nullable="false" />
+    <Property Name="MinDays" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Reservations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdCustomer" Type="int" Nullable="false" />
+    <Property Name="Arrival" Type="datetime" Nullable="false" />
+    <Property Name="Departure" Type="datetime" Nullable="false" />
+    <Property Name="ReservationDate" Type="datetime" Nullable="false" />
+    <Property Name="Adults" Type="int" Nullable="false" />
+    <Property Name="Childrens" Type="int" Nullable="false" />
+    <Property Name="Price" Type="decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="IdReservationStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ReservationsBuyeds">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="IdReservation" Type="int" Nullable="false" />
+    <Property Name="IdPaymentMethod" Type="int" Nullable="false" />
+    <Property Name="TransactionNumber" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="true" />
+    <Property Name="TotalPayed" Type="decimal" Nullable="true" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="ReservationStatus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Rooms">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IdHotel" Type="int" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="Capacity" Type="int" Nullable="false" />
+    <Property Name="LowSeasonPrice" Type="decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="HighSeasonPrice" Type="decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="Discount1" Type="decimal" Nullable="true" Precision="19" Scale="4" />
+    <Property Name="Discount2" Type="decimal" Nullable="true" Precision="19" Scale="4" />
+    <Property Name="Discount3" Type="decimal" Nullable="true" Precision="19" Scale="4" />
+    <Property Name="Discount4" Type="decimal" Nullable="true" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="Services">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="Description" Type="varchar(max)" Nullable="false" />
+    <Property Name="IdPosada" Type="int" Nullable="false" />
+    <Property Name="Price" Type="decimal" Nullable="true" Precision="19" Scale="4" />
+    <Property Name="DurationDays" Type="int" Nullable="true" />
+    <Property Name="BuyLater" Type="bit" Nullable="true" />
+  </EntityType>
+  <EntityType Name="States">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" Nullable="true" />
+    <Property Name="definition" Type="varbinary(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="aspnet_UsersInRoles">
+    <Key>
+      <PropertyRef Name="aspnet_Roles_RoleId" />
+      <PropertyRef Name="aspnet_Users_UserId" />
+    </Key>
+    <Property Name="aspnet_Roles_RoleId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="aspnet_Users_UserId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ReservationRoom">
+    <Key>
+      <PropertyRef Name="Reservations_Id" />
+      <PropertyRef Name="Rooms_Id" />
+    </Key>
+    <Property Name="Reservations_Id" Type="int" Nullable="false" />
+    <Property Name="Rooms_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__aspnet_Me__Appli__42E1EEFE">
+    <End Role="aspnet_Applications" Type="RegionalModel.Store.aspnet_Applications" Multiplicity="1" />
+    <End Role="aspnet_Membership" Type="RegionalModel.Store.aspnet_Membership" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Applications">
+        <PropertyRef Name="ApplicationId" />
+      </Principal>
+      <Dependent Role="aspnet_Membership">
+        <PropertyRef Name="ApplicationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Pa__Appli__57DD0BE4">
+    <End Role="aspnet_Applications" Type="RegionalModel.Store.aspnet_Applications" Multiplicity="1" />
+    <End Role="aspnet_Paths" Type="RegionalModel.Store.aspnet_Paths" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Applications">
+        <PropertyRef Name="ApplicationId" />
+      </Principal>
+      <Dependent Role="aspnet_Paths">
+        <PropertyRef Name="ApplicationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Ro__Appli__56E8E7AB">
+    <End Role="aspnet_Applications" Type="RegionalModel.Store.aspnet_Applications" Multiplicity="1" />
+    <End Role="aspnet_Roles" Type="RegionalModel.Store.aspnet_Roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Applications">
+        <PropertyRef Name="ApplicationId" />
+      </Principal>
+      <Dependent Role="aspnet_Roles">
+        <PropertyRef Name="ApplicationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Us__Appli__55F4C372">
+    <End Role="aspnet_Applications" Type="RegionalModel.Store.aspnet_Applications" Multiplicity="1" />
+    <End Role="aspnet_Users" Type="RegionalModel.Store.aspnet_Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Applications">
+        <PropertyRef Name="ApplicationId" />
+      </Principal>
+      <Dependent Role="aspnet_Users">
+        <PropertyRef Name="ApplicationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Me__UserI__43D61337">
+    <End Role="aspnet_Users" Type="RegionalModel.Store.aspnet_Users" Multiplicity="1" />
+    <End Role="aspnet_Membership" Type="RegionalModel.Store.aspnet_Membership" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="aspnet_Membership">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Pe__PathI__3F115E1A">
+    <End Role="aspnet_Paths" Type="RegionalModel.Store.aspnet_Paths" Multiplicity="0..1" />
+    <End Role="aspnet_PersonalizationPerUser" Type="RegionalModel.Store.aspnet_PersonalizationPerUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Paths">
+        <PropertyRef Name="PathId" />
+      </Principal>
+      <Dependent Role="aspnet_PersonalizationPerUser">
+        <PropertyRef Name="PathId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Pe__PathI__4E53A1AA">
+    <End Role="aspnet_Paths" Type="RegionalModel.Store.aspnet_Paths" Multiplicity="1" />
+    <End Role="aspnet_PersonalizationAllUsers" Type="RegionalModel.Store.aspnet_PersonalizationAllUsers" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Paths">
+        <PropertyRef Name="PathId" />
+      </Principal>
+      <Dependent Role="aspnet_PersonalizationAllUsers">
+        <PropertyRef Name="PathId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Pe__UserI__40058253">
+    <End Role="aspnet_Users" Type="RegionalModel.Store.aspnet_Users" Multiplicity="0..1" />
+    <End Role="aspnet_PersonalizationPerUser" Type="RegionalModel.Store.aspnet_PersonalizationPerUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="aspnet_PersonalizationPerUser">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Pr__UserI__44CA3770">
+    <End Role="aspnet_Users" Type="RegionalModel.Store.aspnet_Users" Multiplicity="1" />
+    <End Role="aspnet_Profile" Type="RegionalModel.Store.aspnet_Profile" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="aspnet_Profile">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reservations_Customers">
+    <End Role="Customer" Type="RegionalModel.Store.Customers" Multiplicity="1" />
+    <End Role="Reservation" Type="RegionalModel.Store.Reservations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reservation">
+        <PropertyRef Name="IdCustomer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Periods_Posadas">
+    <End Role="Hotel" Type="RegionalModel.Store.Hotels" Multiplicity="1" />
+    <End Role="Period" Type="RegionalModel.Store.Periods" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Period">
+        <PropertyRef Name="IdHotel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Posadas_States">
+    <End Role="State" Type="RegionalModel.Store.States" Multiplicity="1" />
+    <End Role="Hotel" Type="RegionalModel.Store.Hotels" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Hotel">
+        <PropertyRef Name="IdState" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rooms_Posadas">
+    <End Role="Hotel" Type="RegionalModel.Store.Hotels" Multiplicity="1" />
+    <End Role="Room" Type="RegionalModel.Store.Rooms" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Room">
+        <PropertyRef Name="IdHotel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tours_Posadas">
+    <End Role="Hotel" Type="RegionalModel.Store.Hotels" Multiplicity="1" />
+    <End Role="Service" Type="RegionalModel.Store.Services" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Service">
+        <PropertyRef Name="IdPosada" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReservationsBuyed_PaymentMethods">
+    <End Role="PaymentMethod" Type="RegionalModel.Store.PaymentMethods" Multiplicity="1" />
+    <End Role="ReservationsBuyed" Type="RegionalModel.Store.ReservationsBuyeds" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentMethod">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReservationsBuyed">
+        <PropertyRef Name="IdPaymentMethod" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Promotion_Room">
+    <End Role="Room" Type="RegionalModel.Store.Rooms" Multiplicity="1" />
+    <End Role="Promotion" Type="RegionalModel.Store.Promotions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Promotion">
+        <PropertyRef Name="IdRoom" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reservations_ReservationStatus">
+    <End Role="ReservationStatu" Type="RegionalModel.Store.ReservationStatus" Multiplicity="1" />
+    <End Role="Reservation" Type="RegionalModel.Store.Reservations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ReservationStatu">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reservation">
+        <PropertyRef Name="IdReservationStatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReservationsBuyed_Reservations">
+    <End Role="Reservation" Type="RegionalModel.Store.Reservations" Multiplicity="1" />
+    <End Role="ReservationsBuyed" Type="RegionalModel.Store.ReservationsBuyeds" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Reservation">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReservationsBuyed">
+        <PropertyRef Name="IdReservation" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_aspnet_UsersInRoles_aspnet_Roles">
+    <End Role="aspnet_Roles" Type="RegionalModel.Store.aspnet_Roles" Multiplicity="1" />
+    <End Role="aspnet_UsersInRoles" Type="RegionalModel.Store.aspnet_UsersInRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Roles">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="aspnet_UsersInRoles">
+        <PropertyRef Name="aspnet_Roles_RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_aspnet_UsersInRoles_aspnet_Users">
+    <End Role="aspnet_UsersInRoles" Type="RegionalModel.Store.aspnet_UsersInRoles" Multiplicity="*" />
+    <End Role="aspnet_Users" Type="RegionalModel.Store.aspnet_Users" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="aspnet_UsersInRoles">
+        <PropertyRef Name="aspnet_Users_UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReservationRoom_Reservation">
+    <End Role="Reservation" Type="RegionalModel.Store.Reservations" Multiplicity="1" />
+    <End Role="ReservationRoom" Type="RegionalModel.Store.ReservationRoom" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Reservation">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReservationRoom">
+        <PropertyRef Name="Reservations_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReservationRoom_Room">
+    <End Role="ReservationRoom" Type="RegionalModel.Store.ReservationRoom" Multiplicity="*" />
+    <End Role="Room" Type="RegionalModel.Store.Rooms" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ReservationRoom">
+        <PropertyRef Name="Rooms_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RegionalModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -1319,312 +1303,311 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="RegionalModelStoreContainer" CdmEntityContainer="RegionalEntities">
-          <EntitySetMapping Name="aspnet_Applications">
-            <EntityTypeMapping TypeName="RegionalModel.aspnet_Applications">
-              <MappingFragment StoreEntitySet="aspnet_Applications">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
-                <ScalarProperty Name="LoweredApplicationName" ColumnName="LoweredApplicationName" />
-                <ScalarProperty Name="ApplicationName" ColumnName="ApplicationName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="aspnet_Membership">
-            <EntityTypeMapping TypeName="RegionalModel.aspnet_Membership">
-              <MappingFragment StoreEntitySet="aspnet_Membership">
-                <ScalarProperty Name="Comment" ColumnName="Comment" />
-                <ScalarProperty Name="FailedPasswordAnswerAttemptWindowStart" ColumnName="FailedPasswordAnswerAttemptWindowStart" />
-                <ScalarProperty Name="FailedPasswordAnswerAttemptCount" ColumnName="FailedPasswordAnswerAttemptCount" />
-                <ScalarProperty Name="FailedPasswordAttemptWindowStart" ColumnName="FailedPasswordAttemptWindowStart" />
-                <ScalarProperty Name="FailedPasswordAttemptCount" ColumnName="FailedPasswordAttemptCount" />
-                <ScalarProperty Name="LastLockoutDate" ColumnName="LastLockoutDate" />
-                <ScalarProperty Name="LastPasswordChangedDate" ColumnName="LastPasswordChangedDate" />
-                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="IsLockedOut" ColumnName="IsLockedOut" />
-                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
-                <ScalarProperty Name="PasswordAnswer" ColumnName="PasswordAnswer" />
-                <ScalarProperty Name="PasswordQuestion" ColumnName="PasswordQuestion" />
-                <ScalarProperty Name="LoweredEmail" ColumnName="LoweredEmail" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="MobilePIN" ColumnName="MobilePIN" />
-                <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
-                <ScalarProperty Name="PasswordFormat" ColumnName="PasswordFormat" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="aspnet_Paths">
-            <EntityTypeMapping TypeName="RegionalModel.aspnet_Paths">
-              <MappingFragment StoreEntitySet="aspnet_Paths">
-                <ScalarProperty Name="LoweredPath" ColumnName="LoweredPath" />
-                <ScalarProperty Name="Path" ColumnName="Path" />
-                <ScalarProperty Name="PathId" ColumnName="PathId" />
-                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="aspnet_PersonalizationAllUsers">
-            <EntityTypeMapping TypeName="RegionalModel.aspnet_PersonalizationAllUsers">
-              <MappingFragment StoreEntitySet="aspnet_PersonalizationAllUsers">
-                <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
-                <ScalarProperty Name="PageSettings" ColumnName="PageSettings" />
-                <ScalarProperty Name="PathId" ColumnName="PathId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="aspnet_PersonalizationPerUser">
-            <EntityTypeMapping TypeName="RegionalModel.aspnet_PersonalizationPerUser">
-              <MappingFragment StoreEntitySet="aspnet_PersonalizationPerUser">
-                <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
-                <ScalarProperty Name="PageSettings" ColumnName="PageSettings" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="PathId" ColumnName="PathId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="aspnet_Profile">
-            <EntityTypeMapping TypeName="RegionalModel.aspnet_Profile">
-              <MappingFragment StoreEntitySet="aspnet_Profile">
-                <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
-                <ScalarProperty Name="PropertyValuesBinary" ColumnName="PropertyValuesBinary" />
-                <ScalarProperty Name="PropertyValuesString" ColumnName="PropertyValuesString" />
-                <ScalarProperty Name="PropertyNames" ColumnName="PropertyNames" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="aspnet_Roles">
-            <EntityTypeMapping TypeName="RegionalModel.aspnet_Roles">
-              <MappingFragment StoreEntitySet="aspnet_Roles">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="LoweredRoleName" ColumnName="LoweredRoleName" />
-                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="aspnet_SchemaVersions">
-            <EntityTypeMapping TypeName="RegionalModel.aspnet_SchemaVersions">
-              <MappingFragment StoreEntitySet="aspnet_SchemaVersions">
-                <ScalarProperty Name="IsCurrentVersion" ColumnName="IsCurrentVersion" />
-                <ScalarProperty Name="CompatibleSchemaVersion" ColumnName="CompatibleSchemaVersion" />
-                <ScalarProperty Name="Feature" ColumnName="Feature" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="aspnet_Users">
-            <EntityTypeMapping TypeName="RegionalModel.aspnet_Users">
-              <MappingFragment StoreEntitySet="aspnet_Users">
-                <ScalarProperty Name="LastActivityDate" ColumnName="LastActivityDate" />
-                <ScalarProperty Name="IsAnonymous" ColumnName="IsAnonymous" />
-                <ScalarProperty Name="MobileAlias" ColumnName="MobileAlias" />
-                <ScalarProperty Name="LoweredUserName" ColumnName="LoweredUserName" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="aspnet_WebEvent_Events">
-            <EntityTypeMapping TypeName="RegionalModel.aspnet_WebEvent_Events">
-              <MappingFragment StoreEntitySet="aspnet_WebEvent_Events">
-                <ScalarProperty Name="Details" ColumnName="Details" />
-                <ScalarProperty Name="ExceptionType" ColumnName="ExceptionType" />
-                <ScalarProperty Name="RequestUrl" ColumnName="RequestUrl" />
-                <ScalarProperty Name="MachineName" ColumnName="MachineName" />
-                <ScalarProperty Name="ApplicationVirtualPath" ColumnName="ApplicationVirtualPath" />
-                <ScalarProperty Name="ApplicationPath" ColumnName="ApplicationPath" />
-                <ScalarProperty Name="Message" ColumnName="Message" />
-                <ScalarProperty Name="EventDetailCode" ColumnName="EventDetailCode" />
-                <ScalarProperty Name="EventCode" ColumnName="EventCode" />
-                <ScalarProperty Name="EventOccurrence" ColumnName="EventOccurrence" />
-                <ScalarProperty Name="EventSequence" ColumnName="EventSequence" />
-                <ScalarProperty Name="EventType" ColumnName="EventType" />
-                <ScalarProperty Name="EventTime" ColumnName="EventTime" />
-                <ScalarProperty Name="EventTimeUtc" ColumnName="EventTimeUtc" />
-                <ScalarProperty Name="EventId" ColumnName="EventId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Customers">
-            <EntityTypeMapping TypeName="RegionalModel.Customer">
-              <MappingFragment StoreEntitySet="Customer">
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="PersonalId" ColumnName="PersonalId" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Hotels">
-            <EntityTypeMapping TypeName="RegionalModel.Hotel">
-              <MappingFragment StoreEntitySet="Hotel">
-                <ScalarProperty Name="Map" ColumnName="Map" />
-                <ScalarProperty Name="TripAdvisorEng" ColumnName="TripAdvisorEng" />
-                <ScalarProperty Name="TripAdvisor" ColumnName="TripAdvisor" />
-                <ScalarProperty Name="CanSell" ColumnName="CanSell" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="IdState" ColumnName="IdState" />
-                <ScalarProperty Name="Contact" ColumnName="Contact" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PaymentMethods">
-            <EntityTypeMapping TypeName="RegionalModel.PaymentMethod">
-              <MappingFragment StoreEntitySet="PaymentMethod">
-                <ScalarProperty Name="Notes" ColumnName="Notes" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Periods">
-            <EntityTypeMapping TypeName="RegionalModel.Period">
-              <MappingFragment StoreEntitySet="Periods">
-                <ScalarProperty Name="EndMonth" ColumnName="EndMonth" />
-                <ScalarProperty Name="BeginMonth" ColumnName="BeginMonth" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="IdHotel" ColumnName="IdHotel" />
-                <ScalarProperty Name="EndDay" ColumnName="EndDay" />
-                <ScalarProperty Name="BeginDay" ColumnName="BeginDay" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Promotions">
-            <EntityTypeMapping TypeName="RegionalModel.Promotion">
-              <MappingFragment StoreEntitySet="Promotion">
-                <ScalarProperty Name="MinDays" ColumnName="MinDays" />
-                <ScalarProperty Name="MinAdults" ColumnName="MinAdults" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
-                <ScalarProperty Name="DateStart" ColumnName="DateStart" />
-                <ScalarProperty Name="HighSeasonPrice" ColumnName="HighSeasonPrice" />
-                <ScalarProperty Name="LowSeasonPrice" ColumnName="LowSeasonPrice" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="IdRoom" ColumnName="IdRoom" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Reservations">
-            <EntityTypeMapping TypeName="RegionalModel.Reservation">
-              <MappingFragment StoreEntitySet="Reservation">
-                <ScalarProperty Name="IdReservationStatus" ColumnName="IdReservationStatus" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Childrens" ColumnName="Childrens" />
-                <ScalarProperty Name="Adults" ColumnName="Adults" />
-                <ScalarProperty Name="ReservationDate" ColumnName="ReservationDate" />
-                <ScalarProperty Name="Departure" ColumnName="Departure" />
-                <ScalarProperty Name="Arrival" ColumnName="Arrival" />
-                <ScalarProperty Name="IdCustomer" ColumnName="IdCustomer" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ReservationsBuyeds">
-            <EntityTypeMapping TypeName="RegionalModel.ReservationsBuyed">
-              <MappingFragment StoreEntitySet="ReservationsBuyed">
-                <ScalarProperty Name="TotalPayed" ColumnName="TotalPayed" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="TransactionNumber" ColumnName="TransactionNumber" />
-                <ScalarProperty Name="IdPaymentMethod" ColumnName="IdPaymentMethod" />
-                <ScalarProperty Name="IdReservation" ColumnName="IdReservation" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ReservationStatus">
-            <EntityTypeMapping TypeName="RegionalModel.ReservationStatu">
-              <MappingFragment StoreEntitySet="ReservationStatus">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Rooms">
-            <EntityTypeMapping TypeName="RegionalModel.Room">
-              <MappingFragment StoreEntitySet="Room">
-                <ScalarProperty Name="Discount4" ColumnName="Discount4" />
-                <ScalarProperty Name="Discount3" ColumnName="Discount3" />
-                <ScalarProperty Name="Discount2" ColumnName="Discount2" />
-                <ScalarProperty Name="Discount1" ColumnName="Discount1" />
-                <ScalarProperty Name="HighSeasonPrice" ColumnName="HighSeasonPrice" />
-                <ScalarProperty Name="LowSeasonPrice" ColumnName="LowSeasonPrice" />
-                <ScalarProperty Name="Capacity" ColumnName="Capacity" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="IdHotel" ColumnName="IdHotel" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Services">
-            <EntityTypeMapping TypeName="RegionalModel.Service">
-              <MappingFragment StoreEntitySet="Service">
-                <ScalarProperty Name="BuyLater" ColumnName="BuyLater" />
-                <ScalarProperty Name="DurationDays" ColumnName="DurationDays" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="IdPosada" ColumnName="IdPosada" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="States">
-            <EntityTypeMapping TypeName="RegionalModel.State">
-              <MappingFragment StoreEntitySet="State">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="RegionalModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="aspnet_UsersInRoles" TypeName="RegionalModel.aspnet_UsersInRoles" StoreEntitySet="aspnet_UsersInRoles">
-            <EndProperty Name="aspnet_Users">
-              <ScalarProperty Name="UserId" ColumnName="UserId" />
-            </EndProperty>
-            <EndProperty Name="aspnet_Roles">
-              <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="ReservationRoom" TypeName="RegionalModel.ReservationRoom" StoreEntitySet="ReservationRoom">
-            <EndProperty Name="Room">
-              <ScalarProperty Name="Id" ColumnName="IdRoom" />
-            </EndProperty>
-            <EndProperty Name="Reservation">
-              <ScalarProperty Name="Id" ColumnName="IdReservation" />
-            </EndProperty>
-          </AssociationSetMapping>
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="RegionalModelStoreContainer" CdmEntityContainer="RegionalEntities">
+    <EntitySetMapping Name="aspnet_Applications">
+      <EntityTypeMapping TypeName="IsTypeOf(RegionalModel.aspnet_Applications)">
+        <MappingFragment StoreEntitySet="aspnet_Applications">
+          <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+          <ScalarProperty Name="ApplicationName" ColumnName="ApplicationName" />
+          <ScalarProperty Name="LoweredApplicationName" ColumnName="LoweredApplicationName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="aspnet_Membership">
+      <EntityTypeMapping TypeName="IsTypeOf(RegionalModel.aspnet_Membership)">
+        <MappingFragment StoreEntitySet="aspnet_Membership">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="PasswordFormat" ColumnName="PasswordFormat" />
+          <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+          <ScalarProperty Name="MobilePIN" ColumnName="MobilePIN" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="LoweredEmail" ColumnName="LoweredEmail" />
+          <ScalarProperty Name="PasswordQuestion" ColumnName="PasswordQuestion" />
+          <ScalarProperty Name="PasswordAnswer" ColumnName="PasswordAnswer" />
+          <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+          <ScalarProperty Name="IsLockedOut" ColumnName="IsLockedOut" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+          <ScalarProperty Name="LastPasswordChangedDate" ColumnName="LastPasswordChangedDate" />
+          <ScalarProperty Name="LastLockoutDate" ColumnName="LastLockoutDate" />
+          <ScalarProperty Name="FailedPasswordAttemptCount" ColumnName="FailedPasswordAttemptCount" />
+          <ScalarProperty Name="FailedPasswordAttemptWindowStart" ColumnName="FailedPasswordAttemptWindowStart" />
+          <ScalarProperty Name="FailedPasswordAnswerAttemptCount" ColumnName="FailedPasswordAnswerAttemptCount" />
+          <ScalarProperty Name="FailedPasswordAnswerAttemptWindowStart" ColumnName="FailedPasswordAnswerAttemptWindowStart" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="aspnet_Paths">
+      <EntityTypeMapping TypeName="IsTypeOf(RegionalModel.aspnet_Paths)">
+        <MappingFragment StoreEntitySet="aspnet_Paths">
+          <ScalarProperty Name="PathId" ColumnName="PathId" />
+          <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+          <ScalarProperty Name="Path" ColumnName="Path" />
+          <ScalarProperty Name="LoweredPath" ColumnName="LoweredPath" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="aspnet_PersonalizationAllUsers">
+      <EntityTypeMapping TypeName="IsTypeOf(RegionalModel.aspnet_PersonalizationAllUsers)">
+        <MappingFragment StoreEntitySet="aspnet_PersonalizationAllUsers">
+          <ScalarProperty Name="PathId" ColumnName="PathId" />
+          <ScalarProperty Name="PageSettings" ColumnName="PageSettings" />
+          <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="aspnet_PersonalizationPerUser">
+      <EntityTypeMapping TypeName="IsTypeOf(RegionalModel.aspnet_PersonalizationPerUser)">
+        <MappingFragment StoreEntitySet="aspnet_PersonalizationPerUser">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PathId" ColumnName="PathId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="PageSettings" ColumnName="PageSettings" />
+          <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="aspnet_Profile">
+      <EntityTypeMapping TypeName="IsTypeOf(RegionalModel.aspnet_Profile)">
+        <MappingFragment StoreEntitySet="aspnet_Profile">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="PropertyNames" ColumnName="PropertyNames" />
+          <ScalarProperty Name="PropertyValuesString" ColumnName="PropertyValuesString" />
+          <ScalarProperty Name="PropertyValuesBinary" ColumnName="PropertyValuesBinary" />
+          <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="aspnet_Roles">
+      <EntityTypeMapping TypeName="IsTypeOf(RegionalModel.aspnet_Roles)">
+        <MappingFragment StoreEntitySet="aspnet_Roles">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="LoweredRoleName" ColumnName="LoweredRoleName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="aspnet_SchemaVersions">
+      <EntityTypeMapping TypeName="IsTypeOf(RegionalModel.aspnet_SchemaVersions)">
+        <MappingFragment StoreEntitySet="aspnet_SchemaVersions">
+          <ScalarProperty Name="Feature" ColumnName="Feature" />
+          <ScalarProperty Name="CompatibleSchemaVersion" ColumnName="CompatibleSchemaVersion" />
+          <ScalarProperty Name="IsCurrentVersion" ColumnName="IsCurrentVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="aspnet_Users">
+      <EntityTypeMapping TypeName="IsTypeOf(RegionalModel.aspnet_Users)">
+        <MappingFragment StoreEntitySet="aspnet_Users">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="LoweredUserName" ColumnName="LoweredUserName" />
+          <ScalarProperty Name="MobileAlias" ColumnName="MobileAlias" />
+          <ScalarProperty Name="IsAnonymous" ColumnName="IsAnonymous" />
+          <ScalarProperty Name="LastActivityDate" ColumnName="LastActivityDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="aspnet_WebEvent_Events">
+      <EntityTypeMapping TypeName="IsTypeOf(RegionalModel.aspnet_WebEvent_Events)">
+        <MappingFragment StoreEntitySet="aspnet_WebEvent_Events">
+          <ScalarProperty Name="EventId" ColumnName="EventId" />
+          <ScalarProperty Name="EventTimeUtc" ColumnName="EventTimeUtc" />
+          <ScalarProperty Name="EventTime" ColumnName="EventTime" />
+          <ScalarProperty Name="EventType" ColumnName="EventType" />
+          <ScalarProperty Name="EventSequence" ColumnName="EventSequence" />
+          <ScalarProperty Name="EventOccurrence" ColumnName="EventOccurrence" />
+          <ScalarProperty Name="EventCode" ColumnName="EventCode" />
+          <ScalarProperty Name="EventDetailCode" ColumnName="EventDetailCode" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="ApplicationPath" ColumnName="ApplicationPath" />
+          <ScalarProperty Name="ApplicationVirtualPath" ColumnName="ApplicationVirtualPath" />
+          <ScalarProperty Name="MachineName" ColumnName="MachineName" />
+          <ScalarProperty Name="RequestUrl" ColumnName="RequestUrl" />
+          <ScalarProperty Name="ExceptionType" ColumnName="ExceptionType" />
+          <ScalarProperty Name="Details" ColumnName="Details" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="IsTypeOf(RegionalModel.Customer)">
+        <MappingFragment StoreEntitySet="Customers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="PersonalId" ColumnName="PersonalId" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Hotels">
+      <EntityTypeMapping TypeName="IsTypeOf(RegionalModel.Hotel)">
+        <MappingFragment StoreEntitySet="Hotels">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Contact" ColumnName="Contact" />
+          <ScalarProperty Name="IdState" ColumnName="IdState" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="CanSell" ColumnName="CanSell" />
+          <ScalarProperty Name="TripAdvisor" ColumnName="TripAdvisor" />
+          <ScalarProperty Name="TripAdvisorEng" ColumnName="TripAdvisorEng" />
+          <ScalarProperty Name="Map" ColumnName="Map" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PaymentMethods">
+      <EntityTypeMapping TypeName="IsTypeOf(RegionalModel.PaymentMethod)">
+        <MappingFragment StoreEntitySet="PaymentMethods">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Periods">
+      <EntityTypeMapping TypeName="IsTypeOf(RegionalModel.Period)">
+        <MappingFragment StoreEntitySet="Periods">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="BeginDay" ColumnName="BeginDay" />
+          <ScalarProperty Name="EndDay" ColumnName="EndDay" />
+          <ScalarProperty Name="IdHotel" ColumnName="IdHotel" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="BeginMonth" ColumnName="BeginMonth" />
+          <ScalarProperty Name="EndMonth" ColumnName="EndMonth" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Promotions">
+      <EntityTypeMapping TypeName="IsTypeOf(RegionalModel.Promotion)">
+        <MappingFragment StoreEntitySet="Promotions">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdRoom" ColumnName="IdRoom" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="LowSeasonPrice" ColumnName="LowSeasonPrice" />
+          <ScalarProperty Name="HighSeasonPrice" ColumnName="HighSeasonPrice" />
+          <ScalarProperty Name="DateStart" ColumnName="DateStart" />
+          <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="MinAdults" ColumnName="MinAdults" />
+          <ScalarProperty Name="MinDays" ColumnName="MinDays" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reservations">
+      <EntityTypeMapping TypeName="IsTypeOf(RegionalModel.Reservation)">
+        <MappingFragment StoreEntitySet="Reservations">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdCustomer" ColumnName="IdCustomer" />
+          <ScalarProperty Name="Arrival" ColumnName="Arrival" />
+          <ScalarProperty Name="Departure" ColumnName="Departure" />
+          <ScalarProperty Name="ReservationDate" ColumnName="ReservationDate" />
+          <ScalarProperty Name="Adults" ColumnName="Adults" />
+          <ScalarProperty Name="Childrens" ColumnName="Childrens" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="IdReservationStatus" ColumnName="IdReservationStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReservationsBuyeds">
+      <EntityTypeMapping TypeName="IsTypeOf(RegionalModel.ReservationsBuyed)">
+        <MappingFragment StoreEntitySet="ReservationsBuyeds">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdReservation" ColumnName="IdReservation" />
+          <ScalarProperty Name="IdPaymentMethod" ColumnName="IdPaymentMethod" />
+          <ScalarProperty Name="TransactionNumber" ColumnName="TransactionNumber" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="TotalPayed" ColumnName="TotalPayed" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReservationStatus">
+      <EntityTypeMapping TypeName="IsTypeOf(RegionalModel.ReservationStatu)">
+        <MappingFragment StoreEntitySet="ReservationStatus">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rooms">
+      <EntityTypeMapping TypeName="IsTypeOf(RegionalModel.Room)">
+        <MappingFragment StoreEntitySet="Rooms">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="IdHotel" ColumnName="IdHotel" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+          <ScalarProperty Name="LowSeasonPrice" ColumnName="LowSeasonPrice" />
+          <ScalarProperty Name="HighSeasonPrice" ColumnName="HighSeasonPrice" />
+          <ScalarProperty Name="Discount1" ColumnName="Discount1" />
+          <ScalarProperty Name="Discount2" ColumnName="Discount2" />
+          <ScalarProperty Name="Discount3" ColumnName="Discount3" />
+          <ScalarProperty Name="Discount4" ColumnName="Discount4" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Services">
+      <EntityTypeMapping TypeName="IsTypeOf(RegionalModel.Service)">
+        <MappingFragment StoreEntitySet="Services">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="IdPosada" ColumnName="IdPosada" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="DurationDays" ColumnName="DurationDays" />
+          <ScalarProperty Name="BuyLater" ColumnName="BuyLater" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="States">
+      <EntityTypeMapping TypeName="IsTypeOf(RegionalModel.State)">
+        <MappingFragment StoreEntitySet="States">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="IsTypeOf(RegionalModel.sysdiagram)">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="aspnet_UsersInRoles" TypeName="RegionalModel.aspnet_UsersInRoles" StoreEntitySet="aspnet_UsersInRoles">
+      <EndProperty Name="aspnet_Roles">
+        <ScalarProperty Name="RoleId" ColumnName="aspnet_Roles_RoleId" />
+      </EndProperty>
+      <EndProperty Name="aspnet_Users">
+        <ScalarProperty Name="UserId" ColumnName="aspnet_Users_UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ReservationRoom" TypeName="RegionalModel.ReservationRoom" StoreEntitySet="ReservationRoom">
+      <EndProperty Name="Reservation">
+        <ScalarProperty Name="Id" ColumnName="Reservations_Id" />
+      </EndProperty>
+      <EndProperty Name="Room">
+        <ScalarProperty Name="Id" ColumnName="Rooms_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
@@ -1638,6 +1621,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Default" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
