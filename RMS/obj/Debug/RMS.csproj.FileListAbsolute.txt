@@ -15,6 +15,8 @@ C:\Files\Documents\GitHub\RMS\RMS\bin\RMS.dll
 C:\Files\Documents\GitHub\RMS\RMS\bin\RMS.pdb
 C:\Files\Documents\GitHub\RMS\RMS\bin\EntityFramework.dll
 C:\Files\Documents\GitHub\RMS\RMS\bin\itextsharp.dll
+C:\Files\Documents\GitHub\RMS\RMS\bin\System.Data.Entity.dll
+C:\Files\Documents\GitHub\RMS\RMS\bin\System.Web.Entity.dll
 C:\Files\Documents\GitHub\RMS\RMS\bin\System.Web.Helpers.dll
 C:\Files\Documents\GitHub\RMS\RMS\bin\System.Web.Mvc.dll
 C:\Files\Documents\GitHub\RMS\RMS\bin\System.Web.WebPages.dll
@@ -25,6 +27,3 @@ C:\Files\Documents\GitHub\RMS\RMS\bin\System.Web.Helpers.xml
 C:\Files\Documents\GitHub\RMS\RMS\obj\Debug\ResolveAssemblyReference.cache
 C:\Files\Documents\GitHub\RMS\RMS\obj\Debug\RMS.dll
 C:\Files\Documents\GitHub\RMS\RMS\obj\Debug\RMS.pdb
-C:\Files\Documents\GitHub\RMS\RMS\bin\System.Web.Entity.dll
-C:\Files\Documents\GitHub\RMS\RMS\bin\System.Data.Entity.dll
-C:\Files\Documents\GitHub\RMS\RMS\bin\Models\Database.Designer.cs

@@ -25,8 +25,9 @@ namespace RMS.Controllers
         [Authorize]
         public ViewResult Index()
         {
-            var reservations = db.Reservations.Include("Customer").Include("ReservationStatu");
-            return View(reservations.OrderByDescending(u => u.ReservationDate).ToList());
+            
+            var Reservation = db.Reservation.Include("Customer").Include("ReservationStatus");
+            return View(Reservation.OrderByDescending(u => u.ReservationDate).ToList());
         }
 
         //
@@ -34,7 +35,7 @@ namespace RMS.Controllers
         [Authorize]
         public ViewResult Details(int id)
         {
-            Reservation reservation = db.Reservations.Single(r => r.Id == id);
+            Reservation reservation = db.Reservation.Single(r => r.Id == id);
             return View(reservation);
         }
 
@@ -43,9 +44,9 @@ namespace RMS.Controllers
         [Authorize]
         public ActionResult Create()
         {
-            ViewBag.Customers = db.Customers.OrderBy(u => u.Name);
-            ViewBag.IdReservationStatus = new SelectList(db.ReservationStatus, "Id", "Name");
-            ViewBag.Hotels = db.Hotels.OrderBy(u => u.Name);
+            ViewBag.Customer = db.Customer.OrderBy(u => u.Name);
+            ViewBag.ReservationStatus = new SelectList(db.ReservationStatus, "Id", "Name");
+            ViewBag.Hotels = db.Hotel.OrderBy(u => u.Name);
             return View();
         }
 
@@ -62,16 +63,16 @@ namespace RMS.Controllers
                 {
                     if (item.IdRoom != 0)
                     {
-                        Room __room = db.Rooms.SingleOrDefault(u => u.Id.Equals(item.IdRoom));
+                        Room __room = db.Room.SingleOrDefault(u => u.Id.Equals(item.IdRoom));
                         Room __roominfante = new Room();
                         if (item.Infantes > 0)
-                            __roominfante = db.Rooms.SingleOrDefault(u => u.Name.ToLower().Equals("infante") && u.IdHotel.Equals(__room.IdHotel));
+                            __roominfante = db.Room.SingleOrDefault(u => u.Name.ToLower().Equals("infante") && u.IdHotel.Equals(__room.IdHotel));
 
                         if (item.Adultos <= __room.Capacity)
                         {
                             decimal __priceroom = new decimal();
 
-                            reservation.Trip.Rooms.Add(__room);
+                            reservation.Trip.Room.Add(__room);
                             reservation.Trip.Adults = reservation.Trip.Adults + item.Adultos;
                             reservation.Trip.Childrens = reservation.Trip.Childrens + item.Infantes;
 
@@ -82,8 +83,8 @@ namespace RMS.Controllers
                             foreach (DateTime __day in __tripdays)
                             {
 
-                                var __temporada = __room.Hotel.Periods.Where(u => __day.IsBetween(new DateTime(DateTime.Now.Year, u.BeginMonth, u.BeginDay), new DateTime(DateTime.Now.Year, u.EndMonth, u.EndDay)));
-                                var __promo = __room.Promotions.Where(u => __day.IsBetween(u.DateStart, u.DateEnd) && u.Active.Equals(true));
+                                var __temporada = __room.Hotel.Period.Where(u => __day.IsBetween(new DateTime(DateTime.Now.Year, u.BeginMonth, u.BeginDay), new DateTime(DateTime.Now.Year, u.EndMonth, u.EndDay)));
+                                var __promo = __room.Promotion.Where(u => __day.IsBetween(u.DateStart, u.DateEnd) && u.Active.Equals(true));
 
                                 if (__temporada.Count() > 0)
                                 {
@@ -126,8 +127,8 @@ namespace RMS.Controllers
                         }
                         else
                         {
-                            ViewBag.IdCustomer = new SelectList(db.Customers, "Id", "Name", reservation.Trip.IdCustomer);
-                            ViewBag.IdReservationStatus = new SelectList(db.ReservationStatus, "Id", "Name", reservation.Trip.IdReservationStatus);
+                            ViewBag.IdCustomer = new SelectList(db.Customer, "Id", "Name", reservation.Trip.IdCustomer);
+                            ViewBag.IdReservationtatus = new SelectList(db.ReservationStatus, "Id", "Name", reservation.Trip.IdReservationStatus);
                             ViewBag.Error = "El numero de Adultos excede la capacidad de alguna de las habitaciones.";
                             return View(reservation);
                         }
@@ -138,20 +139,20 @@ namespace RMS.Controllers
                 }
 
                 reservation.Trip.ReservationDate = DateTime.Now;
-                db.Reservations.AddObject(reservation.Trip);
+                db.Reservation.AddObject(reservation.Trip);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IdCustomer = new SelectList(db.Customers, "Id", "Name", reservation.Trip.IdCustomer);
-            ViewBag.IdReservationStatus = new SelectList(db.ReservationStatus, "Id", "Name", reservation.Trip.IdReservationStatus);
+            ViewBag.IdCustomer = new SelectList(db.Customer, "Id", "Name", reservation.Trip.IdCustomer);
+            ViewBag.IdReservationtatus = new SelectList(db.ReservationStatus, "Id", "Name", reservation.Trip.IdReservationStatus);
             return View(reservation);
         }
         [Authorize]
         public ActionResult PartialHabitaciones(int IdHotel)
         {
-            ViewBag.Rooms = db.Rooms.Where(u => u.IdHotel.Equals(IdHotel) && !u.Name.ToLower().Contains("infante") && u.Active.Equals(true));
-            if (db.Rooms.Where(u => u.Name.ToLower().Contains("infante")).Count() > 0)
+            ViewBag.Room = db.Room.Where(u => u.IdHotel.Equals(IdHotel) && !u.Name.ToLower().Contains("infante") && u.Active.Equals(true));
+            if (db.Room.Where(u => u.Name.ToLower().Contains("infante")).Count() > 0)
                 ViewBag.ShowInfantes = true;
             else
                 ViewBag.ShowInfantes = false;
@@ -165,9 +166,9 @@ namespace RMS.Controllers
         [Authorize]
         public ActionResult Edit(int id)
         {
-            Reservation reservation = db.Reservations.Single(r => r.Id == id);
-            ViewBag.IdCustomer = new SelectList(db.Customers, "Id", "Name", reservation.IdCustomer);
-            ViewBag.IdReservationStatus = new SelectList(db.ReservationStatus, "Id", "Name", reservation.IdReservationStatus);
+            Reservation reservation = db.Reservation.Single(r => r.Id == id);
+            ViewBag.IdCustomer = new SelectList(db.Customer, "Id", "Name", reservation.IdCustomer);
+            ViewBag.IdReservationtatus = new SelectList(db.ReservationStatus, "Id", "Name", reservation.IdReservationStatus);
             return View(reservation);
         }
 
@@ -179,13 +180,13 @@ namespace RMS.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Reservations.Attach(reservation);
+                db.Reservation.Attach(reservation);
                 db.ObjectStateManager.ChangeObjectState(reservation, EntityState.Modified);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.IdCustomer = new SelectList(db.Customers, "Id", "Name", reservation.IdCustomer);
-            ViewBag.IdReservationStatus = new SelectList(db.ReservationStatus, "Id", "Name", reservation.IdReservationStatus);
+            ViewBag.IdCustomer = new SelectList(db.Customer, "Id", "Name", reservation.IdCustomer);
+            ViewBag.IdReservationtatus = new SelectList(db.ReservationStatus, "Id", "Name", reservation.IdReservationStatus);
             return View(reservation);
         }
 
@@ -194,7 +195,7 @@ namespace RMS.Controllers
         [Authorize]
         public ActionResult Delete(int id)
         {
-            Reservation reservation = db.Reservations.Single(r => r.Id == id);
+            Reservation reservation = db.Reservation.Single(r => r.Id == id);
             return View(reservation);
         }
 
@@ -204,8 +205,8 @@ namespace RMS.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
-            Reservation reservation = db.Reservations.Single(r => r.Id == id);
-            db.Reservations.DeleteObject(reservation);
+            Reservation reservation = db.Reservation.Single(r => r.Id == id);
+            db.Reservation.DeleteObject(reservation);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -224,7 +225,7 @@ namespace RMS.Controllers
         [Authorize]
         public ActionResult PrintableVersion(int id)
         {
-            Reservation reservation = db.Reservations.Single(r => r.Id == id);
+            Reservation reservation = db.Reservation.Single(r => r.Id == id);
             return View(reservation);
         }
 
@@ -254,7 +255,7 @@ namespace RMS.Controllers
             PdfWriter __writer = PdfWriter.GetInstance(document, __memoria);
             __writer.CloseStream = false;
 
-            var model = db.Reservations.SingleOrDefault(u => u.Id.Equals(id));
+            var model = db.Reservation.SingleOrDefault(u => u.Id.Equals(id));
 
             string strB = RenderRazorViewToString("PrintableVersion", model);
 

@@ -8,42 +8,41 @@
     Esta seguro de querer borrar este hotel?</h3>
 <fieldset>
     <div class="display-label">
-        Name</div>
+        Nombre</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Name)
     </div>
     <div class="display-label">
-        Description</div>
+        Descripción</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Description)
     </div>
     <div class="display-label">
-        Address</div>
+        Dirección:</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Address)
     </div>
     <div class="display-label">
-        Contact</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Contact)
-    </div>
-    <div class="display-label">
-        State</div>
+        Estado:</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.State.Name)
     </div>
     <div class="display-label">
-        Active</div>
+        Datos de Contacto:</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Contact)
+    </div>
+    <div class="display-label">
+        Activo?</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Active)
     </div>
     <div class="display-label">
-        CanSell</div>
+        Puede emitir cotizaciones?</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.CanSell)
     </div>
-    @*
-    <div class="display-label">TripAdvisor</div>
+    @*    <div class="display-label">TripAdvisor</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.TripAdvisor)
     </div>
@@ -57,7 +56,47 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.Map)
     </div>*@
+     <div class="display-label">Restaurantes:</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Restaurants)
+    </div>
+
+    <div class="display-label">Piscinas:</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Pools)
+    </div>
+
+    <div class="display-label">Posee Playa?</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Beach)
+    </div>
+
+    <div class="display-label">Posee Estacionamiento?</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Parking)
+    </div>
+
+    <div class="display-label">Hora de Llegada:</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ArrivalHour)
+    </div>
+
+    <div class="display-label">Hora de Salida:</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DepartureHour)
+    </div>
+
+    <div class="display-label">Otras Facilidades:</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Facilities)
+    </div>
+
+    <div class="display-label">Salones:</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Lounges)
+    </div>
 </fieldset>
+
 @using (Html.BeginForm())
 {
     <p>

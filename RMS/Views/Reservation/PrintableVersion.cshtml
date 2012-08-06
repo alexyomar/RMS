@@ -13,7 +13,7 @@
     <br />
     <br />
     <h2>
-        <b>@Model.ReservationStatu.Name</b></h2>
+        <b>@Model.ReservationStatus.Name</b></h2>
     <br />
     <table border="0" cellpadding="0" cellspacing="0" style="border: solid 1px #e8eef4;
         border-collapse: collapse; width: 100%;">
@@ -101,7 +101,7 @@
                 Capacidad Max. / Max. Capacity
             </th>
         </tr>
-        @foreach (var item in Model.Rooms)
+        @foreach (var item in Model.Room)
         {
             <tr>
                 <td style="padding: 5px; border: solid 1px #e8eef4;">@item.Hotel.Name

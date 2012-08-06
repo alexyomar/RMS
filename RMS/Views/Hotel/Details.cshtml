@@ -13,7 +13,7 @@
     <div class="display-label">
         Descripción</div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.Description)
+        @Html.Raw(Model.Description)
     </div>
     <div class="display-label">
         Dirección:</div>
@@ -28,7 +28,7 @@
     <div class="display-label">
         Datos de Contacto:</div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.Contact)
+        @Html.Raw(Model.Contact)
     </div>
     <div class="display-label">
         Activo?</div>
@@ -54,6 +54,46 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.Map)
     </div>*@
+    <div class="display-label">
+        Restaurantes:</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Restaurants)
+    </div>
+    <div class="display-label">
+        Piscinas:</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Pools)
+    </div>
+    <div class="display-label">
+        Posee Playa?</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Beach)
+    </div>
+    <div class="display-label">
+        Posee Estacionamiento?</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Parking)
+    </div>
+    <div class="display-label">
+        Hora de Llegada:</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ArrivalHour)
+    </div>
+    <div class="display-label">
+        Hora de Salida:</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DepartureHour)
+    </div>
+    <div class="display-label">
+        Otras Facilidades:</div>
+    <div class="display-field">
+        @Html.Raw(Model.Facilities)
+    </div>
+    <div class="display-label">
+        Salones:</div>
+    <div class="display-field">
+        @Html.Raw(Model.Lounges)
+    </div>
 </fieldset>
 <p>
     @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |

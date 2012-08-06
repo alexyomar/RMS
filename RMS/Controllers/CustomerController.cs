@@ -18,7 +18,7 @@ namespace RMS.Controllers
         [Authorize]
         public ViewResult Index()
         {
-            return View(db.Customers.ToList());
+            return View(db.Customer.ToList());
         }
 
         //
@@ -26,15 +26,17 @@ namespace RMS.Controllers
         [Authorize]
         public ViewResult Details(int id)
         {
-            Customer customer = db.Customers.Single(c => c.Id == id);
+            Customer customer = db.Customer.Single(c => c.Id == id);
             return View(customer);
         }
 
         //
         // GET: /Customer/Create
         [Authorize]
-        public ActionResult Create()
+        public ActionResult Create(bool? redirect)
         {
+            if (redirect.HasValue)
+                ViewBag.Redirect = true;
             return View();
         }
 
@@ -46,9 +48,28 @@ namespace RMS.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Customers.AddObject(customer);
+                db.Customer.AddObject(customer);
                 db.SaveChanges();
+
+
                 return RedirectToAction("Index");
+            }
+
+            return View(customer);
+        }
+
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult CreateRedirect(Customer customer)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Customer.AddObject(customer);
+                db.SaveChanges();
+
+
+                return RedirectToAction("Create", "Reservation");
             }
 
             return View(customer);
@@ -59,7 +80,7 @@ namespace RMS.Controllers
         [Authorize]
         public ActionResult Edit(int id)
         {
-            Customer customer = db.Customers.Single(c => c.Id == id);
+            Customer customer = db.Customer.Single(c => c.Id == id);
             return View(customer);
         }
 
@@ -71,7 +92,7 @@ namespace RMS.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Customers.Attach(customer);
+                db.Customer.Attach(customer);
                 db.ObjectStateManager.ChangeObjectState(customer, EntityState.Modified);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -84,7 +105,7 @@ namespace RMS.Controllers
         [Authorize]
         public ActionResult Delete(int id)
         {
-            Customer customer = db.Customers.Single(c => c.Id == id);
+            Customer customer = db.Customer.Single(c => c.Id == id);
             return View(customer);
         }
 
@@ -94,8 +115,8 @@ namespace RMS.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
-            Customer customer = db.Customers.Single(c => c.Id == id);
-            db.Customers.DeleteObject(customer);
+            Customer customer = db.Customer.Single(c => c.Id == id);
+            db.Customer.DeleteObject(customer);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

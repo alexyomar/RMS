@@ -229,6 +229,7 @@ select
     padding: 2px;
     font-size: 1.2em;
     color: #444;
+    width: 600px;
 }
 
 input[type="submit"]

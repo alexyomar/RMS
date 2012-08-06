@@ -18,9 +18,9 @@ namespace RMS.Controllers
         [Authorize]
         public ViewResult Index(int IdRoom)
         {
-            ViewBag.Room = db.Rooms.SingleOrDefault(u => u.Id.Equals(IdRoom));
-            var promotions = db.Promotions.Include("Room");
-            return View(promotions.ToList());
+            ViewBag.Room = db.Room.SingleOrDefault(u => u.Id.Equals(IdRoom));
+            var Promotion = db.Promotion.Include("Room");
+            return View(Promotion.ToList());
         }
 
         //
@@ -28,7 +28,7 @@ namespace RMS.Controllers
         [Authorize]
         public ViewResult Details(int id)
         {
-            Promotion promotion = db.Promotions.Single(p => p.Id == id);
+            Promotion promotion = db.Promotion.Single(p => p.Id == id);
             return View(promotion);
         }
 
@@ -37,7 +37,7 @@ namespace RMS.Controllers
         [Authorize]
         public ActionResult Create(int IdRoom)
         {
-            ViewBag.Room = db.Rooms.SingleOrDefault(u => u.Id.Equals(IdRoom));
+            ViewBag.Room = db.Room.SingleOrDefault(u => u.Id.Equals(IdRoom));
             return View();
         }
 
@@ -49,12 +49,12 @@ namespace RMS.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Promotions.AddObject(promotion);
+                db.Promotion.AddObject(promotion);
                 db.SaveChanges();
                 return RedirectToAction("Index", new { IdRoom = promotion.IdRoom });
             }
 
-            ViewBag.Room = db.Rooms.SingleOrDefault(u => u.Id.Equals(promotion.IdRoom));
+            ViewBag.Room = db.Room.SingleOrDefault(u => u.Id.Equals(promotion.IdRoom));
             return View(promotion);
         }
 
@@ -63,7 +63,7 @@ namespace RMS.Controllers
         [Authorize]
         public ActionResult Edit(int id)
         {
-            Promotion promotion = db.Promotions.Single(p => p.Id == id);
+            Promotion promotion = db.Promotion.Single(p => p.Id == id);
             return View(promotion);
         }
 
@@ -75,7 +75,7 @@ namespace RMS.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Promotions.Attach(promotion);
+                db.Promotion.Attach(promotion);
                 db.ObjectStateManager.ChangeObjectState(promotion, EntityState.Modified);
                 db.SaveChanges();
                 return RedirectToAction("Index", new { IdRoom = promotion.IdRoom });
@@ -88,7 +88,7 @@ namespace RMS.Controllers
         [Authorize]
         public ActionResult Delete(int id)
         {
-            Promotion promotion = db.Promotions.Single(p => p.Id == id);
+            Promotion promotion = db.Promotion.Single(p => p.Id == id);
             return View(promotion);
         }
 
@@ -98,8 +98,8 @@ namespace RMS.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
-            Promotion promotion = db.Promotions.Single(p => p.Id == id);
-            db.Promotions.DeleteObject(promotion);
+            Promotion promotion = db.Promotion.Single(p => p.Id == id);
+            db.Promotion.DeleteObject(promotion);
             db.SaveChanges();
             return RedirectToAction("Index", new { IdRoom = promotion.IdRoom });
         }

@@ -19,8 +19,8 @@ namespace RMS.Controllers
         public ViewResult Index()
         {
 
-            var hotels = db.Hotels.Include("State");
-            return View(hotels.ToList());
+            var Hotel = db.Hotel.Include("State");
+            return View(Hotel.ToList());
         }
 
         //
@@ -28,7 +28,7 @@ namespace RMS.Controllers
         [Authorize]
         public ViewResult Details(int id)
         {
-            Hotel hotel = db.Hotels.Single(h => h.Id == id);
+            Hotel hotel = db.Hotel.Single(h => h.Id == id);
             return View(hotel);
         }
 
@@ -37,24 +37,24 @@ namespace RMS.Controllers
         [Authorize]
         public ActionResult Create()
         {
-            ViewBag.IdState = new SelectList(db.States, "Id", "Name").OrderBy(u => u.Text);
+            ViewBag.IdState = new SelectList(db.State, "Id", "Name").OrderBy(u => u.Text);
             return View();
         }
 
         //
         // POST: /Hotel/Create
         [Authorize]
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult Create(Hotel hotel)
         {
             if (ModelState.IsValid)
             {
-                db.Hotels.AddObject(hotel);
+                db.Hotel.AddObject(hotel);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IdState = new SelectList(db.States, "Id", "Name", hotel.IdState);
+            ViewBag.IdState = new SelectList(db.State, "Id", "Name", hotel.IdState);
             return View(hotel);
         }
 
@@ -63,25 +63,25 @@ namespace RMS.Controllers
         [Authorize]
         public ActionResult Edit(int id)
         {
-            Hotel hotel = db.Hotels.Single(h => h.Id == id);
-            ViewBag.IdState = new SelectList(db.States, "Id", "Name", hotel.IdState);
+            Hotel hotel = db.Hotel.Single(h => h.Id == id);
+            ViewBag.IdState = new SelectList(db.State, "Id", "Name", hotel.IdState);
             return View(hotel);
         }
 
         //
         // POST: /Hotel/Edit/5
         [Authorize]
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult Edit(Hotel hotel)
         {
             if (ModelState.IsValid)
             {
-                db.Hotels.Attach(hotel);
+                db.Hotel.Attach(hotel);
                 db.ObjectStateManager.ChangeObjectState(hotel, EntityState.Modified);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.IdState = new SelectList(db.States, "Id", "Name", hotel.IdState);
+            ViewBag.IdState = new SelectList(db.State, "Id", "Name", hotel.IdState);
             return View(hotel);
         }
 
@@ -90,7 +90,7 @@ namespace RMS.Controllers
         [Authorize]
         public ActionResult Delete(int id)
         {
-            Hotel hotel = db.Hotels.Single(h => h.Id == id);
+            Hotel hotel = db.Hotel.Single(h => h.Id == id);
             return View(hotel);
         }
 
@@ -100,8 +100,8 @@ namespace RMS.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
-            Hotel hotel = db.Hotels.Single(h => h.Id == id);
-            db.Hotels.DeleteObject(hotel);
+            Hotel hotel = db.Hotel.Single(h => h.Id == id);
+            db.Hotel.DeleteObject(hotel);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

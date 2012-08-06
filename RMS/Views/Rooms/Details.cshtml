@@ -22,6 +22,18 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.Capacity)
     </div>
+    <div class="display-label">
+        @Html.Label("Precio por Noche Temporada Baja (RACK)")
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LowSeasonRack)
+    </div>
+    <div class="display-label">
+        @Html.Label("Precio por Noche Temporada Alta (RACK)")
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.HighSeasonRack)
+    </div>
     <div class="display-label">@Html.LabelFor(model => model.LowSeasonPrice)</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.LowSeasonPrice)
@@ -42,10 +54,23 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.Discount3)
     </div>
-    @*    <div class="display-label">Discount4</div>
+    <div class="display-label">
+        @Html.Label("% Ganancia Administración")
+    </div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.Discount4)
-    </div>*@
+        @Html.DisplayFor(model => model.PercentAdmin)
+    </div>
+    <div class="display-label">
+        @Html.Label("% Comisión Agente")
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PercentAgent)
+    </div>
+    <div class="display-label">
+        Tipo de Habitación</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RoomType.Name)
+    </div>
 </fieldset>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |

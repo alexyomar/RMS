@@ -14,95 +14,97 @@ namespace RMS.Controllers
         private RegionalEntities db = new RegionalEntities();
 
         //
-        // GET: /Rooms/
+        // GET: /Room/
         [Authorize]
         public ViewResult Index(int IdHotel)
         {
-            ViewBag.Hotel = db.Hotels.SingleOrDefault(u => u.Id.Equals(IdHotel));
-            var rooms = db.Rooms.Include("Hotel").Where(u => u.IdHotel.Equals(IdHotel));
-            return View(rooms.ToList());
+            ViewBag.Hotel = db.Hotel.SingleOrDefault(u => u.Id.Equals(IdHotel));
+            var Room = db.Room.Include("Hotel").Where(u => u.IdHotel.Equals(IdHotel));
+            return View(Room.ToList());
         }
 
         //
-        // GET: /Rooms/Details/5
+        // GET: /Room/Details/5
         [Authorize]
         public ViewResult Details(int id)
         {
-            Room room = db.Rooms.Single(r => r.Id == id);
+            Room room = db.Room.Single(r => r.Id == id);
             return View(room);
         }
 
         //
-        // GET: /Rooms/Create
+        // GET: /Room/Create
         [Authorize]
         public ActionResult Create(int IdHotel)
         {
-            ViewBag.Hotel = db.Hotels.Where(u => u.Id.Equals(IdHotel)).SingleOrDefault();
+            ViewBag.Hotel = db.Hotel.Where(u => u.Id.Equals(IdHotel)).SingleOrDefault();
+            ViewBag.IdRoomType = new SelectList(db.RoomType.OrderBy(h => h.Name), "Id", "Name");
             return View();
         }
 
         //
-        // POST: /Rooms/Create
+        // POST: /Room/Create
         [Authorize]
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult Create(Room room)
         {
             if (ModelState.IsValid)
             {
-                db.Rooms.AddObject(room);
+                db.Room.AddObject(room);
                 db.SaveChanges();
                 return RedirectToAction("Index", new { IdHotel = room.IdHotel });
             }
 
-            ViewBag.IdHotel = new SelectList(db.Hotels, "Id", "Name", room.IdHotel);
+            ViewBag.IdHotel = new SelectList(db.Hotel, "Id", "Name", room.IdHotel);
             return View(room);
         }
 
         //
-        // GET: /Rooms/Edit/5
+        // GET: /Room/Edit/5
         [Authorize]
         public ActionResult Edit(int id)
         {
-            Room room = db.Rooms.Single(r => r.Id == id);
-            ViewBag.Hotel = db.Hotels.Where(u => u.Id.Equals(room.IdHotel)).SingleOrDefault();
-            ViewBag.IdHotel = new SelectList(db.Hotels, "Id", "Name", room.IdHotel);
+            Room room = db.Room.Single(r => r.Id == id);
+            ViewBag.Hotel = db.Hotel.Where(u => u.Id.Equals(room.IdHotel)).SingleOrDefault();
+            ViewBag.IdHotel = new SelectList(db.Hotel, "Id", "Name", room.IdHotel);
+            ViewBag.IdRoomType = new SelectList(db.RoomType.OrderBy(h => h.Name), "Id", "Name",  room.IdRoomType);
             return View(room);
         }
 
         //
-        // POST: /Rooms/Edit/5
+        // POST: /Room/Edit/5
         [Authorize]
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult Edit(Room room)
         {
             if (ModelState.IsValid)
             {
-                db.Rooms.Attach(room);
+                db.Room.Attach(room);
                 db.ObjectStateManager.ChangeObjectState(room, EntityState.Modified);
                 db.SaveChanges();
                 return RedirectToAction("Index", new { IdHotel = room.IdHotel });
             }
-            ViewBag.IdHotel = new SelectList(db.Hotels, "Id", "Name", room.IdHotel);
+            ViewBag.IdHotel = new SelectList(db.Hotel, "Id", "Name", room.IdHotel);
             return View(room);
         }
 
         //
-        // GET: /Rooms/Delete/5
+        // GET: /Room/Delete/5
         [Authorize]
         public ActionResult Delete(int id)
         {
-            Room room = db.Rooms.Single(r => r.Id == id);
+            Room room = db.Room.Single(r => r.Id == id);
             return View(room);
         }
 
         //
-        // POST: /Rooms/Delete/5
+        // POST: /Room/Delete/5
         [Authorize]
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
-            Room room = db.Rooms.Single(r => r.Id == id);
-            db.Rooms.DeleteObject(room);
+            Room room = db.Room.Single(r => r.Id == id);
+            db.Room.DeleteObject(room);
             db.SaveChanges();
             return RedirectToAction("Index", new { IdHotel = room.IdHotel });
         }

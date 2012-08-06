@@ -43,7 +43,7 @@
             @Html.Label("Datos de Contacto:")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Contact)
+            @Html.TextAreaFor(model => model.Contact)
             @Html.ValidationMessageFor(model => model.Contact)
         </div>
         <div class="editor-label">
@@ -84,6 +84,62 @@
             @Html.EditorFor(model => model.Map)
             @Html.ValidationMessageFor(model => model.Map)
         </div>*@
+        <div class="editor-label">
+            @Html.Label("Núm. de Restaurantes:")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Restaurants)
+            @Html.ValidationMessageFor(model => model.Restaurants)
+        </div>
+        <div class="editor-label">
+            @Html.Label("Núm. de Piscinas:")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Pools)
+            @Html.ValidationMessageFor(model => model.Pools)
+        </div>
+        <div class="editor-label">
+            @Html.Label("Posee Playa:")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Beach)
+            @Html.ValidationMessageFor(model => model.Beach)
+        </div>
+        <div class="editor-label">
+            @Html.Label("Posee Estacionamiento:")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Parking)
+            @Html.ValidationMessageFor(model => model.Parking)
+        </div>
+        <div class="editor-label">
+            @Html.Label("Hora de Llegada:")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ArrivalHour)
+            @Html.ValidationMessageFor(model => model.ArrivalHour)
+        </div>
+        <div class="editor-label">
+            @Html.Label("Hora de Salida:")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DepartureHour)
+            @Html.ValidationMessageFor(model => model.DepartureHour)
+        </div>
+        <div class="editor-label">
+            @Html.Label("Otras Facilidades:")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Facilities)
+            @Html.ValidationMessageFor(model => model.Facilities)
+        </div>
+        <div class="editor-label">
+            @Html.Label("Salones:")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Lounges)
+            @Html.ValidationMessageFor(model => model.Lounges)
+        </div>
         <p>
             <input type="submit" value="Crear" />
         </p>
@@ -92,3 +148,7 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+<script type="text/javascript">
+    $.cleditor.defaultOptions.width = 600;
+    $("textarea").cleditor();
+</script>

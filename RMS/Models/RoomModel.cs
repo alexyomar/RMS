@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System;
+using System.Web.Mvc;
 
 namespace RMS.Models
 {
@@ -11,7 +12,6 @@ namespace RMS.Models
 
     public class RoomModel
     {
-
         [DisplayName("Descripción")]
         public string Description { get; set; }
 
@@ -41,6 +41,7 @@ namespace RMS.Models
 
         [Range(0.0, 100, ErrorMessage = "El valor debe ser de 0 a 100.")]
         public decimal Discount4 { get; set; }
+
 
     }
 

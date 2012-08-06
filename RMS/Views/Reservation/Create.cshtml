@@ -1,7 +1,7 @@
 ﻿@model RMS.Models.ReservationModel
 @{
     ViewBag.Title = "Crear Reservación";
-    IEnumerable<RMS.Models.Customer> __customer = ViewBag.Customers as IEnumerable<RMS.Models.Customer>;
+    IEnumerable<RMS.Models.Customer> __customer = ViewBag.Customer as IEnumerable<RMS.Models.Customer>;
 }
 <h2>
     Crear Reservación</h2>
@@ -16,18 +16,23 @@
             Cliente
         </div>
         <div class="editor-field">
-            <select name="Trip.IdCustomer" id="Trip_IdCustomer">
-                <option></option>
-                @foreach (var item in __customer)
-                {
-                    <option value="@item.Id">@item.Name @item.LastName</option>    
-                }
-            </select>
-            <script type="text/javascript">
-                $(function () {
-                    $("#Trip_IdCustomer").ufd({ useUiCss: true, log: false });
-                });    
-            </script>
+            <table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td valign="middle">
+                        <select name="Trip.IdCustomer" id="Trip_IdCustomer">
+                            <option></option>
+                            @foreach (var item in __customer)
+                            {
+                                <option value="@item.Id">@item.Name @item.LastName</option>    
+                            }
+                        </select>
+                    </td>
+                    <td valign="middle">
+                        &nbsp;&nbsp;&nbsp; <a href="@Url.Action("Create", "Customer", new { redirect = true })">
+                            Crear Nuevo</a>
+                    </td>
+                </tr>
+            </table>
         </div>
         <div class="editor-label">
             Fecha de Llegada
@@ -47,7 +52,7 @@
             @Html.LabelFor(model => model.Trip.IdReservationStatus, "ReservationStatu")
         </div>
         <div class="editor-field">
-            @Html.DropDownListFor(model => model.Trip.IdReservationStatus, (SelectList)ViewBag.IdReservationStatus)
+            @Html.DropDownListFor(model => model.Trip.IdReservationStatus, (SelectList)ViewBag.ReservationStatus)
             @Html.ValidationMessageFor(model => model.Trip.IdReservationStatus)
         </div>
         <div class="editor-label">
@@ -76,6 +81,9 @@
     @Html.ActionLink("Volver al Listado", "Index")
 </div>
 <script type="text/javascript">
+               $(function () {
+                $("#Trip_IdCustomer").ufd({ useUiCss: true, log: false });
+            });    
     $(".datepicker").datepicker();
     $("#ddlhotel").change(function () {
         $("#habitaciones").html("<img src='@Url.Content("~/Content/img/103.gif")'></img>");

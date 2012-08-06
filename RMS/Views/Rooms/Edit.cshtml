@@ -51,6 +51,20 @@
             @Html.ValidationMessageFor(model => model.Capacity)
         </div>
         <div class="editor-label">
+            @Html.Label("Precio por Noche Temporada Baja (RACK)")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LowSeasonRack)
+            @Html.ValidationMessageFor(model => model.LowSeasonRack)
+        </div>
+        <div class="editor-label">
+            @Html.Label("Precio por Noche Temporada Alta (RACK)")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.HighSeasonRack)
+            @Html.ValidationMessageFor(model => model.HighSeasonRack)
+        </div>
+        <div class="editor-label">
             @Html.LabelFor(model => model.LowSeasonPrice)
         </div>
         <div class="editor-field">
@@ -86,14 +100,28 @@
             @Html.ValidationMessageFor(model => model.Discount3)
         </div>
         <div class="editor-label">
-            @Html.LabelFor(model => model.Discount4)
+            @Html.Label("% Ganancia Administración")
         </div>
-       @* <div class="editor-field">
-            @Html.EditorFor(model => model.Discount4)
-            @Html.ValidationMessageFor(model => model.Discount4)
-        </div>*@
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PercentAdmin)
+            @Html.ValidationMessageFor(model => model.PercentAdmin)
+        </div>
+        <div class="editor-label">
+            @Html.Label("% Comisión Agente")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PercentAgent)
+            @Html.ValidationMessageFor(model => model.PercentAgent)
+        </div>
+        <div class="editor-label">
+            @Html.Label("Tipo de Habitación")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("IdRoomType",String.Empty)
+            @Html.ValidationMessageFor(model => model.IdRoomType)
+        </div>
         <p>
-            <input type="submit" value="Save" />
+            <input type="submit" value="Guardar" />
         </p>
     </fieldset>
 }

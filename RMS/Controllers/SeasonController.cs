@@ -18,8 +18,8 @@ namespace RMS.Controllers
         [Authorize]
         public ViewResult Index(int IdHotel)
         {
-            ViewBag.Hotel = db.Hotels.SingleOrDefault(u => u.Id.Equals(IdHotel));
-            var periods = db.Periods.Include("Hotel");
+            ViewBag.Hotel = db.Hotel.SingleOrDefault(u => u.Id.Equals(IdHotel));
+            var periods = db.Period.Include("Hotel");
             return View(periods.ToList());
         }
 
@@ -28,7 +28,7 @@ namespace RMS.Controllers
         [Authorize]
         public ViewResult Details(int id)
         {
-            Period period = db.Periods.Single(p => p.Id == id);
+            Period period = db.Period.Single(p => p.Id == id);
             return View(period);
         }
 
@@ -37,7 +37,7 @@ namespace RMS.Controllers
         [Authorize]
         public ActionResult Create(int IdHotel)
         {
-            ViewBag.Hotel = db.Hotels.SingleOrDefault(u => u.Id.Equals(IdHotel));
+            ViewBag.Hotel = db.Hotel.SingleOrDefault(u => u.Id.Equals(IdHotel));
             return View();
         }
 
@@ -49,12 +49,12 @@ namespace RMS.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Periods.AddObject(period);
+                db.Period.AddObject(period);
                 db.SaveChanges();
                 return RedirectToAction("Index", new { IdHotel = period.IdHotel });
             }
 
-            ViewBag.IdHotel = new SelectList(db.Hotels, "Id", "Name", period.IdHotel);
+            ViewBag.IdHotel = new SelectList(db.Hotel, "Id", "Name", period.IdHotel);
             return View(period);
         }
 
@@ -63,8 +63,8 @@ namespace RMS.Controllers
         [Authorize]
         public ActionResult Edit(int id)
         {
-            Period period = db.Periods.Single(p => p.Id == id);
-            ViewBag.IdHotel = new SelectList(db.Hotels, "Id", "Name", period.IdHotel);
+            Period period = db.Period.Single(p => p.Id == id);
+            ViewBag.IdHotel = new SelectList(db.Hotel, "Id", "Name", period.IdHotel);
             return View(period);
         }
 
@@ -76,12 +76,12 @@ namespace RMS.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Periods.Attach(period);
+                db.Period.Attach(period);
                 db.ObjectStateManager.ChangeObjectState(period, EntityState.Modified);
                 db.SaveChanges();
                 return RedirectToAction("Index", new { IdHotel = period.IdHotel });
             }
-            ViewBag.IdHotel = new SelectList(db.Hotels, "Id", "Name", period.IdHotel);
+            ViewBag.IdHotel = new SelectList(db.Hotel, "Id", "Name", period.IdHotel);
             return View(period);
         }
 
@@ -90,7 +90,7 @@ namespace RMS.Controllers
         [Authorize]
         public ActionResult Delete(int id)
         {
-            Period period = db.Periods.Single(p => p.Id == id);
+            Period period = db.Period.Single(p => p.Id == id);
             return View(period);
         }
 
@@ -100,8 +100,8 @@ namespace RMS.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
-            Period period = db.Periods.Single(p => p.Id == id);
-            db.Periods.DeleteObject(period);
+            Period period = db.Period.Single(p => p.Id == id);
+            db.Period.DeleteObject(period);
             db.SaveChanges();
             return RedirectToAction("Index", new { IdHotel = period.IdHotel });
         }
