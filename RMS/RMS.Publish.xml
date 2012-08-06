@@ -3,29 +3,36 @@
   <publishProfile publishUrl="C:\Files\Desktop\RMS" deleteExistingFiles="True" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Profile1" publishMethod="FileSystem" replaceMatchingFiles="False" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
     <file relUrl="Content/images/title7.gif" publishTime="07/16/2012 20:21:05" />
     <file relUrl="Scripts/MicrosoftAjax.js" publishTime="07/11/2012 20:29:18" />
-    <file relUrl="bin/RMS.dll" publishTime="08/01/2012 23:41:57" />
+    <file relUrl="Content/images/p2.jpg" publishTime="07/16/2012 20:21:05" />
+    <file relUrl="bin/RMS.dll" publishTime="08/05/2012 21:48:28" />
     <file relUrl="Content/webstyle.css" publishTime="07/30/2012 18:46:55" />
     <file relUrl="bin/System.Web.WebPages.dll" publishTime="01/05/2011 15:45:38" />
+    <file relUrl="Views/RoomType/Delete.cshtml" publishTime="08/05/2012 20:12:20" />
     <file relUrl="Views/Promo/Index.cshtml" publishTime="07/25/2012 21:43:53" />
     <file relUrl="Views/Reservation/Edit.cshtml" publishTime="07/16/2012 20:01:00" />
     <file relUrl="Content/themes/base/jquery.ui.datepicker.css" publishTime="07/11/2012 20:29:52" />
     <file relUrl="Content/Promociones/VirgenValle2012.jpg" publishTime="07/30/2012 18:46:55" />
     <file relUrl="bin/System.Web.Helpers.xml" publishTime="12/19/2010 23:59:38" />
     <file relUrl="Scripts/jquery-1.5.1.js" publishTime="07/11/2012 20:29:18" />
-    <file relUrl="Views/Shared/_website.cshtml" publishTime="08/01/2012 21:27:13" />
+    <file relUrl="Views/RoomType/Edit.cshtml" publishTime="08/05/2012 20:15:08" />
+    <file relUrl="Views/Shared/_website.cshtml" publishTime="08/05/2012 15:27:35" />
+    <file relUrl="Views/RoomBed/Edit.cshtml" publishTime="08/05/2012 20:18:00" />
+    <file relUrl="Content/themes/base/jquery.ui.resizable.css" publishTime="07/11/2012 20:29:52" />
     <file relUrl="Views/Account/ChangePasswordSuccess.cshtml" publishTime="08/01/2012 21:15:45" />
-    <file relUrl="Content/images/title11.gif" publishTime="07/16/2012 20:21:05" />
     <file relUrl="Content/themes/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png" publishTime="07/11/2012 20:29:52" />
     <file relUrl="Views/Web.config" publishTime="07/11/2012 20:29:02" />
     <file relUrl="Content/themes/base/jquery.ui.selectable.css" publishTime="07/11/2012 20:29:52" />
-    <file relUrl="Content/themes/base/jquery.ui.theme.css" publishTime="07/11/2012 20:29:52" />
+    <file relUrl="Views/RoomBed/Delete.cshtml" publishTime="08/05/2012 20:17:39" />
     <file relUrl="Scripts/jquery.validate.js" publishTime="07/25/2012 21:18:33" />
+    <file relUrl="Content/images/p1.jpg" publishTime="07/16/2012 20:21:05" />
     <file relUrl="Content/images/loading_background.png" publishTime="07/30/2012 18:46:55" />
+    <file relUrl="Views/Customer/Edit.cshtml" publishTime="07/16/2012 20:01:00" />
     <file relUrl="Content/images/more_bg.gif" publishTime="07/16/2012 20:21:05" />
+    <file relUrl="Views/RoomTypeBed/Delete.cshtml" publishTime="08/05/2012 20:42:01" />
     <file relUrl="Content/themes/base/jquery.ui.all.css" publishTime="07/11/2012 20:29:52" />
-    <file relUrl="Views/Rooms/Details.cshtml" publishTime="07/16/2012 20:01:00" />
-    <file relUrl="Views/Hotel/Edit.cshtml" publishTime="07/11/2012 20:52:35" />
+    <file relUrl="Views/Hotel/Edit.cshtml" publishTime="08/05/2012 21:15:45" />
     <file relUrl="Scripts/jquery-1.5.1-vsdoc.js" publishTime="07/11/2012 20:29:17" />
+    <file relUrl="Views/RoomType/Index.cshtml" publishTime="08/05/2012 20:16:09" />
     <file relUrl="Views/Home/Index.cshtml" publishTime="07/30/2012 18:46:55" />
     <file relUrl="bin/System.Web.Entity.dll" publishTime="03/18/2010 19:31:26" />
     <file relUrl="Content/images/pic1.jpg" publishTime="07/16/2012 20:21:05" />
@@ -35,150 +42,161 @@
     <file relUrl="Content/images/bg_c_b.gif" publishTime="07/16/2012 20:21:05" />
     <file relUrl="Content/images/spacer.gif" publishTime="07/16/2012 20:21:05" />
     <file relUrl="Views/Shared/_LogOnPartial.cshtml" publishTime="07/11/2012 20:29:02" />
-    <file relUrl="Views/Account/LogOn.cshtml" publishTime="08/01/2012 21:14:57" />
-    <file relUrl="Views/Hotel/Delete.cshtml" publishTime="07/11/2012 20:53:29" />
+    <file relUrl="Views/Hotel/Delete.cshtml" publishTime="08/05/2012 17:14:37" />
+    <file relUrl="Content/images/buttons.gif" publishTime="08/05/2012 20:51:31" />
+    <file relUrl="Views/Customer/Index.cshtml" publishTime="07/30/2012 18:46:55" />
     <file relUrl="Content/colorbox.css" publishTime="07/30/2012 18:46:55" />
     <file relUrl="Content/images/search_bg.gif" publishTime="07/16/2012 20:21:05" />
     <file relUrl="Content/themes/base/images/ui-bg_glass_55_fbf9ee_1x400.png" publishTime="07/11/2012 20:29:52" />
-    <file relUrl="Views/Shared/Menu.cshtml" publishTime="08/01/2012 21:09:12" />
+    <file relUrl="Content/jquery.cleditor.css" publishTime="08/05/2012 20:51:31" />
+    <file relUrl="Views/Shared/Menu.cshtml" publishTime="08/05/2012 20:10:23" />
     <file relUrl="Scripts/jquery.colorbox.js" publishTime="07/30/2012 18:46:55" />
     <file relUrl="Content/images/p8.jpg" publishTime="07/16/2012 20:21:05" />
     <file relUrl="Scripts/MicrosoftMvcAjax.debug.js" publishTime="07/11/2012 20:29:18" />
     <file relUrl="Content/themes/base/images/ui-icons_2e83ff_256x240.png" publishTime="07/11/2012 20:29:52" />
     <file relUrl="Content/themes/base/jquery.ui.tabs.css" publishTime="07/11/2012 20:29:52" />
+    <file relUrl="Views/RoomBed/Index.cshtml" publishTime="08/05/2012 20:19:34" />
     <file relUrl="bin/System.Web.WebPages.xml" publishTime="12/19/2010 23:59:38" />
     <file relUrl="Scripts/jquery-ui-1.8.11.min.js" publishTime="07/25/2012 21:01:07" />
     <file relUrl="Content/img/logoadmin.png" publishTime="07/11/2012 20:29:52" />
     <file relUrl="Content/Promociones/Navidad20212.jpg" publishTime="07/30/2012 18:46:55" />
+    <file relUrl="Views/Report/Index.cshtml" publishTime="08/05/2012 15:38:27" />
+    <file relUrl="Views/Report/PrintableRoom.cshtml" publishTime="08/05/2012 15:56:23" />
     <file relUrl="Scripts/MicrosoftMvcAjax.js" publishTime="07/11/2012 20:29:18" />
-    <file relUrl="Content/images/title10.gif" publishTime="07/16/2012 20:21:05" />
+    <file relUrl="Views/Promo/Delete.cshtml" publishTime="08/05/2012 16:42:24" />
     <file relUrl="Content/images/bg.jpg" publishTime="07/16/2012 20:21:05" />
     <file relUrl="Views/Customer/Delete.cshtml" publishTime="07/16/2012 20:01:00" />
     <file relUrl="Views/Season/Delete.cshtml" publishTime="07/26/2012 20:54:17" />
     <file relUrl="Views/Account/Register.cshtml" publishTime="08/01/2012 21:13:00" />
-    <file relUrl="Views/Rooms/Delete.cshtml" publishTime="07/16/2012 20:01:00" />
+    <file relUrl="Views/Rooms/Delete.cshtml" publishTime="08/05/2012 20:47:51" />
     <file relUrl="Content/images/big.jpg" publishTime="07/16/2012 20:21:05" />
-    <file relUrl="Scripts/jquery-1.5.1.min.js" publishTime="07/11/2012 20:29:18" />
     <file relUrl="Content/images/logo.jpg" publishTime="07/16/2012 21:05:23" />
     <file relUrl="Content/images/pic2.jpg" publishTime="07/16/2012 20:21:05" />
     <file relUrl="Global.asax" publishTime="07/11/2012 20:29:02" />
-    <file relUrl="Content/img/103.gif" publishTime="07/11/2012 20:29:52" />
+    <file relUrl="header.jpg" publishTime="08/01/2012 19:51:54" />
+    <file relUrl="Content/images/l4.gif" publishTime="07/16/2012 20:21:05" />
     <file relUrl="Content/images/Home-01_23.jpg" publishTime="07/16/2012 20:40:01" />
     <file relUrl="Content/images/p3.jpg" publishTime="07/16/2012 20:21:05" />
     <file relUrl="Content/uiCss.css" publishTime="07/30/2012 19:57:23" />
-    <file relUrl="Views/Promo/Edit.cshtml" publishTime="07/26/2012 22:06:28" />
+    <file relUrl="Views/Promo/Edit.cshtml" publishTime="08/05/2012 16:36:45" />
+    <file relUrl="Views/Reservation/Index.cshtml" publishTime="08/04/2012 20:15:15" />
     <file relUrl="Scripts/MicrosoftMvcValidation.js" publishTime="07/11/2012 20:29:18" />
-    <file relUrl="Web.config" publishTime="08/01/2012 23:00:20" />
+    <file relUrl="Scripts/jquery.cleditor.min.js" publishTime="08/05/2012 20:51:24" />
+    <file relUrl="Web.config" publishTime="08/05/2012 21:51:59" />
     <file relUrl="Content/Promociones/homepromo.jpg" publishTime="07/30/2012 18:46:55" />
-    <file relUrl="Content/images/l5.gif" publishTime="07/16/2012 20:21:05" />
     <file relUrl="Scripts/MicrosoftMvcValidation.debug.js" publishTime="07/11/2012 20:29:18" />
-    <file relUrl="bin/Models/Database.Designer.cs" publishTime="08/01/2012 23:41:22" />
-    <file relUrl="bin/System.Web.Mvc.dll" publishTime="01/05/2011 17:42:16" />
+    <file relUrl="Content/images/title11.gif" publishTime="07/16/2012 20:21:05" />
     <file relUrl="Scripts/jquery.unobtrusive-ajax.js" publishTime="07/11/2012 20:29:18" />
     <file relUrl="Content/Promociones/octubre2012.jpg" publishTime="07/30/2012 18:46:55" />
     <file relUrl="packages.config" publishTime="07/31/2012 20:34:01" />
-    <file relUrl="Views/Promo/Details.cshtml" publishTime="07/26/2012 22:06:32" />
+    <file relUrl="Views/Promo/Details.cshtml" publishTime="08/05/2012 16:43:37" />
     <file relUrl="Content/images/l1.gif" publishTime="07/16/2012 20:21:05" />
-    <file relUrl="Content/themes/base/jquery.ui.dialog.css" publishTime="07/11/2012 20:29:52" />
-    <file relUrl="Views/Season/Index.cshtml" publishTime="07/26/2012 20:07:04" />
-    <file relUrl="Views/Rooms/Edit.cshtml" publishTime="07/16/2012 20:01:00" />
+    <file relUrl="bin/EntityFramework.xml" publishTime="07/11/2012 20:29:04" />
+    <file relUrl="Views/Season/Index.cshtml" publishTime="08/04/2012 20:25:20" />
+    <file relUrl="Views/RoomBed/Create.cshtml" publishTime="08/05/2012 20:17:10" />
+    <file relUrl="Views/Rooms/Edit.cshtml" publishTime="08/05/2012 21:28:51" />
     <file relUrl="Content/themes/base/images/ui-icons_222222_256x240.png" publishTime="07/11/2012 20:29:52" />
-    <file relUrl="bin/RMS.pdb" publishTime="08/01/2012 23:41:57" />
+    <file relUrl="Content/images/title2_bg.gif" publishTime="07/16/2012 20:21:05" />
+    <file relUrl="bin/RMS.pdb" publishTime="08/05/2012 21:48:28" />
     <file relUrl="bin/itextsharp.dll" publishTime="07/31/2012 20:34:03" />
+    <file relUrl="Content/img/103.gif" publishTime="07/11/2012 20:29:52" />
     <file relUrl="Scripts/jquery.validate.unobtrusive.min.js" publishTime="07/11/2012 20:29:18" />
-    <file relUrl="header.jpg" publishTime="08/01/2012 19:51:54" />
-    <file relUrl="Views/Season/Create.cshtml" publishTime="07/26/2012 20:54:05" />
+    <file relUrl="Views/Season/Create.cshtml" publishTime="08/04/2012 20:30:34" />
     <file relUrl="Content/images/title6.gif" publishTime="07/16/2012 20:21:05" />
     <file relUrl="Views/_ViewStart.cshtml" publishTime="07/11/2012 20:29:02" />
     <file relUrl="Content/themes/base/jquery.ui.autocomplete.css" publishTime="07/11/2012 20:29:52" />
-    <file relUrl="Views/Promo/Create.cshtml" publishTime="07/26/2012 21:54:42" />
+    <file relUrl="Views/Promo/Create.cshtml" publishTime="08/05/2012 16:35:55" />
+    <file relUrl="Views/RoomTypeBed/Index.cshtml" publishTime="08/05/2012 20:41:19" />
     <file relUrl="Content/images/banner.jpg" publishTime="07/16/2012 20:21:05" />
-    <file relUrl="Views/Rooms/Index.cshtml" publishTime="07/26/2012 23:26:42" />
-    <file relUrl="Views/Reservation/Create.cshtml" publishTime="07/30/2012 19:57:53" />
+    <file relUrl="Views/RoomType/Create.cshtml" publishTime="08/05/2012 20:11:05" />
+    <file relUrl="Content/images/bg_c.gif" publishTime="07/16/2012 20:21:05" />
+    <file relUrl="Views/Rooms/Index.cshtml" publishTime="08/05/2012 21:18:19" />
+    <file relUrl="Views/Reservation/Create.cshtml" publishTime="08/05/2012 21:35:10" />
     <file relUrl="Views/Home/About.cshtml" publishTime="07/11/2012 20:29:02" />
     <file relUrl="Content/themes/base/images/ui-bg_glass_75_e6e6e6_1x400.png" publishTime="07/11/2012 20:29:52" />
     <file relUrl="Content/images/border.png" publishTime="07/30/2012 18:46:55" />
     <file relUrl="Content/images/photo1.jpg" publishTime="07/16/2012 20:21:05" />
     <file relUrl="Scripts/jquery.validate-vsdoc.js" publishTime="07/11/2012 20:29:18" />
-    <file relUrl="Content/images/title2_bg.gif" publishTime="07/16/2012 20:21:05" />
-    <file relUrl="Content/images/header.png" publishTime="08/01/2012 19:57:16" />
-    <file relUrl="Content/themes/base/images/ui-bg_glass_95_fef1ec_1x400.png" publishTime="07/11/2012 20:29:52" />
-    <file relUrl="Views/Rooms/Create.cshtml" publishTime="07/16/2012 20:01:00" />
+    <file relUrl="Content/themes/base/jquery.ui.theme.css" publishTime="07/11/2012 20:29:52" />
+    <file relUrl="Scripts/jquery.validate.min.js" publishTime="07/25/2012 21:18:44" />
+    <file relUrl="Content/themes/base/images/ui-icons_454545_256x240.png" publishTime="07/11/2012 20:29:52" />
+    <file relUrl="Views/Rooms/Create.cshtml" publishTime="08/05/2012 20:48:12" />
     <file relUrl="Views/Account/ChangePassword.cshtml" publishTime="08/01/2012 21:17:16" />
     <file relUrl="Scripts/jquery.glob.js" publishTime="07/25/2012 21:05:12" />
-    <file relUrl="Content/themes/base/images/ui-icons_6da8d5_256x240.png" publishTime="07/11/2012 20:29:52" />
+    <file relUrl="Content/themes/base/images/ui-bg_glass_95_fef1ec_1x400.png" publishTime="07/11/2012 20:29:52" />
     <file relUrl="Content/images/controls.png" publishTime="07/30/2012 18:46:55" />
-    <file relUrl="Views/Reservation/PrintableVersion.cshtml" publishTime="08/01/2012 20:31:27" />
+    <file relUrl="Views/Reservation/PrintableVersion.cshtml" publishTime="08/04/2012 20:20:30" />
     <file relUrl="Content/images/button.gif" publishTime="07/16/2012 20:21:05" />
     <file relUrl="Content/images/menu_bg.png" publishTime="07/16/2012 21:02:10" />
-    <file relUrl="Views/Shared/_LogOut.cshtml" publishTime="08/01/2012 20:48:59" />
     <file relUrl="Content/themes/base/images/ui-bg_glass_75_dadada_1x400.png" publishTime="07/11/2012 20:29:52" />
     <file relUrl="Views/Reservation/Delete.cshtml" publishTime="07/16/2012 20:01:00" />
-    <file relUrl="Views/Promo/Delete.cshtml" publishTime="07/26/2012 22:06:32" />
     <file relUrl="Content/images/menu_bg.gif" publishTime="07/16/2012 20:21:05" />
+    <file relUrl="Content/images/toolbar.gif" publishTime="08/05/2012 20:51:31" />
     <file relUrl="Scripts/jQuery.glob.es-VE.js" publishTime="07/25/2012 21:05:12" />
     <file relUrl="Content/themes/base/jquery.ui.core.css" publishTime="07/11/2012 20:29:52" />
     <file relUrl="Content/images/pic3.jpg" publishTime="07/16/2012 20:21:05" />
     <file relUrl="Content/images/p5.jpg" publishTime="07/16/2012 20:21:05" />
     <file relUrl="Content/themes/base/images/ui-bg_glass_65_ffffff_1x400.png" publishTime="07/11/2012 20:29:52" />
-    <file relUrl="Content/themes/base/jquery.ui.resizable.css" publishTime="07/11/2012 20:29:52" />
-    <file relUrl="Views/Hotel/Index.cshtml" publishTime="07/26/2012 20:05:59" />
-    <file relUrl="Views/Shared/_Layout.cshtml" publishTime="07/30/2012 19:55:50" />
-    <file relUrl="Views/Reservation/PartialHabitaciones.cshtml" publishTime="07/30/2012 20:37:06" />
+    <file relUrl="Scripts/jQuery.glob.min.js" publishTime="07/25/2012 21:05:12" />
+    <file relUrl="Content/images/header.png" publishTime="08/01/2012 19:57:16" />
+    <file relUrl="Views/Hotel/Index.cshtml" publishTime="08/05/2012 21:16:34" />
+    <file relUrl="Views/Shared/_Layout.cshtml" publishTime="08/05/2012 20:52:05" />
+    <file relUrl="Views/Reservation/PartialHabitaciones.cshtml" publishTime="08/04/2012 20:19:04" />
     <file relUrl="Content/images/photo3.jpg" publishTime="07/16/2012 20:21:05" />
     <file relUrl="Content/themes/base/images/ui-icons_cd0a0a_256x240.png" publishTime="07/11/2012 20:29:03" />
-    <file relUrl="Content/images/l2.gif" publishTime="07/16/2012 20:21:05" />
+    <file relUrl="Views/Report/RoomRate.cshtml" publishTime="08/05/2012 16:32:29" />
     <file relUrl="bin/System.Data.Entity.dll" publishTime="03/18/2010 19:31:26" />
     <file relUrl="Content/themes/base/jquery.ui.accordion.css" publishTime="07/11/2012 20:29:52" />
-    <file relUrl="Views/Customer/Details.cshtml" publishTime="07/16/2012 20:01:00" />
-    <file relUrl="Scripts/jquery.ui.ufd.js" publishTime="07/30/2012 19:54:08" />
+    <file relUrl="Content/images/photo4.jpg" publishTime="07/16/2012 20:21:05" />
     <file relUrl="Content/themes/base/images/ui-bg_flat_0_aaaaaa_40x100.png" publishTime="07/11/2012 20:29:52" />
     <file relUrl="Content/images/logoprint.png" publishTime="08/01/2012 19:24:14" />
-    <file relUrl="Views/Customer/Create.cshtml" publishTime="07/30/2012 18:46:55" />
+    <file relUrl="Views/Customer/Create.cshtml" publishTime="08/05/2012 21:47:10" />
     <file relUrl="Content/themes/base/jquery.ui.slider.css" publishTime="07/11/2012 20:29:52" />
-    <file relUrl="bin/EntityFramework.xml" publishTime="07/11/2012 20:29:04" />
-    <file relUrl="Content/themes/base/images/ui-bg_flat_75_ffffff_40x100.png" publishTime="07/11/2012 20:29:52" />
-    <file relUrl="Content/images/p6.jpg" publishTime="07/16/2012 20:21:05" />
+    <file relUrl="Content/images/title10.gif" publishTime="07/16/2012 20:21:05" />
+    <file relUrl="Scripts/jquery-1.5.1.min.js" publishTime="07/11/2012 20:29:18" />
     <file relUrl="Views/Reservation/Details.cshtml" publishTime="08/01/2012 19:29:26" />
-    <file relUrl="Content/themes/base/images/ui-icons_454545_256x240.png" publishTime="07/11/2012 20:29:52" />
     <file relUrl="Scripts/jquery-ui-1.8.11.js" publishTime="07/11/2012 20:29:18" />
-    <file relUrl="Content/Site.css" publishTime="07/30/2012 18:46:55" />
+    <file relUrl="Content/Site.css" publishTime="08/05/2012 20:46:15" />
+    <file relUrl="Views/Report/RoomRateHigh.cshtml" publishTime="08/05/2012 16:32:58" />
     <file relUrl="Scripts/jquery.validate.unobtrusive.js" publishTime="07/11/2012 20:29:18" />
+    <file relUrl="Scripts/jquery.cleditor.js" publishTime="08/05/2012 20:51:24" />
     <file relUrl="Scripts/modernizr-1.7.js" publishTime="07/11/2012 20:29:18" />
     <file relUrl="Scripts/jquery.colorbox-min.js" publishTime="07/30/2012 18:46:55" />
-    <file relUrl="Scripts/MicrosoftAjax.debug.js" publishTime="07/11/2012 20:29:18" />
-    <file relUrl="Views/Hotel/Create.cshtml" publishTime="07/25/2012 19:08:02" />
+    <file relUrl="Content/images/l5.gif" publishTime="07/16/2012 20:21:05" />
+    <file relUrl="Views/Hotel/Create.cshtml" publishTime="08/05/2012 20:57:51" />
     <file relUrl="Views/Season/Edit.cshtml" publishTime="07/26/2012 20:54:30" />
     <file relUrl="Views/Season/Details.cshtml" publishTime="07/26/2012 20:54:23" />
-    <file relUrl="Content/images/l4.gif" publishTime="07/16/2012 20:21:05" />
+    <file relUrl="Views/Customer/Details.cshtml" publishTime="07/16/2012 20:01:00" />
     <file relUrl="Content/images/loading.gif" publishTime="07/30/2012 18:46:55" />
     <file relUrl="Content/themes/base/jquery.ui.button.css" publishTime="07/11/2012 20:29:52" />
-    <file relUrl="Views/Hotel/Details.cshtml" publishTime="07/11/2012 20:53:29" />
+    <file relUrl="Views/Hotel/Details.cshtml" publishTime="08/05/2012 21:15:23" />
     <file relUrl="bin/EntityFramework.dll" publishTime="07/11/2012 20:29:04" />
-    <file relUrl="Content/images/p1.jpg" publishTime="07/16/2012 20:21:05" />
+    <file relUrl="Views/Rooms/Details.cshtml" publishTime="08/05/2012 20:48:29" />
     <file relUrl="Content/images/title3_bg.gif" publishTime="07/16/2012 20:21:05" />
-    <file relUrl="Views/Reservation/Index.cshtml" publishTime="08/01/2012 20:37:18" />
+    <file relUrl="Scripts/jquery.ui.ufd.js" publishTime="07/30/2012 19:54:08" />
     <file relUrl="Content/images/title9.gif" publishTime="07/16/2012 20:21:05" />
     <file relUrl="Content/themes/base/images/ui-icons_888888_256x240.png" publishTime="07/11/2012 20:29:52" />
+    <file relUrl="Content/themes/base/jquery.ui.dialog.css" publishTime="07/11/2012 20:29:52" />
     <file relUrl="Content/themes/base/jquery.ui.progressbar.css" publishTime="07/11/2012 20:29:52" />
     <file relUrl="Content/images/photo2.jpg" publishTime="07/16/2012 20:21:05" />
-    <file relUrl="Views/Customer/Index.cshtml" publishTime="07/30/2012 18:46:55" />
+    <file relUrl="Content/themes/base/images/ui-bg_flat_75_ffffff_40x100.png" publishTime="07/11/2012 20:29:52" />
     <file relUrl="Content/images/title5.gif" publishTime="07/16/2012 20:21:05" />
-    <file relUrl="Models/Database.edmx.sql" publishTime="08/01/2012 21:45:43" />
     <file relUrl="Content/images/header.jpg" publishTime="08/01/2012 19:51:58" />
     <file relUrl="bin/System.Web.Helpers.dll" publishTime="01/05/2011 15:45:38" />
-    <file relUrl="Scripts/jquery.unobtrusive-ajax.min.js" publishTime="07/11/2012 20:29:18" />
     <file relUrl="Views/Account/RegisterSuccess.cshtml" publishTime="08/01/2012 21:14:45" />
+    <file relUrl="Views/RoomTypeBed/Create.cshtml" publishTime="08/05/2012 20:45:38" />
     <file relUrl="Content/images/l3.gif" publishTime="07/16/2012 20:21:05" />
-    <file relUrl="Views/Customer/Edit.cshtml" publishTime="07/16/2012 20:01:00" />
-    <file relUrl="Scripts/jquery.validate.min.js" publishTime="07/25/2012 21:18:44" />
-    <file relUrl="Content/images/bg_c.gif" publishTime="07/16/2012 20:21:05" />
+    <file relUrl="Scripts/MicrosoftAjax.debug.js" publishTime="07/11/2012 20:29:18" />
+    <file relUrl="Content/themes/base/images/ui-icons_6da8d5_256x240.png" publishTime="07/11/2012 20:29:52" />
+    <file relUrl="bin/System.Web.Mvc.dll" publishTime="01/05/2011 17:42:16" />
+    <file relUrl="Content/images/l2.gif" publishTime="07/16/2012 20:21:05" />
+    <file relUrl="Content/images/p6.jpg" publishTime="07/16/2012 20:21:05" />
     <file relUrl="Content/images/title1_bg.gif" publishTime="07/16/2012 20:21:05" />
     <file relUrl="Content/images/title8.gif" publishTime="07/16/2012 20:21:05" />
     <file relUrl="Scripts/jquery.ui.ufd.min.js" publishTime="07/30/2012 19:54:08" />
-    <file relUrl="Content/images/p2.jpg" publishTime="07/16/2012 20:21:05" />
-    <file relUrl="Content/images/photo4.jpg" publishTime="07/16/2012 20:21:05" />
-    <file relUrl="Scripts/jQuery.glob.min.js" publishTime="07/25/2012 21:05:12" />
+    <file relUrl="Scripts/jquery.unobtrusive-ajax.min.js" publishTime="07/11/2012 20:29:18" />
+    <file relUrl="Views/Account/LogOn.cshtml" publishTime="08/01/2012 21:14:57" />
+    <file relUrl="Views/Shared/_LogOut.cshtml" publishTime="08/01/2012 20:48:59" />
     <file relUrl="Content/themes/base/jquery.ui.base.css" publishTime="07/11/2012 20:29:52" />
     <file relUrl="bin/System.Web.Mvc.xml" publishTime="02/09/2011 11:26:24" />
     <file relUrl="Content/images/p4.jpg" publishTime="07/16/2012 20:21:05" />

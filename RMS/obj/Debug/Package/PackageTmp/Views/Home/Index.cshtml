@@ -1,0 +1,15 @@
+﻿@{
+    Layout = "~/Views/Shared/_website.cshtml";
+    ViewBag.Title = "Home Page";
+}
+<img src="@Url.Content("~/Content/Promociones/homepromo.jpg")" style="border-bottom: 1px solid #ccc;"  usemap="#Map"/>
+<map name="Map" id="Map">
+    <area shape="rect" coords="515,148,644,352" href="@Url.Content("~/Content/Promociones/VirgenValle2012.jpg")" />
+    <area shape="rect" coords="673,147,806,352" href="@Url.Content("~/Content/Promociones/octubre2012.jpg")" />
+    <area shape="rect" coords="830,147,967,351" href="@Url.Content("~/Content/Promociones/Navidad20212.jpg")" />
+    <area shape="rect" coords="712,490,954,509" href="mailto:grace.inklizian@regionalmarketing.com.ve" />
+    <area shape="rect" coords="714,557,952,576" href="mailto:miguelalvarez@regionalmarketing.com.ve" />
+</map>
+<script type="text/javascript">
+    $("area").colorbox({ right: "50%" });
+</script>

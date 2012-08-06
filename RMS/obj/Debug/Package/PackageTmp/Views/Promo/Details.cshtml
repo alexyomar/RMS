@@ -1,0 +1,85 @@
+﻿@model RMS.Models.Promotion
+@{
+    ViewBag.Title = "Details";
+}
+<h2>
+    Detalles de la Promoción</h2>
+<fieldset>
+    <legend>@Model.Room.Name (@Model.Room.Hotel.Name)</legend>
+    <div class="display-label">
+        @Html.LabelFor(model => model.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+    <div class="display-label">
+        @Html.Label("Precio por Noche Temporada Baja (RACK)")
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LowSeasonRack)
+    </div>
+    <div class="display-label">
+        @Html.Label("Precio por Noche Temporada Alta (RACK)")
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.HighSeasonRack)
+    </div>
+    <div class="display-label">
+        @Html.LabelFor(model => model.LowSeasonPrice)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LowSeasonPrice)
+    </div>
+    <div class="display-label">
+        @Html.LabelFor(model => model.HighSeasonPrice)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.HighSeasonPrice)
+    </div>
+    <div class="display-label">
+        @Html.Label("% Ganancia Administración")
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PercentAdmin)
+    </div>
+    <div class="display-label">
+        @Html.Label("% Comisión Agente")
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PercentAgent)
+    </div>
+    <div class="display-label">
+        @Html.LabelFor(model => model.DateStart)
+    </div>
+    <div class="display-field">
+        @Html.Label(Model.DateStart.ToShortDateString())
+    </div>
+    <div class="display-label">
+        @Html.LabelFor(model => model.DateEnd)
+    </div>
+    <div class="display-field">
+        @Html.Label(Model.DateEnd.ToShortDateString())
+    </div>
+    <div class="display-label">
+        @Html.LabelFor(model => model.MinAdults)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MinAdults)
+    </div>
+    <div class="display-label">
+        @Html.LabelFor(model => model.MinDays)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MinDays)
+    </div>
+    <div class="display-label">
+        @Html.LabelFor(model => model.Active)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Active)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Volver al listado", "Index", new { IdRoom = Model.IdRoom })
+</p>

@@ -1,0 +1,128 @@
+﻿@model RMS.Models.Room
+@{
+    RMS.Models.Hotel __hotel = (RMS.Models.Hotel)ViewBag.Hotel;
+    ViewBag.Title = "Crear Habitacion para " + __hotel.Name;
+}
+<h2>
+    Crear Habitación para @__hotel.Name</h2>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    @Html.Hidden("IdHotel", __hotel.Id);
+    <fieldset>
+        <legend>@__hotel.Name</legend>
+        <div class="editor-label">
+            @Html.Label("Nombre:")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+        <div class="editor-label">
+            @Html.Label("Descripción:")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+        <div class="editor-label">
+            @Html.Label("Activo?")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Active)
+            @Html.ValidationMessageFor(model => model.Active)
+        </div>
+        <div class="editor-label">
+            @Html.Label("Capacidad:")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Capacity)
+            @Html.ValidationMessageFor(model => model.Capacity)
+        </div>
+        <div class="editor-label">
+            @Html.Label("Precio por Noche Temporada Baja (RACK)")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LowSeasonRack)
+            @Html.ValidationMessageFor(model => model.LowSeasonRack)
+        </div>
+        <div class="editor-label">
+            @Html.Label("Precio por Noche Temporada Alta (RACK)")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.HighSeasonRack)
+            @Html.ValidationMessageFor(model => model.HighSeasonRack)
+        </div>
+        <div class="editor-label">
+            @Html.Label("Precio por Noche Temporada Baja")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LowSeasonPrice)
+            @Html.ValidationMessageFor(model => model.LowSeasonPrice)
+        </div>
+        <div class="editor-label">
+            @Html.Label("Precio por Noche Temporada Alta")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.HighSeasonPrice)
+            @Html.ValidationMessageFor(model => model.HighSeasonPrice)
+        </div>
+        <div class="editor-label">
+            @Html.Label("% Descuento por más de 3 noches")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Discount1)
+            @Html.ValidationMessageFor(model => model.Discount1)
+        </div>
+        <div class="editor-label">
+            @Html.Label("% Descuento por más de 5 noches")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Discount2)
+            @Html.ValidationMessageFor(model => model.Discount2)
+        </div>
+        <div class="editor-label">
+            @Html.Label("% Descuento por más de 7 noches")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Discount3)
+            @Html.ValidationMessageFor(model => model.Discount3)
+        </div>
+        <div class="editor-label">
+            @Html.Label("% Ganacia Administración")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PercentAdmin)
+            @Html.ValidationMessageFor(model => model.PercentAdmin)
+        </div>
+        <div class="editor-label">
+            @Html.Label("% Comisión Agente")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PercentAgent)
+            @Html.ValidationMessageFor(model => model.PercentAgent)
+        </div>
+        @*<div class="editor-label">
+            @Html.LabelFor(model => model.Discount4)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Discount4)
+            @Html.ValidationMessageFor(model => model.Discount4)
+        </div>*@
+        <div class="editor-label">
+            @Html.Label("Tipo de Habitación")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("IdRoomType", String.Empty)
+            @Html.ValidationMessageFor(model => model.IdRoomType)
+        </div>
+        <p>
+            <input type="submit" value="Crear" />
+        </p>
+    </fieldset>
+}
+<div>
+    @Html.ActionLink("Volver al listado", "Index", new { IdHotel = __hotel.Id })
+</div>

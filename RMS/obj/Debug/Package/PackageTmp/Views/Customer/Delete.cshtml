@@ -1,0 +1,44 @@
+﻿@model RMS.Models.Customer
+@{
+    ViewBag.Title = "Eliminar Cliente";
+}
+<h2>
+    Eliminar Cliente</h2>
+<h3>
+    ¿Está seguro de eliminar este registro?</h3>
+<fieldset>
+    <legend>Cliente</legend>
+    <div class="display-label">@Html.LabelFor(model => model.Name)</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+    <div class="display-label">@Html.LabelFor(model => model.LastName)</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LastName)
+    </div>
+    <div class="display-label">@Html.LabelFor(model => model.PersonalId)</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PersonalId)
+    </div>
+    <div class="display-label">@Html.LabelFor(model => model.Phone)</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Phone)
+    </div>
+    <div class="display-label">@Html.LabelFor(model => model.Address)</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Address)
+    </div>
+    <div class="display-label">
+        Email</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Email)
+    </div>
+</fieldset>
+@using (Html.BeginForm())
+{
+    <p>
+        <input type="submit" value="Delete" />
+        |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

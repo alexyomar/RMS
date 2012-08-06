@@ -1,0 +1,154 @@
+﻿@model RMS.Models.Hotel
+@{
+    ViewBag.Title = "Crear Hotel";
+}
+<h2>
+    Crear Hotel</h2>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Hotel</legend>
+        <div class="editor-label">
+            @Html.Label("Nombre:")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+        <div class="editor-label">
+            @Html.Label("Descripcion:")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+        <div class="editor-label">
+            @Html.Label("Dirección:")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Address)
+            @Html.ValidationMessageFor(model => model.Address)
+        </div>
+        <div class="editor-label">
+            @Html.Label("Estado:")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("IdState", String.Empty)
+            @Html.ValidationMessageFor(model => model.IdState)
+        </div>
+        <div class="editor-label">
+            @Html.Label("Datos de Contacto:")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Contact)
+            @Html.ValidationMessageFor(model => model.Contact)
+        </div>
+        <div class="editor-label">
+            @Html.Label("Activo?")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Active)
+            @Html.ValidationMessageFor(model => model.Active)
+        </div>
+        <div class="editor-label">
+            @Html.Label("Pueden emitirse cotizaciones?")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CanSell)
+            @Html.ValidationMessageFor(model => model.CanSell)
+        </div>
+        @*
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TripAdvisor)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TripAdvisor)
+            @Html.ValidationMessageFor(model => model.TripAdvisor)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TripAdvisorEng)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TripAdvisorEng)
+            @Html.ValidationMessageFor(model => model.TripAdvisorEng)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Map)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Map)
+            @Html.ValidationMessageFor(model => model.Map)
+        </div>*@
+        <div class="editor-label">
+            @Html.Label("Núm. de Restaurantes:")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Restaurants)
+            @Html.ValidationMessageFor(model => model.Restaurants)
+        </div>
+        <div class="editor-label">
+            @Html.Label("Núm. de Piscinas:")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Pools)
+            @Html.ValidationMessageFor(model => model.Pools)
+        </div>
+        <div class="editor-label">
+            @Html.Label("Posee Playa:")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Beach)
+            @Html.ValidationMessageFor(model => model.Beach)
+        </div>
+        <div class="editor-label">
+            @Html.Label("Posee Estacionamiento:")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Parking)
+            @Html.ValidationMessageFor(model => model.Parking)
+        </div>
+        <div class="editor-label">
+            @Html.Label("Hora de Llegada:")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ArrivalHour)
+            @Html.ValidationMessageFor(model => model.ArrivalHour)
+        </div>
+        <div class="editor-label">
+            @Html.Label("Hora de Salida:")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DepartureHour)
+            @Html.ValidationMessageFor(model => model.DepartureHour)
+        </div>
+        <div class="editor-label">
+            @Html.Label("Otras Facilidades:")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Facilities)
+            @Html.ValidationMessageFor(model => model.Facilities)
+        </div>
+        <div class="editor-label">
+            @Html.Label("Salones:")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Lounges)
+            @Html.ValidationMessageFor(model => model.Lounges)
+        </div>
+        <p>
+            <input type="submit" value="Crear" />
+        </p>
+    </fieldset>
+}
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<script type="text/javascript">
+    $.cleditor.defaultOptions.width = 600;
+    $("textarea").cleditor();
+</script>

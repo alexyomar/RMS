@@ -1,0 +1,94 @@
+﻿@model RMS.Models.ReservationModel
+@{
+    ViewBag.Title = "Crear Reservación";
+    IEnumerable<RMS.Models.Customer> __customer = ViewBag.Customer as IEnumerable<RMS.Models.Customer>;
+}
+<h2>
+    Crear Reservación</h2>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Reservation</legend>
+        <div class="editor-label">
+            Cliente
+        </div>
+        <div class="editor-field">
+            <table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td valign="middle">
+                        <select name="Trip.IdCustomer" id="Trip_IdCustomer">
+                            <option></option>
+                            @foreach (var item in __customer)
+                            {
+                                <option value="@item.Id">@item.Name @item.LastName</option>    
+                            }
+                        </select>
+                    </td>
+                    <td valign="middle">
+                        &nbsp;&nbsp;&nbsp; <a href="@Url.Action("Create", "Customer", new { redirect = true })">
+                            Crear Nuevo</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="editor-label">
+            Fecha de Llegada
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Trip.Arrival, new { @class = "datepicker" })
+            @Html.ValidationMessageFor(model => model.Trip.Arrival)
+        </div>
+        <div class="editor-label">
+            Fecha de Salida
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Trip.Departure, new { @class = "datepicker" })
+            @Html.ValidationMessageFor(model => model.Trip.Departure)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Trip.IdReservationStatus, "ReservationStatu")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Trip.IdReservationStatus, (SelectList)ViewBag.ReservationStatus)
+            @Html.ValidationMessageFor(model => model.Trip.IdReservationStatus)
+        </div>
+        <div class="editor-label">
+            Seleccione un Hotel:
+        </div>
+        <div class="editor-field">
+            <select id="ddlhotel" name="hotel">
+                <option value="0"></option>
+                @foreach (RMS.Models.Hotel item in (IEnumerable<RMS.Models.Hotel>)ViewBag.Hotels)
+                {
+                    <option value="@item.Id">@item.Name</option>
+                }
+            </select>
+        </div>
+        <div class="editor-label">
+            Habitaciones Disponibles
+        </div>
+        <div class="editor-field" id="habitaciones">
+        </div>
+        <p>
+            <input type="submit" value="Crear" />
+        </p>
+    </fieldset>
+}
+<div>
+    @Html.ActionLink("Volver al Listado", "Index")
+</div>
+<script type="text/javascript">
+               $(function () {
+                $("#Trip_IdCustomer").ufd({ useUiCss: true, log: false });
+            });    
+    $(".datepicker").datepicker();
+    $("#ddlhotel").change(function () {
+        $("#habitaciones").html("<img src='@Url.Content("~/Content/img/103.gif")'></img>");
+        $.get("@Url.Action("PartialHabitaciones")", { IdHotel: $(this).val() }, function (data) {
+            $("#habitaciones").html(data);
+        });
+    });
+</script>

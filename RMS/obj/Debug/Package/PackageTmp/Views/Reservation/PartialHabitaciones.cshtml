@@ -1,0 +1,65 @@
+﻿@{
+    int counter = 0;
+    bool __infantes = (bool)ViewBag.ShowInfantes;
+    IQueryable<RMS.Models.Room> __room = ViewBag.Room as IQueryable<RMS.Models.Room>;
+}
+<table border="0" cellpadding="10" cellspacing="6" class="table">
+    <tr>
+        <th>
+            Tipo de Habitación
+        </th>
+        <th>
+            Ocupación
+        </th>
+    </tr>
+    @if (__room.ToList().Count() > 0)
+    {
+        foreach (RMS.Models.Room item in __room)
+        {
+  
+        <tr>
+            <td>
+                <input type="checkbox" id="@item.Id" name="Rooms[@counter].IdRoom" value="@item.Id"  />
+                @item.Name
+            </td>
+            <td>
+                Adultos:&nbsp;
+                <select name="Rooms[@counter].Adultos">
+                    @for (int i = 1; i <= item.Capacity; i++)
+                    {
+                        <option value="@i">@i</option>    
+                    }
+                </select>
+            </td>
+            @if (__infantes)
+            {
+                <td>
+                    <span>Infantes:</span>
+                    <select name="Rooms[@counter].Infantes">
+                        @for (int j = 0; j <= 3; j++)
+                        {
+                            <option value="@j">@j</option>    
+                        }
+                    </select>
+                </td>
+            }
+            else
+            { 
+                <input type="hidden" name="Rooms[@counter].Infantes" value="0" />
+            }
+            <span style="display: none">
+                @(counter = counter + 1)
+            </span>
+        </tr>
+     
+        }
+    }
+    else
+    { 
+        <tr>
+            <td colspan="2">
+                No hay habitaciones para el hotel seleccionado.
+            </td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,28 @@
+﻿@model RMS.Models.Period
+@{
+    ViewBag.Title = "Detalles de la Temporada";
+}
+<h2>
+    Detalles de la Temporada Alta (@Model.Hotel.Name)</h2>
+<fieldset>
+    <legend>Temporadas Altas</legend>
+    <div class="display-label">
+        Nombre</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+    <div class="display-label">
+        Fecha de Inicio</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BeginDay)/@Html.DisplayFor(model => model.BeginMonth)
+    </div>
+    <div class="display-label">
+        EndDay</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EndDay)/@Html.DisplayFor(model => model.EndMonth)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Volver a la Lista", "Index", new { IdHotel = Model.IdHotel })
+</p>

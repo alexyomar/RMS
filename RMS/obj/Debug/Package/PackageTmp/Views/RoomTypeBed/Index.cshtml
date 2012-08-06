@@ -1,0 +1,41 @@
+﻿@model IEnumerable<RMS.Models.RoomTypeBed>
+@{
+    ViewBag.Title = "Tipos de Ocupación";
+}
+<h2>
+    Tipos de Ocupación</h2>
+<p>
+    @Html.ActionLink("Crear Nuevo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Tipo de Habitación
+        </th>
+        <th>
+            Tipo de Cama
+        </th>
+        <th>
+            Cantidad
+        </th>
+        <th>
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoomType.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoomBed.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.ActionLink("Eliminar", "Delete", new { IdRoomBed = item.IdRoomBed, IdRoomType = item.IdRoomType })
+            </td>
+        </tr>
+    }
+</table>

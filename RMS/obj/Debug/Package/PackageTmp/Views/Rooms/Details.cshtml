@@ -1,0 +1,78 @@
+﻿@model RMS.Models.Room
+@{
+    ViewBag.Title = "Details";
+}
+<h2>
+    Detalles de la habitación en @Model.Hotel.Name</h2>
+<fieldset>
+    <legend>Habitación</legend>
+    <div class="display-label">@Html.LabelFor(model => model.Name)</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+    <div class="display-label">@Html.LabelFor(model => model.Description)</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+    <div class="display-label">@Html.LabelFor(model => model.Active)</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Active)
+    </div>
+    <div class="display-label">@Html.LabelFor(model => model.Capacity)</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Capacity)
+    </div>
+    <div class="display-label">
+        @Html.Label("Precio por Noche Temporada Baja (RACK)")
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LowSeasonRack)
+    </div>
+    <div class="display-label">
+        @Html.Label("Precio por Noche Temporada Alta (RACK)")
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.HighSeasonRack)
+    </div>
+    <div class="display-label">@Html.LabelFor(model => model.LowSeasonPrice)</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LowSeasonPrice)
+    </div>
+    <div class="display-label">@Html.LabelFor(model => model.HighSeasonPrice)</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.HighSeasonPrice)
+    </div>
+    <div class="display-label">@Html.LabelFor(model => model.Discount1)</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Discount1)
+    </div>
+    <div class="display-label">@Html.LabelFor(model => model.Discount2)</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Discount2)
+    </div>
+    <div class="display-label">@Html.LabelFor(model => model.Discount3)</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Discount3)
+    </div>
+    <div class="display-label">
+        @Html.Label("% Ganancia Administración")
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PercentAdmin)
+    </div>
+    <div class="display-label">
+        @Html.Label("% Comisión Agente")
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PercentAgent)
+    </div>
+    <div class="display-label">
+        Tipo de Habitación</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RoomType.Name)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Volver al listado", "Index", new { IdHotel = Model.IdHotel })
+</p>
