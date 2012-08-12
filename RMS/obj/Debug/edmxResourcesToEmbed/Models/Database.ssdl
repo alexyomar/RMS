@@ -16,15 +16,14 @@
     <EntitySet Name="Hotel" EntityType="RegionalModel.Store.Hotel" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="PaymentMethod" EntityType="RegionalModel.Store.PaymentMethod" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Period" EntityType="RegionalModel.Store.Period" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Promotion" EntityType="RegionalModel.Store.Promotion" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Reservation" EntityType="RegionalModel.Store.Reservation" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ReservationRoom" EntityType="RegionalModel.Store.ReservationRoom" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ReservationsBuyed" EntityType="RegionalModel.Store.ReservationsBuyed" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ReservationStatus" EntityType="RegionalModel.Store.ReservationStatus" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Room" EntityType="RegionalModel.Store.Room" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="RoomBed" EntityType="RegionalModel.Store.RoomBed" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="RoomType" EntityType="RegionalModel.Store.RoomType" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="RoomTypeBed" EntityType="RegionalModel.Store.RoomTypeBed" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RoomOccupationBed" EntityType="RegionalModel.Store.RoomOccupationBed" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RoomOcupation" EntityType="RegionalModel.Store.RoomOcupation" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Service" EntityType="RegionalModel.Store.Service" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="State" EntityType="RegionalModel.Store.State" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="sysdiagrams" EntityType="RegionalModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
@@ -171,16 +170,12 @@
       <End Role="State" EntitySet="State" />
       <End Role="Hotel" EntitySet="Hotel" />
     </AssociationSet>
-    <AssociationSet Name="FK_Promotion_Room" Association="RegionalModel.Store.FK_Promotion_Room">
-      <End Role="Room" EntitySet="Room" />
-      <End Role="Promotion" EntitySet="Promotion" />
-    </AssociationSet>
     <AssociationSet Name="FK_ReservationRoom_Reservation" Association="RegionalModel.Store.FK_ReservationRoom_Reservation">
       <End Role="Reservation" EntitySet="Reservation" />
       <End Role="ReservationRoom" EntitySet="ReservationRoom" />
     </AssociationSet>
     <AssociationSet Name="FK_ReservationRoom_Room" Association="RegionalModel.Store.FK_ReservationRoom_Room">
-      <End Role="Room" EntitySet="Room" />
+      <End Role="RoomOcupation" EntitySet="RoomOcupation" />
       <End Role="ReservationRoom" EntitySet="ReservationRoom" />
     </AssociationSet>
     <AssociationSet Name="FK_Reservations_Customers" Association="RegionalModel.Store.FK_Reservations_Customers">
@@ -199,9 +194,13 @@
       <End Role="Reservation" EntitySet="Reservation" />
       <End Role="ReservationsBuyed" EntitySet="ReservationsBuyed" />
     </AssociationSet>
-    <AssociationSet Name="FK_Room_RoomType" Association="RegionalModel.Store.FK_Room_RoomType">
-      <End Role="RoomType" EntitySet="RoomType" />
+    <AssociationSet Name="FK_RoomOccupationBed_Room" Association="RegionalModel.Store.FK_RoomOccupationBed_Room">
       <End Role="Room" EntitySet="Room" />
+      <End Role="RoomOccupationBed" EntitySet="RoomOccupationBed" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoomOcupation_Room" Association="RegionalModel.Store.FK_RoomOcupation_Room">
+      <End Role="Room" EntitySet="Room" />
+      <End Role="RoomOcupation" EntitySet="RoomOcupation" />
     </AssociationSet>
     <AssociationSet Name="FK_Rooms_Posadas" Association="RegionalModel.Store.FK_Rooms_Posadas">
       <End Role="Hotel" EntitySet="Hotel" />
@@ -209,11 +208,7 @@
     </AssociationSet>
     <AssociationSet Name="FK_RoomTypeBed_RoomBed" Association="RegionalModel.Store.FK_RoomTypeBed_RoomBed">
       <End Role="RoomBed" EntitySet="RoomBed" />
-      <End Role="RoomTypeBed" EntitySet="RoomTypeBed" />
-    </AssociationSet>
-    <AssociationSet Name="FK_RoomTypeBed_RoomType" Association="RegionalModel.Store.FK_RoomTypeBed_RoomType">
-      <End Role="RoomType" EntitySet="RoomType" />
-      <End Role="RoomTypeBed" EntitySet="RoomTypeBed" />
+      <End Role="RoomOccupationBed" EntitySet="RoomOccupationBed" />
     </AssociationSet>
     <AssociationSet Name="FK_Tours_Posadas" Association="RegionalModel.Store.FK_Tours_Posadas">
       <End Role="Hotel" EntitySet="Hotel" />
@@ -407,25 +402,6 @@
     <Property Name="BeginMonth" Type="int" Nullable="false" />
     <Property Name="EndMonth" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="Promotion">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="IdRoom" Type="int" Nullable="false" />
-    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="LowSeasonPrice" Type="money" Nullable="false" />
-    <Property Name="HighSeasonPrice" Type="money" Nullable="false" />
-    <Property Name="DateStart" Type="datetime" Nullable="false" />
-    <Property Name="DateEnd" Type="datetime" Nullable="false" />
-    <Property Name="Active" Type="bit" Nullable="false" />
-    <Property Name="MinAdults" Type="int" Nullable="false" />
-    <Property Name="MinDays" Type="int" Nullable="false" />
-    <Property Name="LowSeasonRack" Type="money" Nullable="false" />
-    <Property Name="HighSeasonRack" Type="money" Nullable="false" />
-    <Property Name="PercentAgent" Type="money" Nullable="false" />
-    <Property Name="PercentAdmin" Type="money" Nullable="false" />
-  </EntityType>
   <EntityType Name="Reservation">
     <Key>
       <PropertyRef Name="Id" />
@@ -439,13 +415,16 @@
     <Property Name="Childrens" Type="int" Nullable="false" />
     <Property Name="Price" Type="money" Nullable="false" />
     <Property Name="IdReservationStatus" Type="int" Nullable="false" />
+    <Property Name="Discount" Type="int" Nullable="false" />
+    <Property Name="PercentAdmin" Type="int" Nullable="false" />
+    <Property Name="PercentAgent" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="ReservationRoom">
     <Key>
-      <PropertyRef Name="IdRoom" />
+      <PropertyRef Name="IdRoomOcupation" />
       <PropertyRef Name="IdReservation" />
     </Key>
-    <Property Name="IdRoom" Type="int" Nullable="false" />
+    <Property Name="IdRoomOcupation" Type="int" Nullable="false" />
     <Property Name="IdReservation" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="ReservationsBuyed">
@@ -474,19 +453,7 @@
     <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
     <Property Name="IdHotel" Type="int" Nullable="false" />
-    <Property Name="IdRoomType" Type="int" Nullable="false" />
     <Property Name="Active" Type="bit" Nullable="false" />
-    <Property Name="Capacity" Type="int" Nullable="false" />
-    <Property Name="LowSeasonPrice" Type="money" Nullable="false" />
-    <Property Name="HighSeasonPrice" Type="money" Nullable="false" />
-    <Property Name="LowSeasonRack" Type="money" Nullable="false" />
-    <Property Name="HighSeasonRack" Type="money" Nullable="false" />
-    <Property Name="Discount1" Type="money" />
-    <Property Name="Discount2" Type="money" />
-    <Property Name="Discount3" Type="money" />
-    <Property Name="Discount4" Type="money" />
-    <Property Name="PercentAgent" Type="money" Nullable="false" />
-    <Property Name="PercentAdmin" Type="money" Nullable="false" />
   </EntityType>
   <EntityType Name="RoomBed">
     <Key>
@@ -495,21 +462,33 @@
     <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
   </EntityType>
-  <EntityType Name="RoomType">
+  <EntityType Name="RoomOccupationBed">
+    <Key>
+      <PropertyRef Name="IdRoom" />
+      <PropertyRef Name="IdRoomBed" />
+    </Key>
+    <Property Name="IdRoom" Type="int" Nullable="false" />
+    <Property Name="IdRoomBed" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RoomOcupation">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
-  </EntityType>
-  <EntityType Name="RoomTypeBed">
-    <Key>
-      <PropertyRef Name="IdRoomType" />
-      <PropertyRef Name="IdRoomBed" />
-    </Key>
-    <Property Name="IdRoomType" Type="int" Nullable="false" />
-    <Property Name="IdRoomBed" Type="int" Nullable="false" />
-    <Property Name="Quantity" Type="int" Nullable="false" />
+    <Property Name="IdRoom" Type="int" Nullable="false" />
+    <Property Name="Capacity" Type="int" Nullable="false" />
+    <Property Name="PriceRack" Type="money" Nullable="false" />
+    <Property Name="Price" Type="money" Nullable="false" />
+    <Property Name="DateStart" Type="datetime" Nullable="false" />
+    <Property Name="DateEnd" Type="datetime" Nullable="false" />
+    <Property Name="Discount1" Type="int" Nullable="false" />
+    <Property Name="Discount2" Type="int" Nullable="false" />
+    <Property Name="Discount3" Type="int" Nullable="false" />
+    <Property Name="PercentAgent" Type="int" Nullable="false" />
+    <Property Name="PercentAdmin" Type="int" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Service">
     <Key>
@@ -858,18 +837,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Promotion_Room">
-    <End Role="Room" Type="RegionalModel.Store.Room" Multiplicity="1" />
-    <End Role="Promotion" Type="RegionalModel.Store.Promotion" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Room">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Promotion">
-        <PropertyRef Name="IdRoom" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_ReservationRoom_Reservation">
     <End Role="Reservation" Type="RegionalModel.Store.Reservation" Multiplicity="1" />
     <End Role="ReservationRoom" Type="RegionalModel.Store.ReservationRoom" Multiplicity="*" />
@@ -883,14 +850,14 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_ReservationRoom_Room">
-    <End Role="Room" Type="RegionalModel.Store.Room" Multiplicity="1" />
+    <End Role="RoomOcupation" Type="RegionalModel.Store.RoomOcupation" Multiplicity="1" />
     <End Role="ReservationRoom" Type="RegionalModel.Store.ReservationRoom" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Room">
+      <Principal Role="RoomOcupation">
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="ReservationRoom">
-        <PropertyRef Name="IdRoom" />
+        <PropertyRef Name="IdRoomOcupation" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -950,15 +917,27 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Room_RoomType">
-    <End Role="RoomType" Type="RegionalModel.Store.RoomType" Multiplicity="1" />
-    <End Role="Room" Type="RegionalModel.Store.Room" Multiplicity="*" />
+  <Association Name="FK_RoomOccupationBed_Room">
+    <End Role="Room" Type="RegionalModel.Store.Room" Multiplicity="1" />
+    <End Role="RoomOccupationBed" Type="RegionalModel.Store.RoomOccupationBed" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="RoomType">
+      <Principal Role="Room">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Room">
-        <PropertyRef Name="IdRoomType" />
+      <Dependent Role="RoomOccupationBed">
+        <PropertyRef Name="IdRoom" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoomOcupation_Room">
+    <End Role="Room" Type="RegionalModel.Store.Room" Multiplicity="1" />
+    <End Role="RoomOcupation" Type="RegionalModel.Store.RoomOcupation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RoomOcupation">
+        <PropertyRef Name="IdRoom" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -978,25 +957,13 @@
   </Association>
   <Association Name="FK_RoomTypeBed_RoomBed">
     <End Role="RoomBed" Type="RegionalModel.Store.RoomBed" Multiplicity="1" />
-    <End Role="RoomTypeBed" Type="RegionalModel.Store.RoomTypeBed" Multiplicity="*" />
+    <End Role="RoomOccupationBed" Type="RegionalModel.Store.RoomOccupationBed" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="RoomBed">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="RoomTypeBed">
+      <Dependent Role="RoomOccupationBed">
         <PropertyRef Name="IdRoomBed" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_RoomTypeBed_RoomType">
-    <End Role="RoomType" Type="RegionalModel.Store.RoomType" Multiplicity="1" />
-    <End Role="RoomTypeBed" Type="RegionalModel.Store.RoomTypeBed" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="RoomType">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="RoomTypeBed">
-        <PropertyRef Name="IdRoomType" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1345,4 +1312,35 @@
     <Parameter Name="ExceptionType" Type="nvarchar" Mode="In" />
     <Parameter Name="Details" Type="ntext" Mode="In" />
   </Function>
+  <Function Name="fn_diagramobjects" ReturnType="int" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
 </Schema>

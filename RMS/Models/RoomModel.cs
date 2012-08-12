@@ -5,10 +5,10 @@ using System.Web.Mvc;
 
 namespace RMS.Models
 {
-    [MetadataType(typeof(RoomModel))]
-    public partial class Room
-    {
-    }
+    //[MetadataType(typeof(RoomModel))]
+    //public partial class Room
+    //{
+    //}
 
     public class RoomModel
     {

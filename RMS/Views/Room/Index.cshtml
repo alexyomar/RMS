@@ -1,0 +1,73 @@
+﻿@model IEnumerable<RMS.Models.Room>
+@{
+    ViewBag.Title = "Habitaciones";
+    RMS.Models.Hotel __hotel = ViewBag.Hotel;
+}
+<h2>
+    Listado de Habitaciones: @__hotel.Name</h2>
+<p>
+    @Html.ActionLink("Crear nueva", "Create", new { id = __hotel.Id })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Descripción
+        </th>
+        <th>
+            Camas
+        </th>
+        <th>
+            Tarifas
+        </th>
+        <th>
+            Activo
+        </th>
+        <th>
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @if (item.RoomOccupationBed.Count < 1)
+                { 
+                    <span class="red">SIN ASIGNAR</span>
+                }
+                @foreach (var bed in item.RoomOccupationBed)
+                {
+                    @bed.Quantity <span>&nbsp;</span>@bed.RoomBed.Name<br /> 
+                }
+            </td>
+            <td>
+                @if (item.RoomOcupation.Count < 1)
+                { 
+                    <span class="red">SIN ASIGNAR</span>
+                }
+                else
+                {
+                    @item.RoomOcupation.Count <span>cargadas</span><br /> 
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Active)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })|
+                @Html.ActionLink("Tarifas", "Index", "RoomRate", new { id = item.Id }, null)|
+                @Html.ActionLink("Camas", "Index", "RoomAccomodation", new { id = item.Id }, null)
+            </td>
+        </tr>
+    }
+</table>
+<p>
+    @Html.ActionLink("Volver a Hoteles", "Index", "Hotel", new { Id = __hotel.Id }, null)</p>

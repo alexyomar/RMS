@@ -1,0 +1,39 @@
+﻿@model RMS.Models.Room
+@{
+    ViewBag.Title = "Eliminar";
+}
+<h2>
+    Eliminar</h2>
+<h3>
+    Está seguro de eliminar esta habitación?</h3>
+<fieldset>
+    <legend>Habitación</legend>
+    <div class="display-label">
+        Hotel</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Hotel.Name)
+    </div>
+    <div class="display-label">
+        Nombre</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+    <div class="display-label">
+        Descripción</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+    <div class="display-label">
+        Activo</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Active)
+    </div>
+</fieldset>
+@using (Html.BeginForm())
+{
+    <p>
+        <input type="submit" value="Delete" />
+        |
+        @Html.ActionLink("Volver al listado", "Index", new { Id = Model.IdHotel })
+    </p>
+}

@@ -1,0 +1,80 @@
+﻿@model RMS.Models.RoomOcupation
+
+@{
+    ViewBag.Title = "Eliminar";
+}
+
+<h2>
+    Eliminar Tarifa para la Habitación @Model.Room.Name</h2>
+<h3>@Model.Room.Hotel.Name</h3>
+
+<h3>¿Está seguro de borrar la tarifa @Model.Name?</h3>
+<fieldset>
+    <legend>Tarifa</legend>
+
+    <div class="display-label">Nombre</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">Capacidad</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Capacity)
+    </div>
+
+    <div class="display-label">Tarifa Rack PPN Hotel</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PriceRack)
+    </div>
+
+        <div class="display-label">Tarifa Neta PPN</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Price)
+    </div>
+
+    <div class="display-label">Inicia</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DateStart)
+    </div>
+
+    <div class="display-label">Termina</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DateEnd)
+    </div>
+
+    <div class="display-label">% Descuento 2N</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Discount1)
+    </div>
+
+    <div class="display-label">% Descuento 4N</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Discount2)
+    </div>
+
+    <div class="display-label">% Descuento 7N</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Discount3)
+    </div>
+
+    <div class="display-label"> % Agente</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PercentAgent)
+    </div>
+
+    <div class="display-label">% Gastos de Administración</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PercentAdmin)
+    </div>
+
+    <div class="display-label">Activo</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Active)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Volver al listado", "Index", new { Id = Model.IdRoom })
+    </p>
+}
