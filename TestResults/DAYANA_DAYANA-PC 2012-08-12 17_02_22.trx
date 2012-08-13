@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="8e53e46a-a432-4bbd-aba7-301299d4d153" name="DAYANA@DAYANA-PC 2012-08-12 17:02:22" runUser="DAYANA-PC\DAYANA" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Default Test Settings" id="c91c70a8-ca2d-4a7b-8c01-5eec4698c312">
+    <Deployment runDeploymentRoot="DAYANA_DAYANA-PC 2012-08-12 17_02_22">
+      <DeploymentItem filename="C:\Users\DAYANA\Documents\GitHub\RMS\RMS\bin\RMS.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2012-08-12T17:02:22.4136636-04:30" queuing="2012-08-12T17:02:25.2748273-04:30" start="2012-08-12T17:02:25.6028460-04:30" finish="2012-08-12T17:02:38.8846057-04:30" />
+  <ResultSummary outcome="Failed">
+    <Counters total="2" executed="2" error="0" failed="2" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="Index" storage="c:\users\dayana\documents\github\rms\rms.tests\bin\debug\rms.tests.dll" id="0f29bc89-5ccb-9da6-16dc-9aa63632babf">
+      <Execution id="f2636a80-4ea6-4cc8-86d7-2ddb861e6506" />
+      <TestMethod codeBase="C:/Users/DAYANA/Documents/GitHub/RMS/RMS.Tests/bin/Debug/RMS.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="RMS.Tests.Controllers.HomeControllerTest, RMS.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Index" />
+    </UnitTest>
+    <UnitTest name="About" storage="c:\users\dayana\documents\github\rms\rms.tests\bin\debug\rms.tests.dll" id="5df2b80f-67b0-8dbf-5efd-188d75ef7be3">
+      <Execution id="4af1b52b-8ecf-4788-a018-3fff82424565" />
+      <TestMethod codeBase="C:/Users/DAYANA/Documents/GitHub/RMS/RMS.Tests/bin/Debug/RMS.Tests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="RMS.Tests.Controllers.HomeControllerTest, RMS.Tests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="About" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="0f29bc89-5ccb-9da6-16dc-9aa63632babf" executionId="f2636a80-4ea6-4cc8-86d7-2ddb861e6506" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5df2b80f-67b0-8dbf-5efd-188d75ef7be3" executionId="4af1b52b-8ecf-4788-a018-3fff82424565" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="f2636a80-4ea6-4cc8-86d7-2ddb861e6506" testId="0f29bc89-5ccb-9da6-16dc-9aa63632babf" testName="Index" computerName="DAYANA-PC" duration="00:00:09.6014235" startTime="2012-08-12T17:02:25.8848621-04:30" endTime="2012-08-12T17:02:37.0084984-04:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f2636a80-4ea6-4cc8-86d7-2ddb861e6506">
+      <Output>
+        <ErrorInfo>
+          <Message>Test method RMS.Tests.Controllers.HomeControllerTest.Index threw exception: 
+System.ArgumentException: La conexión con nombre especificada no se encuentra en la configuración, no es apropiada para ser utilizada con el proveedor de EntityClient, o no es válida.</Message>
+          <StackTrace>    en System.Data.EntityClient.EntityConnection.ChangeConnectionString(String newConnectionString)
+   en System.Data.EntityClient.EntityConnection..ctor(String connectionString)
+   en System.Data.Objects.ObjectContext.CreateEntityConnection(String connectionString)
+   en System.Data.Objects.ObjectContext..ctor(String connectionString, String defaultContainerName)
+   en RMS.Models.RegionalEntities..ctor() en C:\Users\DAYANA\Documents\GitHub\RMS\RMS\Models\Database.Designer.cs:línea 60
+   en RMS.Controllers.HomeController..ctor() en C:\Users\DAYANA\Documents\GitHub\RMS\RMS\Controllers\HomeController.cs:línea 13
+   en RMS.Tests.Controllers.HomeControllerTest.Index() en C:\Users\DAYANA\Documents\GitHub\RMS\RMS.Tests\Controllers\HomeControllerTest.cs:línea 19
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="4af1b52b-8ecf-4788-a018-3fff82424565" testId="5df2b80f-67b0-8dbf-5efd-188d75ef7be3" testName="About" computerName="DAYANA-PC" duration="00:00:01.5619759" startTime="2012-08-12T17:02:37.0395002-04:30" endTime="2012-08-12T17:02:38.6115901-04:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4af1b52b-8ecf-4788-a018-3fff82424565">
+      <Output>
+        <ErrorInfo>
+          <Message>Test method RMS.Tests.Controllers.HomeControllerTest.About threw exception: 
+System.ArgumentException: La conexión con nombre especificada no se encuentra en la configuración, no es apropiada para ser utilizada con el proveedor de EntityClient, o no es válida.</Message>
+          <StackTrace>    en System.Data.EntityClient.EntityConnection.ChangeConnectionString(String newConnectionString)
+   en System.Data.EntityClient.EntityConnection..ctor(String connectionString)
+   en System.Data.Objects.ObjectContext.CreateEntityConnection(String connectionString)
+   en System.Data.Objects.ObjectContext..ctor(String connectionString, String defaultContainerName)
+   en RMS.Models.RegionalEntities..ctor() en C:\Users\DAYANA\Documents\GitHub\RMS\RMS\Models\Database.Designer.cs:línea 60
+   en RMS.Controllers.HomeController..ctor() en C:\Users\DAYANA\Documents\GitHub\RMS\RMS\Controllers\HomeController.cs:línea 13
+   en RMS.Tests.Controllers.HomeControllerTest.About() en C:\Users\DAYANA\Documents\GitHub\RMS\RMS.Tests\Controllers\HomeControllerTest.cs:línea 32
+</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+  </Results>
+</TestRun>

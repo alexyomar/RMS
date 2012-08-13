@@ -40,6 +40,7 @@ namespace RMS.Controllers
             if (ModelState.IsValid)
             {
                 decimal __total = new decimal();
+                decimal __totalrack = new decimal();
                 foreach (var item in reservation.Rooms)
                 {
 
@@ -84,6 +85,8 @@ namespace RMS.Controllers
                                     __facturabruta = __facturabruta + (__facturabruta * __admon);
                                     //adultos
                                     __facturabruta = __facturabruta * item.Adultos;
+                                    //rack
+                                    __totalrack = (__roomfare.Price * item.Adultos) + __totalrack;
 
                                     __total = __total + __facturabruta;
 
@@ -110,6 +113,8 @@ namespace RMS.Controllers
                                             __facturabruta = __facturabruta + (__facturabruta * __admon);
                                             //adultos
                                             __facturabruta = __facturabruta * item.Infantes;
+                                            //rack
+                                            __totalrack = (__roomfare.Price * item.Infantes) + __totalrack;
 
                                             __total = __total + __facturabruta;
                                         }
@@ -122,7 +127,9 @@ namespace RMS.Controllers
                                         }
                                     }
 
-
+                                    reservation.Trip.Discount = Convert.ToInt32(__discount * 100);
+                                    reservation.Trip.PercentAdmin = __roomfare.PercentAdmin;
+                                    reservation.Trip.PercentAgent = __roomfare.PercentAgent;
 
                                     reservation.Trip.RoomOcupation.Add(__roomfare);
 
@@ -150,6 +157,7 @@ namespace RMS.Controllers
 
                 }
 
+                reservation.Trip.PriceRack = __totalrack;
                 reservation.Trip.Price = __total;
                 reservation.Trip.ReservationDate = DateTime.Now;
                 db.Reservation.AddObject(reservation.Trip);

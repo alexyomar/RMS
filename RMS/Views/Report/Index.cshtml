@@ -7,30 +7,71 @@
 <form action="@Url.Action("Index")" method="post">
 <table border="0" cellpadding="0" cellspacing="0">
     <tr>
-        <td>
+        <td width="150px">
             Hotel:
         </td>
         <td>
-            <select name="hotel">
+            <select name="hotel" id="hotel" style="width: 300px">
+                <option value="0"></option>
                 @foreach (var item in Model)
                 {
                     <option value="@item.Id">@item.Name</option> 
                 }
             </select>
         </td>
+    </tr>
+    <tr>
         <td>
-            Tipo:
+            Habitación:
         </td>
         <td>
-            <select name="temporada">
-                <option value="1">Temp. Alta</option>
-                <option value="2">Temp. Baja</option>
-                <option value="3">Promociones</option>
+            <select name="room" id="room" style="width: 300px">
+                <option></option>
             </select>
         </td>
+    </tr>
+    <tr>
         <td>
-            <input type="submit" value="Ver" />
+            Fechas:
+        </td>
+        <td>
+          <select name="fare" id="fare" style="width: 300px">
+                <option></option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <br />
+            <input type="submit" value="Ver reporte" />
         </td>
     </tr>
 </table>
 </form>
+<script type="text/javascript">
+    $(".datepicker").datepicker();
+
+    $('#hotel').change(function () {
+        var url = '@Url.Action("GetRoom", "Report")' + '/' + $("#hotel").val();
+        $.get(url, function (data) {
+            $('#room').empty();
+            $.each(data, function () {
+                $('#room')
+                    .append(new Option(this.Text, this.Value, true, true));
+            });
+        });
+        $('#room').change();
+    });
+
+    $('#room').change(function () {
+        var url = '@Url.Action("GetRoomRate", "Report")' + '/' + $("#room").val();
+        $.get(url, function (data) {
+            $('#fare').empty();
+            $.each(data, function () {
+                $('#fare')
+                    .append(new Option(this.Text, this.Value, true, true));
+            });
+        });
+    });
+
+</script>

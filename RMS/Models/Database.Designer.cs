@@ -4948,7 +4948,8 @@ namespace RMS.Models
         /// <param name="discount">Initial value of the Discount property.</param>
         /// <param name="percentAdmin">Initial value of the PercentAdmin property.</param>
         /// <param name="percentAgent">Initial value of the PercentAgent property.</param>
-        public static Reservation CreateReservation(global::System.Int32 id, global::System.Int32 idCustomer, global::System.DateTime arrival, global::System.DateTime departure, global::System.DateTime reservationDate, global::System.Int32 adults, global::System.Int32 childrens, global::System.Decimal price, global::System.Int32 idReservationStatus, global::System.Int32 discount, global::System.Int32 percentAdmin, global::System.Int32 percentAgent)
+        /// <param name="priceRack">Initial value of the PriceRack property.</param>
+        public static Reservation CreateReservation(global::System.Int32 id, global::System.Int32 idCustomer, global::System.DateTime arrival, global::System.DateTime departure, global::System.DateTime reservationDate, global::System.Int32 adults, global::System.Int32 childrens, global::System.Decimal price, global::System.Int32 idReservationStatus, global::System.Int32 discount, global::System.Int32 percentAdmin, global::System.Int32 percentAgent, global::System.Decimal priceRack)
         {
             Reservation reservation = new Reservation();
             reservation.Id = id;
@@ -4963,6 +4964,7 @@ namespace RMS.Models
             reservation.Discount = discount;
             reservation.PercentAdmin = percentAdmin;
             reservation.PercentAgent = percentAgent;
+            reservation.PriceRack = priceRack;
             return reservation;
         }
 
@@ -5259,6 +5261,30 @@ namespace RMS.Models
         private global::System.Int32 _PercentAgent;
         partial void OnPercentAgentChanging(global::System.Int32 value);
         partial void OnPercentAgentChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal PriceRack
+        {
+            get
+            {
+                return _PriceRack;
+            }
+            set
+            {
+                OnPriceRackChanging(value);
+                ReportPropertyChanging("PriceRack");
+                _PriceRack = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PriceRack");
+                OnPriceRackChanged();
+            }
+        }
+        private global::System.Decimal _PriceRack;
+        partial void OnPriceRackChanging(global::System.Decimal value);
+        partial void OnPriceRackChanged();
 
         #endregion
     

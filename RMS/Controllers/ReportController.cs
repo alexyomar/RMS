@@ -20,28 +20,17 @@ namespace RMS.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(int hotel, int temporada)
+        public ActionResult Index(int fare)
         {
 
-            switch (temporada)
-            {
-                case 1:
-                    return RedirectToAction("RoomRateHigh", new { Id = hotel, vista = true });
-                    break;
-                case 2:
-                    return RedirectToAction("RoomRate", new { Id = hotel, vista = true });
-                    break;
-                case 3:
-                    return RedirectToAction("RoomRatePromotion", new { Id = hotel, vista = true });
-                    break;
-            }
-            return View();
+            return RedirectToAction("RoomRate", new { Id = fare, vista = true });
 
         }
 
         public ActionResult RoomRate(int Id, bool print)
         {
-            ViewData.Model = db.Room.Where(u => u.IdHotel.Equals(Id)).ToList();
+            var __example = db.RoomOcupation.SingleOrDefault(u => u.Id.Equals(Id));
+            ViewData.Model = db.RoomOcupation.Where(u => u.DateStart.Equals(__example.DateStart) && u.DateEnd.Equals(__example.DateEnd)).ToList();
             ViewBag.Export = !print;
             return View();
         }
@@ -62,6 +51,32 @@ namespace RMS.Controllers
             return View();
         }
 
+        public JsonResult GetRoom(int id)
+        {
+            var __habitaciones = db.Room.Where(model => model.IdHotel.Equals(id)).OrderBy(model => model.Name);
+            return Json(new SelectList(__habitaciones, "Id", "Name"), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetRoomRate(int id)
+        {
+            var __rates = from items in db.RoomOcupation
+                          where items.IdRoom.Equals(id)
+                          group items by new { items.DateStart, items.DateEnd }
+                              into g
+                              select g;
+
+
+
+
+            List<fares> __fares = new List<fares>();
+
+            foreach (var item in __rates)
+            {
+                __fares.Add(new fares() { Id = item.First().Id, Date = item.First().DateStart.ToShortDateString() + " - " + item.First().DateEnd.ToShortDateString() });
+            }
+
+            return Json(new SelectList(__fares, "Id", "Date"), JsonRequestBehavior.AllowGet);
+        }
 
         public ActionResult PrintableRoom(int hotel, int temporada)
         {
@@ -80,6 +95,14 @@ namespace RMS.Controllers
 
 
         }
+
+    }
+
+    public class fares
+    {
+
+        public int Id { get; set; }
+        public String Date { get; set; }
 
     }
 }

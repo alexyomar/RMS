@@ -196,6 +196,7 @@
     <EntitySetMapping Name="Reservation">
       <EntityTypeMapping TypeName="RegionalModel.Reservation">
         <MappingFragment StoreEntitySet="Reservation">
+          <ScalarProperty Name="PriceRack" ColumnName="PriceRack" />
           <ScalarProperty Name="PercentAgent" ColumnName="PercentAgent" />
           <ScalarProperty Name="PercentAdmin" ColumnName="PercentAdmin" />
           <ScalarProperty Name="Discount" ColumnName="Discount" />

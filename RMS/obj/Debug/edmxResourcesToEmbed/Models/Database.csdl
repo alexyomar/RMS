@@ -349,6 +349,7 @@
     <NavigationProperty Name="ReservationStatus" Relationship="RegionalModel.FK_Reservations_ReservationStatus" FromRole="Reservation" ToRole="ReservationStatus" />
     <NavigationProperty Name="ReservationsBuyed" Relationship="RegionalModel.FK_ReservationsBuyed_Reservations" FromRole="Reservation" ToRole="ReservationsBuyed" />
     <NavigationProperty Name="RoomOcupation" Relationship="RegionalModel.ReservationRoom" FromRole="Reservation" ToRole="RoomOcupation" />
+    <Property Type="Decimal" Name="PriceRack" Nullable="false" Precision="19" Scale="4" />
   </EntityType>
   <EntityType Name="ReservationsBuyed">
     <Key>

@@ -1,93 +1,99 @@
 ﻿@model IEnumerable<RMS.Models.Reservation>
-
 @{
     ViewBag.Title = "Index";
 }
-
-<h2>Index</h2>
-
+<h2>
+    Index</h2>
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table>
+<table class="table">
     <tr>
         <th>
-            Customer
+            ID
         </th>
         <th>
-            Arrival
+            Cliente
         </th>
         <th>
-            Departure
+            Fecha
         </th>
         <th>
-            ReservationDate
+            Tipo
         </th>
         <th>
-            Adults
+            Precio
         </th>
         <th>
-            Childrens
+            Margen +
         </th>
         <th>
-            Price
+            Información
         </th>
         <th>
-            ReservationStatus
+            Observaciones
         </th>
         <th>
-            Discount
         </th>
-        <th>
-            PercentAdmin
-        </th>
-        <th>
-            PercentAgent
-        </th>
-        <th></th>
     </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Customer.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Arrival)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Departure)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ReservationDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Adults)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Childrens)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ReservationStatus.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Discount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PercentAdmin)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PercentAgent)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
-
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.Name)&nbsp;@Html.DisplayFor(modelItem => item.Customer.LastName)
+            </td>
+            <td>
+                R: @Html.Label(item.ReservationDate.ToShortDateString())<br />
+                L: @Html.Label(item.Arrival.ToShortDateString())<br />
+                S: @Html.Label(item.Departure.ToShortDateString())
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReservationStatus.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @{
+        decimal __factura = item.Price;
+        decimal __vendedor = item.PercentAgent / 100;
+        decimal __margen = item.PriceRack;
+        __vendedor = __factura * __vendedor;
+        __factura = __factura - __vendedor;
+        __margen = __factura - __margen;
+        decimal __porcentaje = __margen / item.PriceRack;
+        __porcentaje = Math.Round(__porcentaje * 100, 2);
+                }
+                @__porcentaje %
+            </td>
+            <td>
+                Adultos: @Html.DisplayFor(modelItem => item.Adults)<br />
+                Niños: @Html.DisplayFor(modelItem => item.Childrens)
+            </td>
+            <td>
+                @if (item.Discount != 0)
+                { 
+                    <span>Desc: @item.Discount %</span><br />
+                }
+                @if (item.PercentAdmin != 0)
+                { 
+                    <span>Admon: @item.PercentAdmin % </span>
+                    <br />
+                }
+                @if (item.PercentAgent != 0)
+                { 
+                    <span>Agente: @item.PercentAgent % </span>
+                    <br />
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 </table>
