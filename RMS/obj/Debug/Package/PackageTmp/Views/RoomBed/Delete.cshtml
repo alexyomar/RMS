@@ -1,0 +1,23 @@
+﻿@model RMS.Models.RoomBed
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Eliminar</h2>
+
+<h3>Está seguro de borrar este tipo de cama?</h3>
+<fieldset>
+    <legend>Tipo de Cama</legend>
+
+    <div class="display-label">Nombre</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Volver al listado", "Index")
+    </p>
+}

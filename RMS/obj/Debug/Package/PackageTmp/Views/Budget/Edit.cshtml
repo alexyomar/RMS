@@ -1,0 +1,115 @@
+﻿@model RMS.Models.Reservation
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Reservation</legend>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IdCustomer, "Customer")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("IdCustomer", String.Empty)
+            @Html.ValidationMessageFor(model => model.IdCustomer)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Arrival)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Arrival)
+            @Html.ValidationMessageFor(model => model.Arrival)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Departure)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Departure)
+            @Html.ValidationMessageFor(model => model.Departure)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ReservationDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ReservationDate)
+            @Html.ValidationMessageFor(model => model.ReservationDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Adults)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Adults)
+            @Html.ValidationMessageFor(model => model.Adults)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Childrens)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Childrens)
+            @Html.ValidationMessageFor(model => model.Childrens)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Price)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Price)
+            @Html.ValidationMessageFor(model => model.Price)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IdReservationStatus, "ReservationStatus")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("IdReservationStatus", String.Empty)
+            @Html.ValidationMessageFor(model => model.IdReservationStatus)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Discount)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Discount)
+            @Html.ValidationMessageFor(model => model.Discount)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PercentAdmin)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PercentAdmin)
+            @Html.ValidationMessageFor(model => model.PercentAdmin)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PercentAgent)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PercentAgent)
+            @Html.ValidationMessageFor(model => model.PercentAgent)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

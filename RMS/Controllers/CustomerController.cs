@@ -69,7 +69,7 @@ namespace RMS.Controllers
                 db.SaveChanges();
 
 
-                return RedirectToAction("Create", "Reservation");
+                return RedirectToAction("Create", "Budget");
             }
 
             return View(customer);

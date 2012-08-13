@@ -22,3 +22,4 @@ C:\Users\DAYANA\Documents\GitHub\RMS\RMS.Tests\bin\Debug\RMS.pdb
 C:\Users\DAYANA\Documents\GitHub\RMS\RMS.Tests\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\DAYANA\Documents\GitHub\RMS\RMS.Tests\obj\Debug\RMS.Tests.dll
 C:\Users\DAYANA\Documents\GitHub\RMS\RMS.Tests\obj\Debug\RMS.Tests.pdb
+C:\Users\Alexyomar\Documents\GitHub\RMS\RMS.Tests\bin\Debug\itextsharp.dll

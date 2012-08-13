@@ -344,6 +344,7 @@
     <Content Include="Views\Budget\Edit.cshtml" />
     <Content Include="Views\Budget\Delete.cshtml" />
     <Content Include="Views\Budget\PartialHabitaciones.cshtml" />
+    <Content Include="Views\Budget\PrintableVersion.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

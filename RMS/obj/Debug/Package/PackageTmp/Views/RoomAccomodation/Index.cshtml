@@ -1,0 +1,37 @@
+﻿@model IEnumerable<RMS.Models.RoomOccupationBed>
+@{
+    RMS.Models.Room __room = ViewBag.Room;
+    ViewBag.Title = "Listado de Camas";
+}
+<h2>
+    Camas disponibles para @__room.Name</h2>
+<p>
+    @Html.ActionLink("Crear Nueva", "Create", new { Id = __room.Id })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Cantidad
+        </th>
+        <th>
+            Tipo
+        </th>
+        <th>
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoomBed.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Eliminar", "Delete", new { IdRoom = item.IdRoom, IdRoomBed = item.IdRoomBed })
+            </td>
+        </tr>
+    }
+</table>
+<p>@Html.ActionLink("Volver al Listado de Habitaciones", "Index", "Room", new { Id = __room.IdHotel }, null)</p>

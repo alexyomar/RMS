@@ -1,0 +1,30 @@
+﻿@model RMS.Models.RoomOccupationBed
+@{
+    ViewBag.Title = "Delete";
+}
+<h2>
+    Eliminar Asignación de Cama</h2>
+<h3>
+    ¿Está seguro de eliminar esta asignación?</h3>
+<fieldset>
+    <legend>Camas</legend>
+    @Html.Hidden("IdRoom", Model.IdRoom)
+    <div class="display-label">
+        Cantidad</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Quantity)
+    </div>
+    <div class="display-label">
+        Tipo</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RoomBed.Name)
+    </div>
+</fieldset>
+@using (Html.BeginForm())
+{
+    <p>
+        <input type="submit" value="Eliminar" />
+        |
+        @Html.ActionLink("Volver al listado", "Index", new { Id = Model.IdRoom })
+    </p>
+}

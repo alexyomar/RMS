@@ -1,0 +1,115 @@
+﻿@model RMS.Models.RoomOcupation
+@{
+    ViewBag.Title = "Editar";
+}
+<h2>
+    Crear Tarifa para la Habitación @Model.Room.Name</h2>
+<h3>@Model.Room.Hotel.Name</h3>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Tarifa</legend>
+        @Html.Hidden("IdRoom", Model.IdRoom)
+        <div class="editor-label">
+            Nombre
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+            <p>
+    * Recuerde, para crear una tarifa para niños, debe llamarla "Niño".</p>
+        </div>
+        <div class="editor-label">
+            Capacidad
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Capacity)
+            @Html.ValidationMessageFor(model => model.Capacity)
+        </div>
+        <div class="editor-label">
+            Tarifa Rack PPN Hotel
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PriceRack)
+            @Html.ValidationMessageFor(model => model.PriceRack)
+        </div>
+        <div class="editor-label">
+            Tarifa Neta PPN
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Price)
+            @Html.ValidationMessageFor(model => model.Price)
+        </div>
+        <div class="editor-label">
+            Inicia
+        </div>
+        <div class="editor-field">
+            @Html.TextBox("DateStart", Model.DateStart.ToShortDateString(), new { @class = "datepicker" })
+            @Html.ValidationMessageFor(model => model.DateStart)
+        </div>
+        <div class="editor-label">
+            Termina
+        </div>
+        <div class="editor-field">
+            @Html.TextBox("DateEnd", Model.DateEnd.ToShortDateString(), new { @class = "datepicker" })
+            @Html.ValidationMessageFor(model => model.DateEnd)
+        </div>
+        <div class="editor-label">
+            % Descuento 2N
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Discount1)
+            @Html.ValidationMessageFor(model => model.Discount1)
+        </div>
+        <div class="editor-label">
+            % Descuento 4N
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Discount2)
+            @Html.ValidationMessageFor(model => model.Discount2)
+        </div>
+        <div class="editor-label">
+            % Descuento 7N
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Discount3)
+            @Html.ValidationMessageFor(model => model.Discount3)
+        </div>
+        <div class="editor-label">
+            % Agente
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PercentAgent)
+            @Html.ValidationMessageFor(model => model.PercentAgent)
+        </div>
+        <div class="editor-label">
+            % Gastos de Administración
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PercentAdmin)
+            @Html.ValidationMessageFor(model => model.PercentAdmin)
+        </div>
+        <div class="editor-label">
+            Activo?
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Active)
+            @Html.ValidationMessageFor(model => model.Active)
+        </div>
+        <p>
+            <input type="submit" value="Crear" />
+        </p>
+    </fieldset>
+}
+<div>
+    @Html.ActionLink("Volver al listado", "Index", new { Id = Model.IdRoom })
+</div>
+<script type="text/javascript">
+    $(".datepicker").datepicker();
+</script>

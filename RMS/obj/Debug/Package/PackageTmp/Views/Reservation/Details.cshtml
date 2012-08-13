@@ -1,0 +1,77 @@
+﻿@model RMS.Models.Reservation
+@{
+    ViewBag.Title = "Detalles de la reservación";
+}
+
+<h2>
+    Detalles de la resevación</h2>
+<fieldset>
+    <legend>Reservación</legend>
+    <div class="display-label">
+        Cliente</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Customer.Name) @Html.DisplayFor(model => model.Customer.LastName)
+    </div>
+    <div class="display-label">
+        Llegada</div>
+    <div class="display-field">
+        @Html.Label(Model.Arrival.ToShortDateString())
+    </div>
+    <div class="display-label">
+        Salida</div>
+    <div class="display-field">
+        @Html.Label(Model.Departure.ToShortDateString())
+    </div>
+    <div class="display-label">
+        Fecha de la Reservación</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ReservationDate)
+    </div>
+    <div class="display-label">
+        Adultos</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Adults)
+    </div>
+    <div class="display-label">
+        Infantes</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Childrens)
+    </div>
+    <div class="display-label">
+        Precio Total</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Price)
+    </div>
+    <div class="display-label">
+        Habitaciones</div>
+    <div class="display-field">
+        <table border="0" cellpadding="0" cellspacing="0" class="table">
+            <tr>
+                <th>
+                    Hotel
+                </th>
+                <th>
+                    Habitación
+                </th>
+            </tr>
+            <tr>
+                @foreach (var item in Model.Rooms)
+                { 
+                    <td>@item.Hotel.Name
+                    </td>
+                    <td>@item.Name
+                    </td>
+                }
+            </tr>
+        </table>
+    </div>
+    <div class="display-label">
+        Estado</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ReservationStatu.Name)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Volver al listado", "Index")
+</p>

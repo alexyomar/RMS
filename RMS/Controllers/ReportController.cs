@@ -23,7 +23,7 @@ namespace RMS.Controllers
         public ActionResult Index(int fare)
         {
 
-            return RedirectToAction("RoomRate", new { Id = fare, vista = true });
+            return RedirectToAction("RoomRate", new { Id = fare, print = false });
 
         }
 
@@ -35,21 +35,6 @@ namespace RMS.Controllers
             return View();
         }
 
-        public ActionResult RoomRateHigh(int Id, bool print)
-        {
-            ViewData.Model = db.Room.Where(u => u.IdHotel.Equals(Id)).ToList();
-            ViewBag.Export = !print;
-            return View();
-        }
-
-        public ActionResult RoomRatePromotion(int Id, bool print)
-        {
-            ViewData.Model = db.Room.Where(u => u.IdHotel.Equals(Id)).ToList();
-
-            ViewBag.Export = !print;
-
-            return View();
-        }
 
         public JsonResult GetRoom(int id)
         {
@@ -78,12 +63,11 @@ namespace RMS.Controllers
             return Json(new SelectList(__fares, "Id", "Date"), JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult PrintableRoom(int hotel, int temporada)
+        public ActionResult PrintableRoom(int rate)
         {
-            ViewBag.Hotel = hotel;
-            ViewBag.Temporada = temporada;
 
-            ViewData.Model = db.Room.Where(u => u.IdHotel.Equals(hotel)).ToList();
+            var __example = db.RoomOcupation.SingleOrDefault(u => u.Id.Equals(rate));
+            ViewData.Model = db.RoomOcupation.Where(u => u.DateStart.Equals(__example.DateStart) && u.DateEnd.Equals(__example.DateEnd)).ToList();
 
             Response.ClearContent();
             Response.ClearHeaders();

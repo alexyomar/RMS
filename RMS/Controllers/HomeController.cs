@@ -21,5 +21,11 @@ namespace RMS.Controllers
             Membership.CreateUser("alexyomar", "a17302339", "alexyomar@gmail.com");
             return View();
         }
+
+        public ActionResult Database()
+        {
+            db.CreateDatabase();
+            return View();
+        }
     }
 }
