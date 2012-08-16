@@ -162,11 +162,11 @@
 
         __comisionh = __item.PriceRack - __item.Price;
         __comisionh = __comisionh / __item.PriceRack * 100;
-        __factura = __item.PriceRack - (__item.PriceRack * (__item.Discount2 / 100));
+        __factura = __item.PriceRack - (__item.PriceRack * ((decimal)__item.Discount2 / 100));
         __margenrm = ((__factura - __item.Price) / __factura) * 100;
-        __gadmon = __factura * (__item.PercentAdmin / 100);
+        __gadmon = __factura * ((decimal)__item.PercentAdmin / 100);
         __facturab = __factura + __gadmon;
-        __agente = __factura * (__item.PercentAgent / 100);
+        __agente = __factura * ((decimal)__item.PercentAgent / 100);
         __venta = __facturab - __agente;
         __margen = __venta - __item.Price;
         __pmargen = (__margen / __item.Price) * 100;
@@ -256,11 +256,11 @@
 
         __comisionh = __item.PriceRack - __item.Price;
         __comisionh = __comisionh / __item.PriceRack * 100;
-        __factura = __item.PriceRack - (__item.PriceRack * (__item.Discount3 / 100));
+        __factura = __item.PriceRack - (__item.PriceRack * ((decimal)__item.Discount3 / 100));
         __margenrm = ((__factura - __item.Price) / __factura) * 100;
-        __gadmon = __factura * (__item.PercentAdmin / 100);
+        __gadmon = __factura * ((decimal)__item.PercentAdmin / 100);
         __facturab = __factura + __gadmon;
-        __agente = __factura * (__item.PercentAgent / 100);
+        __agente = __factura * ((decimal)__item.PercentAgent / 100);
         __venta = __facturab - __agente;
         __margen = __venta - __item.Price;
         __pmargen = (__margen / __item.Price) * 100;

@@ -2,11 +2,12 @@
 @{
     ViewBag.Title = "Crear";
     RMS.Models.Room __room = ViewBag.Room;
+    string __datestart = Session["DateStart"] != null ? Session["DateStart"].ToString() : "";
+    string __dateend = Session["DateEnd"] != null ? Session["DateEnd"].ToString() : "";
 }
 <h2>
     Crear Tarifa para la Habitación @__room.Name</h2>
 <h3>@__room.Hotel.Name</h3>
-
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
 @using (Html.BeginForm())
@@ -16,20 +17,32 @@
         <legend>Tarifa</legend>
         @Html.Hidden("IdRoom", __room.Id)
         <div class="editor-label">
-            Nombre
+            Tipo
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Name)
-            @Html.ValidationMessageFor(model => model.Name)
-              <p>
-    * Recuerde, para crear una tarifa para niños, debe llamarla "Niño".</p>
+            <select name="Name">
+                <option value="Sencilla">Sencilla</option>
+                <option value="Doble">Doble</option>
+                <option value="Triple">Triple</option>
+                <option value="Cuádruple">Cuádruple</option>
+                <option value="Quíntuple">Quíntuple</option>
+                <option value="Séxtuple">Séxtuple</option>
+                <option value="Niño">Niño</option>
+            </select>
         </div>
         <div class="editor-label">
-            Capacidad
+            Inicia
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Capacity)
-            @Html.ValidationMessageFor(model => model.Capacity)
+            @Html.TextBox("DateStart", __datestart, new { @class = "datepicker" })
+            @Html.ValidationMessageFor(model => model.DateStart)
+        </div>
+        <div class="editor-label">
+            Termina
+        </div>
+        <div class="editor-field">
+            @Html.TextBox("DateEnd", __dateend, new { @class = "datepicker" })
+            @Html.ValidationMessageFor(model => model.DateEnd)
         </div>
         <div class="editor-label">
             Tarifa Rack PPN Hotel
@@ -46,60 +59,45 @@
             @Html.ValidationMessageFor(model => model.Price)
         </div>
         <div class="editor-label">
-            Inicia
-        </div>
-        <div class="editor-field">
-            @Html.TextBoxFor(model => model.DateStart, new { @class = "datepicker" })
-            @Html.ValidationMessageFor(model => model.DateStart)
-        </div>
-        <div class="editor-label">
-            Termina
-        </div>
-        <div class="editor-field">
-            @Html.TextBoxFor(model => model.DateEnd, new { @class = "datepicker" })
-            @Html.ValidationMessageFor(model => model.DateEnd)
-        </div>
-        <div class="editor-label">
             % Descuento 2N
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Discount1)
+            @Html.TextBox("Discount1", "5")
             @Html.ValidationMessageFor(model => model.Discount1)
         </div>
         <div class="editor-label">
             % Descuento 4N
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Discount2)
+            @Html.TextBox("Discount2", "6")
             @Html.ValidationMessageFor(model => model.Discount2)
         </div>
         <div class="editor-label">
             % Descuento 7N
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Discount3)
+            @Html.TextBox("Discount3", "7")
             @Html.ValidationMessageFor(model => model.Discount3)
         </div>
         <div class="editor-label">
             % Agente
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.PercentAgent)
+            @Html.TextBox("PercentAgent", "6")
             @Html.ValidationMessageFor(model => model.PercentAgent)
         </div>
         <div class="editor-label">
             % Gastos de Administración
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.PercentAdmin)
+            @Html.TextBox("PercentAdmin", "4")
             @Html.ValidationMessageFor(model => model.PercentAdmin)
         </div>
         <div class="editor-label">
             Activo?
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Active)
-            @Html.ValidationMessageFor(model => model.Active)
+            <input type="checkbox" name="Active" checked="checked" />
         </div>
         <p>
             <input type="submit" value="Crear" />

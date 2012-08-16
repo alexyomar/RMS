@@ -48,12 +48,53 @@ namespace RMS.Controllers
         [HttpPost]
         public ActionResult Create(RoomOcupation roomocupation)
         {
-            if (ModelState.IsValid)
+
+            ViewBag.Room = db.Room.SingleOrDefault(u => u.Id.Equals(roomocupation.IdRoom));
+            try
             {
+                Session.Add("DateStart", roomocupation.DateStart.ToShortDateString());
+                Session.Add("DateEnd", roomocupation.DateEnd.ToShortDateString());
+
+                int __capacity = new int();
+
+                switch (roomocupation.Name)
+                {
+                    case "Sencilla":
+                        __capacity = 1;
+                        break;
+                    case "Doble":
+                        __capacity = 2;
+                        break;
+                    case "Triple":
+                        __capacity = 3;
+                        break;
+                    case "Cuádruple":
+                        __capacity = 4;
+                        break;
+                    case "Quíntuple":
+                        __capacity = 5;
+                        break;
+                    case "Séxtuple":
+                        __capacity = 6;
+                        break;
+                    default:
+                        __capacity = 1;
+                        break;
+                }
+
+                roomocupation.Capacity = __capacity;
+
                 db.RoomOcupation.AddObject(roomocupation);
                 db.SaveChanges();
                 return RedirectToAction("Index", new { Id = roomocupation.IdRoom });
+
             }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
 
             ViewBag.IdRoom = new SelectList(db.Room, "Id", "Name", roomocupation.IdRoom);
             return View(roomocupation);
@@ -107,10 +148,52 @@ namespace RMS.Controllers
             return RedirectToAction("Index", new { Id = roomocupation.IdRoom });
         }
 
+        public ActionResult Batch(int Id)
+        {
+            ViewBag.IdRoom = Id;
+            return PartialView();
+        }
+        [HttpPost]
+        public ActionResult Batch(BatchParams input)
+        {
+            var __roomrates = db.RoomOcupation.Where(u => u.IdRoom.Equals(input.IdRoom));
+
+            foreach (var item in __roomrates)
+            {
+                if (input.descuesto1.HasValue)
+                    item.Discount1 = input.descuesto1.Value;
+                if (input.descuesto1.HasValue)
+                    item.Discount2 = input.descuesto2.Value;
+                if (input.descuesto1.HasValue)
+                    item.Discount3 = input.descuesto3.Value;
+                if (input.percentadmon.HasValue)
+                    item.PercentAdmin = input.percentadmon.Value;
+                if (input.percentagent.HasValue)
+                    item.PercentAgent = input.percentagent.Value;
+            }
+
+            db.SaveChanges();
+
+            return JavaScript("Tarifas actualizadas correctamente.");
+        }
+
         protected override void Dispose(bool disposing)
         {
             db.Dispose();
             base.Dispose(disposing);
         }
+    }
+
+    public class BatchParams
+    {
+
+        public int IdRoom { get; set; }
+        public int? descuesto1 { get; set; }
+        public int? descuesto2 { get; set; }
+        public int? descuesto3 { get; set; }
+        public int? percentadmon { get; set; }
+        public int? percentagent { get; set; }
+
+
     }
 }
