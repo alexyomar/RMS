@@ -20,17 +20,24 @@ namespace RMS.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(int fare)
+        public ActionResult Index(int? fare)
         {
 
-            return RedirectToAction("RoomRate", new { Id = fare, print = false });
+            if (fare.HasValue)
+                return RedirectToAction("RoomRate", new { Id = fare, print = false });
+            else
+            {
+                ViewData.Model = db.Hotel.ToList();
+                ViewBag.Error = "Debe seleccionar una habitación.";
+                return View();
+            }
 
         }
 
         public ActionResult RoomRate(int Id, bool print)
         {
             var __example = db.RoomOcupation.SingleOrDefault(u => u.Id.Equals(Id));
-            ViewData.Model = db.RoomOcupation.Where(u => u.DateStart.Equals(__example.DateStart) && u.DateEnd.Equals(__example.DateEnd)).ToList();
+            ViewData.Model = db.RoomOcupation.Where(u => u.DateStart.Equals(__example.DateStart) && u.DateEnd.Equals(__example.DateEnd) && u.IdRoom.Equals(__example.IdRoom)).ToList();
             ViewBag.Export = !print;
             return View();
         }
@@ -67,7 +74,7 @@ namespace RMS.Controllers
         {
 
             var __example = db.RoomOcupation.SingleOrDefault(u => u.Id.Equals(rate));
-            ViewData.Model = db.RoomOcupation.Where(u => u.DateStart.Equals(__example.DateStart) && u.DateEnd.Equals(__example.DateEnd)).ToList();
+            ViewData.Model = db.RoomOcupation.Where(u => u.DateStart.Equals(__example.DateStart) && u.DateEnd.Equals(__example.DateEnd) && u.IdRoom.Equals(__example.IdRoom)).ToList();
 
             Response.ClearContent();
             Response.ClearHeaders();

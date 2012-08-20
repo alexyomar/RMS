@@ -8,13 +8,12 @@
 //------------------------------------------------------------------------------
 
 using System;
-using System.ComponentModel;
-using System.Data.EntityClient;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
-using System.Linq;
-using System.Runtime.Serialization;
+using System.Data.EntityClient;
+using System.ComponentModel;
 using System.Xml.Serialization;
+using System.Runtime.Serialization;
 
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
@@ -621,7 +620,6 @@ namespace RMS.Models
         private ObjectSet<vw_aspnet_WebPartState_User> _vw_aspnet_WebPartState_User;
 
         #endregion
-
         #region AddTo Methods
     
         /// <summary>
@@ -889,11 +887,11 @@ namespace RMS.Models
         }
 
         #endregion
-
     }
+    
 
     #endregion
-
+    
     #region Entities
     
     /// <summary>
@@ -922,7 +920,6 @@ namespace RMS.Models
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -1025,7 +1022,6 @@ namespace RMS.Models
         partial void OnDescriptionChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -1118,7 +1114,6 @@ namespace RMS.Models
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -1171,7 +1166,6 @@ namespace RMS.Models
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -1682,7 +1676,6 @@ namespace RMS.Models
         partial void OnCommentChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -1763,7 +1756,6 @@ namespace RMS.Models
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -1794,7 +1786,6 @@ namespace RMS.Models
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -1897,7 +1888,6 @@ namespace RMS.Models
         partial void OnLoweredPathChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -2000,7 +1990,6 @@ namespace RMS.Models
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -2029,7 +2018,6 @@ namespace RMS.Models
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -2108,7 +2096,6 @@ namespace RMS.Models
         partial void OnLastUpdatedDateChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -2151,7 +2138,6 @@ namespace RMS.Models
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -2180,7 +2166,6 @@ namespace RMS.Models
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -2307,7 +2292,6 @@ namespace RMS.Models
         partial void OnLastUpdatedDateChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -2388,7 +2372,6 @@ namespace RMS.Models
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -2421,7 +2404,6 @@ namespace RMS.Models
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -2548,7 +2530,6 @@ namespace RMS.Models
         partial void OnLastUpdatedDateChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -2591,7 +2572,6 @@ namespace RMS.Models
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -2622,7 +2602,6 @@ namespace RMS.Models
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -2749,7 +2728,6 @@ namespace RMS.Models
         partial void OnDescriptionChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -2814,7 +2792,6 @@ namespace RMS.Models
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -2843,7 +2820,6 @@ namespace RMS.Models
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -2925,7 +2901,6 @@ namespace RMS.Models
         partial void OnIsCurrentVersionChanged();
 
         #endregion
-
     
     }
     
@@ -2961,7 +2936,6 @@ namespace RMS.Models
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -3136,7 +3110,6 @@ namespace RMS.Models
         partial void OnLastActivityDateChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -3299,7 +3272,6 @@ namespace RMS.Models
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -3340,7 +3312,6 @@ namespace RMS.Models
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -3707,7 +3678,6 @@ namespace RMS.Models
         partial void OnDetailsChanged();
 
         #endregion
-
     
     }
     
@@ -3745,7 +3715,6 @@ namespace RMS.Models
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -3920,7 +3889,6 @@ namespace RMS.Models
         partial void OnEmailChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -3947,7 +3915,6 @@ namespace RMS.Models
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -4002,7 +3969,6 @@ namespace RMS.Models
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -4465,7 +4431,6 @@ namespace RMS.Models
         partial void OnLoungesChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -4574,7 +4539,6 @@ namespace RMS.Models
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -4603,7 +4567,6 @@ namespace RMS.Models
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -4682,7 +4645,6 @@ namespace RMS.Models
         partial void OnNotesChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -4709,7 +4671,6 @@ namespace RMS.Models
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -4744,7 +4705,6 @@ namespace RMS.Models
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -4919,7 +4879,6 @@ namespace RMS.Models
         partial void OnEndMonthChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -4962,7 +4921,6 @@ namespace RMS.Models
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -4987,11 +4945,9 @@ namespace RMS.Models
         /// <param name="childrens">Initial value of the Childrens property.</param>
         /// <param name="price">Initial value of the Price property.</param>
         /// <param name="idReservationStatus">Initial value of the IdReservationStatus property.</param>
-        /// <param name="discount">Initial value of the Discount property.</param>
-        /// <param name="percentAdmin">Initial value of the PercentAdmin property.</param>
-        /// <param name="percentAgent">Initial value of the PercentAgent property.</param>
         /// <param name="priceRack">Initial value of the PriceRack property.</param>
-        public static Reservation CreateReservation(global::System.Int32 id, global::System.Int32 idCustomer, global::System.DateTime arrival, global::System.DateTime departure, global::System.DateTime reservationDate, global::System.Int32 adults, global::System.Int32 childrens, global::System.Decimal price, global::System.Int32 idReservationStatus, global::System.Int32 discount, global::System.Int32 percentAdmin, global::System.Int32 percentAgent, global::System.Decimal priceRack)
+        /// <param name="priceBase">Initial value of the PriceBase property.</param>
+        public static Reservation CreateReservation(global::System.Int32 id, global::System.Int32 idCustomer, global::System.DateTime arrival, global::System.DateTime departure, global::System.DateTime reservationDate, global::System.Int32 adults, global::System.Int32 childrens, global::System.Decimal price, global::System.Int32 idReservationStatus, global::System.Decimal priceRack, global::System.Decimal priceBase)
         {
             Reservation reservation = new Reservation();
             reservation.Id = id;
@@ -5003,15 +4959,12 @@ namespace RMS.Models
             reservation.Childrens = childrens;
             reservation.Price = price;
             reservation.IdReservationStatus = idReservationStatus;
-            reservation.Discount = discount;
-            reservation.PercentAdmin = percentAdmin;
-            reservation.PercentAgent = percentAgent;
             reservation.PriceRack = priceRack;
+            reservation.PriceBase = priceBase;
             return reservation;
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -5236,9 +5189,9 @@ namespace RMS.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Int32 Discount
+        public Nullable<global::System.Decimal> Discount
         {
             get
             {
@@ -5253,16 +5206,16 @@ namespace RMS.Models
                 OnDiscountChanged();
             }
         }
-        private global::System.Int32 _Discount;
-        partial void OnDiscountChanging(global::System.Int32 value);
+        private Nullable<global::System.Decimal> _Discount;
+        partial void OnDiscountChanging(Nullable<global::System.Decimal> value);
         partial void OnDiscountChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Int32 PercentAdmin
+        public Nullable<global::System.Decimal> PercentAdmin
         {
             get
             {
@@ -5277,16 +5230,16 @@ namespace RMS.Models
                 OnPercentAdminChanged();
             }
         }
-        private global::System.Int32 _PercentAdmin;
-        partial void OnPercentAdminChanging(global::System.Int32 value);
+        private Nullable<global::System.Decimal> _PercentAdmin;
+        partial void OnPercentAdminChanging(Nullable<global::System.Decimal> value);
         partial void OnPercentAdminChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Int32 PercentAgent
+        public Nullable<global::System.Decimal> PercentAgent
         {
             get
             {
@@ -5301,8 +5254,8 @@ namespace RMS.Models
                 OnPercentAgentChanged();
             }
         }
-        private global::System.Int32 _PercentAgent;
-        partial void OnPercentAgentChanging(global::System.Int32 value);
+        private Nullable<global::System.Decimal> _PercentAgent;
+        partial void OnPercentAgentChanging(Nullable<global::System.Decimal> value);
         partial void OnPercentAgentChanged();
     
         /// <summary>
@@ -5328,9 +5281,32 @@ namespace RMS.Models
         private global::System.Decimal _PriceRack;
         partial void OnPriceRackChanging(global::System.Decimal value);
         partial void OnPriceRackChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal PriceBase
+        {
+            get
+            {
+                return _PriceBase;
+            }
+            set
+            {
+                OnPriceBaseChanging(value);
+                ReportPropertyChanging("PriceBase");
+                _PriceBase = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PriceBase");
+                OnPriceBaseChanged();
+            }
+        }
+        private global::System.Decimal _PriceBase;
+        partial void OnPriceBaseChanging(global::System.Decimal value);
+        partial void OnPriceBaseChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -5455,7 +5431,6 @@ namespace RMS.Models
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -5486,7 +5461,6 @@ namespace RMS.Models
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -5637,7 +5611,6 @@ namespace RMS.Models
         partial void OnTotalPayedChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -5718,7 +5691,6 @@ namespace RMS.Models
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -5745,7 +5717,6 @@ namespace RMS.Models
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -5800,7 +5771,6 @@ namespace RMS.Models
         partial void OnNameChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -5827,7 +5797,6 @@ namespace RMS.Models
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -5860,7 +5829,6 @@ namespace RMS.Models
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -5987,7 +5955,6 @@ namespace RMS.Models
         partial void OnActiveChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -6074,7 +6041,6 @@ namespace RMS.Models
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -6101,7 +6067,6 @@ namespace RMS.Models
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -6156,7 +6121,6 @@ namespace RMS.Models
         partial void OnNameChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -6183,7 +6147,6 @@ namespace RMS.Models
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -6212,7 +6175,6 @@ namespace RMS.Models
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -6294,7 +6256,6 @@ namespace RMS.Models
         partial void OnQuantityChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -6375,7 +6336,6 @@ namespace RMS.Models
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -6426,7 +6386,6 @@ namespace RMS.Models
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -6769,7 +6728,6 @@ namespace RMS.Models
         partial void OnPriceRackChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -6834,7 +6792,6 @@ namespace RMS.Models
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -6865,7 +6822,6 @@ namespace RMS.Models
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -7040,7 +6996,6 @@ namespace RMS.Models
         partial void OnBuyLaterChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -7083,7 +7038,6 @@ namespace RMS.Models
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -7110,7 +7064,6 @@ namespace RMS.Models
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -7165,7 +7118,6 @@ namespace RMS.Models
         partial void OnNameChanged();
 
         #endregion
-
     
         #region Navigation Properties
     
@@ -7192,7 +7144,6 @@ namespace RMS.Models
         }
 
         #endregion
-
     }
     
     /// <summary>
@@ -7221,7 +7172,6 @@ namespace RMS.Models
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -7348,7 +7298,6 @@ namespace RMS.Models
         partial void OndefinitionChanged();
 
         #endregion
-
     
     }
     
@@ -7378,7 +7327,6 @@ namespace RMS.Models
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -7487,7 +7435,6 @@ namespace RMS.Models
         partial void OnDescriptionChanged();
 
         #endregion
-
     
     }
     
@@ -7543,7 +7490,6 @@ namespace RMS.Models
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -8147,7 +8093,6 @@ namespace RMS.Models
         partial void OnLastActivityDateChanged();
 
         #endregion
-
     
     }
     
@@ -8175,7 +8120,6 @@ namespace RMS.Models
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -8257,7 +8201,6 @@ namespace RMS.Models
         partial void OnDataSizeChanged();
 
         #endregion
-
     
     }
     
@@ -8289,7 +8232,6 @@ namespace RMS.Models
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -8425,7 +8367,6 @@ namespace RMS.Models
         partial void OnDescriptionChanged();
 
         #endregion
-
     
     }
     
@@ -8461,7 +8402,6 @@ namespace RMS.Models
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -8651,7 +8591,6 @@ namespace RMS.Models
         partial void OnLastActivityDateChanged();
 
         #endregion
-
     
     }
     
@@ -8679,7 +8618,6 @@ namespace RMS.Models
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -8737,7 +8675,6 @@ namespace RMS.Models
         partial void OnRoleIdChanged();
 
         #endregion
-
     
     }
     
@@ -8769,7 +8706,6 @@ namespace RMS.Models
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -8881,7 +8817,6 @@ namespace RMS.Models
         partial void OnLoweredPathChanged();
 
         #endregion
-
     
     }
     
@@ -8909,7 +8844,6 @@ namespace RMS.Models
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -8991,7 +8925,6 @@ namespace RMS.Models
         partial void OnLastUpdatedDateChanged();
 
         #endregion
-
     
     }
     
@@ -9017,7 +8950,6 @@ namespace RMS.Models
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -9120,11 +9052,9 @@ namespace RMS.Models
         partial void OnLastUpdatedDateChanged();
 
         #endregion
-
     
     }
 
     #endregion
-
     
 }

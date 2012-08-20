@@ -421,9 +421,10 @@
           <Property Name="Price" Type="money" Nullable="false" />
           <Property Name="PriceRack" Type="money" Nullable="false" />
           <Property Name="IdReservationStatus" Type="int" Nullable="false" />
-          <Property Name="Discount" Type="int" Nullable="false" />
-          <Property Name="PercentAdmin" Type="int" Nullable="false" />
-          <Property Name="PercentAgent" Type="int" Nullable="false" />
+          <Property Name="Discount" Type="money" />
+          <Property Name="PercentAdmin" Type="money" />
+          <Property Name="PercentAgent" Type="money" />
+          <Property Name="PriceBase" Type="money" Nullable="false" />
         </EntityType>
         <EntityType Name="ReservationRoom">
           <Key>
@@ -1664,14 +1665,15 @@
           <Property Type="Int32" Name="Childrens" Nullable="false" />
           <Property Type="Decimal" Name="Price" Nullable="false" Precision="19" Scale="4" />
           <Property Type="Int32" Name="IdReservationStatus" Nullable="false" />
-          <Property Type="Int32" Name="Discount" Nullable="false" />
-          <Property Type="Int32" Name="PercentAdmin" Nullable="false" />
-          <Property Type="Int32" Name="PercentAgent" Nullable="false" />
+          <Property Type="Decimal" Name="Discount" Nullable="true" />
+          <Property Type="Decimal" Name="PercentAdmin" Nullable="true" />
+          <Property Type="Decimal" Name="PercentAgent" Nullable="true" />
           <NavigationProperty Name="Customer" Relationship="RegionalModel.FK_Reservations_Customers" FromRole="Reservation" ToRole="Customer" />
           <NavigationProperty Name="ReservationStatus" Relationship="RegionalModel.FK_Reservations_ReservationStatus" FromRole="Reservation" ToRole="ReservationStatus" />
           <NavigationProperty Name="ReservationsBuyed" Relationship="RegionalModel.FK_ReservationsBuyed_Reservations" FromRole="Reservation" ToRole="ReservationsBuyed" />
           <NavigationProperty Name="RoomOcupation" Relationship="RegionalModel.ReservationRoom" FromRole="Reservation" ToRole="RoomOcupation" />
           <Property Type="Decimal" Name="PriceRack" Nullable="false" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="PriceBase" Precision="19" Scale="4" Nullable="false" />
         </EntityType>
         <EntityType Name="ReservationsBuyed">
           <Key>
@@ -2358,6 +2360,7 @@
           <EntitySetMapping Name="Reservation">
             <EntityTypeMapping TypeName="RegionalModel.Reservation">
               <MappingFragment StoreEntitySet="Reservation">
+                <ScalarProperty Name="PriceBase" ColumnName="PriceBase" />
                 <ScalarProperty Name="PriceRack" ColumnName="PriceRack" />
                 <ScalarProperty Name="PercentAgent" ColumnName="PercentAgent" />
                 <ScalarProperty Name="PercentAdmin" ColumnName="PercentAdmin" />

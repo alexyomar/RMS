@@ -23,6 +23,13 @@ namespace RMS.Controllers
             return View(roomocupation.ToList());
         }
 
+        public ViewResult Index2(int id)
+        {
+            var roomocupation = db.RoomOcupation.Include("Room").Where(u => u.IdRoom.Equals(id));
+            ViewBag.Room = db.Room.SingleOrDefault(u => u.Id.Equals(id));
+            return View(roomocupation.ToList());
+        }
+
         //
         // GET: /RoomRate/Details/5
 
@@ -175,6 +182,63 @@ namespace RMS.Controllers
             db.SaveChanges();
 
             return JavaScript("Tarifas actualizadas correctamente.");
+        }
+
+
+        public ActionResult GetDataFare(string sidx, string sord, int page, int rows, int id)
+        {
+            var roomocupation = db.RoomOcupation.Where(u => u.IdRoom.Equals(id)).Select(x => new
+            {
+                x.Active,
+                x.Capacity,
+                x.DateEnd,
+                x.DateStart,
+                x.Discount1,
+                x.Discount2,
+                x.Discount3,
+                x.PercentAdmin,
+                x.PercentAgent,
+                x.Name,
+                x.PriceRack,
+                x.Price,
+                x.Id
+            });
+
+            var result = new
+            {
+                total = 1,
+                page = page,
+                records = roomocupation.Count(),
+                rows = roomocupation.ToList() // .AsEnumerable() whatever
+                    .Select(x => new
+                    {
+                        id = x.Id,   
+                        cell = new object[] {
+                            x.Name,                            
+                            x.Capacity,
+                            x.PriceRack,
+                            x.Price,
+                            x.DateStart.ToShortDateString(),
+                            x.DateEnd.ToShortDateString(),                          
+                            x.Discount1,
+                            x.Discount2,
+                            x.Discount3,                            
+                            x.PercentAgent,
+                            x.PercentAdmin,
+                            x.Active,
+                            x.DateStart.ToShortDateString() + " - " + x.DateEnd.ToShortDateString()
+                        }
+                    })
+                    .ToArray(),
+            };
+
+            return new JsonResult()
+            {
+                Data = result,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet,
+                ContentType = "application/json",
+                ContentEncoding = System.Text.Encoding.UTF8
+            };
         }
 
         protected override void Dispose(bool disposing)

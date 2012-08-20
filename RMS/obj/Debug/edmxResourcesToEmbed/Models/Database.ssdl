@@ -416,9 +416,10 @@
     <Property Name="Price" Type="money" Nullable="false" />
     <Property Name="PriceRack" Type="money" Nullable="false" />
     <Property Name="IdReservationStatus" Type="int" Nullable="false" />
-    <Property Name="Discount" Type="int" Nullable="false" />
-    <Property Name="PercentAdmin" Type="int" Nullable="false" />
-    <Property Name="PercentAgent" Type="int" Nullable="false" />
+    <Property Name="Discount" Type="money" />
+    <Property Name="PercentAdmin" Type="money" />
+    <Property Name="PercentAgent" Type="money" />
+    <Property Name="PriceBase" Type="money" Nullable="false" />
   </EntityType>
   <EntityType Name="ReservationRoom">
     <Key>

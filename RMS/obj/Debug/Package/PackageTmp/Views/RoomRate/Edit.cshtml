@@ -103,7 +103,7 @@
             @Html.ValidationMessageFor(model => model.Active)
         </div>
         <p>
-            <input type="submit" value="Crear" />
+            <input type="submit" value="Editar" />  |   @Html.ActionLink("Eliminar", "Delete", new { id = Model.Id })
         </p>
     </fieldset>
 }

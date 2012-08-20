@@ -149,6 +149,19 @@ namespace RMS.Controllers
             return View();
         }
 
+        public ActionResult Index()
+        {
+            var __users = Membership.GetAllUsers();
+            return View(__users);
+        }
+
+        public ActionResult Delete(string Id)
+        {
+
+            Membership.DeleteUser(Id);
+            return RedirectToAction("Index");
+        }
+
         #region Status Codes
         private static string ErrorCodeToString(MembershipCreateStatus createStatus)
         {

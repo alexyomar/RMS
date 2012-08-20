@@ -59,22 +59,28 @@
         @Html.ValidationMessageFor(model => model.Trip.IdReservationStatus)
     </div>
     <div class="editor-label">
-        % Descuento a aplicar (Si quiere aplicar el por defecto, indique "0")
+        % Descuento a aplicar
     </div>
     <div class="editor-field">
-        @Html.TextBox("Trip.Discount", "0")
+        @Html.TextBox("Trip.Discount")
+        <br />
+        <span style="font-size: 9pt">(Si quiere aplicar el por defecto, deje el campo vacío)</span>
     </div>
     <div class="editor-label">
-        % G. Admon. (Si quiere aplicar el por defecto, indique "0")
+        % G. Admon.
     </div>
     <div class="editor-field">
-        @Html.TextBox("Trip.PercentAdmin", "0")
+        @Html.TextBox("Trip.PercentAdmin")
+        <br />
+        <span style="font-size: 9pt">(Si quiere aplicar el por defecto, deje el campo vacío)</span>
     </div>
     <div class="editor-label">
-        % Agente (Si quiere aplicar el por defecto, indique "0")
+        % Agente
     </div>
     <div class="editor-field">
-        @Html.TextBox("Trip.PercentAgent", "0")
+        @Html.TextBox("Trip.PercentAgent")
+        <br />
+        <span style="font-size: 9pt">(Si quiere aplicar el por defecto, deje el campo vacío)</span>
     </div>
     <div class="editor-label">
         Hotel
@@ -99,7 +105,7 @@
     <div id="ajax">
     </div>
     <p>
-        <input type="submit" value="Crear" style="display: none;" id="save" />
+        <input type="submit" value="Crear Reservación" style="display: none;" id="save" />
     </p>
 </fieldset>
 </form>

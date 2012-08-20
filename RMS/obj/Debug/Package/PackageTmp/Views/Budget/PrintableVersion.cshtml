@@ -14,7 +14,7 @@
     <br />
     <br />
     <h2>
-        <b>@Model.ReservationStatus.Name</b></h2>
+        <b>@Model.ReservationStatus.Name</b> N° @Model.Id</h2>
     <br />
     <table border="0" cellpadding="0" cellspacing="0" style="border: solid 1px #e8eef4;
         border-collapse: collapse; width: 100%;">
@@ -72,6 +72,10 @@
                 font-weight: 700">
                 Télefono / Phone:
             </th>
+            <th style="padding: 6px 5px; text-align: left; background-color: #e8eef4; border: solid 1px #e8eef4;
+                font-weight: 700">
+                E-mail:
+            </th>
         </tr>
         <tr>
             <td style="padding: 5px; border: solid 1px #e8eef4;">@Model.Customer.Name @Model.Customer.LastName
@@ -79,6 +83,8 @@
             <td style="padding: 5px; border: solid 1px #e8eef4;">@Model.Customer.PersonalId
             </td>
             <td style="padding: 5px; border: solid 1px #e8eef4;">@Model.Customer.Phone
+            </td>
+            <td style="padding: 5px; border: solid 1px #e8eef4;">@Model.Customer.Email
             </td>
         </tr>
     </table>

@@ -20,96 +20,57 @@
 </table>
 <br />
 <br />
-<table class="table">
-    <tr>
-        <th>
-            Nombre
-        </th>
-        <th>
-            Capacidad
-        </th>
-        <th>
-            Tarifa Rack PPN Hotel
-        </th>
-        <th>
-            Tarifa Neta PPN
-        </th>
-        <th>
-            Inicia
-        </th>
-        <th>
-            Termina
-        </th>
-        <th>
-            % Desc. 2N
-        </th>
-        <th>
-            % Desc. 4N
-        </th>
-        <th>
-            % Desc. 7N
-        </th>
-        <th>
-            % Agente
-        </th>
-        <th>
-            % G. Admon
-        </th>
-        <th>
-            Activo?
-        </th>
-        <th>
-        </th>
-    </tr>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Capacity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PriceRack)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.Label(item.DateStart.ToShortDateString())
-            </td>
-            <td>
-                @Html.Label(item.DateEnd.ToShortDateString())
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Discount1)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Discount2)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Discount3)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PercentAgent)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PercentAdmin)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Active)
-            </td>
-            <td>
-                @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
-            </td>
-        </tr>
-    }
+<table id="list" cellpadding="0" cellspacing="0">
 </table>
+<div id="pager">
+</div>
 <p>
     @Html.ActionLink("Volver a Habitaciones", "Index", "Room", new { Id = __room.IdHotel }, null)</p>
 <script type="text/javascript">
     $(".popup").colorbox({ iframe: true, width: 400, height: 450, onClosed: function () { location.reload(true); } });
+    jQuery(document).ready(function () {
+        jQuery("#list").jqGrid({
+            url: '@Url.Action("GetDataFare", new { Id = __room.Id })',
+            datatype: 'json',
+            mtype: 'GET',
+            colNames: ['Nombre', 'Cap.', 'Tarifa Rack', 'Tarifa Neta', 'Inicia', 'Termina', '% Desc 2N', '% Desc 4N', '% Desc 7N', '% Agente', '% Admon', 'Activo', 'Date'],
+            colModel: [
+            { name: 'Name', index: 'Name', width: 40, align: 'left' },
+            { name: 'Capacity', index: 'Capacity', width: 15, align: 'center' },
+            { name: 'PriceRack', index: 'PriceRack', width: 40, align: 'center' },
+            { name: 'Price', index: 'Price', width: 40, align: 'center' },
+            { name: 'DateStart', index: 'DateStart', width: 40, align: 'center' },
+            { name: 'DateEnd', index: 'DateEnd', width: 40, align: 'center' },
+            { name: 'Discount1', index: 'Discount1', width: 35, align: 'center' },
+            { name: 'Discount2', index: 'Discount2', width: 35, align: 'center' },
+            { name: 'Discount3', index: 'Discount3', width: 35, align: 'center' },
+            { name: 'PercentAgent', index: 'PercentAgent', width: 40, align: 'center' },
+            { name: 'PercentAdmin', PercentAdmin: 'Room', width: 40, align: 'center' },
+            { name: 'Active', index: 'Active', width: 40, align: 'center', formatter: 'checkbox' },
+            { name: 'Date', index: 'Date', width: 40, align: 'center'}],
+            pager: jQuery('#pager'),
+            sortname: 'Capacity',
+            width: '900',
+            height: 'auto',
+            rowNum: 10,
+            rowList: [5, 10, 20, 50],
+            sortorder: "desc",
+            viewrecords: true,
+            imgpath: '/content/themes/regional/images',
+            grouping: true,
+            groupingView: {
+                groupField: ['Date'],
+                groupDataSorted: true,
+                groupColumnShow: false,
+                groupOrder: 'asc',
+                groupText: ['<b style="font-size: 10pt">{0} - {1} Item(s)</b>']
+            },
+            caption: 'Tarifas',
+            onSelectRow: function (id) {
+                window.top.location = '@Url.Action("Edit")/' + id;
+            }
 
+        });
+        //        jQuery("#list").jqGrid('navGrid','#pager',{edit:false,add:false,del:false});
+    });
 </script>
