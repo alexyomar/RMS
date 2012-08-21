@@ -1,7 +1,7 @@
 ﻿@model RMS.Models.Reservation
 @{
     int __days = ViewBag.Days;
-    int __people = Model.Adults + Model.Childrens;
+    int __people = Model.Adults;
     decimal __comisionh = new decimal();
     decimal __factura = new decimal();
     decimal __margenrm = new decimal();
@@ -18,7 +18,7 @@
 <table border="0" cellpadding="0" cellspacing="0" class="table">
     <tr>
         <th>
-            Habitaci&oacute;n
+            Ocupación
         </th>
         <th>
             Tarifa Rack PPN Hotel
@@ -113,8 +113,14 @@
 <table border="0" cellpadding="0" cellspacing="0" class="table">
     <tr>
         <th>
-            Habitaci&oacute;n
+            Ocupación
         </th>
+        <th>
+            Noches
+        </th>
+@*        <th>
+            Personas
+        </th>*@
         <th>
             Tarifa Rack PPN Hotel
         </th>
@@ -154,23 +160,38 @@
     </tr>
     @foreach (var __item in Model.RoomOcupation)
     {
-
+        if (__item.Name.ToLower().Equals("niño"))
+        {
+            __people = Model.Childrens;
+        }
+        else
+        {
+            __people = Model.Adults;
+        }
+        
+        
         __comisionh = ((__item.PriceRack - __item.Price) * __days) * __people;
         __comisionh = (__comisionh / ((__item.PriceRack * __days) * __people)) * 100;
-        __factura =  ((__item.PriceRack * __days)*__people) - (((__item.PriceRack * __days) *__people) * ((decimal)Model.Discount / 100));
-        __margenrm = ((__factura - ((__item.Price * __days))*__people) / __factura) * 100;
+        __factura = ((__item.PriceRack * __days) * __people) - (((__item.PriceRack * __days) * __people) * ((decimal)Model.Discount / 100));
+        __margenrm = ((__factura - ((__item.Price * __days)) * __people) / __factura) * 100;
         __gadmon = __factura * ((decimal)Model.PercentAdmin / 100);
         __facturab = __factura + __gadmon;
         __agente = __factura * ((decimal)Model.PercentAgent / 100);
         __venta = __facturab - __agente;
-        __margen = __venta - ((__item.Price * __days) *__people);
-        __pmargen = (__margen / ((__item.Price * __days)*__people) * 100);
-        
-        
+        __margen = __venta - ((__item.Price * __days) * __people);
+        __pmargen = (__margen / ((__item.Price * __days) * __people) * 100);
+
+    
         <tr>
             <td>
                 @__item.Name
             </td>
+            <td>
+                @__days
+            </td>
+@*            <td>
+                @__people
+            </td>*@
             <td>@Math.Round(((__item.PriceRack * __days) * __people), 2)
             </td>
             <td>
@@ -197,7 +218,7 @@
             </td>
             <td>@Math.Round(__pmargen, 2)
             </td>
-            <td>@__item.Discount1 %
+            <td>@Model.Discount %
             </td>
         </tr>
     }

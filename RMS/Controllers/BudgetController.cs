@@ -66,12 +66,11 @@ namespace RMS.Controllers
 
                         foreach (var __day in __tripdays)
                         {
-                            var __roomfare = db.RoomOcupation.Where(u => u.DateStart <= __day && u.DateEnd >= __day && u.Capacity.Equals(item.Adultos) && u.Active.Equals(true)).FirstOrDefault();
-                            var __roomfarechild = db.RoomOcupation.Where(u => u.DateStart <= __day && u.DateEnd >= __day && u.Name.ToLower().Equals("niño")).FirstOrDefault();
+                            var __roomfare = db.RoomOcupation.Where(u => u.DateStart <= __day && u.DateEnd >= __day && u.Capacity.Equals(item.Adultos) && u.Active.Equals(true) && u.IdRoom.Equals(__room.Id)).FirstOrDefault();
+                            var __roomfarechild = db.RoomOcupation.Where(u => u.DateStart <= __day && u.DateEnd >= __day && u.Name.ToLower().Equals("niño") && u.IdRoom.Equals(__room.Id)).FirstOrDefault();
 
                             if (__roomfare != null)
                             {
-
 
 
                                 decimal __discount = new decimal();
@@ -84,9 +83,7 @@ namespace RMS.Controllers
                                     else
                                         __discount = __roomfare.Discount3;
                                 else
-                                    if (reservation.Trip.Discount.Value == 0)
-                                        __discount = 2;
-                                    else
+                                    if (reservation.Trip.Discount.Value != 0)
                                         __discount = reservation.Trip.Discount.Value;
 
                                 decimal __admon = new decimal();
@@ -94,9 +91,7 @@ namespace RMS.Controllers
                                 if (!reservation.Trip.PercentAdmin.HasValue)
                                     __admon = __roomfare.PercentAdmin;
                                 else
-                                    if (reservation.Trip.PercentAdmin.Value == 0)
-                                        __admon = 2;
-                                    else
+                                    if (reservation.Trip.PercentAdmin.Value != 0)
                                         __admon = reservation.Trip.PercentAdmin.Value;
 
                                 //descuento
@@ -106,9 +101,7 @@ namespace RMS.Controllers
                                 //adultos
                                 __facturabruta = __facturabruta * item.Adultos;
                                 //rack
-                                __totalrack = (__roomfare.PriceRack * item.Adultos) + __totalrack;
-                                //bruto
-                                __pricebase = (__roomfare.Price * item.Adultos) + __pricebase;
+                                __totalrack = (__roomfare.Price * item.Adultos) + __totalrack;
 
                                 __total = __total + __facturabruta;
 
@@ -118,9 +111,7 @@ namespace RMS.Controllers
                                 if (!reservation.Trip.PercentAdmin.HasValue)
                                     __agent = __roomfare.PercentAgent;
                                 else
-                                    if (reservation.Trip.PercentAgent.Value == 0)
-                                        __agent = 2;
-                                    else
+                                    if (reservation.Trip.PercentAgent.Value != 0)
                                         __agent = reservation.Trip.PercentAgent.Value;
 
                                 if (item.Infantes > 0)
@@ -135,17 +126,13 @@ namespace RMS.Controllers
                                             else
                                                 __discount = __roomfarechild.Discount3;
                                         else
-                                            if (reservation.Trip.Discount.Value == 0)
-                                                __discount = 2;
-                                            else
+                                            if (reservation.Trip.Discount.Value != 0)
                                                 __discount = reservation.Trip.Discount.Value;
 
                                         if (!reservation.Trip.PercentAdmin.HasValue)
                                             __admon = __roomfarechild.PercentAdmin;
                                         else
-                                            if (reservation.Trip.PercentAdmin.Value == 0)
-                                                __admon = 2;
-                                            else
+                                            if (reservation.Trip.PercentAdmin.Value != 0)
                                                 __admon = reservation.Trip.PercentAdmin.Value;
 
                                         //descuento
@@ -155,18 +142,14 @@ namespace RMS.Controllers
                                         //adultos
                                         __facturabruta = __facturabruta * item.Infantes;
                                         //rack
-                                        __totalrack = (__roomfarechild.PriceRack * item.Adultos) + __totalrack;
-                                        //bruto
-                                        __pricebase = (__roomfarechild.Price * item.Adultos) + __pricebase;
+                                        __totalrack = (__roomfarechild.Price * item.Infantes) + __totalrack;
 
                                         __total = __total + __facturabruta;
 
                                         if (!reservation.Trip.PercentAdmin.HasValue)
                                             __agent = __roomfarechild.PercentAgent;
                                         else
-                                            if (reservation.Trip.PercentAgent.Value == 0)
-                                                __agent = 2;
-                                            else
+                                            if (reservation.Trip.PercentAgent.Value != 0)
                                                 __agent = reservation.Trip.PercentAgent.Value;
 
 
@@ -179,28 +162,32 @@ namespace RMS.Controllers
                                         return View(reservation);
                                     }
 
-
+                                    // Porcentaje del Vendedor
+                                    __pricebase = __pricebase + __roomfarechild.Price;
                                     reservation.Trip.Discount = Convert.ToInt32(__discount);
                                     reservation.Trip.PercentAdmin = Convert.ToInt32(__admon);
                                     reservation.Trip.PercentAgent = Convert.ToInt32(__agent);
+                                    reservation.Trip.PriceBase = __pricebase;
                                     reservation.Trip.RoomOcupation.Add(__roomfarechild);
                                 }
-                                else
-                                {
-                                    reservation.Trip.Discount = Convert.ToInt32(__discount);
-                                    reservation.Trip.PercentAdmin = Convert.ToInt32(__admon);
-                                    reservation.Trip.PercentAgent = Convert.ToInt32(__agent);
-                                    reservation.Trip.RoomOcupation.Add(__roomfare);
-                                }
+
+                                // Porcentaje del Vendedor
+                                __pricebase = __pricebase + __roomfare.Price;
+                                reservation.Trip.Discount = Convert.ToInt32(__discount);
+                                reservation.Trip.PercentAdmin = Convert.ToInt32(__admon);
+                                reservation.Trip.PercentAgent = Convert.ToInt32(__agent);
+                                reservation.Trip.PriceBase = __pricebase;
+                                reservation.Trip.RoomOcupation.Add(__roomfare);
+
+
 
 
                             }
                             else
                             {
-                                ViewBag.Customer = db.Customer.ToList();
-                                ViewBag.ReservationStatus = new SelectList(db.ReservationStatus, "Id", "Name");
-                                ViewBag.Error = "No hay tarifas cargadas para una de las habitación: " + __room.Name;
-                                return View(reservation);
+
+                                ViewBag.Error = "No hay tarifas cargadas para una de las habitacion: " + __room.Name;
+                                PartialView();
                             }
                         }
 
@@ -255,7 +242,7 @@ namespace RMS.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            
+
             ViewBag.IdCustomer = new SelectList(db.Customer, "Id", "Name", reservation.IdCustomer);
             ViewBag.IdReservationStatus = new SelectList(db.ReservationStatus, "Id", "Name", reservation.IdReservationStatus);
             return View(reservation);
@@ -378,8 +365,8 @@ namespace RMS.Controllers
                         #region FOREACH
                         foreach (var __day in __tripdays)
                         {
-                            var __roomfare = db.RoomOcupation.Where(u => u.DateStart <= __day && u.DateEnd >= __day && u.Capacity.Equals(item.Adultos) && u.Active.Equals(true)).FirstOrDefault();
-                            var __roomfarechild = db.RoomOcupation.Where(u => u.DateStart <= __day && u.DateEnd >= __day && u.Name.ToLower().Equals("niño")).FirstOrDefault();
+                            var __roomfare = db.RoomOcupation.Where(u => u.DateStart <= __day && u.DateEnd >= __day && u.Capacity.Equals(item.Adultos) && u.Active.Equals(true) && u.IdRoom.Equals(__room.Id)).FirstOrDefault();
+                            var __roomfarechild = db.RoomOcupation.Where(u => u.DateStart <= __day && u.DateEnd >= __day && u.Name.ToLower().Equals("niño") && u.IdRoom.Equals(__room.Id)).FirstOrDefault();
 
                             if (__roomfare != null)
                             {
@@ -395,9 +382,7 @@ namespace RMS.Controllers
                                     else
                                         __discount = __roomfare.Discount3;
                                 else
-                                    if (reservation.Trip.Discount.Value == 0)
-                                        __discount = 2;
-                                    else
+                                    if (reservation.Trip.Discount.Value != 0)
                                         __discount = reservation.Trip.Discount.Value;
 
                                 decimal __admon = new decimal();
@@ -405,9 +390,7 @@ namespace RMS.Controllers
                                 if (!reservation.Trip.PercentAdmin.HasValue)
                                     __admon = __roomfare.PercentAdmin;
                                 else
-                                    if (reservation.Trip.PercentAdmin.Value == 0)
-                                        __admon = 2;
-                                    else
+                                    if (reservation.Trip.PercentAdmin.Value != 0)
                                         __admon = reservation.Trip.PercentAdmin.Value;
 
                                 //descuento
@@ -427,9 +410,7 @@ namespace RMS.Controllers
                                 if (!reservation.Trip.PercentAdmin.HasValue)
                                     __agent = __roomfare.PercentAgent;
                                 else
-                                    if (reservation.Trip.PercentAgent.Value == 0)
-                                        __agent = 2;
-                                    else
+                                    if (reservation.Trip.PercentAgent.Value != 0)
                                         __agent = reservation.Trip.PercentAgent.Value;
 
                                 if (item.Infantes > 0)
@@ -444,17 +425,13 @@ namespace RMS.Controllers
                                             else
                                                 __discount = __roomfarechild.Discount3;
                                         else
-                                            if (reservation.Trip.Discount.Value == 0)
-                                                __discount = 2;
-                                            else
+                                            if (reservation.Trip.Discount.Value != 0)
                                                 __discount = reservation.Trip.Discount.Value;
 
                                         if (!reservation.Trip.PercentAdmin.HasValue)
                                             __admon = __roomfarechild.PercentAdmin;
                                         else
-                                            if (reservation.Trip.PercentAdmin.Value == 0)
-                                                __admon = 2;
-                                            else
+                                            if (reservation.Trip.PercentAdmin.Value != 0)
                                                 __admon = reservation.Trip.PercentAdmin.Value;
 
                                         //descuento
@@ -471,9 +448,7 @@ namespace RMS.Controllers
                                         if (!reservation.Trip.PercentAdmin.HasValue)
                                             __agent = __roomfarechild.PercentAgent;
                                         else
-                                            if (reservation.Trip.PercentAgent.Value == 0)
-                                                __agent = 2;
-                                            else
+                                            if (reservation.Trip.PercentAgent.Value != 0)
                                                 __agent = reservation.Trip.PercentAgent.Value;
 
 
@@ -494,16 +469,14 @@ namespace RMS.Controllers
                                     reservation.Trip.PriceBase = __pricebase;
                                     reservation.Trip.RoomOcupation.Add(__roomfarechild);
                                 }
-                                else
-                                {
-                                    // Porcentaje del Vendedor
-                                    __pricebase = __pricebase + __roomfare.Price;
-                                    reservation.Trip.Discount = Convert.ToInt32(__discount);
-                                    reservation.Trip.PercentAdmin = Convert.ToInt32(__admon);
-                                    reservation.Trip.PercentAgent = Convert.ToInt32(__agent);
-                                    reservation.Trip.PriceBase = __pricebase;
-                                    reservation.Trip.RoomOcupation.Add(__roomfare);
-                                }
+
+                                // Porcentaje del Vendedor
+                                __pricebase = __pricebase + __roomfare.Price;
+                                reservation.Trip.Discount = Convert.ToInt32(__discount);
+                                reservation.Trip.PercentAdmin = Convert.ToInt32(__admon);
+                                reservation.Trip.PercentAgent = Convert.ToInt32(__agent);
+                                reservation.Trip.PriceBase = __pricebase;
+                                reservation.Trip.RoomOcupation.Add(__roomfare);
 
 
 

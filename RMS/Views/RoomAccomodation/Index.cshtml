@@ -4,7 +4,7 @@
     ViewBag.Title = "Listado de Camas";
 }
 <h2>
-    Camas disponibles para @__room.Name</h2>
+    Camas disponibles para @__room.Name (@__room.Hotel.Name)</h2>
 <p>
     @Html.ActionLink("Crear Nueva", "Create", new { Id = __room.Id })
 </p>
