@@ -2,56 +2,72 @@
     int counter = 0;
     IQueryable<RMS.Models.Room> __room = ViewBag.Room as IQueryable<RMS.Models.Room>;
 }
-<table border="0" cellpadding="10" cellspacing="6" class="table">
-    <tr>
-        <th>
-            Tipo de Habitación
-        </th>
-        <th colspan="2">
-            Ocupación
-        </th>
-    </tr>
-    @if (__room.ToList().Count() > 0)
+<h3 style="margin: 20px 0px 0px 0px;">
+    Habitaciones disponibles</h3>
+<div>
+    @foreach (RMS.Models.Room item in __room)
     {
-        foreach (RMS.Models.Room item in __room)
-        {
-  
-        <tr>
-            <td>
-                <input type="checkbox" id="@item.Id" name="Rooms[@counter].IdRoom" value="@item.Id"  />
+        <div style="float: left; width: 250px; margin: 10px">
+            <h4 style="margin: 10px 0px">
                 @item.Name
-            </td>
-            <td>
-                Adultos:&nbsp;
-                <select name="Rooms[@counter].Adultos" style=" width:100px">
-                    @for (int i = 1; i <= (item.RoomOcupation.OrderByDescending(u => u.Capacity).FirstOrDefault() != null ? item.RoomOcupation.OrderByDescending(u => u.Capacity).FirstOrDefault().Capacity : 4); i++)
+            </h4>
+            <table border="0" cellpadding="10" cellspacing="6" class="table">
+                <tr>
+                    <th>
+                        Ocupación
+                    </th>
+                    <th>
+                        Cantidad
+                    </th>
+                </tr>
+                @if (__room.ToList().Count() > 0)
+                {
+                    foreach (var __ocup in item.RoomOcupation.GroupBy(x => x.Name).Distinct())
                     {
-                        <option value="@i">@i</option>    
-                    }
-                </select>
-            </td>
-            <td>
-                <span>Infantes:</span>
-                <select name="Rooms[@counter].Infantes" style=" width:100px">
-                    @for (int j = 0; j <= 3; j++)
-                    {
-                        <option value="@j">@j</option>    
-                    }
-                </select>
-            </td>
-            <span style="display: none">
-                @(counter = counter + 1)
-            </span>
-        </tr>
+                    @Html.Hidden("Rooms[" + counter + "].IdRoom", item.Id)
+                    <tr>
+                        <td style="text-align: left">
+                            <input type="checkbox" id="@item.Id" name="Rooms[@counter].Name" value="@item.Name"  />
+                            @__ocup.First().Name
+                        </td>
+                        <td>
+                            <select name="Rooms[@counter].Quantity" style=" width:100px">
+                                @for (int i = 1; i <= 10; i++)
+                                {
+                                    <option value="@i">@i</option>    
+                                }
+                            </select>
+                            @if (!__ocup.First().Name.ToLower().Equals("niño"))
+                            {
+                                @Html.Hidden("Rooms[" + counter + "].Adultos", __ocup.First().Capacity)
+                            }
+                            else
+                            {
+                                @Html.Hidden("Rooms[" + counter + "].Infantes", __ocup.First().Capacity)
+                            }
+                        </td>
+                        <span style="display: none">
+                            @(counter = counter + 1)
+                        </span>
+                    </tr>
      
-        }
+                    }
+                }
+                else
+                { 
+                    <tr>
+                        <td colspan="2">
+                            No hay habitaciones para el hotel seleccionado.
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
     }
-    else
-    { 
-        <tr>
-            <td colspan="2">
-                No hay habitaciones para el hotel seleccionado.
-            </td>
-        </tr>
-    }
-</table>
+    <div style="clear: both;">
+    </div>
+</div>
+<script type="text/javascript">
+
+    $.scrollTo("#paso2", 3000);
+</script>

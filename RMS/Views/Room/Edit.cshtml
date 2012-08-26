@@ -2,9 +2,25 @@
 @{
     ViewBag.Title = "Editar";
 }
-<h2>
-    Editar</h2>
-<h3>@Model.Name (@Model.Hotel.Name)</h3>
+<ul id="crumbs">
+    <li><a href="@Url.Action("Index", "Hotel")">Hoteles</a></li>
+    <li><a href="@Url.Action("Index", "Hotel")">@Model.Hotel.Name</a></li>
+    <li><a href="@Url.Action("Index", new { Id = Model.Hotel.Id })">Habitaciones</a></li>
+    <li>Editar Habitación</li>
+</ul>
+<table border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin: 30px 0px;">
+    <tr>
+        <td valign="middle">
+            <h1 style="margin: 0px; padding: 0px">
+                Editar Habitación @Model.Name de @Model.Hotel.Name</h1>
+        </td>
+        <td>
+            <a href="@Url.Action("Index", "Room", new { Id = Model.IdHotel })" class="button" style="float: right;">
+                <img src="@Url.Content("~/Content/img/back.png")" />
+                &nbsp;&nbsp;Volver</a>
+        </td>
+    </tr>
+</table>
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
 @using (Html.BeginForm())
@@ -40,6 +56,15 @@
         </p>
     </fieldset>
 }
-<div>
-    @Html.ActionLink("Volver al listado", "Index", new { Id = Model.IdHotel })
-</div>
+<table border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin: 30px 0px;">
+    <tr>
+        <td valign="middle">
+        </td>
+        <td>
+            <a href="@Url.Action("Index", "Room", new { Id = Model.IdHotel })" class="button" style="float: right;">
+                <img src="@Url.Content("~/Content/img/back.png")" />
+                &nbsp;&nbsp;Volver</a>
+        </td>
+    </tr>
+</table>
+

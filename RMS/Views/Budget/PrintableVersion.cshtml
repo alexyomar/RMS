@@ -14,8 +14,10 @@
     <br />
     <br />
     <h2>
-        <b>@Model.ReservationStatus.Name</b> N° @Model.Id</h2>
-    <br />
+        <b>Reservación</b> N° @Model.Id
+        <p style="font-size: smaller">
+            Estado: @Model.ReservationStatus.Name</p>
+    </h2>
     <table border="0" cellpadding="0" cellspacing="0" style="border: solid 1px #e8eef4;
         border-collapse: collapse; width: 100%;">
         <tr>
@@ -112,7 +114,7 @@
                 Camas
             </th>
         </tr>
-        @foreach (var item in Model.RoomOcupation)
+        @foreach (var item in Model.ReservationRoom.Select(x => x.RoomOcupation).Distinct())
         {
             <tr>
                 <td style="padding: 5px; border: solid 1px #e8eef4;">

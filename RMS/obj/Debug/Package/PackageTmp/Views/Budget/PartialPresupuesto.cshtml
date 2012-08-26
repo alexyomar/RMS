@@ -1,7 +1,23 @@
 ﻿@model RMS.Models.Reservation
-@{
+<br />
+<br />
+<table border="0" cellpadding="0" cellspacing="0" id="paso3">
+    <tr>
+        <td>
+            <div class="numberCircle">
+                3</div>
+        </td>
+        <td style="padding: 10px">
+            <h2 style="margin: 0px; padding: 0px;">
+                Confime las tarifas para la reservación</h2>
+        </td>
+    </tr>
+</table>
+<br />
+@if (Model != null)
+{
+
     int __days = ViewBag.Days;
-    int __people = Model.Adults;
     decimal __comisionh = new decimal();
     decimal __factura = new decimal();
     decimal __margenrm = new decimal();
@@ -11,215 +27,218 @@
     decimal __venta = new decimal();
     decimal __margen = new decimal();
     decimal __pmargen = new decimal();
-}
-<h3>
-    Total PPN:
-</h3>
-<table border="0" cellpadding="0" cellspacing="0" class="table">
-    <tr>
-        <th>
-            Ocupación
-        </th>
-        <th>
-            Tarifa Rack PPN Hotel
-        </th>
-        <th>
-            Comision Hotel
-        </th>
-        <th>
-            Tarifa Neta PPN
-        </th>
-        <th>
-            Margen Reg M
-        </th>
-        <th>
-            Factura
-        </th>
-        <th>
-            + G. Admon
-        </th>
-        <th>
-            Factura Bruta
-        </th>
-        <th>
-            - Agente
-        </th>
-        <th>
-            Venta Neta
-        </th>
-        <th>
-            Margen
-        </th>
-        <th>
-            Margen %
-        </th>
-        <th>
-            Diferencia Vs Hotel
-        </th>
-    </tr>
-    @foreach (var __item in Model.RoomOcupation)
-    {
-
-        __comisionh = __item.PriceRack - __item.Price;
-        __comisionh = __comisionh / __item.PriceRack * 100;
-        __factura = __item.PriceRack - (__item.PriceRack * ((decimal)Model.Discount / 100));
-        __margenrm = ((__factura - __item.Price) / __factura) * 100;
-        __gadmon = __factura * ((decimal)Model.PercentAdmin / 100);
-        __facturab = __factura + __gadmon;
-        __agente = __factura * ((decimal)Model.PercentAgent / 100);
-        __venta = __facturab - __agente;
-        __margen = __venta - __item.Price;
-        __pmargen = (__margen / __item.Price) * 100;
-        
-        
+    
+    <h3>
+        Total Precio Por Noche:
+    </h3>
+    <table border="0" cellpadding="0" cellspacing="0" class="table">
         <tr>
-            <td>
-                @__item.Name
-            </td>
-            <td>@Math.Round(__item.PriceRack, 2)
-            </td>
-            <td>
-                @Math.Round(__comisionh, 2) %
-            </td>
-            <td>@Math.Round(__item.Price, 2)
-            </td>
-            <td>
-                @Math.Round(__margenrm, 2) %
-            </td>
-            <td>@Math.Round(__factura, 2)
-            </td>
-            <td>
-                @Math.Round(__gadmon, 2)
-            </td>
-            <td>
-                @Math.Round(__facturab, 2)
-            </td>
-            <td>@Math.Round(__agente, 2)
-            </td>
-            <td>@Math.Round(__venta, 2)
-            </td>
-            <td>@Math.Round(__margen, 2)
-            </td>
-            <td>@Math.Round(__pmargen, 2)
-            </td>
-            <td>@Model.Discount %
-            </td>
+            <th>
+                Habitación
+            </th>
+            <th>
+                Tarifa Rack PPN Hotel
+            </th>
+            <th>
+                Comision Hotel
+            </th>
+            <th>
+                Tarifa Neta PPN
+            </th>
+            <th>
+                Margen Reg M
+            </th>
+            <th>
+                Factura
+            </th>
+            <th>
+                + G. Admon
+            </th>
+            <th>
+                Factura Bruta
+            </th>
+            <th>
+                - Agente
+            </th>
+            <th>
+                Venta Neta
+            </th>
+            <th>
+                Margen
+            </th>
+            <th>
+                Margen %
+            </th>
+            <th>
+                Diferencia Vs Hotel
+            </th>
         </tr>
-    }
-</table>
-<h3>
-    Total:
-</h3>
-<table border="0" cellpadding="0" cellspacing="0" class="table">
-    <tr>
-        <th>
-            Ocupación
-        </th>
-        <th>
-            Noches
-        </th>
-@*        <th>
-            Personas
-        </th>*@
-        <th>
-            Tarifa Rack PPN Hotel
-        </th>
-        <th>
-            Comision Hotel
-        </th>
-        <th>
-            Tarifa Neta PPN
-        </th>
-        <th>
-            Margen Reg M
-        </th>
-        <th>
-            Factura
-        </th>
-        <th>
-            + G. Admon
-        </th>
-        <th>
-            Factura Bruta
-        </th>
-        <th>
-            - Agente
-        </th>
-        <th>
-            Venta Neta
-        </th>
-        <th>
-            Margen
-        </th>
-        <th>
-            Margen %
-        </th>
-        <th>
-            Diferencia Vs Hotel
-        </th>
-    </tr>
-    @foreach (var __item in Model.RoomOcupation)
-    {
-        if (__item.Name.ToLower().Equals("niño"))
+        @foreach (var __item in Model.ReservationRoom.Select(x => x.RoomOcupation).Distinct())
         {
-            __people = Model.Childrens;
-        }
-        else
-        {
-            __people = Model.Adults;
-        }
+
+            __comisionh = __item.PriceRack - __item.Price;
+            __comisionh = __comisionh / __item.PriceRack * 100;
+            __factura = __item.PriceRack - (__item.PriceRack * ((decimal)Model.Discount / 100));
+            __margenrm = ((__factura - __item.Price) / __factura) * 100;
+            __gadmon = __factura * ((decimal)Model.PercentAdmin / 100);
+            __facturab = __factura + __gadmon;
+            __agente = __factura * ((decimal)Model.PercentAgent / 100);
+            __venta = __facturab - __agente;
+            __margen = __venta - __item.Price;
+            __pmargen = (__margen / __item.Price) * 100;
         
         
-        __comisionh = ((__item.PriceRack - __item.Price) * __days) * __people;
-        __comisionh = (__comisionh / ((__item.PriceRack * __days) * __people)) * 100;
-        __factura = ((__item.PriceRack * __days) * __people) - (((__item.PriceRack * __days) * __people) * ((decimal)Model.Discount / 100));
-        __margenrm = ((__factura - ((__item.Price * __days)) * __people) / __factura) * 100;
-        __gadmon = __factura * ((decimal)Model.PercentAdmin / 100);
-        __facturab = __factura + __gadmon;
-        __agente = __factura * ((decimal)Model.PercentAgent / 100);
-        __venta = __facturab - __agente;
-        __margen = __venta - ((__item.Price * __days) * __people);
-        __pmargen = (__margen / ((__item.Price * __days) * __people) * 100);
+            <tr>
+                <td>
+                    <b>@__item.Room.Name</b> @__item.Name
+                </td>
+                <td>@Math.Round(__item.PriceRack, 2)
+                </td>
+                <td>
+                    @Math.Round(__comisionh, 2) %
+                </td>
+                <td>@Math.Round(__item.Price, 2)
+                </td>
+                <td>
+                    @Math.Round(__margenrm, 2) %
+                </td>
+                <td>@Math.Round(__factura, 2)
+                </td>
+                <td>
+                    @Math.Round(__gadmon, 2)
+                </td>
+                <td>
+                    @Math.Round(__facturab, 2)
+                </td>
+                <td>@Math.Round(__agente, 2)
+                </td>
+                <td>@Math.Round(__venta, 2)
+                </td>
+                <td>@Math.Round(__margen, 2)
+                </td>
+                <td>@Math.Round(__pmargen, 2)
+                </td>
+                <td>@Model.Discount %
+                </td>
+            </tr>
+        }
+    </table>
+    <h3>
+        Total:
+    </h3>
+    <table border="0" cellpadding="0" cellspacing="0" class="table">
+        <tr>
+            <th>
+                Habitación
+            </th>
+            <th>
+                Cantidad
+            </th>
+            <th>
+                Noches
+            </th>
+            <th>
+                Tarifa Rack PPN Hotel
+            </th>
+            <th>
+                Comision Hotel
+            </th>
+            <th>
+                Tarifa Neta PPN
+            </th>
+            <th>
+                Margen Reg M
+            </th>
+            <th>
+                Factura
+            </th>
+            <th>
+                + G. Admon
+            </th>
+            <th>
+                Factura Bruta
+            </th>
+            <th>
+                - Agente
+            </th>
+            <th>
+                Venta Neta
+            </th>
+            <th>
+                Margen
+            </th>
+            <th>
+                Margen %
+            </th>
+            <th>
+                Diferencia Vs Hotel
+            </th>
+        </tr>
+        @foreach (var __item in Model.ReservationRoom.Select(x => new { x.RoomOcupation, x.Quantity }).Distinct())
+        {
+
+            decimal __people = (decimal)__item.Quantity;
+
+            __comisionh = ((__item.RoomOcupation.PriceRack - __item.RoomOcupation.Price) * __days) * __people;
+            __comisionh = (__comisionh / ((__item.RoomOcupation.PriceRack * __days) * __people)) * 100;
+            __factura = ((__item.RoomOcupation.PriceRack * __days) * __people) - (((__item.RoomOcupation.PriceRack * __days) * __people) * ((decimal)Model.Discount / 100));
+            __margenrm = ((__factura - ((__item.RoomOcupation.Price * __days)) * __people) / __factura) * 100;
+            __gadmon = __factura * ((decimal)Model.PercentAdmin / 100);
+            __facturab = __factura + __gadmon;
+            __agente = __factura * ((decimal)Model.PercentAgent / 100);
+            __venta = __facturab - __agente;
+            __margen = __venta - ((__item.RoomOcupation.Price * __days) * __people);
+            __pmargen = (__margen / ((__item.RoomOcupation.Price * __days) * __people) * 100);
 
     
-        <tr>
-            <td>
-                @__item.Name
-            </td>
-            <td>
-                @__days
-            </td>
-@*            <td>
-                @__people
-            </td>*@
-            <td>@Math.Round(((__item.PriceRack * __days) * __people), 2)
-            </td>
-            <td>
-                @Math.Round(__comisionh, 2) %
-            </td>
-            <td>@Math.Round((__item.Price * __days) * __people, 2)
-            </td>
-            <td>
-                @Math.Round(__margenrm, 2) %
-            </td>
-            <td>@Math.Round(__factura, 2)
-            </td>
-            <td>
-                @Math.Round(__gadmon, 2)
-            </td>
-            <td>
-                @Math.Round(__facturab, 2)
-            </td>
-            <td>@Math.Round(__agente, 2)
-            </td>
-            <td>@Math.Round(__venta, 2)
-            </td>
-            <td>@Math.Round(__margen, 2)
-            </td>
-            <td>@Math.Round(__pmargen, 2)
-            </td>
-            <td>@Model.Discount %
-            </td>
-        </tr>
-    }
-</table>
+            <tr>
+                <td>
+                    <b>@__item.RoomOcupation.Room.Name</b> @__item.RoomOcupation.Name
+                </td>
+                <td>
+                    @__people
+                </td>
+                <td>
+                    @__days
+                </td>
+                <td>@Math.Round(((__item.RoomOcupation.PriceRack * __days) * __people), 2)
+                </td>
+                <td>
+                    @Math.Round(__comisionh, 2) %
+                </td>
+                <td>@Math.Round((__item.RoomOcupation.Price * __days) * __people, 2)
+                </td>
+                <td>
+                    @Math.Round(__margenrm, 2) %
+                </td>
+                <td>@Math.Round(__factura, 2)
+                </td>
+                <td>
+                    @Math.Round(__gadmon, 2)
+                </td>
+                <td>
+                    @Math.Round(__facturab, 2)
+                </td>
+                <td>@Math.Round(__agente, 2)
+                </td>
+                <td>@Math.Round(__venta, 2)
+                </td>
+                <td>@Math.Round(__margen, 2)
+                </td>
+                <td>@Math.Round(__pmargen, 2)
+                </td>
+                <td>@Model.Discount %
+                </td>
+            </tr>
+        }
+    </table>
+    <br />    
+    <p>
+        <input type="submit" value="Crear Reservación" style="display: none;" id="save" />
+    </p>
+}
+else
+{ 
+    <h3 class="red">
+        @ViewBag.Error</h3>
+}

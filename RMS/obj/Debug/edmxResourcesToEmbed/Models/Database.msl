@@ -261,26 +261,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="RoomOcupation">
-      <EntityTypeMapping TypeName="RegionalModel.RoomOcupation">
-        <MappingFragment StoreEntitySet="RoomOcupation">
-          <ScalarProperty Name="PriceRack" ColumnName="PriceRack" />
-          <ScalarProperty Name="Active" ColumnName="Active" />
-          <ScalarProperty Name="PercentAdmin" ColumnName="PercentAdmin" />
-          <ScalarProperty Name="PercentAgent" ColumnName="PercentAgent" />
-          <ScalarProperty Name="Discount3" ColumnName="Discount3" />
-          <ScalarProperty Name="Discount2" ColumnName="Discount2" />
-          <ScalarProperty Name="Discount1" ColumnName="Discount1" />
-          <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
-          <ScalarProperty Name="DateStart" ColumnName="DateStart" />
-          <ScalarProperty Name="Price" ColumnName="Price" />
-          <ScalarProperty Name="Capacity" ColumnName="Capacity" />
-          <ScalarProperty Name="IdRoom" ColumnName="IdRoom" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Service">
       <EntityTypeMapping TypeName="RegionalModel.Service">
         <MappingFragment StoreEntitySet="Service">
@@ -430,13 +410,35 @@
         <ScalarProperty Name="RoleId" ColumnName="RoleId" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="ReservationRoom" TypeName="RegionalModel.ReservationRoom" StoreEntitySet="ReservationRoom">
-      <EndProperty Name="RoomOcupation">
-        <ScalarProperty Name="Id" ColumnName="IdRoomOcupation" />
-      </EndProperty>
-      <EndProperty Name="Reservation">
-        <ScalarProperty Name="Id" ColumnName="IdReservation" />
-      </EndProperty>
-    </AssociationSetMapping>
+    <EntitySetMapping Name="RoomOcupation">
+      <EntityTypeMapping TypeName="RegionalModel.RoomOcupation">
+        <MappingFragment StoreEntitySet="RoomOcupation">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="PercentAdmin" ColumnName="PercentAdmin" />
+          <ScalarProperty Name="PercentAgent" ColumnName="PercentAgent" />
+          <ScalarProperty Name="Discount3" ColumnName="Discount3" />
+          <ScalarProperty Name="Discount2" ColumnName="Discount2" />
+          <ScalarProperty Name="Discount1" ColumnName="Discount1" />
+          <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
+          <ScalarProperty Name="DateStart" ColumnName="DateStart" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="PriceRack" ColumnName="PriceRack" />
+          <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+          <ScalarProperty Name="IdRoom" ColumnName="IdRoom" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReservationRoom">
+      <EntityTypeMapping TypeName="RegionalModel.ReservationRoom">
+        <MappingFragment StoreEntitySet="ReservationRoom">
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="IdReservation" ColumnName="IdReservation" />
+          <ScalarProperty Name="IdRoomOcupation" ColumnName="IdRoomOcupation" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

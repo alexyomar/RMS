@@ -3,23 +3,27 @@ The base color for this template is #5c87b2. If you'd like
 to use a different color start by replacing all instances of
 #5c87b2 with your new color.
 ----------------------------------------------------------*/
-body { background-color: #8e8e8e; font-size: .85em; font-family: "Trebuchet MS" , Verdana, Helvetica, Sans-Serif; margin: 0; padding: 0; color: #696969; }
+body { background-color: #8e8e8e; font-size: .85em; font-family: "Segoe UI Symbol" , Arial, Helvetica, Sans-Serif; margin: 0; padding: 0; color: #696969; }
 
-a:link { color: #A3BD31; text-decoration: underline; }
+input, textarea, keygen, select, button, isindex { font-family: "Segoe UI Symbol" , Arial; }
 
-a:visited { color: #899e2c; }
+a:link { color: #A3BD31; text-decoration: none; }
+
+a:visited { color: #899e2c; text-decoration: none; }
 
 a:hover { color: #5d6b1f; text-decoration: none; }
 
 a:active { color: #56631a; }
 
-p, ul { margin-bottom: 20px; line-height: 1.6em; }
-
 header, footer, nav, section { display: block; }
+
+ul, li { list-style-type: square; padding: 0; margin: 0; color: #899E2C; }
+
+img { border: none; }
 
 /* HEADINGS   
 ----------------------------------------------------------*/
-h1, h2, h3, h4, h5, h6 { font-size: 1.5em; color: #000; }
+h1, h2, h3, h4, h5, h6 { font-size: 1.5em; color: dimGray; font-family: "Segoe UI Light"; }
 
 h1 { font-size: 2em; padding-bottom: 0; margin-bottom: 0; }
 
@@ -36,13 +40,13 @@ h5, h6 { font-size: 1em; }
 
 /* you can specify a greater or lesser percentage for the 
 page width. Or, you can specify an exact pixel width. */
-.page { width: 90%; margin-left: auto; margin-right: auto; }
+.page { width: 96%; margin-left: auto; margin-right: auto; }
 
 header, #header { position: relative; margin-bottom: 0px; color: #000; padding: 10px 0px; }
 
 header h1, #header h1 { font-weight: bold; padding: 5px 0; margin: 0; color: #fff; border: none; line-height: 2em; font-size: 32px !important; text-shadow: 2px 2px 2px #4D4D4D; }
 
-#main { padding: 30px 30px 15px 30px; background-color: #fff; border-radius: 0 0 4px 0; -webkit-border-radius: 0 4px 0 0; -moz-border-radius: 0 0 4px 0; }
+#main { padding: 30px; background-color: #fff; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; }
 
 footer, #footer { background-color: #fff; color: #999; padding: 10px 0; text-align: center; line-height: normal; margin: 0 0 30px 0; font-size: .9em; border-radius: 0 0 4px 4px; -webkit-border-radius: 0 0 4px 4px; -moz-border-radius: 0 0 4px 4px; }
 
@@ -50,7 +54,7 @@ footer, #footer { background-color: #fff; color: #999; padding: 10px 0; text-ali
 ----------------------------------------------------------*/
 ul#menu { padding: 0; position: relative; margin: 0; text-align: left; }
 
-ul#menu li { display: inline;}
+ul#menu li { display: inline; }
 
 ul#menu li#greeting { padding: 10px 20px; font-weight: bold; text-decoration: none; line-height: 2.8em; color: #fff; }
 
@@ -118,7 +122,7 @@ input[type="button"] { font-size: 1.2em; padding: 5px; }
 
 /* Styles for editor and display helpers
 ----------------------------------------------------------*/
-.display-label { font-weight: 700; }
+.display-label, .editor-label { font-weight: 700; }
 .display-label, .editor-label { margin: 1em 0 0 0; }
 
 .display-field, .editor-field { margin: 0.5em 0 0 0; }
@@ -137,3 +141,32 @@ input[type="button"] { font-size: 1.2em; padding: 5px; }
 #accordion ul { margin: 0px; padding: 0px 10px; }
 
 #accordion li { margin: 0px; }
+
+.numberCircle { -webkit-border-radius: 999px; -moz-border-radius: 999px; border-radius: 999px; behavior: url(PIE.htc); width: 30px; height: 30px; padding: 6px; background: #A3BD31; border: 1px solid #666; color: #fff; text-align: center; font-weight: 700; font: 28px Arial, sans-serif; }
+
+#crumbs { height: 2.3em; border: 1px solid #dedede; }
+#crumbs { padding-left: 15px !important; }
+#crumbs ul, #crumbs li { list-style-type: none; padding: 0; margin: 0; }
+
+#crumbs li { float: left; line-height: 2.3em; color: #777; list-style-type: none; margin: 0px 5px; }
+#crumbs li a { background: url(images/crumbs.png) no-repeat right center; display: block; padding: 0 25px 0 0px; }
+
+.button { position: relative; background: url(img/button.png); background-repeat: no-repeat; width: 129px; height: 30px; line-height: 30px; margin: 0px 8px; display: block; text-align: center; color: #fff !important; text-decoration: none !important; }
+.button:hover { color: #C2E03E !important; }
+.button img { position: absolute; top: 7px; left: 8px; }
+
+urbangreymenu { width: 190px; /*width of menu*/ }
+
+.urbangreymenu .headerbar { font: 18px "Segoe UI Light"; color: white; background: #8E8E8E; /*last 2 values are the x and y coordinates of bullet image*/ margin-bottom: 0; /*bottom spacing between header and rest of content*/ padding: 7px 0 7px 8px; /*31px is left indentation of header text*/ }
+
+.urbangreymenu ul { list-style-type: none; margin: 0; padding: 0; margin-bottom: 0; /*bottom spacing between each UL and rest of content*/ }
+
+.urbangreymenu ul li { padding-bottom: 2px; /*bottom spacing between menu items*/ list-style-type: none; }
+
+.urbangreymenu ul li a { font: normal 12px; color: black; background: #E9E9E9; display: block; padding: 5px 0; line-height: 17px; padding-left: 8px; /*link text is indented 8px*/ text-decoration: none; }
+
+.urbangreymenu ul li a:visited { color: black; }
+
+.urbangreymenu ul li a:hover { /*hover state CSS*/ color: white; background: #A3BD31; }
+
+.actions { color: #A3BD31; }

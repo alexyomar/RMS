@@ -3,29 +3,36 @@
     ViewBag.Title = "Tarifas";
     RMS.Models.Room __room = ViewBag.Room;
 }
-<h2>
-    Tarifas para la Habitación: @__room.Name<br />
-    @__room.Hotel.Name
-</h2>
-<table border="0" cellpadding="0" cellspacing="0">
+<ul id="crumbs">
+    <li><a href="@Url.Action("Index", "Hotel")">Hoteles</a></li>
+    <li><a href="@Url.Action("Index", "Hotel")">@__room.Hotel.Name</a></li>
+    <li><a href="@Url.Action("Index", "Room", new { Id = __room.Hotel.Id })">Habitaciones</a></li>
+    <li><a href="@Url.Action("Edit", "Room", new { Id = __room.Id })">@__room.Name</a></li>
+    <li><a href="@Url.Action("Index", "RoomRate", new { Id = __room.Id })">Tarifas</a></li>
+    <li>Listado de Tarifas</li>
+</ul>
+<table border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin: 30px 0px;">
     <tr>
-        <td>
-            @Html.ActionLink("Crear Nueva", "Create", new { Id = __room.Id })
+        <td valign="middle">
+            <h1 style="margin: 0px; padding: 0px">
+                Tarifas de la Habitación @__room.Name<br />
+                en @__room.Hotel.Name</h1>
         </td>
         <td>
-            &nbsp;&nbsp;&nbsp;
-            @Html.ActionLink("Variables", "Batch", new { Id = __room.Id }, new { @class = "popup" })
+            <a href="@Url.Action("Create", new { Id = __room.Id })" class="button" style="float: right;">
+                <img src="@Url.Content("~/Content/img/add.png")" />
+                &nbsp;&nbsp;Crear Nueva</a>&nbsp;&nbsp; &nbsp;&nbsp; <a href="@Url.Action("Batch", new { Id = __room.Id })" class="button popup" style="float: right;">
+                    <img src="@Url.Content("~/Content/img/money.png")" />
+                    &nbsp;&nbsp;Variables</a>&nbsp;&nbsp; &nbsp;&nbsp; <a href="@Url.Action("Index", "Room", new { Id = __room.Hotel.Id })" class="button" style="float: right;">
+                        <img src="@Url.Content("~/Content/img/back.png")" />
+                        &nbsp;&nbsp;Volver</a>
         </td>
     </tr>
 </table>
-<br />
-<br />
 <table id="list" cellpadding="0" cellspacing="0">
 </table>
 <div id="pager">
 </div>
-<p>
-    @Html.ActionLink("Volver a Habitaciones", "Index", "Room", new { Id = __room.IdHotel }, null)</p>
 <script type="text/javascript">
     $(".popup").colorbox({ iframe: true, width: 400, height: 450, onClosed: function () { location.reload(true); } });
     jQuery(document).ready(function () {
@@ -41,9 +48,9 @@
             { name: 'Price', index: 'Price', width: 40, align: 'center' },
             { name: 'DateStart', index: 'DateStart', width: 40, align: 'center' },
             { name: 'DateEnd', index: 'DateEnd', width: 40, align: 'center' },
-            { name: 'Discount1', index: 'Discount1', width: 35, align: 'center' },
-            { name: 'Discount2', index: 'Discount2', width: 35, align: 'center' },
-            { name: 'Discount3', index: 'Discount3', width: 35, align: 'center' },
+            { name: 'Discount1', index: 'Discount1', width: 40, align: 'center' },
+            { name: 'Discount2', index: 'Discount2', width: 40, align: 'center' },
+            { name: 'Discount3', index: 'Discount3', width: 40, align: 'center' },
             { name: 'PercentAgent', index: 'PercentAgent', width: 40, align: 'center' },
             { name: 'PercentAdmin', PercentAdmin: 'Room', width: 40, align: 'center' },
             { name: 'Active', index: 'Active', width: 40, align: 'center', formatter: 'checkbox' },
@@ -74,3 +81,19 @@
         //        jQuery("#list").jqGrid('navGrid','#pager',{edit:false,add:false,del:false});
     });
 </script>
+<table border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin: 30px 0px;">
+    <tr>
+        <td valign="middle">
+        </td>
+        <td>
+            <a href="@Url.Action("Create", new { Id = __room.Id })" class="button" style="float: right;">
+                <img src="@Url.Content("~/Content/img/add.png")" />
+                &nbsp;&nbsp;Crear Nueva</a>&nbsp;&nbsp; &nbsp;&nbsp; <a href="@Url.Action("Batch", new { Id = __room.Id })" class="popup button" style="float: right;">
+                    <img src="@Url.Content("~/Content/img/money.png")" />
+                    &nbsp;&nbsp;Variables</a>&nbsp;&nbsp; &nbsp;&nbsp; <a href="@Url.Action("Index", "Room", new { Id = __room.Hotel.Id })" class="button " style="float: right;">
+                        <img src="@Url.Content("~/Content/img/back.png")" />
+                        &nbsp;&nbsp;Volver</a>
+        </td>
+    </tr>
+</table>
+

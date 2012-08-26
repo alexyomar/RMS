@@ -48,13 +48,25 @@ namespace RMS.Controllers
         [HttpPost]
         public ActionResult Create(RoomOccupationBed roomoccupationbed)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.RoomOccupationBed.AddObject(roomoccupationbed);
-                db.SaveChanges();
-                return RedirectToAction("Index", new { Id = roomoccupationbed.IdRoom });
+                if (ModelState.IsValid)
+                {
+                    db.RoomOccupationBed.AddObject(roomoccupationbed);
+                    db.SaveChanges();
+                    return RedirectToAction("Index", new { Id = roomoccupationbed.IdRoom });
+                }
+            }
+            catch (Exception)
+            {
+                ViewBag.Room = db.Room.SingleOrDefault(model => model.Id.Equals(roomoccupationbed.IdRoom));
+                ViewBag.IdRoom = roomoccupationbed.IdRoom;
+                ViewBag.IdRoomBed = new SelectList(db.RoomBed, "Id", "Name", roomoccupationbed.IdRoomBed);
+                ViewBag.Error = "Ya existe esa asignación de cama.";
+                return View(roomoccupationbed);
             }
 
+            ViewBag.Room = db.Room.SingleOrDefault(model => model.Id.Equals(roomoccupationbed.IdRoom));
             ViewBag.IdRoom = roomoccupationbed.IdRoom;
             ViewBag.IdRoomBed = new SelectList(db.RoomBed, "Id", "Name", roomoccupationbed.IdRoomBed);
             return View(roomoccupationbed);

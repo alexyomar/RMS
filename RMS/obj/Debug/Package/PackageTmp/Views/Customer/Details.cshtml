@@ -2,8 +2,24 @@
 @{
     ViewBag.Title = "Detalles del Cliente";
 }
-<h2>
-    Detalles del cliente</h2>
+<ul id="crumbs">
+    <li><a href="@Url.Action("Index", "Budget")">Reservaciones</a></li>
+    <li><a href="@Url.Action("Index", "Customer")">Clientes</a></li>
+    <li>Detalle del Cliente</li>
+</ul>
+<table border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin: 30px 0px;">
+    <tr>
+        <td valign="middle">
+            <h1 style="margin: 0px; padding: 0px">
+                Detalle del Cliente</h1>
+        </td>
+        <td>
+             <a href="@Url.Action("Index", "Customer")" class="button" style="float: right;">
+                <img src="@Url.Content("~/Content/img/back.png")" />
+                &nbsp;&nbsp;Volver</a>
+        </td>
+    </tr>
+</table>
 <fieldset>
     <legend>Cliente</legend>
     <div class="display-label">@Html.LabelFor(model => model.Name)</div>
@@ -32,7 +48,15 @@
         @Html.DisplayFor(model => model.Email)
     </div>
 </fieldset>
-<p>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Volver al listado", "Index")
-</p>
+<table border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin: 30px 0px;">
+    <tr>
+        <td valign="middle">
+
+        </td>
+        <td>
+            <a href="@Url.Action("Index", "Customer")" class="button" style="float: right;">
+                <img src="@Url.Content("~/Content/img/back.png")" />
+                &nbsp;&nbsp;Volver</a>
+        </td>
+    </tr>
+</table>

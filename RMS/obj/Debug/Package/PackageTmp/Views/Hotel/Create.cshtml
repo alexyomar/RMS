@@ -2,8 +2,13 @@
 @{
     ViewBag.Title = "Crear Hotel";
 }
-<h2>
-    Crear Hotel</h2>
+<ul id="crumbs">
+    <li><a href="@Url.Action("Index")">Hoteles</a></li>
+    <li>Crear Hotel</li>
+</ul>
+<h1 style="margin: 30px 0px">
+    Crear Hotel
+</h1>
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
 @using (Html.BeginForm())

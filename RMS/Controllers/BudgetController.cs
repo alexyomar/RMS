@@ -40,165 +40,107 @@ namespace RMS.Controllers
         [HttpPost]
         public ActionResult Create(ReservationModel reservation)
         {
+
+
             ViewBag.Hotels = db.Hotel.OrderBy(u => u.Name);
 
 
             decimal __pricebase = new decimal();
             decimal __total = new decimal();
             decimal __totalrack = new decimal();
-            foreach (var item in reservation.Rooms)
+
+            var __rooms = reservation.Rooms.Where(z => z.Name != null);
+            List<ReservationRoom> __listrr = new List<ReservationRoom>();
+            foreach (var item in __rooms)
             {
 
-                if (item.IdRoom != 0)
+                if (item.Name != null)
                 {
                     var __room = db.Room.SingleOrDefault(u => u.Id.Equals(item.IdRoom));
-                    var __maxcapacity = __room.RoomOcupation.OrderByDescending(model => model.Capacity).First().Capacity;
 
 
+                    IEnumerable<DateTime> __tripdays = EachDay(reservation.Trip.Arrival, reservation.Trip.Departure);
+                    __tripdays = __tripdays.Take(__tripdays.Count() - 1);
+                    reservation.Trip.Adults = reservation.Trip.Adults + item.Adultos;
+                    reservation.Trip.Childrens = reservation.Trip.Childrens + (item.Infantes * item.Quantity);
 
-                    if (item.Adultos <= __maxcapacity && item.Infantes <= __maxcapacity)
+                    foreach (var __day in __tripdays)
                     {
-                        IEnumerable<DateTime> __tripdays = EachDay(reservation.Trip.Arrival, reservation.Trip.Departure);
-                        __tripdays = __tripdays.Take(__tripdays.Count() - 1);
-                        reservation.Trip.Adults = reservation.Trip.Adults + item.Adultos;
-                        reservation.Trip.Childrens = reservation.Trip.Childrens + item.Infantes;
+                        RoomOcupation __roomfare;
 
+                        if (item.Infantes > 0)
+                            __roomfare = db.RoomOcupation.Where(u => u.DateStart <= __day && u.DateEnd >= __day && u.Active.Equals(true) && u.IdRoom.Equals(__room.Id) && u.Room.Name.Equals(item.Name) && u.Name.ToLower().Equals("niño")).FirstOrDefault();
+                        else
+                            __roomfare = db.RoomOcupation.Where(u => u.DateStart <= __day && u.DateEnd >= __day && u.Active.Equals(true) && u.IdRoom.Equals(__room.Id) && u.Room.Name.Equals(item.Name) && u.Capacity.Equals(item.Adultos)).FirstOrDefault();
 
-                        foreach (var __day in __tripdays)
+                        if (__roomfare != null)
                         {
-                            var __roomfare = db.RoomOcupation.Where(u => u.DateStart <= __day && u.DateEnd >= __day && u.Capacity.Equals(item.Adultos) && u.Active.Equals(true) && u.IdRoom.Equals(__room.Id)).FirstOrDefault();
-                            var __roomfarechild = db.RoomOcupation.Where(u => u.DateStart <= __day && u.DateEnd >= __day && u.Name.ToLower().Equals("niño") && u.IdRoom.Equals(__room.Id)).FirstOrDefault();
 
-                            if (__roomfare != null)
-                            {
+                            decimal __discount = new decimal();
 
-
-                                decimal __discount = new decimal();
-
-                                if (!reservation.Trip.Discount.HasValue)
-                                    if (__tripdays.Count() <= 3)
-                                        __discount = __roomfare.Discount1;
-                                    else if (__tripdays.Count() >= 4 && __tripdays.Count() < 7)
-                                        __discount = __roomfare.Discount2;
-                                    else
-                                        __discount = __roomfare.Discount3;
+                            if (!reservation.Trip.Discount.HasValue)
+                                if (__tripdays.Count() <= 3)
+                                    __discount = __roomfare.Discount1;
+                                else if (__tripdays.Count() >= 4 && __tripdays.Count() < 7)
+                                    __discount = __roomfare.Discount2;
                                 else
-                                    if (reservation.Trip.Discount.Value != 0)
-                                        __discount = reservation.Trip.Discount.Value;
-
-                                decimal __admon = new decimal();
-
-                                if (!reservation.Trip.PercentAdmin.HasValue)
-                                    __admon = __roomfare.PercentAdmin;
-                                else
-                                    if (reservation.Trip.PercentAdmin.Value != 0)
-                                        __admon = reservation.Trip.PercentAdmin.Value;
-
-                                //descuento
-                                decimal __facturabruta = __roomfare.PriceRack - (__roomfare.PriceRack * (__discount / 100));
-                                //gastos admon
-                                __facturabruta = __facturabruta + (__facturabruta * (__admon / 100));
-                                //adultos
-                                __facturabruta = __facturabruta * item.Adultos;
-                                //rack
-                                __totalrack = (__roomfare.Price * item.Adultos) + __totalrack;
-
-                                __total = __total + __facturabruta;
-
-                                decimal __agent = new decimal();
-
-
-                                if (!reservation.Trip.PercentAdmin.HasValue)
-                                    __agent = __roomfare.PercentAgent;
-                                else
-                                    if (reservation.Trip.PercentAgent.Value != 0)
-                                        __agent = reservation.Trip.PercentAgent.Value;
-
-                                if (item.Infantes > 0)
-                                {
-                                    if (__roomfarechild != null)
-                                    {
-                                        if (!reservation.Trip.Discount.HasValue)
-                                            if (__tripdays.Count() <= 3)
-                                                __discount = __roomfarechild.Discount1;
-                                            else if (__tripdays.Count() >= 4 && __tripdays.Count() < 7)
-                                                __discount = __roomfarechild.Discount2;
-                                            else
-                                                __discount = __roomfarechild.Discount3;
-                                        else
-                                            if (reservation.Trip.Discount.Value != 0)
-                                                __discount = reservation.Trip.Discount.Value;
-
-                                        if (!reservation.Trip.PercentAdmin.HasValue)
-                                            __admon = __roomfarechild.PercentAdmin;
-                                        else
-                                            if (reservation.Trip.PercentAdmin.Value != 0)
-                                                __admon = reservation.Trip.PercentAdmin.Value;
-
-                                        //descuento
-                                        __facturabruta = __roomfarechild.PriceRack - (__roomfarechild.PriceRack * (__discount / 100));
-                                        //gastos admon
-                                        __facturabruta = __facturabruta + (__facturabruta * (__admon / 100));
-                                        //adultos
-                                        __facturabruta = __facturabruta * item.Infantes;
-                                        //rack
-                                        __totalrack = (__roomfarechild.Price * item.Infantes) + __totalrack;
-
-                                        __total = __total + __facturabruta;
-
-                                        if (!reservation.Trip.PercentAdmin.HasValue)
-                                            __agent = __roomfarechild.PercentAgent;
-                                        else
-                                            if (reservation.Trip.PercentAgent.Value != 0)
-                                                __agent = reservation.Trip.PercentAgent.Value;
-
-
-                                    }
-                                    else
-                                    {
-                                        ViewBag.Customer = db.Customer.ToList();
-                                        ViewBag.ReservationStatus = new SelectList(db.ReservationStatus, "Id", "Name");
-                                        ViewBag.Error = "No hay tarifas cargadas para niños en una de las habitacion: " + __room.Name;
-                                        return View(reservation);
-                                    }
-
-                                    // Porcentaje del Vendedor
-                                    __pricebase = __pricebase + __roomfarechild.Price;
-                                    reservation.Trip.Discount = Convert.ToInt32(__discount);
-                                    reservation.Trip.PercentAdmin = Convert.ToInt32(__admon);
-                                    reservation.Trip.PercentAgent = Convert.ToInt32(__agent);
-                                    reservation.Trip.PriceBase = __pricebase;
-                                    reservation.Trip.RoomOcupation.Add(__roomfarechild);
-                                }
-
-                                // Porcentaje del Vendedor
-                                __pricebase = __pricebase + __roomfare.Price;
-                                reservation.Trip.Discount = Convert.ToInt32(__discount);
-                                reservation.Trip.PercentAdmin = Convert.ToInt32(__admon);
-                                reservation.Trip.PercentAgent = Convert.ToInt32(__agent);
-                                reservation.Trip.PriceBase = __pricebase;
-                                reservation.Trip.RoomOcupation.Add(__roomfare);
-
-
-
-
-                            }
+                                    __discount = __roomfare.Discount3;
                             else
-                            {
+                                if (reservation.Trip.Discount.Value != 0)
+                                    __discount = reservation.Trip.Discount.Value;
 
-                                ViewBag.Error = "No hay tarifas cargadas para una de las habitacion: " + __room.Name;
-                                PartialView();
-                            }
+                            decimal __admon = new decimal();
+
+                            if (!reservation.Trip.PercentAdmin.HasValue)
+                                __admon = __roomfare.PercentAdmin;
+                            else
+                                if (reservation.Trip.PercentAdmin.Value != 0)
+                                    __admon = reservation.Trip.PercentAdmin.Value;
+
+                            //descuento
+                            decimal __facturabruta = __roomfare.PriceRack - (__roomfare.PriceRack * (__discount / 100));
+                            //gastos admon
+                            __facturabruta = __facturabruta + (__facturabruta * (__admon / 100));
+                            //adultos
+                            __facturabruta = __facturabruta * item.Quantity;
+                            //rack
+                            __totalrack = (__roomfare.PriceRack * item.Quantity) + __totalrack;
+
+                            __total = __total + __facturabruta;
+
+                            decimal __agent = new decimal();
+
+
+                            if (!reservation.Trip.PercentAdmin.HasValue)
+                                __agent = __roomfare.PercentAgent;
+                            else
+                                if (reservation.Trip.PercentAgent.Value != 0)
+                                    __agent = reservation.Trip.PercentAgent.Value;
+
+
+                            // Porcentaje del Vendedor
+                            __pricebase = __pricebase + __roomfare.Price;
+                            reservation.Trip.Discount = Convert.ToInt32(__discount);
+                            reservation.Trip.PercentAdmin = Convert.ToInt32(__admon);
+                            reservation.Trip.PercentAgent = Convert.ToInt32(__agent);
+                            reservation.Trip.PriceBase = __pricebase;
+
+                            ReservationRoom __rr = new ReservationRoom();
+                            __rr.Quantity = item.Quantity;
+                            __rr.IdRoomOcupation = __roomfare.Id;
+                            __listrr.Add(__rr);
+
+
                         }
+                        else
+                        {
+                            ViewBag.Customer = db.Customer.ToList();
+                            ViewBag.Error = "No hay tarifas cargadas para la habitación " + __room.Name + " para la fecha seleccionada.";
+                            return PartialView();
+                        }
+                    }
 
-                    }
-                    else
-                    {
-                        ViewBag.Customer = db.Customer.ToList();
-                        ViewBag.ReservationStatus = new SelectList(db.ReservationStatus, "Id", "Name");
-                        ViewBag.Error = "El numero de adultos ó niños excede la capacidad en la  habitación: " + __room.Name;
-                        return View(reservation);
-                    }
+
 
                 }
 
@@ -210,8 +152,21 @@ namespace RMS.Controllers
                 reservation.Trip.Price = __total;
                 reservation.Trip.PriceBase = __pricebase;
                 reservation.Trip.ReservationDate = DateTime.Now;
+
+
                 db.Reservation.AddObject(reservation.Trip);
                 db.SaveChanges();
+
+                foreach (var item in __listrr)
+                {
+                    item.IdReservation = reservation.Trip.Id;
+                    db.ReservationRoom.AddObject(item);
+                    db.SaveChanges();
+                }
+
+
+
+
                 return RedirectToAction("Index");
             }
             else
@@ -342,161 +297,103 @@ namespace RMS.Controllers
             decimal __pricebase = new decimal();
             decimal __total = new decimal();
             decimal __totalrack = new decimal();
-            foreach (var item in reservation.Rooms)
+
+
+            var __rooms = reservation.Rooms.Where(z => z.Name != null);
+
+            foreach (var item in __rooms)
             {
 
-                if (item.IdRoom != 0)
+                if (item.Name != null)
                 {
                     var __room = db.Room.SingleOrDefault(u => u.Id.Equals(item.IdRoom));
-                    var __maxcapacity = __room.RoomOcupation.OrderByDescending(model => model.Capacity).First().Capacity;
+                    //var __maxcapacity = __room.RoomOcupation.OrderByDescending(model => model.Capacity).First().Capacity;
+
+                    IEnumerable<DateTime> __tripdays = EachDay(reservation.Trip.Arrival, reservation.Trip.Departure);
+                    __tripdays = __tripdays.Take(__tripdays.Count() - 1);
+                    reservation.Trip.Adults = reservation.Trip.Adults + item.Adultos;
+                    reservation.Trip.Childrens = reservation.Trip.Childrens + item.Infantes;
+
+                    ViewBag.Days = __tripdays.Count();
 
 
-
-                    if (item.Adultos <= __maxcapacity && item.Infantes <= __maxcapacity)
+                    #region FOREACH
+                    foreach (var __day in __tripdays)
                     {
-                        IEnumerable<DateTime> __tripdays = EachDay(reservation.Trip.Arrival, reservation.Trip.Departure);
-                        __tripdays = __tripdays.Take(__tripdays.Count() - 1);
-                        reservation.Trip.Adults = reservation.Trip.Adults + item.Adultos;
-                        reservation.Trip.Childrens = reservation.Trip.Childrens + item.Infantes;
+                        RoomOcupation __roomfare;
 
-                        ViewBag.Days = __tripdays.Count();
+                        if (item.Infantes > 0)
+                            __roomfare = db.RoomOcupation.Where(u => u.DateStart <= __day && u.DateEnd >= __day && u.Active.Equals(true) && u.IdRoom.Equals(__room.Id) && u.Room.Name.Equals(item.Name) && u.Name.ToLower().Equals("niño")).FirstOrDefault();
+                        else
+                            __roomfare = db.RoomOcupation.Where(u => u.DateStart <= __day && u.DateEnd >= __day && u.Active.Equals(true) && u.IdRoom.Equals(__room.Id) && u.Room.Name.Equals(item.Name) && u.Capacity.Equals(item.Adultos)).FirstOrDefault();
 
-
-                        #region FOREACH
-                        foreach (var __day in __tripdays)
+                        if (__roomfare != null)
                         {
-                            var __roomfare = db.RoomOcupation.Where(u => u.DateStart <= __day && u.DateEnd >= __day && u.Capacity.Equals(item.Adultos) && u.Active.Equals(true) && u.IdRoom.Equals(__room.Id)).FirstOrDefault();
-                            var __roomfarechild = db.RoomOcupation.Where(u => u.DateStart <= __day && u.DateEnd >= __day && u.Name.ToLower().Equals("niño") && u.IdRoom.Equals(__room.Id)).FirstOrDefault();
 
-                            if (__roomfare != null)
-                            {
+                            decimal __discount = new decimal();
 
-
-                                decimal __discount = new decimal();
-
-                                if (!reservation.Trip.Discount.HasValue)
-                                    if (__tripdays.Count() <= 3)
-                                        __discount = __roomfare.Discount1;
-                                    else if (__tripdays.Count() >= 4 && __tripdays.Count() < 7)
-                                        __discount = __roomfare.Discount2;
-                                    else
-                                        __discount = __roomfare.Discount3;
+                            if (!reservation.Trip.Discount.HasValue)
+                                if (__tripdays.Count() <= 3)
+                                    __discount = __roomfare.Discount1;
+                                else if (__tripdays.Count() >= 4 && __tripdays.Count() < 7)
+                                    __discount = __roomfare.Discount2;
                                 else
-                                    if (reservation.Trip.Discount.Value != 0)
-                                        __discount = reservation.Trip.Discount.Value;
-
-                                decimal __admon = new decimal();
-
-                                if (!reservation.Trip.PercentAdmin.HasValue)
-                                    __admon = __roomfare.PercentAdmin;
-                                else
-                                    if (reservation.Trip.PercentAdmin.Value != 0)
-                                        __admon = reservation.Trip.PercentAdmin.Value;
-
-                                //descuento
-                                decimal __facturabruta = __roomfare.PriceRack - (__roomfare.PriceRack * (__discount / 100));
-                                //gastos admon
-                                __facturabruta = __facturabruta + (__facturabruta * (__admon / 100));
-                                //adultos
-                                __facturabruta = __facturabruta * item.Adultos;
-                                //rack
-                                __totalrack = (__roomfare.Price * item.Adultos) + __totalrack;
-
-                                __total = __total + __facturabruta;
-
-                                decimal __agent = new decimal();
-
-
-                                if (!reservation.Trip.PercentAdmin.HasValue)
-                                    __agent = __roomfare.PercentAgent;
-                                else
-                                    if (reservation.Trip.PercentAgent.Value != 0)
-                                        __agent = reservation.Trip.PercentAgent.Value;
-
-                                if (item.Infantes > 0)
-                                {
-                                    if (__roomfarechild != null)
-                                    {
-                                        if (!reservation.Trip.Discount.HasValue)
-                                            if (__tripdays.Count() <= 3)
-                                                __discount = __roomfarechild.Discount1;
-                                            else if (__tripdays.Count() >= 4 && __tripdays.Count() < 7)
-                                                __discount = __roomfarechild.Discount2;
-                                            else
-                                                __discount = __roomfarechild.Discount3;
-                                        else
-                                            if (reservation.Trip.Discount.Value != 0)
-                                                __discount = reservation.Trip.Discount.Value;
-
-                                        if (!reservation.Trip.PercentAdmin.HasValue)
-                                            __admon = __roomfarechild.PercentAdmin;
-                                        else
-                                            if (reservation.Trip.PercentAdmin.Value != 0)
-                                                __admon = reservation.Trip.PercentAdmin.Value;
-
-                                        //descuento
-                                        __facturabruta = __roomfarechild.PriceRack - (__roomfarechild.PriceRack * (__discount / 100));
-                                        //gastos admon
-                                        __facturabruta = __facturabruta + (__facturabruta * (__admon / 100));
-                                        //adultos
-                                        __facturabruta = __facturabruta * item.Infantes;
-                                        //rack
-                                        __totalrack = (__roomfarechild.Price * item.Infantes) + __totalrack;
-
-                                        __total = __total + __facturabruta;
-
-                                        if (!reservation.Trip.PercentAdmin.HasValue)
-                                            __agent = __roomfarechild.PercentAgent;
-                                        else
-                                            if (reservation.Trip.PercentAgent.Value != 0)
-                                                __agent = reservation.Trip.PercentAgent.Value;
-
-
-                                    }
-                                    else
-                                    {
-                                        ViewBag.Customer = db.Customer.ToList();
-                                        ViewBag.ReservationStatus = new SelectList(db.ReservationStatus, "Id", "Name");
-                                        ViewBag.Error = "No hay tarifas cargadas para niños en una de las habitacion: " + __room.Name;
-                                        return View(reservation);
-                                    }
-
-                                    // Porcentaje del Vendedor
-                                    __pricebase = __pricebase + __roomfarechild.Price;
-                                    reservation.Trip.Discount = Convert.ToInt32(__discount);
-                                    reservation.Trip.PercentAdmin = Convert.ToInt32(__admon);
-                                    reservation.Trip.PercentAgent = Convert.ToInt32(__agent);
-                                    reservation.Trip.PriceBase = __pricebase;
-                                    reservation.Trip.RoomOcupation.Add(__roomfarechild);
-                                }
-
-                                // Porcentaje del Vendedor
-                                __pricebase = __pricebase + __roomfare.Price;
-                                reservation.Trip.Discount = Convert.ToInt32(__discount);
-                                reservation.Trip.PercentAdmin = Convert.ToInt32(__admon);
-                                reservation.Trip.PercentAgent = Convert.ToInt32(__agent);
-                                reservation.Trip.PriceBase = __pricebase;
-                                reservation.Trip.RoomOcupation.Add(__roomfare);
-
-
-
-
-                            }
+                                    __discount = __roomfare.Discount3;
                             else
-                            {
+                                if (reservation.Trip.Discount.Value != 0)
+                                    __discount = reservation.Trip.Discount.Value;
 
-                                ViewBag.Error = "No hay tarifas cargadas para una de las habitacion: " + __room.Name;
-                                PartialView();
-                            }
+                            decimal __admon = new decimal();
+
+                            if (!reservation.Trip.PercentAdmin.HasValue)
+                                __admon = __roomfare.PercentAdmin;
+                            else
+                                if (reservation.Trip.PercentAdmin.Value != 0)
+                                    __admon = reservation.Trip.PercentAdmin.Value;
+
+                            //descuento
+                            decimal __facturabruta = __roomfare.PriceRack - (__roomfare.PriceRack * (__discount / 100));
+                            //gastos admon
+                            __facturabruta = __facturabruta + (__facturabruta * (__admon / 100));
+                            //adultos
+                            __facturabruta = __facturabruta * item.Quantity;
+                            //rack
+                            __totalrack = (__roomfare.PriceRack * item.Quantity) + __totalrack;
+
+                            __total = __total + __facturabruta;
+
+                            decimal __agent = new decimal();
+
+
+                            if (!reservation.Trip.PercentAdmin.HasValue)
+                                __agent = __roomfare.PercentAgent;
+                            else
+                                if (reservation.Trip.PercentAgent.Value != 0)
+                                    __agent = reservation.Trip.PercentAgent.Value;
+
+
+                            // Porcentaje del Vendedor
+                            __pricebase = __pricebase + __roomfare.Price;
+                            reservation.Trip.Discount = Convert.ToInt32(__discount);
+                            reservation.Trip.PercentAdmin = Convert.ToInt32(__admon);
+                            reservation.Trip.PercentAgent = Convert.ToInt32(__agent);
+                            reservation.Trip.PriceBase = __pricebase;
+
+                            ReservationRoom __rr = new ReservationRoom();
+                            __rr.Quantity = item.Quantity;
+                            __rr.RoomOcupation = __roomfare;
+                            reservation.Trip.ReservationRoom.Add(__rr);
+
                         }
-                        #endregion
+                        else
+                        {
 
+                            ViewBag.Error = "No hay tarifas cargadas para la habitación " + __room.Name + " para la fecha seleccionada.";
+                            return PartialView();
+                        }
                     }
-                    else
-                    {
-                        ViewBag.Error = "El numero de adultos ó niños excede la capacidad de alguna de las habitaciones.";
-                        PartialView();
-                    }
+                    #endregion
+
 
                 }
 
@@ -508,17 +405,14 @@ namespace RMS.Controllers
                 reservation.Trip.PriceRack = __totalrack;
                 reservation.Trip.Price = __total;
                 reservation.Trip.ReservationDate = DateTime.Now;
-                PartialView(reservation.Trip);
+                return PartialView(reservation.Trip);
             }
             else
             {
                 ViewBag.Error = "No ha seleccionado ninguna habitación.";
-                PartialView();
+                return PartialView();
             }
 
-
-            ViewBag.Error = "Alguno de los datos suministrados está incompleto.";
-            return PartialView();
 
         }
 

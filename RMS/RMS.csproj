@@ -83,7 +83,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HotelController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
-    <Compile Include="Controllers\ReservationController.cs" />
     <Compile Include="Controllers\RoomAccomodationController.cs" />
     <Compile Include="Controllers\RoomBedController.cs" />
     <Compile Include="Controllers\RoomController.cs" />
@@ -105,6 +104,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\img\back.png" />
     <Content Include="Content\colorbox.css" />
     <Content Include="Content\ellipsis-xbl.xml" />
     <Content Include="Content\images\back_disabled.png" />
@@ -119,6 +119,7 @@
     <Content Include="Content\images\button.gif" />
     <Content Include="Content\images\buttons.gif" />
     <Content Include="Content\images\controls.png" />
+    <Content Include="Content\images\crumbs.gif" />
     <Content Include="Content\images\favicon.ico" />
     <Content Include="Content\images\forward_disabled.png" />
     <Content Include="Content\images\forward_enabled.png" />
@@ -173,7 +174,13 @@
     <Content Include="Content\images\title8.gif" />
     <Content Include="Content\images\title9.gif" />
     <Content Include="Content\images\toolbar.gif" />
+    <None Include="Content\img\103.girrf" />
     <Content Include="Content\img\103.gif" />
+    <Content Include="Content\img\add.png" />
+    <Content Include="Content\img\button.png" />
+    <Content Include="Content\img\driven.png" />
+    <Content Include="Content\img\driven_white.png" />
+    <Content Include="Content\img\money.png" />
     <Content Include="Content\img\logoadmin.png" />
     <Content Include="Content\jquery.cleditor.css" />
     <Content Include="Content\Promociones\homepromo.jpg" />
@@ -358,33 +365,16 @@
     <Content Include="Views\Customer\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Reservation\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Reservation\Details.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Reservation\Create.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Reservation\Edit.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Reservation\Delete.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Shared\_website.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\images\Sorting icons.psd" />
     <None Include="Content\images\Thumbs.db" />
-    <Content Include="Views\Reservation\PartialHabitaciones.cshtml" />
     <Content Include="Views\Season\Index.cshtml" />
     <Content Include="Views\Season\Details.cshtml" />
     <Content Include="Views\Season\Create.cshtml" />
     <Content Include="Views\Season\Edit.cshtml" />
     <Content Include="Views\Season\Delete.cshtml" />
-    <Content Include="Views\Reservation\PrintableVersion.cshtml" />
     <Content Include="Views\Shared\_LogOut.cshtml" />
     <Content Include="Views\Account\RegisterSuccess.cshtml" />
     <EntityDeploy Include="Models\Database.edmx">

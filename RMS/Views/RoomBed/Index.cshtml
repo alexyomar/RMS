@@ -2,11 +2,24 @@
 @{
     ViewBag.Title = "Index";
 }
-<h2>
-    Listado de Tipos de Cama</h2>
-<p>
-    @Html.ActionLink("Crear Nuevo", "Create")
-</p>
+<ul id="crumbs">
+    <li><a href="@Url.Action("Index", "Hotel")">Hoteles</a></li>
+    <li><a href="@Url.Action("Index")">Tipos de Camas</a></li>
+    <li>Listado de Tipos de Camas</li>
+</ul>
+<table border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin: 30px 0px;">
+    <tr>
+        <td valign="middle">
+            <h1 style="margin: 0px; padding: 0px">
+                Listado de Tipos de Cama</h1>
+        </td>
+        <td>
+            <a href="@Url.Action("Create")" class="button" style="float: right;">
+                <img src="@Url.Content("~/Content/img/Add.png")" />
+                &nbsp;&nbsp;Crear Nueva</a>
+        </td>
+    </tr>
+</table>
 <table class="table">
     <tr>
         <th>
@@ -26,4 +39,13 @@
             </td>
         </tr>
     }
+</table>
+<table border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin: 30px 0px;">
+    <tr>
+        <td>
+            <a href="@Url.Action("Create")" class="button" style="float: right;">
+                <img src="@Url.Content("~/Content/img/Add.png")" />
+                &nbsp;&nbsp;Crear Nueva</a>
+        </td>
+    </tr>
 </table>
