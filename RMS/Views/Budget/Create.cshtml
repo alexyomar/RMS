@@ -99,6 +99,13 @@
         <br />
         <span style="font-size: 9pt">(Si quiere aplicar el por defecto, deje el campo vacío)</span>
     </div>
+    <div class="editor-label">
+        Fecha Límite de Pago
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.Trip.PayLimit, new { @class = "datepicker" })
+        @Html.ValidationMessageFor(model => model.Trip.Departure)
+    </div>
     <br />
     <br />
     <table border="0" cellpadding="0" cellspacing="0">
@@ -141,6 +148,11 @@
                
     $("#Trip_IdCustomer").ufd({ useUiCss: true, log: false });
     $(".datepicker").datepicker();
+    $(".flight").chancge(function(){
+         var today = new Date();
+         var tomorrow = new Date();
+         tomorrow.setDate(today.getDate()+1);
+    });
     $("#ddlhotel").change(function () {
         var arrival = $("#Trip_Arrival");
         var departure = $("#Trip_Departure");

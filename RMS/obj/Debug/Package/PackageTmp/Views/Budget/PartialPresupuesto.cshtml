@@ -179,16 +179,16 @@
 
             decimal __people = (decimal)__item.Quantity;
 
-            __comisionh = ((__item.RoomOcupation.PriceRack - __item.RoomOcupation.Price) * __days) * __people;
-            __comisionh = (__comisionh / ((__item.RoomOcupation.PriceRack * __days) * __people)) * 100;
-            __factura = ((__item.RoomOcupation.PriceRack * __days) * __people) - (((__item.RoomOcupation.PriceRack * __days) * __people) * ((decimal)Model.Discount / 100));
-            __margenrm = ((__factura - ((__item.RoomOcupation.Price * __days)) * __people) / __factura) * 100;
+            __comisionh = ((__item.RoomOcupation.PriceRack - __item.RoomOcupation.Price) * __days * __item.RoomOcupation.Capacity) * __people;
+            __comisionh = (__comisionh / ((__item.RoomOcupation.PriceRack * __days * __item.RoomOcupation.Capacity) * __people)) * 100;
+            __factura = ((__item.RoomOcupation.PriceRack * __days * __item.RoomOcupation.Capacity) * __people) - (((__item.RoomOcupation.PriceRack * __days * __item.RoomOcupation.Capacity) * __people) * ((decimal)Model.Discount / 100));
+            __margenrm = ((__factura - ((__item.RoomOcupation.Price * __days * __item.RoomOcupation.Capacity)) * __people) / __factura) * 100;
             __gadmon = __factura * ((decimal)Model.PercentAdmin / 100);
             __facturab = __factura + __gadmon;
             __agente = __factura * ((decimal)Model.PercentAgent / 100);
             __venta = __facturab - __agente;
-            __margen = __venta - ((__item.RoomOcupation.Price * __days) * __people);
-            __pmargen = (__margen / ((__item.RoomOcupation.Price * __days) * __people) * 100);
+            __margen = __venta - ((__item.RoomOcupation.Price * __days) * __people * __item.RoomOcupation.Capacity);
+            __pmargen = (__margen / ((__item.RoomOcupation.Price * __days) * __people * __item.RoomOcupation.Capacity) * 100);
 
     
             <tr>
@@ -201,12 +201,12 @@
                 <td>
                     @__days
                 </td>
-                <td>@Math.Round(((__item.RoomOcupation.PriceRack * __days) * __people), 2)
+                <td>@Math.Round(((__item.RoomOcupation.PriceRack * __days) * __people) * __item.RoomOcupation.Capacity, 2)
                 </td>
                 <td>
                     @Math.Round(__comisionh, 2) %
                 </td>
-                <td>@Math.Round((__item.RoomOcupation.Price * __days) * __people, 2)
+                <td>@Math.Round(((__item.RoomOcupation.Price * __days) * __people) * __item.RoomOcupation.Capacity, 2)
                 </td>
                 <td>
                     @Math.Round(__margenrm, 2) %

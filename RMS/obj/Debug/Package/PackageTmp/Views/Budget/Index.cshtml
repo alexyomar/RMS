@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<RMS.Models.Reservation>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Reservaciones";
 }
 <ul id="crumbs">
     <li><a href="#">Reservaciones</a></li>
@@ -30,6 +30,9 @@
             </th>
             <th>
                 Fecha
+            </th>
+            <th>
+                Límite Pago
             </th>
             <th width="75">
                 Total Factura
@@ -66,10 +69,20 @@
                     <br />
                     <b>@Html.DisplayFor(modelItem => item.Customer.Name)&nbsp;@Html.DisplayFor(modelItem => item.Customer.LastName)</b>
                 </td>
-                <td>
+                <td style="font-size: 10pt;">
                     <b>R:</b>@Html.Label(item.ReservationDate.ToShortDateString())<br />
                     <b>L:</b>@Html.Label(item.Arrival.ToShortDateString())<br />
                     <b>S:</b>@Html.Label(item.Departure.ToShortDateString())
+                </td>
+                <td>
+                    @if (item.PayLimit.HasValue)
+                    { 
+                        <b style="font-size: 10pt;">@item.PayLimit.Value.ToShortDateString()</b>  
+                    }
+                    else
+                    { 
+                        <b>-</b>
+                    }
                 </td>
                 <td>
                     <b>@Html.DisplayFor(modelItem => item.Price)</b>
@@ -80,15 +93,15 @@
                 <td>
                     @{
 
-            decimal __facturab = new decimal();
-            decimal __margen = new decimal();
-            decimal __pmargen = new decimal();
+                    decimal __facturab = new decimal();
+                    decimal __margen = new decimal();
+                    decimal __pmargen = new decimal();
 
-            __margen = (item.Price - (item.Price * (item.PercentAdmin.Value / 100)));
-            __facturab = item.PriceRack - (item.PriceRack * (item.Discount.Value / 100));
-            __margen = (item.Price - (__facturab * (item.PercentAgent.Value / 100)));
-            __margen = __margen - item.PriceBase;
-            __pmargen = (__margen / item.PriceBase) * 100;
+                    __margen = (item.Price - (item.Price * (item.PercentAdmin.Value / 100)));
+                    __facturab = item.PriceRack - (item.PriceRack * (item.Discount.Value / 100));
+                    __margen = (item.Price - (__facturab * (item.PercentAgent.Value / 100)));
+                    __margen = __margen - item.PriceBase;
+                    __pmargen = (__margen / item.PriceBase) * 100;
         
         
                     }
@@ -118,7 +131,7 @@
                     @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
                     @Html.ActionLink("Detalles", "PrintableVersion", new { id = item.Id }, new { target = "_blank" })
                     |
-                    @Html.ActionLink("Descargar PDF", "PrintPDF", new { id = item.Id })
+                    @Html.ActionLink("PDF", "PrintPDF", new { id = item.Id })
                     @*@Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
                 </td>
             </tr>

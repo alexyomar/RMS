@@ -193,26 +193,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Reservation">
-      <EntityTypeMapping TypeName="RegionalModel.Reservation">
-        <MappingFragment StoreEntitySet="Reservation">
-          <ScalarProperty Name="PriceBase" ColumnName="PriceBase" />
-          <ScalarProperty Name="PriceRack" ColumnName="PriceRack" />
-          <ScalarProperty Name="PercentAgent" ColumnName="PercentAgent" />
-          <ScalarProperty Name="PercentAdmin" ColumnName="PercentAdmin" />
-          <ScalarProperty Name="Discount" ColumnName="Discount" />
-          <ScalarProperty Name="IdReservationStatus" ColumnName="IdReservationStatus" />
-          <ScalarProperty Name="Price" ColumnName="Price" />
-          <ScalarProperty Name="Childrens" ColumnName="Childrens" />
-          <ScalarProperty Name="Adults" ColumnName="Adults" />
-          <ScalarProperty Name="ReservationDate" ColumnName="ReservationDate" />
-          <ScalarProperty Name="Departure" ColumnName="Departure" />
-          <ScalarProperty Name="Arrival" ColumnName="Arrival" />
-          <ScalarProperty Name="IdCustomer" ColumnName="IdCustomer" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="ReservationsBuyed">
       <EntityTypeMapping TypeName="RegionalModel.ReservationsBuyed">
         <MappingFragment StoreEntitySet="ReservationsBuyed">
@@ -236,6 +216,8 @@
     <EntitySetMapping Name="Room">
       <EntityTypeMapping TypeName="RegionalModel.Room">
         <MappingFragment StoreEntitySet="Room">
+          <ScalarProperty Name="MaxChildren" ColumnName="MaxChildren" />
+          <ScalarProperty Name="MaxAdults" ColumnName="MaxAdults" />
           <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="IdHotel" ColumnName="IdHotel" />
           <ScalarProperty Name="Description" ColumnName="Description" />
@@ -433,9 +415,32 @@
     <EntitySetMapping Name="ReservationRoom">
       <EntityTypeMapping TypeName="RegionalModel.ReservationRoom">
         <MappingFragment StoreEntitySet="ReservationRoom">
+          <ScalarProperty Name="Childrens" ColumnName="Childrens" />
+          <ScalarProperty Name="Adults" ColumnName="Adults" />
           <ScalarProperty Name="Quantity" ColumnName="Quantity" />
           <ScalarProperty Name="IdReservation" ColumnName="IdReservation" />
           <ScalarProperty Name="IdRoomOcupation" ColumnName="IdRoomOcupation" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reservation">
+      <EntityTypeMapping TypeName="RegionalModel.Reservation">
+        <MappingFragment StoreEntitySet="Reservation">
+          <ScalarProperty Name="PayLimit" ColumnName="PayLimit" />
+          <ScalarProperty Name="PriceBase" ColumnName="PriceBase" />
+          <ScalarProperty Name="PercentAgent" ColumnName="PercentAgent" />
+          <ScalarProperty Name="PercentAdmin" ColumnName="PercentAdmin" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="IdReservationStatus" ColumnName="IdReservationStatus" />
+          <ScalarProperty Name="PriceRack" ColumnName="PriceRack" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Childrens" ColumnName="Childrens" />
+          <ScalarProperty Name="Adults" ColumnName="Adults" />
+          <ScalarProperty Name="ReservationDate" ColumnName="ReservationDate" />
+          <ScalarProperty Name="Departure" ColumnName="Departure" />
+          <ScalarProperty Name="Arrival" ColumnName="Arrival" />
+          <ScalarProperty Name="IdCustomer" ColumnName="IdCustomer" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>

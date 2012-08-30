@@ -27,20 +27,20 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("RegionalModel", "FK__aspnet_Pe__PathI__4E53A1AA", "aspnet_Paths", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(RMS.Models.aspnet_Paths), "aspnet_PersonalizationAllUsers", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(RMS.Models.aspnet_PersonalizationAllUsers), true)]
 [assembly: EdmRelationshipAttribute("RegionalModel", "FK__aspnet_Pe__UserI__40058253", "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(RMS.Models.aspnet_Users), "aspnet_PersonalizationPerUser", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.aspnet_PersonalizationPerUser), true)]
 [assembly: EdmRelationshipAttribute("RegionalModel", "FK__aspnet_Pr__UserI__44CA3770", "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(RMS.Models.aspnet_Users), "aspnet_Profile", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(RMS.Models.aspnet_Profile), true)]
-[assembly: EdmRelationshipAttribute("RegionalModel", "FK_Reservations_Customers", "Customer", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(RMS.Models.Customer), "Reservation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.Reservation), true)]
 [assembly: EdmRelationshipAttribute("RegionalModel", "FK_Periods_Posadas", "Hotel", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(RMS.Models.Hotel), "Period", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.Period), true)]
 [assembly: EdmRelationshipAttribute("RegionalModel", "FK_Posadas_States", "State", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(RMS.Models.State), "Hotel", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.Hotel), true)]
 [assembly: EdmRelationshipAttribute("RegionalModel", "FK_Rooms_Posadas", "Hotel", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(RMS.Models.Hotel), "Room", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.Room), true)]
 [assembly: EdmRelationshipAttribute("RegionalModel", "FK_Tours_Posadas", "Hotel", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(RMS.Models.Hotel), "Service", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.Service), true)]
 [assembly: EdmRelationshipAttribute("RegionalModel", "FK_ReservationsBuyed_PaymentMethods", "PaymentMethod", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(RMS.Models.PaymentMethod), "ReservationsBuyed", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.ReservationsBuyed), true)]
-[assembly: EdmRelationshipAttribute("RegionalModel", "FK_Reservations_ReservationStatus", "ReservationStatus", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(RMS.Models.ReservationStatus), "Reservation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.Reservation), true)]
-[assembly: EdmRelationshipAttribute("RegionalModel", "FK_ReservationsBuyed_Reservations", "Reservation", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(RMS.Models.Reservation), "ReservationsBuyed", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.ReservationsBuyed), true)]
 [assembly: EdmRelationshipAttribute("RegionalModel", "FK_RoomOccupationBed_Room", "Room", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(RMS.Models.Room), "RoomOccupationBed", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.RoomOccupationBed), true)]
 [assembly: EdmRelationshipAttribute("RegionalModel", "FK_RoomTypeBed_RoomBed", "RoomBed", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(RMS.Models.RoomBed), "RoomOccupationBed", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.RoomOccupationBed), true)]
 [assembly: EdmRelationshipAttribute("RegionalModel", "aspnet_UsersInRoles", "aspnet_Roles", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.aspnet_Roles), "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.aspnet_Users))]
 [assembly: EdmRelationshipAttribute("RegionalModel", "FK_RoomOcupation_Room", "Room", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(RMS.Models.Room), "RoomOcupation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.RoomOcupation), true)]
-[assembly: EdmRelationshipAttribute("RegionalModel", "FK_ReservationRoom_Reservation", "Reservation", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(RMS.Models.Reservation), "ReservationRoom", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.ReservationRoom), true)]
 [assembly: EdmRelationshipAttribute("RegionalModel", "FK_ReservationRoom_Room", "RoomOcupation", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(RMS.Models.RoomOcupation), "ReservationRoom", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.ReservationRoom), true)]
+[assembly: EdmRelationshipAttribute("RegionalModel", "FK_Reservations_Customers", "Customer", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(RMS.Models.Customer), "Reservation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.Reservation), true)]
+[assembly: EdmRelationshipAttribute("RegionalModel", "FK_ReservationRoom_Reservation", "Reservation", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(RMS.Models.Reservation), "ReservationRoom", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.ReservationRoom), true)]
+[assembly: EdmRelationshipAttribute("RegionalModel", "FK_Reservations_ReservationStatus", "ReservationStatus", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(RMS.Models.ReservationStatus), "Reservation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.Reservation), true)]
+[assembly: EdmRelationshipAttribute("RegionalModel", "FK_ReservationsBuyed_Reservations", "Reservation", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(RMS.Models.Reservation), "ReservationsBuyed", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.ReservationsBuyed), true)]
 
 #endregion
 
@@ -315,22 +315,6 @@ namespace RMS.Models
             }
         }
         private ObjectSet<Period> _Period;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<Reservation> Reservation
-        {
-            get
-            {
-                if ((_Reservation == null))
-                {
-                    _Reservation = base.CreateObjectSet<Reservation>("Reservation");
-                }
-                return _Reservation;
-            }
-        }
-        private ObjectSet<Reservation> _Reservation;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -635,6 +619,22 @@ namespace RMS.Models
             }
         }
         private ObjectSet<ReservationRoom> _ReservationRoom;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Reservation> Reservation
+        {
+            get
+            {
+                if ((_Reservation == null))
+                {
+                    _Reservation = base.CreateObjectSet<Reservation>("Reservation");
+                }
+                return _Reservation;
+            }
+        }
+        private ObjectSet<Reservation> _Reservation;
 
         #endregion
         #region AddTo Methods
@@ -749,14 +749,6 @@ namespace RMS.Models
         public void AddToPeriod(Period period)
         {
             base.AddObject("Period", period);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Reservation EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToReservation(Reservation reservation)
-        {
-            base.AddObject("Reservation", reservation);
         }
     
         /// <summary>
@@ -909,6 +901,14 @@ namespace RMS.Models
         public void AddToReservationRoom(ReservationRoom reservationRoom)
         {
             base.AddObject("ReservationRoom", reservationRoom);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Reservation EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToReservation(Reservation reservation)
+        {
+            base.AddObject("Reservation", reservation);
         }
 
         #endregion
@@ -4969,10 +4969,10 @@ namespace RMS.Models
         /// <param name="adults">Initial value of the Adults property.</param>
         /// <param name="childrens">Initial value of the Childrens property.</param>
         /// <param name="price">Initial value of the Price property.</param>
-        /// <param name="idReservationStatus">Initial value of the IdReservationStatus property.</param>
         /// <param name="priceRack">Initial value of the PriceRack property.</param>
+        /// <param name="idReservationStatus">Initial value of the IdReservationStatus property.</param>
         /// <param name="priceBase">Initial value of the PriceBase property.</param>
-        public static Reservation CreateReservation(global::System.Int32 id, global::System.Int32 idCustomer, global::System.DateTime arrival, global::System.DateTime departure, global::System.DateTime reservationDate, global::System.Int32 adults, global::System.Int32 childrens, global::System.Decimal price, global::System.Int32 idReservationStatus, global::System.Decimal priceRack, global::System.Decimal priceBase)
+        public static Reservation CreateReservation(global::System.Int32 id, global::System.Int32 idCustomer, global::System.DateTime arrival, global::System.DateTime departure, global::System.DateTime reservationDate, global::System.Int32 adults, global::System.Int32 childrens, global::System.Decimal price, global::System.Decimal priceRack, global::System.Int32 idReservationStatus, global::System.Decimal priceBase)
         {
             Reservation reservation = new Reservation();
             reservation.Id = id;
@@ -4983,8 +4983,8 @@ namespace RMS.Models
             reservation.Adults = adults;
             reservation.Childrens = childrens;
             reservation.Price = price;
-            reservation.IdReservationStatus = idReservationStatus;
             reservation.PriceRack = priceRack;
+            reservation.IdReservationStatus = idReservationStatus;
             reservation.PriceBase = priceBase;
             return reservation;
         }
@@ -5192,6 +5192,30 @@ namespace RMS.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
+        public global::System.Decimal PriceRack
+        {
+            get
+            {
+                return _PriceRack;
+            }
+            set
+            {
+                OnPriceRackChanging(value);
+                ReportPropertyChanging("PriceRack");
+                _PriceRack = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PriceRack");
+                OnPriceRackChanged();
+            }
+        }
+        private global::System.Decimal _PriceRack;
+        partial void OnPriceRackChanging(global::System.Decimal value);
+        partial void OnPriceRackChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
         public global::System.Int32 IdReservationStatus
         {
             get
@@ -5288,30 +5312,6 @@ namespace RMS.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Decimal PriceRack
-        {
-            get
-            {
-                return _PriceRack;
-            }
-            set
-            {
-                OnPriceRackChanging(value);
-                ReportPropertyChanging("PriceRack");
-                _PriceRack = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("PriceRack");
-                OnPriceRackChanged();
-            }
-        }
-        private global::System.Decimal _PriceRack;
-        partial void OnPriceRackChanging(global::System.Decimal value);
-        partial void OnPriceRackChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
         public global::System.Decimal PriceBase
         {
             get
@@ -5330,6 +5330,30 @@ namespace RMS.Models
         private global::System.Decimal _PriceBase;
         partial void OnPriceBaseChanging(global::System.Decimal value);
         partial void OnPriceBaseChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> PayLimit
+        {
+            get
+            {
+                return _PayLimit;
+            }
+            set
+            {
+                OnPayLimitChanging(value);
+                ReportPropertyChanging("PayLimit");
+                _PayLimit = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PayLimit");
+                OnPayLimitChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _PayLimit;
+        partial void OnPayLimitChanging(Nullable<global::System.DateTime> value);
+        partial void OnPayLimitChanged();
 
         #endregion
     
@@ -5369,6 +5393,28 @@ namespace RMS.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Customer>("RegionalModel.FK_Reservations_Customers", "Customer", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RegionalModel", "FK_ReservationRoom_Reservation", "ReservationRoom")]
+        public EntityCollection<ReservationRoom> ReservationRoom
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ReservationRoom>("RegionalModel.FK_ReservationRoom_Reservation", "ReservationRoom");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ReservationRoom>("RegionalModel.FK_ReservationRoom_Reservation", "ReservationRoom", value);
                 }
             }
         }
@@ -5429,28 +5475,6 @@ namespace RMS.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ReservationsBuyed>("RegionalModel.FK_ReservationsBuyed_Reservations", "ReservationsBuyed", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("RegionalModel", "FK_ReservationRoom_Reservation", "ReservationRoom")]
-        public EntityCollection<ReservationRoom> ReservationRoom
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ReservationRoom>("RegionalModel.FK_ReservationRoom_Reservation", "ReservationRoom");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ReservationRoom>("RegionalModel.FK_ReservationRoom_Reservation", "ReservationRoom", value);
                 }
             }
         }
@@ -5586,48 +5610,58 @@ namespace RMS.Models
         private global::System.Int32 _Quantity;
         partial void OnQuantityChanging(global::System.Int32 value);
         partial void OnQuantityChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> Adults
+        {
+            get
+            {
+                return _Adults;
+            }
+            set
+            {
+                OnAdultsChanging(value);
+                ReportPropertyChanging("Adults");
+                _Adults = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Adults");
+                OnAdultsChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _Adults;
+        partial void OnAdultsChanging(Nullable<global::System.Int32> value);
+        partial void OnAdultsChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> Childrens
+        {
+            get
+            {
+                return _Childrens;
+            }
+            set
+            {
+                OnChildrensChanging(value);
+                ReportPropertyChanging("Childrens");
+                _Childrens = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Childrens");
+                OnChildrensChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _Childrens;
+        partial void OnChildrensChanging(Nullable<global::System.Int32> value);
+        partial void OnChildrensChanged();
 
         #endregion
     
         #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("RegionalModel", "FK_ReservationRoom_Reservation", "Reservation")]
-        public Reservation Reservation
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Reservation>("RegionalModel.FK_ReservationRoom_Reservation", "Reservation").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Reservation>("RegionalModel.FK_ReservationRoom_Reservation", "Reservation").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Reservation> ReservationReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Reservation>("RegionalModel.FK_ReservationRoom_Reservation", "Reservation");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Reservation>("RegionalModel.FK_ReservationRoom_Reservation", "Reservation", value);
-                }
-            }
-        }
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -5663,6 +5697,44 @@ namespace RMS.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RoomOcupation>("RegionalModel.FK_ReservationRoom_Room", "RoomOcupation", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RegionalModel", "FK_ReservationRoom_Reservation", "Reservation")]
+        public Reservation Reservation
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Reservation>("RegionalModel.FK_ReservationRoom_Reservation", "Reservation").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Reservation>("RegionalModel.FK_ReservationRoom_Reservation", "Reservation").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Reservation> ReservationReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Reservation>("RegionalModel.FK_ReservationRoom_Reservation", "Reservation");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Reservation>("RegionalModel.FK_ReservationRoom_Reservation", "Reservation", value);
                 }
             }
         }
@@ -6190,6 +6262,54 @@ namespace RMS.Models
         private global::System.Boolean _Active;
         partial void OnActiveChanging(global::System.Boolean value);
         partial void OnActiveChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> MaxAdults
+        {
+            get
+            {
+                return _MaxAdults;
+            }
+            set
+            {
+                OnMaxAdultsChanging(value);
+                ReportPropertyChanging("MaxAdults");
+                _MaxAdults = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("MaxAdults");
+                OnMaxAdultsChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _MaxAdults;
+        partial void OnMaxAdultsChanging(Nullable<global::System.Int32> value);
+        partial void OnMaxAdultsChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> MaxChildren
+        {
+            get
+            {
+                return _MaxChildren;
+            }
+            set
+            {
+                OnMaxChildrenChanging(value);
+                ReportPropertyChanging("MaxChildren");
+                _MaxChildren = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("MaxChildren");
+                OnMaxChildrenChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _MaxChildren;
+        partial void OnMaxChildrenChanging(Nullable<global::System.Int32> value);
+        partial void OnMaxChildrenChanged();
 
         #endregion
     
