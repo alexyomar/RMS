@@ -106,7 +106,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\images\download.png" />
+    <Content Include="Content\images\download_pdf_icon.jpg" />
     <Content Include="Content\images\pattern.png" />
+    <Content Include="Content\images\pattern2.png" />
     <Content Include="Content\images\random_grey_variations.png" />
     <Content Include="Content\images\triangle.png" />
     <Content Include="Content\img\back.png" />
@@ -191,9 +194,14 @@
     <Content Include="Content\img\money.png" />
     <Content Include="Content\img\logoadmin.png" />
     <Content Include="Content\jquery.cleditor.css" />
+    <Content Include="Content\Promociones\aruba.PNG" />
+    <Content Include="Content\Promociones\arubapuente.PNG" />
+    <Content Include="Content\Promociones\bariloche.PNG" />
+    <Content Include="Content\Promociones\cancun.PNG" />
     <Content Include="Content\Promociones\homepromo.jpg" />
     <Content Include="Content\Promociones\Navidad20212.jpg" />
     <Content Include="Content\Promociones\octubre2012.jpg" />
+    <Content Include="Content\Promociones\puntacana.PNG" />
     <Content Include="Content\Promociones\VirgenValle2012.jpg" />
     <Content Include="Content\sliders\about.jpg" />
     <Content Include="Content\sliders\home.jpg" />
@@ -338,6 +346,7 @@
     <Content Include="Views\Shared\_LogOnPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
+    <None Include="Files\paquetes2012.pdf" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
