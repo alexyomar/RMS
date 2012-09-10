@@ -77,8 +77,6 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Areas\site\Controllers\PaquetesController.cs" />
-    <Compile Include="Areas\site\siteAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BudgetController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
@@ -182,9 +180,6 @@
     <Content Include="Content\images\title8.gif" />
     <Content Include="Content\images\title9.gif" />
     <Content Include="Content\images\toolbar.gif" />
-    <Content Include="Areas\site\Views\Web.config" />
-    <Content Include="Areas\site\Views\Shared\_website.cshtml" />
-    <Content Include="Areas\site\Views\Paquetes\Index.cshtml" />
     <None Include="Content\img\103.girrf" />
     <Content Include="Content\img\103.gif" />
     <Content Include="Content\img\add.png" />
@@ -203,6 +198,9 @@
     <Content Include="Content\Promociones\octubre2012.jpg" />
     <Content Include="Content\Promociones\puntacana.PNG" />
     <Content Include="Content\Promociones\VirgenValle2012.jpg" />
+    <Content Include="Content\Promociones\Volante-Promoción-Navidad-2012--Web.jpg" />
+    <Content Include="Content\Promociones\Volante-Promoción-Temporada-Baja--Web-2.jpg" />
+    <Content Include="Content\Promociones\Volante-Promoción-Temporada-Baja--Web.jpg" />
     <Content Include="Content\sliders\about.jpg" />
     <Content Include="Content\sliders\home.jpg" />
     <Content Include="Content\sliders\internacional.jpg" />
@@ -350,7 +348,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\site\Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

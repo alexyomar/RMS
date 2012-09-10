@@ -174,11 +174,13 @@
                 Diferencia Vs Hotel
             </th>
         </tr>
-        @foreach (var __item in Model.ReservationRoom.Select(x => new { x.RoomOcupation, x.Quantity }).Distinct())
+        @foreach (var __item in Model.ReservationRoom.GroupBy(x => x.RoomOcupation).Select(x => new { x.First().RoomOcupation, x.First().Quantity, Count = x.Count() }))
         {
 
             decimal __people = (decimal)__item.Quantity;
 
+            __days = @__item.Count;
+            
             __comisionh = ((__item.RoomOcupation.PriceRack - __item.RoomOcupation.Price) * __days * __item.RoomOcupation.Capacity) * __people;
             __comisionh = (__comisionh / ((__item.RoomOcupation.PriceRack * __days * __item.RoomOcupation.Capacity) * __people)) * 100;
             __factura = ((__item.RoomOcupation.PriceRack * __days * __item.RoomOcupation.Capacity) * __people) - (((__item.RoomOcupation.PriceRack * __days * __item.RoomOcupation.Capacity) * __people) * ((decimal)Model.Discount / 100));
