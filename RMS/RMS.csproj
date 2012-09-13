@@ -188,6 +188,7 @@
     <Content Include="Content\img\driven_white.png" />
     <Content Include="Content\img\money.png" />
     <Content Include="Content\img\logoadmin.png" />
+    <Content Include="Content\img\social.png" />
     <Content Include="Content\jquery.cleditor.css" />
     <Content Include="Content\Promociones\aruba.PNG" />
     <Content Include="Content\Promociones\arubapuente.PNG" />
@@ -197,6 +198,11 @@
     <Content Include="Content\Promociones\Navidad20212.jpg" />
     <Content Include="Content\Promociones\octubre2012.jpg" />
     <Content Include="Content\Promociones\puntacana.PNG" />
+    <Content Include="Content\Promociones\Slide1.JPG" />
+    <Content Include="Content\Promociones\Slide2.JPG" />
+    <Content Include="Content\Promociones\Slide3.JPG" />
+    <Content Include="Content\Promociones\Slide4.JPG" />
+    <Content Include="Content\Promociones\Slide5.JPG" />
     <Content Include="Content\Promociones\VirgenValle2012.jpg" />
     <Content Include="Content\Promociones\Volante-Promoción-Navidad-2012--Web.jpg" />
     <Content Include="Content\Promociones\Volante-Promoción-Temporada-Baja--Web-2.jpg" />

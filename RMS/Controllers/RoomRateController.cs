@@ -90,6 +90,7 @@ namespace RMS.Controllers
                 }
 
                 roomocupation.Capacity = __capacity;
+                roomocupation.Active = true;
 
                 db.RoomOcupation.AddObject(roomocupation);
                 db.SaveChanges();
