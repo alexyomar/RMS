@@ -2,6 +2,14 @@
 @{
     ViewBag.Title = "Create";
     IEnumerable<RMS.Models.Customer> __customer = ViewBag.Customer as IEnumerable<RMS.Models.Customer>;
+    RMS.Models.Reservation __reservacion = new RMS.Models.Reservation();
+    bool __again = false;
+    if (ViewBag.Reservacion != null)
+    {
+        __reservacion = (RMS.Models.Reservation)ViewBag.Reservacion;
+        __again = true;
+    }
+    
 }
 <ul id="crumbs">
     <li><a href="@Url.Action("Index")">Reservaciones</a></li>
@@ -20,15 +28,20 @@
 }
 @Html.ValidationSummary(true)
 <fieldset style="border: none;">
-    <table border="0" cellpadding="0" cellspacing="0">
+    <table border="0" cellpadding="0" cellspacing="0" width="610">
         <tr>
-            <td>
+            <td width="40">
                 <div class="numberCircle">
                     1</div>
             </td>
             <td style="padding: 10px">
                 <h2 style="margin: 0px; padding: 0px;">
                     Datos del cliente</h2>
+            </td>
+            <td align="right">
+                <a href="@Url.Action("Create")" class="button" style="float: right;">
+                    <img src="../../Content/img/add.png" />
+                    &nbsp;&nbsp;Importar </a>
             </td>
         </tr>
     </table>
@@ -40,16 +53,27 @@
             <tr>
                 <td valign="middle">
                     <select name="Trip.IdCustomer" id="Trip_IdCustomer">
-                        <option></option>
-                        @foreach (var item in __customer)
+                        @if (__again)
                         {
+                            <option value="@__reservacion.IdCustomer">(@__reservacion.Customer.PersonalId) @__reservacion.Customer.Name
+                                @__reservacion.Customer.LastName</option> 
+                        }
+                        else
+                        {
+                            <option>Seleccione...</option>
+                            foreach (var item in __customer)
+                            {
                             <option value="@item.Id">(@item.PersonalId) @item.Name @item.LastName</option>    
+                            }
                         }
                     </select>
                 </td>
                 <td valign="middle">
-                    &nbsp;&nbsp;&nbsp; <a href="@Url.Action("Create", "Customer", new { redirect = true })">
-                        Crear Nuevo</a>
+                    @if (!__again)
+                    {
+                        <a href="@Url.Action("Create", "Customer", new { redirect = true })">&nbsp; &nbsp; &nbsp;Crear
+                            Nuevo</a>
+                    }
                 </td>
             </tr>
         </table>
@@ -58,14 +82,14 @@
         Fecha de Llegada
     </div>
     <div class="editor-field">
-        @Html.TextBoxFor(model => model.Trip.Arrival, new { @class = "datepicker" })
+        @Html.TextBoxFor(model => model.Trip.Arrival, new { @class = "datepicker", @Value = __again ? __reservacion.Arrival.ToShortDateString() : null })
         @Html.ValidationMessageFor(model => model.Trip.Arrival)
     </div>
     <div class="editor-label">
         Fecha de Salida
     </div>
     <div class="editor-field">
-        @Html.TextBoxFor(model => model.Trip.Departure, new { @class = "datepicker" })
+        @Html.TextBoxFor(model => model.Trip.Departure, new { @class = "datepicker", @Value = __again ? __reservacion.Departure.ToShortDateString() : null })
         @Html.ValidationMessageFor(model => model.Trip.Departure)
     </div>
     <div class="editor-label">
@@ -79,7 +103,7 @@
         % Descuento a aplicar
     </div>
     <div class="editor-field">
-        @Html.TextBox("Trip.Discount")
+        @Html.TextBox("Trip.Discount", __again ? __reservacion.Discount : null)
         <br />
         <span style="font-size: 9pt">(Si quiere aplicar el por defecto, deje el campo vacío)</span>
     </div>
@@ -87,7 +111,7 @@
         % G. Admon.
     </div>
     <div class="editor-field">
-        @Html.TextBox("Trip.PercentAdmin")
+        @Html.TextBox("Trip.PercentAdmin", __again ? __reservacion.PercentAdmin : null)
         <br />
         <span style="font-size: 9pt">(Si quiere aplicar el por defecto, deje el campo vacío)</span>
     </div>
@@ -95,7 +119,7 @@
         % Agente
     </div>
     <div class="editor-field">
-        @Html.TextBox("Trip.PercentAgent")
+        @Html.TextBox("Trip.PercentAgent", __again ? __reservacion.PercentAgent : null)
         <br />
         <span style="font-size: 9pt">(Si quiere aplicar el por defecto, deje el campo vacío)</span>
     </div>
@@ -103,8 +127,7 @@
         Fecha Límite de Pago
     </div>
     <div class="editor-field">
-        @Html.TextBoxFor(model => model.Trip.PayLimit, new { @class = "datepicker" })
-        @Html.ValidationMessageFor(model => model.Trip.Departure)
+        @Html.TextBoxFor(model => model.Trip.PayLimit, new { @class = "datepicker", @Value = __again ? __reservacion.PayLimit : null })
     </div>
     <br />
     <br />
@@ -147,7 +170,12 @@
 <script type="text/javascript">
                
     $("#Trip_IdCustomer").ufd({ useUiCss: true, log: false });
-    $(".datepicker").datepicker();
+    $(".datepicker").datepicker(
+        {
+            onSelect: function(date) { $( "#Trip_Departure" ).datepicker("option", "minDate", date );},
+            selectWeek: true,
+            inline: true
+        });
 //    $(".flight").chancge(function(){
 //         var today = new Date();
 //         var tomorrow = new Date();
@@ -183,4 +211,6 @@
              $.scrollTo("#paso3", 3000);
         });
     });
+
+  
 </script>

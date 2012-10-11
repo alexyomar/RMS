@@ -16,9 +16,9 @@
                     <th>
                         Ocupación
                     </th>
-                    <th>
+                    @*            <th>
                         Cantidad
-                    </th>
+                    </th>*@
                 </tr>
                 @if (__room.ToList().Count() > 0)
                 {
@@ -27,28 +27,13 @@
                     @Html.Hidden("Rooms[" + counter + "].IdRoom", item.Id)
                     <tr>
                         <td style="text-align: left">
-                            <input type="checkbox" id="@item.Id" name="Rooms[@counter].Name" value="@item.Name"  />
                             @__ocup.First().Name
+                            <div style="float:right;" class="add" idroom="@item.Id" idmax="@__ocup.First().Capacity" name="@item.Name" idtype="@__ocup.First().Name" >
+                                <img src="@Url.Content("~/Content/img/add.png")" />
+                            </div>
+                            <div>
+                            </div>
                         </td>
-                        <td>
-                            <select name="Rooms[@counter].Quantity" style=" width:100px">
-                                @for (int i = 1; i <= 10; i++)
-                                {
-                                    <option value="@i">@i</option>    
-                                }
-                            </select>
-                            @if (!__ocup.First().Name.ToLower().Equals("niño"))
-                            {
-                                @Html.Hidden("Rooms[" + counter + "].Adultos", __ocup.First().Capacity)
-                            }
-                            else
-                            {
-                                @Html.Hidden("Rooms[" + counter + "].Infantes", __ocup.First().Capacity)
-                            }
-                        </td>
-                        <span style="display: none">
-                            @(counter = counter + 1)
-                        </span>
                     </tr>
      
                     }
@@ -70,4 +55,27 @@
 <script type="text/javascript">
 
     $.scrollTo("#paso2", 3000);
+    var __roomcounter = 0;
+
+
+    $(".add").click(function () {
+        var __idroom = $(this).attr("idroom");
+        var __idmax = $(this).attr("idmax");
+        var __name = $(this).attr("name");
+        var __old = $(this).next().html();
+        var __idocup = $(this).attr("idtype");
+
+        $(this).next().html(__old + "<table style='border:none;' border='0' cellpadding='0' cellspacing='0'> <tr> <td> Hab." + (__roomcounter + 1) + " <input type='hidden' id='Rooms[" + __roomcounter + "].IdOcup' name='Rooms[" + __roomcounter + "].IdOcup' value='" + __idocup + "' /><input type='hidden' id='Rooms[" + __roomcounter + "].IdRoom' name='Rooms[" + __roomcounter + "].IdRoom' value='" + __idroom + "' /><input type='hidden' id='Rooms[" + __roomcounter + "].Quantity' name='Rooms[" + __roomcounter + "].Quantity' value='1' /><input type='hidden' id='Rooms[" + __roomcounter + "].Name' name='Rooms[" + __roomcounter + "].Name' value='" + __name + "' /></td> <td> Adultos &nbsp;&nbsp; <select name ='Rooms[" + __roomcounter + "].Adultos' id='Rooms[" + __roomcounter + "].Adultos' style='width:45px'> " + selectvalues(__idmax) + "</select> </td> <td>Niños <select name='Rooms[" + __roomcounter + "].Infantes' style='width:45px' id='Rooms[" + __roomcounter + "].Infantes'> " + selectvalues(__idmax) + " </select></td> </tr> </table>")
+        __roomcounter = __roomcounter + 1;
+    });
+
+    function selectvalues(limit) {
+        var __return = "";
+        for (var i = 0; i <= limit; i++) {
+            __return = __return + " " + "<option value='" + i + "'>" + i + "</option>";
+        }
+        return __return;
+
+    }
+
 </script>

@@ -1,6 +1,10 @@
 ﻿@model RMS.Models.Reservation
 @{
     Layout = null;
+
+    DateTime d1 = Model.Arrival;
+    DateTime d2 = Model.Departure;
+    TimeSpan span = d2 - d1;
 }
 <!DOCTYPE html>
 <html>
@@ -23,23 +27,39 @@
         <tr>
             <th style="padding: 6px 5px; text-align: center; background-color: #e8eef4; border: solid 1px #e8eef4;
                 font-weight: 700">
-                Fecha de Creación / Creation Date
+                Fecha de Creación
+                <br />
+                Creation Date
             </th>
             <th style="padding: 6px 5px; text-align: center; background-color: #e8eef4; border: solid 1px #e8eef4;
                 font-weight: 700">
-                Llegada / Arrival
+                Llegada
+                <br />
+                Arrival
             </th>
             <th style="padding: 6px 5px; text-align: center; background-color: #e8eef4; border: solid 1px #e8eef4;
                 font-weight: 700">
-                Salida / Departure
+                Salida
+                <br />
+                Departure
             </th>
             <th style="padding: 6px 5px; text-align: center; background-color: #e8eef4; border: solid 1px #e8eef4;
                 font-weight: 700">
-                Adultos / Adults
+                Noches
+                <br />
+                Nights
             </th>
             <th style="padding: 6px 5px; text-align: center; background-color: #e8eef4; border: solid 1px #e8eef4;
                 font-weight: 700">
-                Niños / Childrens
+                Adultos
+                <br />
+                Adults
+            </th>
+            <th style="padding: 6px 5px; text-align: center; background-color: #e8eef4; border: solid 1px #e8eef4;
+                font-weight: 700">
+                Niños
+                <br />
+                Childrens
             </th>
         </tr>
         <tr>
@@ -48,6 +68,8 @@
             <td style="padding: 5px; border: solid 1px #e8eef4; text-align: center;">@Model.Arrival.ToShortDateString()
             </td>
             <td style="padding: 5px; border: solid 1px #e8eef4; text-align: center;">@Model.Departure.ToShortDateString()
+            </td>
+            <td style="padding: 5px; border: solid 1px #e8eef4; text-align: center;">@(span.TotalDays)
             </td>
             <td style="padding: 5px; border: solid 1px #e8eef4; text-align: center;">@Model.Adults
             </td>
@@ -64,15 +86,21 @@
         <tr>
             <th style="padding: 6px 5px; text-align: left; background-color: #e8eef4; border: solid 1px #e8eef4;
                 font-weight: 700">
-                Nombre / Name:
+                Nombre
+                <br />
+                Name:
             </th>
             <th style="padding: 6px 5px; text-align: left; background-color: #e8eef4; border: solid 1px #e8eef4;
                 font-weight: 700">
-                Cédula / Passport:
+                Cédula
+                <br />
+                Passport:
             </th>
             <th style="padding: 6px 5px; text-align: left; background-color: #e8eef4; border: solid 1px #e8eef4;
                 font-weight: 700">
-                Télefono / Phone:
+                Télefono
+                <br />
+                Phone:
             </th>
             <th style="padding: 6px 5px; text-align: left; background-color: #e8eef4; border: solid 1px #e8eef4;
                 font-weight: 700">
@@ -103,35 +131,129 @@
             </th>
             <th style="padding: 6px 5px; text-align: left; background-color: #e8eef4; border: solid 1px #e8eef4;
                 font-weight: 700">
-                Habitación / Room
+                Habitación
+                <br />
+                Room
             </th>
             <th style="padding: 6px 5px; text-align: left; background-color: #e8eef4; border: solid 1px #e8eef4;
                 font-weight: 700">
-                Capacidad Max. / Max. Capacity
+                Capacidad
+                <br />
+                Capacity
+            </th>
+            <th style="padding: 6px 5px; text-align: left; background-color: #e8eef4; border: solid 1px #e8eef4;
+                font-weight: 700">
+                Ocupación
+                <br />
+                Occupation
             </th>
             <th style="padding: 6px 5px; text-align: left; background-color: #e8eef4; border: solid 1px #e8eef4;
                 font-weight: 700">
                 Camas
+                <br />
+                Beds
+            </th>
+            <th style="padding: 6px 5px; text-align: left; background-color: #e8eef4; border: solid 1px #e8eef4;
+                font-weight: 700">
+                Precio
+                <br />
+                Price
             </th>
         </tr>
-        @foreach (var item in Model.ReservationRoom.Select(x => x.RoomOcupation).Distinct())
+        @foreach (var item in Model.ReservationRoom.GroupBy(x => new { x.RoomOcupation, x.Childrens, x.Adults }).Select(x => new { x.First().RoomOcupation, x.First().Quantity, Count = x.Count(), x.First().Adults, x.First().Childrens }))
         {
+            decimal __comisionh = new decimal();
+            decimal __factura = new decimal();
+            decimal __margenrm = new decimal();
+            decimal __gadmon = new decimal();
+            decimal __facturab = new decimal();
+            decimal __agente = new decimal();
+            decimal __venta = new decimal();
+            decimal __margen = new decimal();
+            decimal __pmargen = new decimal();
+            decimal __days = (decimal)span.TotalDays;
+            decimal __people = 1;
+            decimal __occupation = item.Adults.Value > 0 ? item.Adults.Value : item.Childrens.Value;
+
+            __comisionh = ((item.RoomOcupation.PriceRack - item.RoomOcupation.Price) * __days * __occupation) * __people;
+            __comisionh = (__comisionh / ((item.RoomOcupation.PriceRack * __days * __occupation) * __people)) * 100;
+            __factura = ((item.RoomOcupation.PriceRack * __days * __occupation) * __people) - (((item.RoomOcupation.PriceRack * __days * __occupation) * __people) * ((decimal)Model.Discount / 100));
+            __margenrm = ((__factura - ((item.RoomOcupation.Price * __days * __occupation)) * __people) / __factura) * 100;
+            __gadmon = __factura * ((decimal)Model.PercentAdmin / 100);
+            __facturab = __factura + __gadmon;
+            __agente = __factura * ((decimal)Model.PercentAgent / 100);
+            __venta = __facturab - __agente;
+            __margen = __venta - ((item.RoomOcupation.Price * __days) * __people * __occupation);
+            __pmargen = (__margen / ((item.RoomOcupation.Price * __days) * __people * __occupation) * 100);
+            
             <tr>
                 <td style="padding: 5px; border: solid 1px #e8eef4;">
-                    <b>@item.Room.Hotel.Name</b><br />
+                    <b>@item.RoomOcupation.Room.Hotel.Name</b><br />
                     <p style="font-size: small">
-                        Entrada:&nbsp;@item.Room.Hotel.ArrivalHour<br />
-                        Salida:&nbsp;@item.Room.Hotel.DepartureHour</p>
+                        Entrada:&nbsp;@item.RoomOcupation.Room.Hotel.ArrivalHour<br />
+                        Salida:&nbsp;@item.RoomOcupation.Room.Hotel.DepartureHour</p>
                 </td>
-                <td style="padding: 5px; border: solid 1px #e8eef4;">@item.Room.Name (@item.Name)
-                </td>
-                <td style="padding: 5px; border: solid 1px #e8eef4;">@item.Capacity
+                <td style="padding: 5px; border: solid 1px #e8eef4;">@item.RoomOcupation.Room.Name (@item.RoomOcupation.Name)
                 </td>
                 <td style="padding: 5px; border: solid 1px #e8eef4;">
-                    @foreach (RMS.Models.RoomOccupationBed item2 in item.Room.RoomOccupationBed)
+                    @if (item.RoomOcupation.Name.ToLower().Contains("niño"))
                     {
-                        <span>@item2.Quantity @item2.RoomBed.Name</span><br />
+                        <span>-</span>
                     }
+                    else
+                    {
+                        <p>
+                            @item.RoomOcupation.Capacity
+                        </p>
+                    }
+                </td>
+                <td style="padding: 5px; border: solid 1px #e8eef4;">
+                    @if (item.RoomOcupation.Name.ToLower().Contains("niño"))
+                    {
+                        <span>-</span>
+                    }
+                    else
+                    {
+                     
+                        <table border="0" cellpadding="5" cellspacing="2" style="font-size: small; width:100%">
+                            <tr>
+                                <td>
+                                    Adultos
+                                    <br />
+                                    Adults
+                                </td>
+                                <td>
+                                    @item.Adults
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Niños
+                                    <br />
+                                    Childrens
+                                </td>
+                                <td>
+                                    @item.Childrens
+                                </td>
+                            </tr>
+                        </table>
+                    }
+                </td>
+                <td style="padding: 5px; border: solid 1px #e8eef4; font-size: small">
+                    @if (item.RoomOcupation.Name.ToLower().Contains("niño"))
+                    {
+                        <span>-</span>
+                    }
+                    else
+                    {
+                        foreach (RMS.Models.RoomOccupationBed item2 in item.RoomOcupation.Room.RoomOccupationBed)
+                        {
+                        <span>@item2.Quantity @item2.RoomBed.Name</span><br />
+                        }
+                    }
+                </td>
+                <td style="padding: 5px; border: solid 1px #e8eef4;">
+                    Bs. @Math.Round(__facturab, 2)
                 </td>
             </tr>
         }

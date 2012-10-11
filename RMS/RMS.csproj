@@ -351,6 +351,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
     <None Include="Files\paquetes2012.pdf" />
+    <Content Include="Views\Budget\PartialImportar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

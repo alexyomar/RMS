@@ -26,16 +26,9 @@ namespace RMS.Models
         public int Adultos { get; set; }
         public int Infantes { get; set; }
         public int IdRoom { get; set; }
+        public string IdOcup { get; set; }
         public int Quantity { get; set; }
         public string Name { get; set; }
-        public List<Personas> People { get; set; }
-
     }
 
-    public class Personas
-    {
-        public int Adultos { get; set; }
-        public int Infantes { get; set; } 
-    
-    }
 }
