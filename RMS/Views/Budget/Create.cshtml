@@ -39,7 +39,7 @@
                     Datos del cliente</h2>
             </td>
             <td align="right">
-                <a href="@Url.Action("Create")" class="button" style="float: right;">
+                <a href="@Url.Action("PartialImportar")" class="button popup" style="float: right;">
                     <img src="../../Content/img/add.png" />
                     &nbsp;&nbsp;Importar </a>
             </td>
@@ -168,7 +168,7 @@
     @Html.ActionLink("Volver al Listado", "Index")
 </div>
 <script type="text/javascript">
-               
+     $(".popup").colorbox({ width: 300, height: 300 });            
     $("#Trip_IdCustomer").ufd({ useUiCss: true, log: false });
     $(".datepicker").datepicker(
         {

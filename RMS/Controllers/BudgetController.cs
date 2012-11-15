@@ -23,6 +23,12 @@ namespace RMS.Controllers
             return View(reservation.ToList());
         }
 
+        public ViewResult Dashboard()
+        {
+            var reservation = db.Reservation.Include("Customer").Include("ReservationStatus").OrderByDescending(x => x.Id);
+            return View(reservation);
+        }
+
         public ViewResult Details(int id)
         {
             Reservation reservation = db.Reservation.Single(r => r.Id == id);
@@ -381,7 +387,7 @@ namespace RMS.Controllers
             decimal __pricebase = new decimal();
             decimal __total = new decimal();
             decimal __totalrack = new decimal();
-
+            int __count = 0;
 
             var __rooms = reservation.Rooms.Where(z => z.Name != null);
 
@@ -397,7 +403,7 @@ namespace RMS.Controllers
                     __tripdays = __tripdays.Take(__tripdays.Count() - 1);
                     reservation.Trip.Adults = reservation.Trip.Adults + item.Adultos;
                     reservation.Trip.Childrens = reservation.Trip.Childrens + item.Infantes;
-
+                    __count = __count + 1;
 
 
                     ViewBag.Days = __tripdays.Count();
@@ -471,7 +477,7 @@ namespace RMS.Controllers
                                 reservation.Trip.PriceBase = __pricebase;
 
                                 ReservationRoom __rr = new ReservationRoom();
-                                __rr.Quantity = item.Quantity;
+                                __rr.Quantity = __count;
                                 __rr.RoomOcupation = __roomfare;
                                 __rr.Adults = item.Adultos;
                                 __rr.Childrens = item.Infantes;
@@ -542,7 +548,7 @@ namespace RMS.Controllers
                                 reservation.Trip.PriceBase = __pricebase;
 
                                 ReservationRoom __rr = new ReservationRoom();
-                                __rr.Quantity = item.Quantity;
+                                __rr.Quantity = __count;
                                 __rr.RoomOcupation = __roomfarec;
                                 __rr.Adults = 0;
                                 __rr.Childrens = item.Infantes;
@@ -584,8 +590,21 @@ namespace RMS.Controllers
 
         public ActionResult PartialImportar()
         {
-            ViewData.Model = db.Reservation.OrderBy(u => u.Id).Last().Id;
+            ViewData.Model = db.Reservation.OrderByDescending(u => u.Id).First().Id;
             return PartialView();
+        }
+
+        public ActionResult Import(bool? type, int id, string reservation)
+        {
+            if (type.HasValue)
+            {
+                if (type.Value)
+                    return RedirectToAction("Create", new { Id = id });
+                else
+                    return RedirectToAction("Create", new { Id = reservation });
+            }
+            else
+                return RedirectToAction("Create", new { Id = id });
         }
 
         protected override void Dispose(bool disposing)

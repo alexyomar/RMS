@@ -38,7 +38,7 @@ namespace RMS.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Budget");
+                        return RedirectToAction("Dashboard", "Budget");
                     }
                 }
                 else

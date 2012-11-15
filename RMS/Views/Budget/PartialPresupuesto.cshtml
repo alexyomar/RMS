@@ -174,9 +174,11 @@
                 Diferencia Vs Hotel
             </th>
         </tr>
-        @foreach (var __item in Model.ReservationRoom.GroupBy(x => new { x.RoomOcupation, x.Childrens, x.Adults }).Select(x => new { x.First().RoomOcupation, x.First().Quantity, Count = x.Count(), x.First().Adults, x.First().Childrens }))
+        @foreach (var __item in Model.ReservationRoom.GroupBy(x => new { x.RoomOcupation, x.Childrens, x.Adults, x.Quantity }).Select(x => new { x.First().RoomOcupation, x.First().Quantity, Count = x.Count(), x.First().Adults, x.First().Childrens }))
         {
 
+            __days = __item.Count;
+            
             decimal __people = 1;
             decimal __occupation = __item.Adults.Value > 0 ? __item.Adults.Value : __item.Childrens.Value;
 
@@ -212,7 +214,7 @@
                     }
                 </td>
                 <td>
-                    @__days
+                    @__item.Count
                 </td>
                 <td>@Math.Round(((__item.RoomOcupation.PriceRack * __days) * __people) * __occupation, 2)
                 </td>

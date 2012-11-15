@@ -16,7 +16,12 @@ namespace RMS.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Cotizar()
+        {
+            return View();
+        }
+
+        public ActionResult Create()
         {
             Membership.CreateUser("alexyomar", "a17302339", "alexyomar@gmail.com");
             return View();
