@@ -11,25 +11,28 @@ namespace RMS.Controllers
     public class HomeController : Controller
     {
         private RegionalEntities db = new RegionalEntities();
+     
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult Cotizar()
-        {
-            return View();
-        }
+     
 
-        public ActionResult Create()
-        {
-            Membership.CreateUser("alexyomar", "a17302339", "alexyomar@gmail.com");
-            return View();
-        }
+        //public ActionResult Create()
+        //{
+        //    Membership.CreateUser("alexyomar", "a17302339", "alexyomar@gmail.com");
+        //    return View();
+        //}
 
-        public ActionResult Database()
+        //public ActionResult Database()
+        //{
+        //    db.CreateDatabase();
+        //    return View();
+        //}
+
+        public ActionResult Start()
         {
-            db.CreateDatabase();
             return View();
         }
     }

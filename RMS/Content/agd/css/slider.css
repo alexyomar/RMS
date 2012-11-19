@@ -1,0 +1,28 @@
+#carousel ul { list-style: none; padding: 0; margin: 0 auto; width: 42em; height: 28em; }
+#carousel li { height: 24em; width: 24em; text-align: center; cursor: pointer; }
+#carousel li img { width: 100%; }
+#carousel li.roundabout-in-focus { cursor: default; }
+#carousel li span { display: block; padding-top: 6em; }
+#slider1 .wrapper p { text-align: left; margin-right: 25px; font-size: 1.1em; line-height: 1.4em; color: #fff; }
+#slider1 .wrapper .slider_links { position: absolute; bottom: -20px; right: 100px; width: 300px; text-align: center; text-transform: capitalize; }
+#slider1 .wrapper .slider_links a { padding: 8px 10px; background: #7eb9c4; color: #fff; font-size: 1.1em; margin-left: 5px; text-decoration: none; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
+#slider1 .wrapper .slider_links a[href="project.html"] { padding-left: 15px; }
+#slider1 .wrapper .slider_links a:hover { background: #ffc75e; -moz-border-radius: 5px; -webkit-border-radius: 5px; color: #414141; }
+#slider1 .wrapper a:focus { outline: none; }
+#slider1 .wrapper img { border: 0; float: left; }
+#slider1 .wrapper h2 { margin-bottom: 5px; padding-bottom: 3px; text-align: left; position: absolute; top: -4px; right: 126px; }
+.stripViewer .panelContainer { text-align: left; margin: 0 15px 0 30px; }
+.slider-wrap { margin: 20px 0 0 0; position: relative; width: 100%; }
+.csw { width: 100%; height: 212px; background: #7eb9c4; overflow: scroll; }
+.csw .loading { margin: 50px 0; text-align: center; }
+.stripViewer { position: relative; overflow: hidden; margin: auto; width: 804px; height: 212px; clear: both; background: url(../images/slider_bg.gif) no-repeat; }
+.stripViewer .panelContainer { position: relative; left: 0; top: 0; width: 100%; list-style-type: none; }
+.stripViewer .panelContainer .panel { float: left; height: 100%; position: relative; width: 804px; }
+.stripViewer .panelContainer .panel .wrapper { padding: 10px 40px 20px 0px; position: relative; }
+.wrapper p { margin: 50px 0 20px 0; }
+.stripNavL, .stripNavR { position: absolute; top: 84px; text-indent: -9000em; }
+.stripNavL a, .stripNavR a { display: block; height: 44px; width: 44px; }
+.stripNavL { left: 25px; z-index: 1; }
+.stripNavR { right: 25px; z-index: 1; }
+.stripNavL { background: url(../images/left_arrow.png) no-repeat center; }
+.stripNavR { background: url(../images/right_arrow.png) no-repeat center; }

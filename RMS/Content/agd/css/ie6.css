@@ -1,0 +1,49 @@
+hr {
+	background:gray;
+	height:1px;
+}
+#slider1 .wrapper h2 {
+	position:absolute;
+	top:-4px;
+	left:0px;
+}
+#slider1 .wrapper .slider_links {
+	position:absolute;
+	bottom:-20px;
+	left:100px;
+	padding:1em;
+}
+.navigation li a, .navigation li a:hover, .navigation li a:visited {
+	color:#eaeaea;
+	padding:2px;
+	text-decoration:none;
+}
+.navigation li a:hover {
+	background:#FF8A00;
+	padding:2px;
+	color:#333;
+}
+.thumbnails, #portfolio .thumnails {
+	padding-bottom:100px;
+}
+.service_list li {
+	padding-left:20px;
+}
+.sidebar li a, .sidebar li a:visited {
+	color:#ff8a00;
+}
+.sidebar li a:hover {
+	color:#7eb9c4;
+}
+.post .more {
+	margin-left:70%;
+	padding:.5em;
+}
+.facebook, .twitter, .mail, .address {
+	padding-left:40px;
+}
+.submit, .search_button {
+	height:25px;
+	overflow:hidden;
+	padding:25px 0 0 0;
+}

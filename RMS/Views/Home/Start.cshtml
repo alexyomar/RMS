@@ -1,0 +1,72 @@
+﻿@{
+    ViewBag.Title = "Start";
+    Layout = "~/Views/Shared/_LayoutAGD.cshtml";
+}
+<center>
+    <h3 style="margin: 60px auto;">
+        Nuestros Paquetes Estelares</h3>
+</center>
+<div style="padding: 160px 100px 30px 100px">
+    <ul id="carousel">
+        <li><a href="#">
+            <img src="@Url.Content("~/Content/Promociones/aruba.png")" alt="Award" /></a></li>
+        <li>
+            <img src="@Url.Content("~/Content/Promociones/aruba.png")" alt="Award" /></li>
+        <li>
+            <img src="@Url.Content("~/Content/Promociones/aruba.png")" alt="Award" /></li>
+        <li>
+            <img src="@Url.Content("~/Content/Promociones/aruba.png")" alt="Award" /></li>
+        <li>
+            <img src="@Url.Content("~/Content/Promociones/aruba.png")" alt="Award" /></li>
+        <li>
+            <img src="@Url.Content("~/Content/Promociones/aruba.png")" alt="Award" /></li>
+        <li>
+            <img src="@Url.Content("~/Content/Promociones/aruba.png")" alt="Award" /></li>
+    </ul>
+</div>
+<div id="content" class="home png">
+    <div class="services left">
+        <h3>
+            Our Services</h3>
+        <ul class="service_list">
+            <li>Lorem ipsum dolor sit amet.</li>
+            <li>Donec vitae sapien vel tellus.</li>
+            <li>Duis placerat congue nisi.</li>
+            <li>Nam euismod arcu sit amet.</li>
+            <li>Donec condimentum consequat.</li>
+        </ul>
+        <a class="more" href="#">learn more... </a>
+    </div>
+    <div class="blog left">
+        <h3>
+            Blog</h3>
+        <ul>
+            <li><strong>10/4/09</strong><br />
+                Ut euismod turpis ullamcorper odio fringilla nec auctor est blandit! Pellentesque.<a
+                    class="more" href="#">More...</a></li>
+            <li><strong>10/4/09</strong><br />
+                Ut euismod turpis ullamcorper odio fringilla nec auctor est blandit! Pellentesque.<a
+                    class="more" href="#">More...</a></li>
+            <li><strong>10/4/09</strong><br />
+                Ut euismod turpis ullamcorper odio fringilla nec auctor est blandit! Pellentesque.<a
+                    class="more" href="#">More...</a></li>
+        </ul>
+    </div>
+    <div class="clients left">
+        <h3>
+            Our Clients</h3>
+        <ul>
+            <li><a href="#">
+                <img src="images/envato.jpg" width="200" height="74" alt="" /></a></li>
+            <li><a href="#">
+                <img src="images/psdtuts.jpg" width="200" height="60" alt="" /></a></li>
+            <li><a href="#">
+                <img src="images/themeforest.jpg" width="200" height="76" alt="" /></a></li>
+        </ul>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#carousel').roundabout();
+    });
+</script>
