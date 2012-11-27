@@ -1,0 +1,18 @@
+hr {
+	background:gray;
+	height:1px;
+}
+#slider1 .wrapper .slider_links {
+	padding:1em;
+}
+#footer {
+	margin-top:80px;
+}
+.submit, .search_button {
+	height:25px;
+	overflow:hidden;
+	padding:25px 0 0 0;
+}
+.thumbnails {
+	padding-bottom:80px;
+}

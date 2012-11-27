@@ -1,2 +1,36 @@
-﻿<h2>
-    Importar información</h2>
+﻿<form action="@Url.Action("Import")" method="post">
+<table border="0" cellpadding="5" cellspacing="0">
+    <tr>
+        <td colspan="2">
+            <h2>
+                Importar información</h2>
+            <h3>
+                Seleccione:</h3>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.RadioButton("type", true)
+        </td>
+        <td>
+            <label>
+                Reservación anterior</label>
+            <input type="hidden" name="id" value="@Model " />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.RadioButton("type", false)
+        </td>
+        <td>
+            <label>
+                Reservación n°&nbsp;&nbsp;</label><input type="text" name="reservation" style="width: 100px" />
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align: center;">
+            <input type="submit" name="btngo" value="Aceptar" />
+        </td>
+    </tr>
+</table>
+</form>

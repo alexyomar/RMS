@@ -11,13 +11,13 @@ namespace RMS.Controllers
     public class HomeController : Controller
     {
         private RegionalEntities db = new RegionalEntities();
-     
+
         public ActionResult Index()
         {
             return View();
         }
 
-     
+
 
         //public ActionResult Create()
         //{
@@ -35,5 +35,25 @@ namespace RMS.Controllers
         {
             return View();
         }
+
+        public ActionResult Trips()
+        {
+            return View();
+        }
+
+        public ActionResult About()
+        {
+            return View("AboutUs");
+        }
+        public ActionResult Contact()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Contact(string nombre)
+        {
+            return View("ContactOk");
+        }
+
     }
 }

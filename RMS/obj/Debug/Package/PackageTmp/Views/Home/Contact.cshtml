@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Contáctanos - Regional Marketing Services";
+    Layout = "~/Views/Shared/_LayoutAGD.cshtml";
+}
+<div class="banner clear">
+    <h2 class="current_page right">
+        Contactános
+    </h2>
+    <em class="tagline left">Realiza tu viaje con nosotros</em></div>
+<div id="content">
+    <div class="contact left">
+        <div class="message">
+            <div id="alert">
+            </div>
+        </div>
+        <div id="form">
+            <form action="@Url.Action("Contact")" method="post" id="contactForm">
+            <ul>
+                <li>
+                    <label for="cname">
+                        <span>Nombre:<em>*</em></span>
+                        <input type="text" name="name" id="nombre" />
+                    </label>
+                </li>
+                <li>
+                    <label for="cemail">
+                        <span>Email:<em>*</em></span>
+                        <input type="text" name="email" id="email" />
+                    </label>
+                </li>
+                <li>
+                    <label for="csubject">
+                        <span>Asunto:<em>*</em></span>
+                        <input type="text" name="subject" id="subject" />
+                    </label>
+                </li>
+                <li>
+                    <label for="cmessage">
+                        <span>Mensaje:<em>*</em></span>
+                        <textarea name="message" id="mensaje" cols="50" rows="12"></textarea>
+                    </label>
+                </li>
+                <li class="submitbutton">
+                    <input type="submit" value="submit" id="csubmit" class="submit right" />
+                </li>
+            </ul>
+            </form>
+        </div>
+    </div>
+    @Html.Partial("_sidebar")
+</div>

@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Contáctanos - Regional Marketing Services";
+    Layout = "~/Views/Shared/_LayoutAGD.cshtml";
+}
+<div class="banner clear">
+    <h2 class="current_page right">
+        Contactános
+    </h2>
+    <em class="tagline left">Realiza tu viaje con nosotros</em></div>
+<div id="content">
+    <div class="contact left">
+        <div class="message">
+            <div id="alert">
+                Gracias por contactarnos.
+                <br />
+                Pronto recibirá una respuesta a sus inquietudes.
+                <br />
+                <a href="@Url.Action("Start", "Home")">Volver al inicio</a>
+            </div>
+        </div>
+    </div>
+    @Html.Partial("_sidebar")
+</div>
