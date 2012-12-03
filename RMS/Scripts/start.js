@@ -21,706 +21,1313 @@ $(document).ready(function () {
     });
 
 });
+/*! Copyright (c) 2011 Brandon Aaron (http://brandonaaron.net)
+* Licensed under the MIT License (LICENSE.txt).
+*
+* Thanks to: http://adomas.org/javascript-mouse-wheel/ for some pointers.
+* Thanks to: Mathias Bank(http://www.mathias-bank.de) for a scope bug fix.
+* Thanks to: Seamus Leahy for adding deltaX and deltaY
+*
+* Version: 3.0.6
+* 
+* Requires: 1.2.2+
+*/
+(function (a) { function d(b) { var c = b || window.event, d = [].slice.call(arguments, 1), e = 0, f = !0, g = 0, h = 0; return b = a.event.fix(c), b.type = "mousewheel", c.wheelDelta && (e = c.wheelDelta / 120), c.detail && (e = -c.detail / 3), h = e, c.axis !== undefined && c.axis === c.HORIZONTAL_AXIS && (h = 0, g = -1 * e), c.wheelDeltaY !== undefined && (h = c.wheelDeltaY / 120), c.wheelDeltaX !== undefined && (g = -1 * c.wheelDeltaX / 120), d.unshift(b, e, g, h), (a.event.dispatch || a.event.handle).apply(this, d) } var b = ["DOMMouseScroll", "mousewheel"]; if (a.event.fixHooks) for (var c = b.length; c; ) a.event.fixHooks[b[--c]] = a.event.mouseHooks; a.event.special.mousewheel = { setup: function () { if (this.addEventListener) for (var a = b.length; a; ) this.addEventListener(b[--a], d, !1); else this.onmousewheel = d }, teardown: function () { if (this.removeEventListener) for (var a = b.length; a; ) this.removeEventListener(b[--a], d, !1); else this.onmousewheel = null } }, a.fn.extend({ mousewheel: function (a) { return a ? this.bind("mousewheel", a) : this.trigger("mousewheel") }, unmousewheel: function (a) { return this.unbind("mousewheel", a) } }) })(jQuery);
 /*
-* jQuery UI CoverFlow
-Re-written for jQueryUI 1.8.6/jQuery core 1.4.4+ by Addy Osmani with adjustments
-Maintenance updates for 1.8.9/jQuery core 1.5, 1.6.2 made.
+* jQuery SmoothDivScroll 1.3
+*
+* Copyright (c) 2012 Thomas Kahn
+* Licensed under the GPL license.
+*
+* http://www.smoothdivscroll.com/
+*
+* Depends:
+* jquery-1.8.x.min.js
+Please use https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js
+...or later
 
-Original Component: Paul Bakaus for jQueryUI 1.7 
+* jquery.ui.widget.js
+* jquery.ui.effects.min.js
+Make your own custom download at http://jqueryui.com/download.
+First deselect all components. Then check just "Widget" and "Effects Core".
+Download the file and put it in your javascript folder.
+
+* jquery.mousewheel.min.js
+Used for mousewheel functionality.
+Download the latest version at http://brandonaaron.net/code/mousewheel/demos
+*
+
+* jquery.kinetic.js
+Used for scrolling by dragging, mainly used on touch devices.
+Download the latest version at https://github.com/davetayls/jquery.kinetic
+*
 */
 (function ($) {
 
-    function getPrefix(prop) {
-        var prefixes = ['Moz', 'Webkit', 'Khtml', 'O', 'ms'],
-	            elem = document.createElement('div'),
-	            upper = prop.charAt(0).toUpperCase() + prop.slice(1),
-	            pref = "",
-				len = 0;
-
-        for (len = prefixes.length; len--; ) {
-            if ((prefixes[len] + upper) in elem.style) {
-                pref = (prefixes[len]);
-            }
-        }
-
-        if (prop in elem.style) {
-            pref = (prop);
-        }
-        return pref;
-    }
-
-
-    var vendorPrefix = getPrefix('transform');
-
-    $.easing.easeOutQuint = function (x, t, b, c, d) {
-        return c * ((t = t / d - 1) * t * t * t * t + 1) + b;
-    };
-
-    $.widget("ui.coverflow", {
-
+    $.widget("thomaskahn.smoothDivScroll", {
+        // Default options
         options: {
-            items: "> *",
-            orientation: 'horizontal',
-            item: 0,
-            trigger: 'click',
-            center: true, //If false, element's base position isn't touched in any way
-            recenter: true //If false, the parent element's position doesn't get animated while items change
+            // Classes for elements added by Smooth Div Scroll
+            scrollingHotSpotLeftClass: "scrollingHotSpotLeft", // String
+            scrollingHotSpotRightClass: "scrollingHotSpotRight", // String
+            scrollableAreaClass: "scrollableArea", // String
+            scrollWrapperClass: "scrollWrapper", // String
 
+            // Misc settings
+            hiddenOnStart: false, // Boolean
+            getContentOnLoad: {}, // Object
+            countOnlyClass: "", // String
+            startAtElementId: "", // String
+
+            // Hotspot scrolling
+            hotSpotScrolling: true, // Boolean
+            hotSpotScrollingStep: 15, // Pixels
+            hotSpotScrollingInterval: 10, // Milliseconds
+            hotSpotMouseDownSpeedBooster: 3, // Integer
+            visibleHotSpotBackgrounds: "hover", // always, onStart, hover or empty (no visible hotspots)
+            hotSpotsVisibleTime: 5000, // Milliseconds
+            easingAfterHotSpotScrolling: true, // Boolean
+            easingAfterHotSpotScrollingDistance: 10, // Pixels
+            easingAfterHotSpotScrollingDuration: 300, // Milliseconds
+            easingAfterHotSpotScrollingFunction: "easeOutQuart", // String
+
+            // Mousewheel scrolling
+            mousewheelScrolling: "", // vertical, horizontal, allDirections or empty (no mousewheel scrolling) String
+            mousewheelScrollingStep: 70, // Pixels
+            easingAfterMouseWheelScrolling: true, // Boolean
+            easingAfterMouseWheelScrollingDuration: 300, // Milliseconds
+            easingAfterMouseWheelScrollingFunction: "easeOutQuart", // String
+
+            // Manual scrolling (hotspot and/or mousewheel scrolling)
+            manualContinuousScrolling: false, // Boolean
+
+            // Autoscrolling
+            autoScrollingMode: "", // always, onStart or empty (no auto scrolling) String
+            autoScrollingDirection: "endlessLoopRight", // right, left, backAndForth, endlessLoopRight, endlessLoopLeft String
+            autoScrollingStep: 1, // Pixels
+            autoScrollingInterval: 10, // Milliseconds
+
+            // Touch scrolling
+            touchScrolling: false,
+
+            // Easing for when the scrollToElement method is used
+            scrollToAnimationDuration: 1000, // Milliseconds
+            scrollToEasingFunction: "easeOutQuart" // String
         },
-
         _create: function () {
+            var self = this, o = this.options, el = this.element;
 
-            var self = this, o = this.options;
-            this.items = $(o.items, this.element);
-            this.props = o.orientation == 'vertical' ? ['height', 'Height', 'top', 'Top'] : ['width', 'Width', 'left', 'Left'];
-            //For < 1.8.2: this.items['outer'+this.props[1]](1);
+            // Create variables for any existing or not existing 
+            // scroller elements on the page.
+            el.data("scrollWrapper", el.find("." + o.scrollWrapperClass));
+            el.data("scrollingHotSpotRight", el.find("." + o.scrollingHotSpotRightClass));
+            el.data("scrollingHotSpotLeft", el.find("." + o.scrollingHotSpotLeftClass));
+            el.data("scrollableArea", el.find("." + o.scrollableAreaClass));
 
-            this.itemSize = 0.73 * this.items.innerWidth();
-            this.itemWidth = this.items.width();
-            this.itemHeight = this.items.height();
-            this.duration = o.duration;
-            this.current = o.item; //initial item
+            // Check which elements are already present on the page. 
+            // Create any elements needed by the plugin if
+            // the user hasn't already created them.
 
+            // First detach any present hot spots
+            if (el.data("scrollingHotSpotRight").length > 0) {
 
-            //Bind click events on individual items
-            this.items.bind(o.trigger, function () {
-                self.select(this);
+                el.data("scrollingHotSpotRight").detach();
+            }
+            if (el.data("scrollingHotSpotLeft").length > 0) {
 
-            });
+                el.data("scrollingHotSpotLeft").detach();
+            }
 
+            // Both the scrollable area and the wrapper are missing
+            if (el.data("scrollableArea").length === 0 && el.data("scrollWrapper").length === 0) {
+                el.wrapInner("<div class='" + o.scrollableAreaClass + "'>").wrapInner("<div class='" + o.scrollWrapperClass + "'>");
 
-            //Center the actual parent's left side within it's parent
+                el.data("scrollWrapper", el.find("." + o.scrollWrapperClass));
+                el.data("scrollableArea", el.find("." + o.scrollableAreaClass));
+            }
+            // Only the wrapper is missing
+            else if (el.data("scrollWrapper").length === 0) {
+                el.wrapInner("<div class='" + o.scrollWrapperClass + "'>");
+                el.data("scrollWrapper", el.find("." + o.scrollWrapperClass));
+            }
+            // Only the scrollable area is missing
+            else if (el.data("scrollableArea").length === 0) {
+                el.data("scrollWrapper").wrapInner("<div class='" + o.scrollableAreaClass + "'>");
+                el.data("scrollableArea", el.find("." + o.scrollableAreaClass));
+            }
 
-            this.element.css(this.props[2],
-				(o.recenter ? -this.current * this.itemSize / 2 : 0)
-				+ (o.center ? this.element.parent()[0]['offset' + this.props[1]] / 2 - this.itemSize / 2 : 0) //Center the items container
-				- (o.center ? parseInt(this.element.css('padding' + this.props[3]), 10) || 0 : 0) //Subtract the padding of the items container
-			);
+            // Put the right and left hot spot back into the scroller again
+            // or create them if they where not present from the beginning.
+            if (el.data("scrollingHotSpotRight").length === 0) {
+                el.prepend("<div class='" + o.scrollingHotSpotRightClass + "'></div>");
+                el.data("scrollingHotSpotRight", el.find("." + o.scrollingHotSpotRightClass));
+            } else {
+                el.prepend(el.data("scrollingHotSpotRight"));
+            }
 
-            //Jump to the first item
-            this._refresh(1, 0, this.current);
-
-        },
-
-        select: function (item, noPropagation) {
-
-
-            this.previous = this.current;
-            this.current = !isNaN(parseInt(item, 10)) ? parseInt(item, 10) : this.items.index(item);
-
-
-            //Don't animate when clicking on the same item
-            if (this.previous == this.current) return false;
-
-            //Overwrite $.fx.step.coverflow everytime again with custom scoped values for this specific animation
-            var self = this, to = Math.abs(self.previous - self.current) <= 1 ? self.previous : self.current + (self.previous < self.current ? -1 : 1);
-            $.fx.step.coverflow = function (fx) { self._refresh(fx.now, to, self.current); };
-
-            // 1. Stop the previous animation
-            // 2. Animate the parent's left/top property so the current item is in the center
-            // 3. Use our custom coverflow animation which animates the item
-
-            var animation = { coverflow: 1 };
-
-
-            animation[this.props[2]] = (
-				(this.options.recenter ? -this.current * this.itemSize / 2 : 0)
-				+ (this.options.center ? this.element.parent()[0]['offset' + this.props[1]] / 2 - this.itemSize / 2 : 0) //Center the items container
-				- (this.options.center ? parseInt(this.element.css('padding' + this.props[3]), 10) || 0 : 0) //Subtract the padding of the items container
-			);
+            if (el.data("scrollingHotSpotLeft").length === 0) {
+                el.prepend("<div class='" + o.scrollingHotSpotLeftClass + "'></div>");
+                el.data("scrollingHotSpotLeft", el.find("." + o.scrollingHotSpotLeftClass));
+            } else {
+                el.prepend(el.data("scrollingHotSpotLeft"));
+            }
 
 
+            // Create variables in the element data storage
+            el.data("speedBooster", 1);
+            el.data("scrollXPos", 0);
+            el.data("hotSpotWidth", el.data("scrollingHotSpotLeft").innerWidth());
+            el.data("scrollableAreaWidth", 0);
+            el.data("startingPosition", 0);
+            el.data("rightScrollingInterval", null);
+            el.data("leftScrollingInterval", null);
+            el.data("autoScrollingInterval", null);
+            el.data("hideHotSpotBackgroundsInterval", null);
+            el.data("previousScrollLeft", 0);
+            el.data("pingPongDirection", "right");
+            el.data("getNextElementWidth", true);
+            el.data("swapAt", null);
+            el.data("startAtElementHasNotPassed", true);
+            el.data("swappedElement", null);
+            el.data("originalElements", el.data("scrollableArea").children(o.countOnlyClass));
+            el.data("visible", true);
+            el.data("enabled", true);
+            el.data("scrollableAreaHeight", el.data("scrollableArea").height());
+            el.data("scrollerOffset", el.offset());
 
-            //Trigger the 'select' event/callback
-            if (!noPropagation) this._trigger('select', null, this._uiHash());
+            /*****************************************
+            SET UP EVENTS FOR TOUCH SCROLLING
+            *****************************************/
+            if (o.touchScrolling && el.data("enabled")) {
+                // Use jquery.kinetic.js for touch scrolling
+                // Vertical scrolling disabled
+                el.data("scrollWrapper").kinetic({
+                    y: false,
+                    moved: function (settings) {
+                        if (o.manualContinuousScrolling) {
+                            if (el.data("scrollWrapper").scrollLeft() <= 0) {
+                                self._checkContinuousSwapLeft();
+                            } else {
+                                self._checkContinuousSwapRight();
+                            }
+                        }
+                    },
+                    stopped: function (settings) {
+                        // Stop any ongoing animations
+                        el.data("scrollWrapper").stop(true, false);
 
-            this.element.stop().animate(animation, {
-                duration: this.options.duration,
-                easing: 'easeOutQuint'
-            });
-
-        },
-
-        _refresh: function (state, from, to) {
-
-
-            var self = this, offset = null;
-
-
-            this.items.each(function (i) {
-
-
-                var side = (i == to && from - to < 0) || i - to > 0 ? 'left' : 'right',
-					mod = i == to ? (1 - state) : (i == from ? state : 1),
-					before = (i > from && i != to),
-					css = { zIndex: self.items.length + (side == "left" ? to - i : i - to) };
-                //css[($.browser.safari ? 'webkit' : ($.browser.opera ? 'O' : 'Moz'))+'Transform'] = 'matrix(1,'+(mod * (side == 'right' ? -0.2 : 0.2))+',0,1,0,0) scale('+(1+((1-mod)*0.3)) + ')'; 
-
-
-                if (vendorPrefix == 'ms' || vendorPrefix == "") {
-
-                    css["filter"] = "progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=1, M12=0, M21=" + (mod * (side == 'right' ? -0.2 : 0.2)) + ", M22=1";
-                    css[self.props[2]] = ((-i * (self.itemSize / 2)) + (side == 'right' ? -self.itemSize / 2 : self.itemSize / 2) * mod);
-
-                    if (i == self.current) {
-                        css.width = self.itemWidth * (1 + ((1 - mod) * 0.3));
-                        css.height = css.width * (self.itemHeight / self.itemWidth);
-                        css.top = -((css.height - self.itemHeight) / 3);
-
-                        css.left -= self.itemWidth / 6 - 50;
+                        // Stop any ongoing auto scrolling
+                        self.stopAutoScrolling();
                     }
-                    else {
-                        css.width = self.itemWidth;
-                        css.height = self.itemHeight;
-                        css.top = 0;
+                });
+            }
 
-                        if (side == "left") {
-                            css.left -= self.itemWidth / 5 - 50;
+            /*****************************************
+            SET UP EVENTS FOR SCROLLING RIGHT
+            *****************************************/
+            // Check the mouse X position and calculate 
+            // the relative X position inside the right hotspot
+            el.data("scrollingHotSpotRight").bind("mousemove", function (e) {
+                if (o.hotSpotScrolling) {
+                    var x = e.pageX - (this.offsetLeft + el.data("scrollerOffset").left);
+                    el.data("scrollXPos", Math.round((x / el.data("hotSpotWidth")) * o.hotSpotScrollingStep));
+
+                    // If the position is less then 1, it's set to 1
+                    if (el.data("scrollXPos") === Infinity || el.data("scrollXPos") < 1) {
+                        el.data("scrollXPos", 1);
+                    }
+                }
+            });
+
+            // Mouseover right hotspot - scrolling
+            el.data("scrollingHotSpotRight").bind("mouseover", function () {
+                if (o.hotSpotScrolling) {
+                    // Stop any ongoing animations
+                    el.data("scrollWrapper").stop(true, false);
+
+                    // Stop any ongoing auto scrolling
+                    self.stopAutoScrolling();
+
+                    // Start the scrolling interval
+                    el.data("rightScrollingInterval", setInterval(function () {
+                        if (el.data("scrollXPos") > 0 && el.data("enabled")) {
+                            el.data("scrollWrapper").scrollLeft(el.data("scrollWrapper").scrollLeft() + (el.data("scrollXPos") * el.data("speedBooster")));
+
+                            if (o.manualContinuousScrolling) {
+                                self._checkContinuousSwapRight();
+                            }
+
+                            self._showHideHotSpots();
+                        }
+                    }, o.hotSpotScrollingInterval));
+
+                    // Callback
+                    self._trigger("mouseOverRightHotSpot");
+                }
+            });
+
+            // Mouseout right hotspot - stop scrolling
+            el.data("scrollingHotSpotRight").bind("mouseout", function () {
+                if (o.hotSpotScrolling) {
+                    clearInterval(el.data("rightScrollingInterval"));
+                    el.data("scrollXPos", 0);
+
+                    // Easing out after scrolling
+                    if (o.easingAfterHotSpotScrolling && el.data("enabled")) {
+                        el.data("scrollWrapper").animate({ scrollLeft: el.data("scrollWrapper").scrollLeft() + o.easingAfterHotSpotScrollingDistance }, { duration: o.easingAfterHotSpotScrollingDuration, easing: o.easingAfterHotSpotScrollingFunction });
+                    }
+                }
+            });
+
+
+            // mousedown right hotspot (add scrolling speed booster)
+            el.data("scrollingHotSpotRight").bind("mousedown", function () {
+                el.data("speedBooster", o.hotSpotMouseDownSpeedBooster);
+            });
+
+            // mouseup anywhere (stop boosting the scrolling speed)
+            $("body").bind("mouseup", function () {
+                el.data("speedBooster", 1);
+            });
+
+            /*****************************************
+            SET UP EVENTS FOR SCROLLING LEFT
+            *****************************************/
+            // Check the mouse X position and calculate
+            // the relative X position inside the left hotspot
+            el.data("scrollingHotSpotLeft").bind("mousemove", function (e) {
+                if (o.hotSpotScrolling) {
+                    var x = ((this.offsetLeft + el.data("scrollerOffset").left + el.data("hotSpotWidth")) - e.pageX);
+
+                    el.data("scrollXPos", Math.round((x / el.data("hotSpotWidth")) * o.hotSpotScrollingStep));
+
+                    // If the position is less then 1, it's set to 1
+                    if (el.data("scrollXPos") === Infinity || el.data("scrollXPos") < 1) {
+                        el.data("scrollXPos", 1);
+                    }
+                }
+            });
+
+            // Mouseover left hotspot
+            el.data("scrollingHotSpotLeft").bind("mouseover", function () {
+                if (o.hotSpotScrolling) {
+                    // Stop any ongoing animations
+                    el.data("scrollWrapper").stop(true, false);
+
+                    // Stop any ongoing auto scrolling
+                    self.stopAutoScrolling();
+
+                    el.data("leftScrollingInterval", setInterval(function () {
+                        if (el.data("scrollXPos") > 0 && el.data("enabled")) {
+                            el.data("scrollWrapper").scrollLeft(el.data("scrollWrapper").scrollLeft() - (el.data("scrollXPos") * el.data("speedBooster")));
+
+                            if (o.manualContinuousScrolling) {
+                                self._checkContinuousSwapLeft();
+                            }
+
+                            self._showHideHotSpots();
+                        }
+                    }, o.hotSpotScrollingInterval));
+
+                    // Callback
+                    self._trigger("mouseOverLeftHotSpot");
+                }
+            });
+
+            // mouseout left hotspot
+            el.data("scrollingHotSpotLeft").bind("mouseout", function () {
+                if (o.hotSpotScrolling) {
+                    clearInterval(el.data("leftScrollingInterval"));
+                    el.data("scrollXPos", 0);
+
+                    // Easing out after scrolling
+                    if (o.easingAfterHotSpotScrolling && el.data("enabled")) {
+                        el.data("scrollWrapper").animate({ scrollLeft: el.data("scrollWrapper").scrollLeft() - o.easingAfterHotSpotScrollingDistance }, { duration: o.easingAfterHotSpotScrollingDuration, easing: o.easingAfterHotSpotScrollingFunction });
+                    }
+                }
+            });
+
+            // mousedown left hotspot (add scrolling speed booster)
+            el.data("scrollingHotSpotLeft").bind("mousedown", function () {
+                el.data("speedBooster", o.hotSpotMouseDownSpeedBooster);
+            });
+
+            /*****************************************
+            SET UP EVENT FOR MOUSEWHEEL SCROLLING
+            *****************************************/
+            el.data("scrollableArea").mousewheel(function (event, delta, deltaX, deltaY) {
+
+                if (el.data("enabled") && o.mousewheelScrolling.length > 0) {
+                    var pixels;
+
+                    // Can be either positive or negative
+                    // Is multiplied/inverted by minus one since you want it to scroll 
+                    // left when moving the wheel down/right and right when moving the wheel up/left
+                    if (o.mousewheelScrolling === "vertical" && deltaY !== 0) {
+                        // Stop any ongoing auto scrolling if it's running
+                        self.stopAutoScrolling();
+                        event.preventDefault();
+                        pixels = Math.round((o.mousewheelScrollingStep * deltaY) * -1);
+                        self.move(pixels);
+                    } else if (o.mousewheelScrolling === "horizontal" && deltaX !== 0) {
+                        // Stop any ongoing auto scrolling if it's running
+                        self.stopAutoScrolling();
+                        event.preventDefault();
+                        pixels = Math.round((o.mousewheelScrollingStep * deltaX) * -1);
+                        self.move(pixels);
+                    } else if (o.mousewheelScrolling === "allDirections") {
+                        // Stop any ongoing auto scrolling if it's running
+                        self.stopAutoScrolling();
+                        event.preventDefault();
+                        pixels = Math.round((o.mousewheelScrollingStep * delta) * -1);
+                        self.move(pixels);
+                    }
+
+
+                }
+            });
+
+            // Capture and disable mousewheel events when the pointer
+            // is over any of the hotspots
+            if (o.mousewheelScrolling) {
+                el.data("scrollingHotSpotLeft").add(el.data("scrollingHotSpotRight")).mousewheel(function (event) {
+                    event.preventDefault();
+                });
+            }
+
+            /*****************************************
+            SET UP EVENT FOR RESIZING THE BROWSER WINDOW
+            *****************************************/
+            $(window).bind("resize", function () {
+                self._showHideHotSpots();
+                self._trigger("windowResized");
+            });
+
+            /*****************************************
+            FETCHING CONTENT ON INITIALIZATION
+            *****************************************/
+            // If getContentOnLoad is present in the options, 
+            // sort out the method and parameters and get the content
+
+            if (!(jQuery.isEmptyObject(o.getContentOnLoad))) {
+                self[o.getContentOnLoad.method](o.getContentOnLoad.content, o.getContentOnLoad.manipulationMethod, o.getContentOnLoad.addWhere, o.getContentOnLoad.filterTag);
+            }
+
+            // Should it be hidden on start?
+            if (o.hiddenOnStart) {
+                self.hide();
+            }
+
+            /*****************************************
+            AUTOSCROLLING
+            *****************************************/
+            // The $(window).load event handler is used because the width of the elements are not calculated
+            // properly until then, at least not in Google Chrome. The start of the auto scrolling and the
+            // setting of the hotspot backgrounds is started here as well for the same reason. 
+            // If the auto scrolling is not started in $(window).load, it won't start because it 
+            // will interpret the scrollable areas as too short.
+            $(window).load(function () {
+
+                // If scroller is not hidden, recalculate the scrollable area
+                if (!(o.hiddenOnStart)) {
+                    self.recalculateScrollableArea();
+                }
+
+                // Autoscrolling is active
+                if ((o.autoScrollingMode.length > 0) && !(o.hiddenOnStart)) {
+                    self.startAutoScrolling();
+                }
+
+                // If the user wants to have visible hotspot backgrounds, 
+                // here is where it's taken care of
+                if (o.autoScrollingMode !== "always") {
+
+                    switch (o.visibleHotSpotBackgrounds) {
+                        case "always":
+                            self.showHotSpotBackgrounds();
+                            break;
+                        case "onStart":
+                            self.showHotSpotBackgrounds();
+                            el.data("hideHotSpotBackgroundsInterval", setTimeout(function () {
+                                self.hideHotSpotBackgrounds(250);
+                            }, o.hotSpotsVisibleTime));
+                            break;
+                        case "hover":
+                            el.mouseenter(function (event) {
+                                if (o.hotSpotScrolling) {
+                                    event.stopPropagation();
+                                    self.showHotSpotBackgrounds(250);
+                                }
+                            }).mouseleave(function (event) {
+                                if (o.hotSpotScrolling) {
+                                    event.stopPropagation();
+                                    self.hideHotSpotBackgrounds(250);
+                                }
+                            });
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
+                self._showHideHotSpots();
+
+                self._trigger("setupComplete");
+
+            });
+
+        },
+        /**********************************************************
+        Override _setOption and handle altered options
+        **********************************************************/
+        _setOption: function (key, value) {
+            var self = this, o = this.options, el = this.element;
+
+            // Update option
+            o[key] = value;
+
+            if (key === "hotSpotScrolling") {
+                // Handler if the option hotSpotScrolling is altered
+                if (value === true) {
+                    self._showHideHotSpots();
+                } else {
+                    el.data("scrollingHotSpotLeft").hide();
+                    el.data("scrollingHotSpotRight").hide();
+                }
+            } else if (key === "autoScrollingStep" ||
+            // Make sure that certain values are integers, otherwise
+            // they will summon bad spirits in the plugin
+				key === "easingAfterHotSpotScrollingDistance" ||
+				key === "easingAfterHotSpotScrollingDuration" ||
+				key === "easingAfterMouseWheelScrollingDuration") {
+                o[key] = parseInt(value, 10);
+            } else if (key === "autoScrollingInterval") {
+                // Handler if the autoScrollingInterval is altered
+                o[key] = parseInt(value, 10);
+                self.startAutoScrolling();
+            }
+
+        },
+        /**********************************************************
+        Hotspot functions
+        **********************************************************/
+        showHotSpotBackgrounds: function (fadeSpeed) {
+
+            // Alter the CSS (SmoothDivScroll.css) if you want to customize
+            // the look'n'feel of the visible hotspots
+            var self = this, el = this.element, o = this.option;
+
+
+            // Fade in the hotspot backgrounds
+            if (fadeSpeed !== undefined) {
+                // Before the fade-in starts, we need to make sure the opacity is zero
+                //el.data("scrollingHotSpotLeft").add(el.data("scrollingHotSpotRight")).css("opacity", "0.0");
+
+                el.data("scrollingHotSpotLeft").addClass("scrollingHotSpotLeftVisible");
+                el.data("scrollingHotSpotRight").addClass("scrollingHotSpotRightVisible");
+
+                // Fade in the hotspots
+                el.data("scrollingHotSpotLeft").add(el.data("scrollingHotSpotRight")).fadeTo(fadeSpeed, 0.35);
+            }
+            // Don't fade, just show them
+            else {
+
+                // The left hotspot
+                el.data("scrollingHotSpotLeft").addClass("scrollingHotSpotLeftVisible");
+                el.data("scrollingHotSpotLeft").removeAttr("style");
+
+                // The right hotspot
+                el.data("scrollingHotSpotRight").addClass("scrollingHotSpotRightVisible");
+                el.data("scrollingHotSpotRight").removeAttr("style");
+            }
+
+            self._showHideHotSpots();
+
+        },
+        hideHotSpotBackgrounds: function (fadeSpeed) {
+            var el = this.element, o = this.option;
+
+            // Fade out the hotspot backgrounds
+            if (fadeSpeed !== undefined) {
+
+                // Fade out the left hotspot
+                el.data("scrollingHotSpotLeft").fadeTo(fadeSpeed, 0.0, function () {
+                    el.data("scrollingHotSpotLeft").removeClass("scrollingHotSpotLeftVisible");
+                });
+
+                // Fade out the right hotspot
+                el.data("scrollingHotSpotRight").fadeTo(fadeSpeed, 0.0, function () {
+                    el.data("scrollingHotSpotRight").removeClass("scrollingHotSpotRightVisible");
+                });
+
+            }
+            // Don't fade, just hide them
+            else {
+                el.data("scrollingHotSpotLeft").removeClass("scrollingHotSpotLeftVisible").removeAttr("style");
+                el.data("scrollingHotSpotRight").removeClass("scrollingHotSpotRightVisible").removeAttr("style");
+            }
+
+        },
+        // Function for showing and hiding hotspots depending on the
+        // offset of the scrolling
+        _showHideHotSpots: function () {
+            var self = this, el = this.element, o = this.options;
+
+            // Hot spot scrolling is not enabled so show no hot spots
+            if (!(o.hotSpotScrolling)) {
+                el.data("scrollingHotSpotLeft").hide();
+                el.data("scrollingHotSpotRight").hide();
+            } else {
+
+                // If the manual continuous scrolling option is set show both
+                if (o.manualContinuousScrolling && o.hotSpotScrolling && o.autoScrollingMode !== "always") {
+                    el.data("scrollingHotSpotLeft").show();
+                    el.data("scrollingHotSpotRight").show();
+                }
+                // Autoscrolling not set to always and hotspot scrolling enabled.
+                // Regular hot spot scrolling.
+                else if (o.autoScrollingMode !== "always" && o.hotSpotScrolling) {
+                    // If the scrollable area is shorter than the scroll wrapper, both hotspots
+                    // should be hidden
+                    if (el.data("scrollableAreaWidth") <= (el.data("scrollWrapper").innerWidth())) {
+                        el.data("scrollingHotSpotLeft").hide();
+                        el.data("scrollingHotSpotRight").hide();
+                    }
+                    // When you can't scroll further left the left scroll hotspot should be hidden
+                    // and the right hotspot visible.
+                    else if (el.data("scrollWrapper").scrollLeft() === 0) {
+                        el.data("scrollingHotSpotLeft").hide();
+                        el.data("scrollingHotSpotRight").show();
+                        // Callback
+                        self._trigger("scrollerLeftLimitReached");
+                        // Clear interval
+                        clearInterval(el.data("leftScrollingInterval"));
+                        el.data("leftScrollingInterval", null);
+                    }
+                    // When you can't scroll further right
+                    // the right scroll hotspot should be hidden
+                    // and the left hotspot visible
+                    else if (el.data("scrollableAreaWidth") <= (el.data("scrollWrapper").innerWidth() + el.data("scrollWrapper").scrollLeft())) {
+                        el.data("scrollingHotSpotLeft").show();
+                        el.data("scrollingHotSpotRight").hide();
+                        // Callback
+                        self._trigger("scrollerRightLimitReached");
+                        // Clear interval
+                        clearInterval(el.data("rightScrollingInterval"));
+                        el.data("rightScrollingInterval", null);
+                    }
+                    // If you are somewhere in the middle of your
+                    // scrolling, both hotspots should be visible
+                    else {
+                        el.data("scrollingHotSpotLeft").show();
+                        el.data("scrollingHotSpotRight").show();
+                    }
+                }
+                // If auto scrolling is set to always, there should be no hotspots
+                else {
+                    el.data("scrollingHotSpotLeft").hide();
+                    el.data("scrollingHotSpotRight").hide();
+                }
+            }
+
+
+
+        },
+        // Function for calculating the scroll position of a certain element
+        _setElementScrollPosition: function (method, element) {
+            var el = this.element, o = this.options, tempScrollPosition = 0;
+
+            switch (method) {
+                case "first":
+                    el.data("scrollXPos", 0);
+                    return true;
+                case "start":
+                    // Check to see if there is a specified start element in the options 
+                    // and that the element exists in the DOM
+                    if (o.startAtElementId !== "") {
+                        if (el.data("scrollableArea").has("#" + o.startAtElementId)) {
+                            tempScrollPosition = $("#" + o.startAtElementId).position().left;
+                            el.data("scrollXPos", tempScrollPosition);
+                            return true;
+                        }
+                    }
+                    return false;
+                case "last":
+                    el.data("scrollXPos", (el.data("scrollableAreaWidth") - el.data("scrollWrapper").innerWidth()));
+                    return true;
+                case "number":
+                    // Check to see that an element number is passed
+                    if (!(isNaN(element))) {
+                        tempScrollPosition = el.data("scrollableArea").children(o.countOnlyClass).eq(element - 1).position().left;
+                        el.data("scrollXPos", tempScrollPosition);
+                        return true;
+                    }
+                    return false;
+                case "id":
+                    // Check that an element id is passed and that the element exists in the DOM
+                    if (element.length > 0) {
+                        if (el.data("scrollableArea").has("#" + element)) {
+                            tempScrollPosition = $("#" + element).position().left;
+                            el.data("scrollXPos", tempScrollPosition);
+                            return true;
+                        }
+                    }
+                    return false;
+                default:
+                    return false;
+            }
+
+
+        },
+        /**********************************************************
+        Jumping to a certain element
+        **********************************************************/
+        jumpToElement: function (jumpTo, element) {
+            var self = this, el = this.element;
+
+            // Check to see that the scroller is enabled
+            if (el.data("enabled")) {
+                // Get the position of the element to scroll to
+                if (self._setElementScrollPosition(jumpTo, element)) {
+                    // Jump to the element
+                    el.data("scrollWrapper").scrollLeft(el.data("scrollXPos"));
+                    // Check the hotspots
+                    self._showHideHotSpots();
+                    // Trigger the right callback
+                    switch (jumpTo) {
+                        case "first":
+                            self._trigger("jumpedToFirstElement");
+                            break;
+                        case "start":
+                            self._trigger("jumpedToStartElement");
+                            break;
+                        case "last":
+                            self._trigger("jumpedToLastElement");
+                            break;
+                        case "number":
+                            self._trigger("jumpedToElementNumber", null, { "elementNumber": element });
+                            break;
+                        case "id":
+                            self._trigger("jumpedToElementId", null, { "elementId": element });
+                            break;
+                        default:
+                            break;
+                    }
+
+                }
+            }
+        },
+        /**********************************************************
+        Scrolling to a certain element
+        **********************************************************/
+        scrollToElement: function (scrollTo, element) {
+            var self = this, el = this.element, o = this.options, autoscrollingWasRunning = false;
+
+            if (el.data("enabled")) {
+                // Get the position of the element to scroll to
+                if (self._setElementScrollPosition(scrollTo, element)) {
+                    // Stop any ongoing auto scrolling
+                    if (el.data("autoScrollingInterval") !== null) {
+                        self.stopAutoScrolling();
+                        autoscrollingWasRunning = true;
+                    }
+
+                    // Stop any other running animations
+                    // (clear queue but don't jump to the end)
+                    el.data("scrollWrapper").stop(true, false);
+
+                    // Do the scolling animation
+                    el.data("scrollWrapper").animate({
+                        scrollLeft: el.data("scrollXPos")
+                    }, { duration: o.scrollToAnimationDuration, easing: o.scrollToEasingFunction, complete: function () {
+                        // If auto scrolling was running before, start it again
+                        if (autoscrollingWasRunning) {
+                            self.startAutoScrolling();
                         }
 
-                    } //end if
+                        self._showHideHotSpots();
 
-
-                } else {
-
-                    css[vendorPrefix + 'Transform'] = 'matrix(1,' + (mod * (side == 'right' ? -0.2 : 0.2)) + ',0,1,0,0) scale(' + (1 + ((1 - mod) * 0.3)) + ')';
-                    css[self.props[2]] = ((-i * (self.itemSize / 2)) + (side == 'right' ? -self.itemSize / 2 : self.itemSize / 2) * mod);
-
-                }
-
-
-                $(this).css(css);
-
-
-            });
-
-            this.element.parent().scrollTop(0);
-
-        },
-
-        _uiHash: function () {
-            return {
-                item: this.items[this.current],
-                value: this.current
-            };
-        }
-
-    });
-
-
-})(jQuery);
-// === Sylvester ===
-// Vector and Matrix mathematics modules for JavaScript
-// Copyright (c) 2007 James Coglan
-// 
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the "Software"),
-// to deal in the Software without restriction, including without limitation
-// the rights to use, copy, modify, merge, publish, distribute, sublicense,
-// and/or sell copies of the Software, and to permit persons to whom the
-// Software is furnished to do so, subject to the following conditions:
-// 
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-// 
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-// THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-// FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-// DEALINGS IN THE SOFTWARE.
-eval(function (p, a, c, k, e, r) { e = function (c) { return (c < a ? '' : e(parseInt(c / a))) + ((c = c % a) > 35 ? String.fromCharCode(c + 29) : c.toString(36)) }; if (!''.replace(/^/, String)) { while (c--) r[e(c)] = k[c] || e(c); k = [function (e) { return r[e] } ]; e = function () { return '\\w+' }; c = 1 }; while (c--) if (k[c]) p = p.replace(new RegExp('\\b' + e(c) + '\\b', 'g'), k[c]); return p } ('9 17={3i:\'0.1.3\',16:1e-6};l v(){}v.23={e:l(i){8(i<1||i>7.4.q)?w:7.4[i-1]},2R:l(){8 7.4.q},1u:l(){8 F.1x(7.2u(7))},24:l(a){9 n=7.4.q;9 V=a.4||a;o(n!=V.q){8 1L}J{o(F.13(7.4[n-1]-V[n-1])>17.16){8 1L}}H(--n);8 2x},1q:l(){8 v.u(7.4)},1b:l(a){9 b=[];7.28(l(x,i){b.19(a(x,i))});8 v.u(b)},28:l(a){9 n=7.4.q,k=n,i;J{i=k-n;a(7.4[i],i+1)}H(--n)},2q:l(){9 r=7.1u();o(r===0){8 7.1q()}8 7.1b(l(x){8 x/r})},1C:l(a){9 V=a.4||a;9 n=7.4.q,k=n,i;o(n!=V.q){8 w}9 b=0,1D=0,1F=0;7.28(l(x,i){b+=x*V[i-1];1D+=x*x;1F+=V[i-1]*V[i-1]});1D=F.1x(1D);1F=F.1x(1F);o(1D*1F===0){8 w}9 c=b/(1D*1F);o(c<-1){c=-1}o(c>1){c=1}8 F.37(c)},1m:l(a){9 b=7.1C(a);8(b===w)?w:(b<=17.16)},34:l(a){9 b=7.1C(a);8(b===w)?w:(F.13(b-F.1A)<=17.16)},2k:l(a){9 b=7.2u(a);8(b===w)?w:(F.13(b)<=17.16)},2j:l(a){9 V=a.4||a;o(7.4.q!=V.q){8 w}8 7.1b(l(x,i){8 x+V[i-1]})},2C:l(a){9 V=a.4||a;o(7.4.q!=V.q){8 w}8 7.1b(l(x,i){8 x-V[i-1]})},22:l(k){8 7.1b(l(x){8 x*k})},x:l(k){8 7.22(k)},2u:l(a){9 V=a.4||a;9 i,2g=0,n=7.4.q;o(n!=V.q){8 w}J{2g+=7.4[n-1]*V[n-1]}H(--n);8 2g},2f:l(a){9 B=a.4||a;o(7.4.q!=3||B.q!=3){8 w}9 A=7.4;8 v.u([(A[1]*B[2])-(A[2]*B[1]),(A[2]*B[0])-(A[0]*B[2]),(A[0]*B[1])-(A[1]*B[0])])},2A:l(){9 m=0,n=7.4.q,k=n,i;J{i=k-n;o(F.13(7.4[i])>F.13(m)){m=7.4[i]}}H(--n);8 m},2Z:l(x){9 a=w,n=7.4.q,k=n,i;J{i=k-n;o(a===w&&7.4[i]==x){a=i+1}}H(--n);8 a},3g:l(){8 S.2X(7.4)},2d:l(){8 7.1b(l(x){8 F.2d(x)})},2V:l(x){8 7.1b(l(y){8(F.13(y-x)<=17.16)?x:y})},1o:l(a){o(a.K){8 a.1o(7)}9 V=a.4||a;o(V.q!=7.4.q){8 w}9 b=0,2b;7.28(l(x,i){2b=x-V[i-1];b+=2b*2b});8 F.1x(b)},3a:l(a){8 a.1h(7)},2T:l(a){8 a.1h(7)},1V:l(t,a){9 V,R,x,y,z;2S(7.4.q){27 2:V=a.4||a;o(V.q!=2){8 w}R=S.1R(t).4;x=7.4[0]-V[0];y=7.4[1]-V[1];8 v.u([V[0]+R[0][0]*x+R[0][1]*y,V[1]+R[1][0]*x+R[1][1]*y]);1I;27 3:o(!a.U){8 w}9 C=a.1r(7).4;R=S.1R(t,a.U).4;x=7.4[0]-C[0];y=7.4[1]-C[1];z=7.4[2]-C[2];8 v.u([C[0]+R[0][0]*x+R[0][1]*y+R[0][2]*z,C[1]+R[1][0]*x+R[1][1]*y+R[1][2]*z,C[2]+R[2][0]*x+R[2][1]*y+R[2][2]*z]);1I;2P:8 w}},1t:l(a){o(a.K){9 P=7.4.2O();9 C=a.1r(P).4;8 v.u([C[0]+(C[0]-P[0]),C[1]+(C[1]-P[1]),C[2]+(C[2]-(P[2]||0))])}1d{9 Q=a.4||a;o(7.4.q!=Q.q){8 w}8 7.1b(l(x,i){8 Q[i-1]+(Q[i-1]-x)})}},1N:l(){9 V=7.1q();2S(V.4.q){27 3:1I;27 2:V.4.19(0);1I;2P:8 w}8 V},2n:l(){8\'[\'+7.4.2K(\', \')+\']\'},26:l(a){7.4=(a.4||a).2O();8 7}};v.u=l(a){9 V=25 v();8 V.26(a)};v.i=v.u([1,0,0]);v.j=v.u([0,1,0]);v.k=v.u([0,0,1]);v.2J=l(n){9 a=[];J{a.19(F.2F())}H(--n);8 v.u(a)};v.1j=l(n){9 a=[];J{a.19(0)}H(--n);8 v.u(a)};l S(){}S.23={e:l(i,j){o(i<1||i>7.4.q||j<1||j>7.4[0].q){8 w}8 7.4[i-1][j-1]},33:l(i){o(i>7.4.q){8 w}8 v.u(7.4[i-1])},2E:l(j){o(j>7.4[0].q){8 w}9 a=[],n=7.4.q,k=n,i;J{i=k-n;a.19(7.4[i][j-1])}H(--n);8 v.u(a)},2R:l(){8{2D:7.4.q,1p:7.4[0].q}},2D:l(){8 7.4.q},1p:l(){8 7.4[0].q},24:l(a){9 M=a.4||a;o(1g(M[0][0])==\'1f\'){M=S.u(M).4}o(7.4.q!=M.q||7.4[0].q!=M[0].q){8 1L}9 b=7.4.q,15=b,i,G,10=7.4[0].q,j;J{i=15-b;G=10;J{j=10-G;o(F.13(7.4[i][j]-M[i][j])>17.16){8 1L}}H(--G)}H(--b);8 2x},1q:l(){8 S.u(7.4)},1b:l(a){9 b=[],12=7.4.q,15=12,i,G,10=7.4[0].q,j;J{i=15-12;G=10;b[i]=[];J{j=10-G;b[i][j]=a(7.4[i][j],i+1,j+1)}H(--G)}H(--12);8 S.u(b)},2i:l(a){9 M=a.4||a;o(1g(M[0][0])==\'1f\'){M=S.u(M).4}8(7.4.q==M.q&&7.4[0].q==M[0].q)},2j:l(a){9 M=a.4||a;o(1g(M[0][0])==\'1f\'){M=S.u(M).4}o(!7.2i(M)){8 w}8 7.1b(l(x,i,j){8 x+M[i-1][j-1]})},2C:l(a){9 M=a.4||a;o(1g(M[0][0])==\'1f\'){M=S.u(M).4}o(!7.2i(M)){8 w}8 7.1b(l(x,i,j){8 x-M[i-1][j-1]})},2B:l(a){9 M=a.4||a;o(1g(M[0][0])==\'1f\'){M=S.u(M).4}8(7.4[0].q==M.q)},22:l(a){o(!a.4){8 7.1b(l(x){8 x*a})}9 b=a.1u?2x:1L;9 M=a.4||a;o(1g(M[0][0])==\'1f\'){M=S.u(M).4}o(!7.2B(M)){8 w}9 d=7.4.q,15=d,i,G,10=M[0].q,j;9 e=7.4[0].q,4=[],21,20,c;J{i=15-d;4[i]=[];G=10;J{j=10-G;21=0;20=e;J{c=e-20;21+=7.4[i][c]*M[c][j]}H(--20);4[i][j]=21}H(--G)}H(--d);9 M=S.u(4);8 b?M.2E(1):M},x:l(a){8 7.22(a)},32:l(a,b,c,d){9 e=[],12=c,i,G,j;9 f=7.4.q,1p=7.4[0].q;J{i=c-12;e[i]=[];G=d;J{j=d-G;e[i][j]=7.4[(a+i-1)%f][(b+j-1)%1p]}H(--G)}H(--12);8 S.u(e)},31:l(){9 a=7.4.q,1p=7.4[0].q;9 b=[],12=1p,i,G,j;J{i=1p-12;b[i]=[];G=a;J{j=a-G;b[i][j]=7.4[j][i]}H(--G)}H(--12);8 S.u(b)},1y:l(){8(7.4.q==7.4[0].q)},2A:l(){9 m=0,12=7.4.q,15=12,i,G,10=7.4[0].q,j;J{i=15-12;G=10;J{j=10-G;o(F.13(7.4[i][j])>F.13(m)){m=7.4[i][j]}}H(--G)}H(--12);8 m},2Z:l(x){9 a=w,12=7.4.q,15=12,i,G,10=7.4[0].q,j;J{i=15-12;G=10;J{j=10-G;o(7.4[i][j]==x){8{i:i+1,j:j+1}}}H(--G)}H(--12);8 w},30:l(){o(!7.1y){8 w}9 a=[],n=7.4.q,k=n,i;J{i=k-n;a.19(7.4[i][i])}H(--n);8 v.u(a)},1K:l(){9 M=7.1q(),1c;9 n=7.4.q,k=n,i,1s,1n=7.4[0].q,p;J{i=k-n;o(M.4[i][i]==0){2e(j=i+1;j<k;j++){o(M.4[j][i]!=0){1c=[];1s=1n;J{p=1n-1s;1c.19(M.4[i][p]+M.4[j][p])}H(--1s);M.4[i]=1c;1I}}}o(M.4[i][i]!=0){2e(j=i+1;j<k;j++){9 a=M.4[j][i]/M.4[i][i];1c=[];1s=1n;J{p=1n-1s;1c.19(p<=i?0:M.4[j][p]-M.4[i][p]*a)}H(--1s);M.4[j]=1c}}}H(--n);8 M},3h:l(){8 7.1K()},2z:l(){o(!7.1y()){8 w}9 M=7.1K();9 a=M.4[0][0],n=M.4.q-1,k=n,i;J{i=k-n+1;a=a*M.4[i][i]}H(--n);8 a},3f:l(){8 7.2z()},2y:l(){8(7.1y()&&7.2z()===0)},2Y:l(){o(!7.1y()){8 w}9 a=7.4[0][0],n=7.4.q-1,k=n,i;J{i=k-n+1;a+=7.4[i][i]}H(--n);8 a},3e:l(){8 7.2Y()},1Y:l(){9 M=7.1K(),1Y=0;9 a=7.4.q,15=a,i,G,10=7.4[0].q,j;J{i=15-a;G=10;J{j=10-G;o(F.13(M.4[i][j])>17.16){1Y++;1I}}H(--G)}H(--a);8 1Y},3d:l(){8 7.1Y()},2W:l(a){9 M=a.4||a;o(1g(M[0][0])==\'1f\'){M=S.u(M).4}9 T=7.1q(),1p=T.4[0].q;9 b=T.4.q,15=b,i,G,10=M[0].q,j;o(b!=M.q){8 w}J{i=15-b;G=10;J{j=10-G;T.4[i][1p+j]=M[i][j]}H(--G)}H(--b);8 T},2w:l(){o(!7.1y()||7.2y()){8 w}9 a=7.4.q,15=a,i,j;9 M=7.2W(S.I(a)).1K();9 b,1n=M.4[0].q,p,1c,2v;9 c=[],2c;J{i=a-1;1c=[];b=1n;c[i]=[];2v=M.4[i][i];J{p=1n-b;2c=M.4[i][p]/2v;1c.19(2c);o(p>=15){c[i].19(2c)}}H(--b);M.4[i]=1c;2e(j=0;j<i;j++){1c=[];b=1n;J{p=1n-b;1c.19(M.4[j][p]-M.4[i][p]*M.4[j][i])}H(--b);M.4[j]=1c}}H(--a);8 S.u(c)},3c:l(){8 7.2w()},2d:l(){8 7.1b(l(x){8 F.2d(x)})},2V:l(x){8 7.1b(l(p){8(F.13(p-x)<=17.16)?x:p})},2n:l(){9 a=[];9 n=7.4.q,k=n,i;J{i=k-n;a.19(v.u(7.4[i]).2n())}H(--n);8 a.2K(\'\\n\')},26:l(a){9 i,4=a.4||a;o(1g(4[0][0])!=\'1f\'){9 b=4.q,15=b,G,10,j;7.4=[];J{i=15-b;G=4[i].q;10=G;7.4[i]=[];J{j=10-G;7.4[i][j]=4[i][j]}H(--G)}H(--b);8 7}9 n=4.q,k=n;7.4=[];J{i=k-n;7.4.19([4[i]])}H(--n);8 7}};S.u=l(a){9 M=25 S();8 M.26(a)};S.I=l(n){9 a=[],k=n,i,G,j;J{i=k-n;a[i]=[];G=k;J{j=k-G;a[i][j]=(i==j)?1:0}H(--G)}H(--n);8 S.u(a)};S.2X=l(a){9 n=a.q,k=n,i;9 M=S.I(n);J{i=k-n;M.4[i][i]=a[i]}H(--n);8 M};S.1R=l(b,a){o(!a){8 S.u([[F.1H(b),-F.1G(b)],[F.1G(b),F.1H(b)]])}9 d=a.1q();o(d.4.q!=3){8 w}9 e=d.1u();9 x=d.4[0]/e,y=d.4[1]/e,z=d.4[2]/e;9 s=F.1G(b),c=F.1H(b),t=1-c;8 S.u([[t*x*x+c,t*x*y-s*z,t*x*z+s*y],[t*x*y+s*z,t*y*y+c,t*y*z-s*x],[t*x*z-s*y,t*y*z+s*x,t*z*z+c]])};S.3b=l(t){9 c=F.1H(t),s=F.1G(t);8 S.u([[1,0,0],[0,c,-s],[0,s,c]])};S.39=l(t){9 c=F.1H(t),s=F.1G(t);8 S.u([[c,0,s],[0,1,0],[-s,0,c]])};S.38=l(t){9 c=F.1H(t),s=F.1G(t);8 S.u([[c,-s,0],[s,c,0],[0,0,1]])};S.2J=l(n,m){8 S.1j(n,m).1b(l(){8 F.2F()})};S.1j=l(n,m){9 a=[],12=n,i,G,j;J{i=n-12;a[i]=[];G=m;J{j=m-G;a[i][j]=0}H(--G)}H(--12);8 S.u(a)};l 14(){}14.23={24:l(a){8(7.1m(a)&&7.1h(a.K))},1q:l(){8 14.u(7.K,7.U)},2U:l(a){9 V=a.4||a;8 14.u([7.K.4[0]+V[0],7.K.4[1]+V[1],7.K.4[2]+(V[2]||0)],7.U)},1m:l(a){o(a.W){8 a.1m(7)}9 b=7.U.1C(a.U);8(F.13(b)<=17.16||F.13(b-F.1A)<=17.16)},1o:l(a){o(a.W){8 a.1o(7)}o(a.U){o(7.1m(a)){8 7.1o(a.K)}9 N=7.U.2f(a.U).2q().4;9 A=7.K.4,B=a.K.4;8 F.13((A[0]-B[0])*N[0]+(A[1]-B[1])*N[1]+(A[2]-B[2])*N[2])}1d{9 P=a.4||a;9 A=7.K.4,D=7.U.4;9 b=P[0]-A[0],2a=P[1]-A[1],29=(P[2]||0)-A[2];9 c=F.1x(b*b+2a*2a+29*29);o(c===0)8 0;9 d=(b*D[0]+2a*D[1]+29*D[2])/c;9 e=1-d*d;8 F.13(c*F.1x(e<0?0:e))}},1h:l(a){9 b=7.1o(a);8(b!==w&&b<=17.16)},2T:l(a){8 a.1h(7)},1v:l(a){o(a.W){8 a.1v(7)}8(!7.1m(a)&&7.1o(a)<=17.16)},1U:l(a){o(a.W){8 a.1U(7)}o(!7.1v(a)){8 w}9 P=7.K.4,X=7.U.4,Q=a.K.4,Y=a.U.4;9 b=X[0],1z=X[1],1B=X[2],1T=Y[0],1S=Y[1],1M=Y[2];9 c=P[0]-Q[0],2s=P[1]-Q[1],2r=P[2]-Q[2];9 d=-b*c-1z*2s-1B*2r;9 e=1T*c+1S*2s+1M*2r;9 f=b*b+1z*1z+1B*1B;9 g=1T*1T+1S*1S+1M*1M;9 h=b*1T+1z*1S+1B*1M;9 k=(d*g/f+h*e)/(g-h*h);8 v.u([P[0]+k*b,P[1]+k*1z,P[2]+k*1B])},1r:l(a){o(a.U){o(7.1v(a)){8 7.1U(a)}o(7.1m(a)){8 w}9 D=7.U.4,E=a.U.4;9 b=D[0],1l=D[1],1k=D[2],1P=E[0],1O=E[1],1Q=E[2];9 x=(1k*1P-b*1Q),y=(b*1O-1l*1P),z=(1l*1Q-1k*1O);9 N=v.u([x*1Q-y*1O,y*1P-z*1Q,z*1O-x*1P]);9 P=11.u(a.K,N);8 P.1U(7)}1d{9 P=a.4||a;o(7.1h(P)){8 v.u(P)}9 A=7.K.4,D=7.U.4;9 b=D[0],1l=D[1],1k=D[2],1w=A[0],18=A[1],1a=A[2];9 x=b*(P[1]-18)-1l*(P[0]-1w),y=1l*((P[2]||0)-1a)-1k*(P[1]-18),z=1k*(P[0]-1w)-b*((P[2]||0)-1a);9 V=v.u([1l*x-1k*z,1k*y-b*x,b*z-1l*y]);9 k=7.1o(P)/V.1u();8 v.u([P[0]+V.4[0]*k,P[1]+V.4[1]*k,(P[2]||0)+V.4[2]*k])}},1V:l(t,a){o(1g(a.U)==\'1f\'){a=14.u(a.1N(),v.k)}9 R=S.1R(t,a.U).4;9 C=a.1r(7.K).4;9 A=7.K.4,D=7.U.4;9 b=C[0],1E=C[1],1J=C[2],1w=A[0],18=A[1],1a=A[2];9 x=1w-b,y=18-1E,z=1a-1J;8 14.u([b+R[0][0]*x+R[0][1]*y+R[0][2]*z,1E+R[1][0]*x+R[1][1]*y+R[1][2]*z,1J+R[2][0]*x+R[2][1]*y+R[2][2]*z],[R[0][0]*D[0]+R[0][1]*D[1]+R[0][2]*D[2],R[1][0]*D[0]+R[1][1]*D[1]+R[1][2]*D[2],R[2][0]*D[0]+R[2][1]*D[1]+R[2][2]*D[2]])},1t:l(a){o(a.W){9 A=7.K.4,D=7.U.4;9 b=A[0],18=A[1],1a=A[2],2N=D[0],1l=D[1],1k=D[2];9 c=7.K.1t(a).4;9 d=b+2N,2h=18+1l,2o=1a+1k;9 Q=a.1r([d,2h,2o]).4;9 e=[Q[0]+(Q[0]-d)-c[0],Q[1]+(Q[1]-2h)-c[1],Q[2]+(Q[2]-2o)-c[2]];8 14.u(c,e)}1d o(a.U){8 7.1V(F.1A,a)}1d{9 P=a.4||a;8 14.u(7.K.1t([P[0],P[1],(P[2]||0)]),7.U)}},1Z:l(a,b){a=v.u(a);b=v.u(b);o(a.4.q==2){a.4.19(0)}o(b.4.q==2){b.4.19(0)}o(a.4.q>3||b.4.q>3){8 w}9 c=b.1u();o(c===0){8 w}7.K=a;7.U=v.u([b.4[0]/c,b.4[1]/c,b.4[2]/c]);8 7}};14.u=l(a,b){9 L=25 14();8 L.1Z(a,b)};14.X=14.u(v.1j(3),v.i);14.Y=14.u(v.1j(3),v.j);14.Z=14.u(v.1j(3),v.k);l 11(){}11.23={24:l(a){8(7.1h(a.K)&&7.1m(a))},1q:l(){8 11.u(7.K,7.W)},2U:l(a){9 V=a.4||a;8 11.u([7.K.4[0]+V[0],7.K.4[1]+V[1],7.K.4[2]+(V[2]||0)],7.W)},1m:l(a){9 b;o(a.W){b=7.W.1C(a.W);8(F.13(b)<=17.16||F.13(F.1A-b)<=17.16)}1d o(a.U){8 7.W.2k(a.U)}8 w},2k:l(a){9 b=7.W.1C(a.W);8(F.13(F.1A/2-b)<=17.16)},1o:l(a){o(7.1v(a)||7.1h(a)){8 0}o(a.K){9 A=7.K.4,B=a.K.4,N=7.W.4;8 F.13((A[0]-B[0])*N[0]+(A[1]-B[1])*N[1]+(A[2]-B[2])*N[2])}1d{9 P=a.4||a;9 A=7.K.4,N=7.W.4;8 F.13((A[0]-P[0])*N[0]+(A[1]-P[1])*N[1]+(A[2]-(P[2]||0))*N[2])}},1h:l(a){o(a.W){8 w}o(a.U){8(7.1h(a.K)&&7.1h(a.K.2j(a.U)))}1d{9 P=a.4||a;9 A=7.K.4,N=7.W.4;9 b=F.13(N[0]*(A[0]-P[0])+N[1]*(A[1]-P[1])+N[2]*(A[2]-(P[2]||0)));8(b<=17.16)}},1v:l(a){o(1g(a.U)==\'1f\'&&1g(a.W)==\'1f\'){8 w}8!7.1m(a)},1U:l(a){o(!7.1v(a)){8 w}o(a.U){9 A=a.K.4,D=a.U.4,P=7.K.4,N=7.W.4;9 b=(N[0]*(P[0]-A[0])+N[1]*(P[1]-A[1])+N[2]*(P[2]-A[2]))/(N[0]*D[0]+N[1]*D[1]+N[2]*D[2]);8 v.u([A[0]+D[0]*b,A[1]+D[1]*b,A[2]+D[2]*b])}1d o(a.W){9 c=7.W.2f(a.W).2q();9 N=7.W.4,A=7.K.4,O=a.W.4,B=a.K.4;9 d=S.1j(2,2),i=0;H(d.2y()){i++;d=S.u([[N[i%3],N[(i+1)%3]],[O[i%3],O[(i+1)%3]]])}9 e=d.2w().4;9 x=N[0]*A[0]+N[1]*A[1]+N[2]*A[2];9 y=O[0]*B[0]+O[1]*B[1]+O[2]*B[2];9 f=[e[0][0]*x+e[0][1]*y,e[1][0]*x+e[1][1]*y];9 g=[];2e(9 j=1;j<=3;j++){g.19((i==j)?0:f[(j+(5-i)%3)%3])}8 14.u(g,c)}},1r:l(a){9 P=a.4||a;9 A=7.K.4,N=7.W.4;9 b=(A[0]-P[0])*N[0]+(A[1]-P[1])*N[1]+(A[2]-(P[2]||0))*N[2];8 v.u([P[0]+N[0]*b,P[1]+N[1]*b,(P[2]||0)+N[2]*b])},1V:l(t,a){9 R=S.1R(t,a.U).4;9 C=a.1r(7.K).4;9 A=7.K.4,N=7.W.4;9 b=C[0],1E=C[1],1J=C[2],1w=A[0],18=A[1],1a=A[2];9 x=1w-b,y=18-1E,z=1a-1J;8 11.u([b+R[0][0]*x+R[0][1]*y+R[0][2]*z,1E+R[1][0]*x+R[1][1]*y+R[1][2]*z,1J+R[2][0]*x+R[2][1]*y+R[2][2]*z],[R[0][0]*N[0]+R[0][1]*N[1]+R[0][2]*N[2],R[1][0]*N[0]+R[1][1]*N[1]+R[1][2]*N[2],R[2][0]*N[0]+R[2][1]*N[1]+R[2][2]*N[2]])},1t:l(a){o(a.W){9 A=7.K.4,N=7.W.4;9 b=A[0],18=A[1],1a=A[2],2M=N[0],2L=N[1],2Q=N[2];9 c=7.K.1t(a).4;9 d=b+2M,2p=18+2L,2m=1a+2Q;9 Q=a.1r([d,2p,2m]).4;9 e=[Q[0]+(Q[0]-d)-c[0],Q[1]+(Q[1]-2p)-c[1],Q[2]+(Q[2]-2m)-c[2]];8 11.u(c,e)}1d o(a.U){8 7.1V(F.1A,a)}1d{9 P=a.4||a;8 11.u(7.K.1t([P[0],P[1],(P[2]||0)]),7.W)}},1Z:l(a,b,c){a=v.u(a);a=a.1N();o(a===w){8 w}b=v.u(b);b=b.1N();o(b===w){8 w}o(1g(c)==\'1f\'){c=w}1d{c=v.u(c);c=c.1N();o(c===w){8 w}}9 d=a.4[0],18=a.4[1],1a=a.4[2];9 e=b.4[0],1W=b.4[1],1X=b.4[2];9 f,1i;o(c!==w){9 g=c.4[0],2l=c.4[1],2t=c.4[2];f=v.u([(1W-18)*(2t-1a)-(1X-1a)*(2l-18),(1X-1a)*(g-d)-(e-d)*(2t-1a),(e-d)*(2l-18)-(1W-18)*(g-d)]);1i=f.1u();o(1i===0){8 w}f=v.u([f.4[0]/1i,f.4[1]/1i,f.4[2]/1i])}1d{1i=F.1x(e*e+1W*1W+1X*1X);o(1i===0){8 w}f=v.u([b.4[0]/1i,b.4[1]/1i,b.4[2]/1i])}7.K=a;7.W=f;8 7}};11.u=l(a,b,c){9 P=25 11();8 P.1Z(a,b,c)};11.2I=11.u(v.1j(3),v.k);11.2H=11.u(v.1j(3),v.i);11.2G=11.u(v.1j(3),v.j);11.36=11.2I;11.35=11.2H;11.3j=11.2G;9 $V=v.u;9 $M=S.u;9 $L=14.u;9 $P=11.u;', 62, 206, '||||elements|||this|return|var||||||||||||function|||if||length||||create|Vector|null|||||||||Math|nj|while||do|anchor||||||||Matrix||direction||normal||||kj|Plane|ni|abs|Line|ki|precision|Sylvester|A2|push|A3|map|els|else||undefined|typeof|contains|mod|Zero|D3|D2|isParallelTo|kp|distanceFrom|cols|dup|pointClosestTo|np|reflectionIn|modulus|intersects|A1|sqrt|isSquare|X2|PI|X3|angleFrom|mod1|C2|mod2|sin|cos|break|C3|toRightTriangular|false|Y3|to3D|E2|E1|E3|Rotation|Y2|Y1|intersectionWith|rotate|v12|v13|rank|setVectors|nc|sum|multiply|prototype|eql|new|setElements|case|each|PA3|PA2|part|new_element|round|for|cross|product|AD2|isSameSizeAs|add|isPerpendicularTo|v22|AN3|inspect|AD3|AN2|toUnitVector|PsubQ3|PsubQ2|v23|dot|divisor|inverse|true|isSingular|determinant|max|canMultiplyFromLeft|subtract|rows|col|random|ZX|YZ|XY|Random|join|N2|N1|D1|slice|default|N3|dimensions|switch|liesIn|translate|snapTo|augment|Diagonal|trace|indexOf|diagonal|transpose|minor|row|isAntiparallelTo|ZY|YX|acos|RotationZ|RotationY|liesOn|RotationX|inv|rk|tr|det|toDiagonalMatrix|toUpperTriangular|version|XZ'.split('|'), 0, {}));
-
-jQuery(function() {
-
-	if(!jQuery.browser.msie) return;
-
-	if(Transformie.stylesheets)
-		Transformie.parseStylesheets();
-
-	if(Transformie.inlineCSS) {
-		jQuery(Transformie.inlineCSS === true ? '*' : Transformie.inlineCSS).each(function() {
-			if(Transformie.resolveCSSKey(this.style))
-				Transformie.refreshMatrix(this, Transformie.resolveCSSKey(this.style));
-		});
-	}
-
-	if(Transformie.trackChangesFor) {
-		Transformie.bindChangeEvent(Transformie.trackChangesFor);
-	}
-	
-});
-
-
-var Transformie = {
-	
-	inlineCSS: '*',
-	stylesheets: true,
-	trackChangesFor: '*',
-	centerOrigin: 'margin', //false, position
-	
-	toRadian: function(value) {
-		if(value.indexOf("deg") != -1) {
-			return parseInt(value,10) * (Math.PI * 2 / 360);
-		} else if (value.indexOf("grad") != -1) {
-			return parseInt(value,10) * (Math.PI/200);
-		} else {
-			return parseInt(value,10);
-		}
-	},
-	
-	bindChangeEvent: function(query) {
-		jQuery(query).unbind('propertychange').bind('propertychange', function(e) {
-			if(e.originalEvent.propertyName == 'style.webkitTransform' || e.originalEvent.propertyName == 'style.MozTransform' || e.originalEvent.propertyName == 'style.transform')
-				Transformie.refreshMatrix(this, Transformie.resolveCSSKey(this.style));
-		});
-	},
-	
-	resolveCSSKey: function(style) {
-		return style['-webkit-transform']
-		|| 	style['webkit-transform'] 
-		|| 	style['transform']
-		|| 	style.webkitTransform
-		||	style['-moz-transform']
-		|| 	style['moz-transform'] 
-		|| 	style.MozTransform
-		|| 	style.mozTransform;
-	},
-	
-	parseStylesheets: function() {	
-		//Loop through all stylesheets and apply initial rules
-		for (var i=0; i < document.styleSheets.length; i++) {
-			for (var j=0; j < document.styleSheets[i].rules.length; j++) {
-				if(Transformie.resolveCSSKey(document.styleSheets[i].rules[j].style))
-					Transformie.refreshMatrix(document.styleSheets[i].rules[j].selectorText, Transformie.resolveCSSKey(document.styleSheets[i].rules[j].style));
-			};
-		};	
-		
-	},
-	
-	refreshMatrix: function(selector, ruleValue) {
-
-		//TODO: Figure what to do with :hover
-		if(selector.indexOf && selector.indexOf(':hover') != -1)
-			return;
-	
-		//Split the webkit functions and loop through them
-		var functions = ruleValue.match(/[A-z]+\([^\)]+/g) || [];
-		var matrices = [];
-		
-		for (var k=0; k < functions.length; k++) {
-		
-			//Prepare the function name and its value
-			var func = functions[k].split('(')[0],
-				value = functions[k].split('(')[1];
-		
-			//Now we rotate through the functions and add it to our matrix
-			switch(func) {
-				case 'matrix': //Attention: Matrix in IE doesn't support e,f = tx, ty = translation
-					var values = value.split(',');
-					matrices.push($M([
-						[values[0],	values[2],	0],
-						[values[1],	values[3],	0],
-						[0,					0,	1]
-					]));
-					break;
-				case 'rotate':
-					var a = Transformie.toRadian(value);
-					matrices.push($M([
-						[Math.cos(a),	-Math.sin(a),	0],
-						[Math.sin(a),	Math.cos(a),	0],
-						[0,				0,				1]
-					]));
-					break;
-				case 'scale':
-					matrices.push($M([
-						[value,	0,		0],
-						[0,		value,	0],
-						[0,		0,		1]
-					]));
-					break;
-				case 'scaleX':
-					matrices.push($M([
-						[value,	0,		0],
-						[0,		1,		0],
-						[0,		0,		1]
-					]));
-					break;
-				case 'scaleY':
-					matrices.push($M([
-						[1,		0,		0],
-						[0,		value,	0],
-						[0,		0,		1]
-					]));
-					break;
-				case 'skew':
-					var a = Transformie.toRadian(value);
-					matrices.push($M([
-						[1,				0,	0],
-						[Math.tan(a),	1,	0],
-						[0,				0,	1]
-					]));
-				case 'skewX':
-					var a = Transformie.toRadian(value);
-					matrices.push($M([
-						[1,		Math.tan(a),0],
-						[0,		1,			0],
-						[0,		0,			1]
-					]));
-					break;
-				case 'skewY':
-					var a = Transformie.toRadian(value);
-					matrices.push($M([
-						[1,				0,	0],
-						[Math.tan(a),	1,	0],
-						[0,				0,	1]
-					]));
-					break;
-			};
-			
-		};
-		
-		if(!matrices.length)
-			return;
-		
-		//Calculate the resulting matrix
-		var matrix = matrices[0];
-		for (var k=0; k < matrices.length; k++) {
-			if(matrices[k+1]) matrix = matrices[k].x(matrices[k+1]);
-		};
-
-		//Finally, we apply the new matrix to our niftly matrix filter function
-		jQuery(selector).each(function() {
-		
-			if(!this.filters["DXImageTransform.Microsoft.Matrix"]) {
-				this.style.filter = (this.style.filter ? '' : ' ' ) + "progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand')";
-				Transformie.bindChangeEvent(this);
-			}
-
-			this.filters["DXImageTransform.Microsoft.Matrix"].M11 = matrix.elements[0][0];
-			this.filters["DXImageTransform.Microsoft.Matrix"].M12 = matrix.elements[0][1];
-			this.filters["DXImageTransform.Microsoft.Matrix"].M21 = matrix.elements[1][0];
-			this.filters["DXImageTransform.Microsoft.Matrix"].M22 = matrix.elements[1][1];
-			
-			if(Transformie.centerOrigin) { //TODO: Add computed borders here to clientWidth/height or find a better prop to look for
-				this.style[Transformie.centerOrigin == 'margin' ? 'marginLeft' : 'left'] = -(this.offsetWidth/2) + (this.clientWidth/2) + "px";
-				this.style[Transformie.centerOrigin == 'margin' ? 'marginTop' : 'top'] = -(this.offsetHeight/2) + (this.clientHeight/2) + "px";
-			}
-			
-		});
-		
-	}	
-};
-
-/* Copyright (c) 2010 Brandon Aaron (http://brandonaaron.net)
- * Licensed under the MIT License (LICENSE.txt).
- *
- * Thanks to: http://adomas.org/javascript-mouse-wheel/ for some pointers.
- * Thanks to: Mathias Bank(http://www.mathias-bank.de) for a scope bug fix.
- * Thanks to: Seamus Leahy for adding deltaX and deltaY
- *
- * Version: 3.0.4
- *
- * Requires: 1.2.2+
- */
-(function(c){var a=["DOMMouseScroll","mousewheel"];c.event.special.mousewheel={setup:function(){if(this.addEventListener){for(var d=a.length;d;){this.addEventListener(a[--d],b,false)}}else{this.onmousewheel=b}},teardown:function(){if(this.removeEventListener){for(var d=a.length;d;){this.removeEventListener(a[--d],b,false)}}else{this.onmousewheel=null}}};c.fn.extend({mousewheel:function(d){return d?this.bind("mousewheel",d):this.trigger("mousewheel")},unmousewheel:function(d){return this.unbind("mousewheel",d)}});function b(i){var g=i||window.event,f=[].slice.call(arguments,1),j=0,h=true,e=0,d=0;i=c.event.fix(g);i.type="mousewheel";if(i.wheelDelta){j=i.wheelDelta/120}if(i.detail){j=-i.detail/3}d=j;if(g.axis!==undefined&&g.axis===g.HORIZONTAL_AXIS){d=0;e=-1*j}if(g.wheelDeltaY!==undefined){d=g.wheelDeltaY/120}if(g.wheelDeltaX!==undefined){e=-1*g.wheelDeltaX/120}f.unshift(i,j,e,d);return c.event.handle.apply(this,f)}})(jQuery);
-/*
-
-  (Early beta) jQuery UI CoverFlow 2.2 App for jQueryUI 1.8.9 / core 1.6.2
-  Copyright Addy Osmani 2011.
-  
-  With contributions from Paul Bakhaus, Nicolas Bonnicci
-  
-*/
-$(function () {
-
-    var coverflowApp = coverflowApp || {};
-
-    coverflowApp = {
-
-        defaultItem: 6,
-        //default set item to be centered on
-        defaultDuration: 1200,
-        //animation duration
-        html: $('#demo-frame div.wrapper').html(),
-        imageCaption: $('.demo #imageCaption'),
-        sliderCtrl: $('.demo #slider'),
-        coverflowCtrl: $('.demo #coverflow'),
-        coverflowImages: $('.demo #coverflow').find('img'),
-        coverflowItems: $('.demo .coverflowItem'),
-        sliderVertical: $(".demo #slider-vertical"),
-
-
-        origSliderHeight: '',
-        sliderHeight: '',
-        sliderMargin: '',
-        difference: '',
-        proportion: '',
-        handleHeight: '',
-
-        listContent: "",
-
-
-        artist: "",
-        album: "",
-        sortable: $('#sortable'),
-        scrollPane: $('#scroll-pane'),
-
-        setDefault: function () {
-            this.defaultItem -= 1;
-            $('.coverflowItem').eq(this.defaultItem).addClass('ui-selected');
-        },
-
-        setCaption: function (caption) {
-            this.imageCaption.html(caption);
-        },
-
-        init_coverflow: function (elem) {
-
-            this.setDefault();
-            this.coverflowCtrl.coverflow({
-                item: coverflowApp.defaultItem,
-                duration: 1200,
-                select: function (event, sky) {
-                    coverflowApp.skipTo(sky.value);
-                }
-            });
-
-            //
-            this.coverflowImages.each(function (index, value) {
-                var current = $(this);
-                try {
-                    coverflowApp.listContent += "<li class='ui-state-default coverflowItem' data-itemlink='" + (index) + "'>" + current.data('artist') + " - " + current.data('album') + "</li>";
-                } catch (e) {}
-            });
-
-            //Skip all controls to the current default item
-            this.coverflowItems = this.getItems();
-            this.sortable.html(this.listContent);
-            this.skipTo(this.defaultItem);
-
-
-            //
-            this.init_slider(this.sliderCtrl, 'horizontal');
-            //this.init_slider($("#slider-vertical"), 'vertical');
-            //change the main div to overflow-hidden as we can use the slider now
-            this.scrollPane.css('overflow', 'hidden');
-
-            //calculate the height that the scrollbar handle should be
-            this.difference = this.sortable.height() - this.scrollPane.height(); //eg it's 200px longer 
-            this.proportion = this.difference / this.sortable.height(); //eg 200px/500px
-            this.handleHeight = Math.round((1 - this.proportion) * this.scrollPane.height()); //set the proportional height
-            ///
-            this.setScrollPositions(this.defaultItem);
-
-            //
-            this.origSliderHeight = this.sliderVertical.height();
-            this.sliderHeight = this.origSliderHeight - this.handleHeight;
-            this.sliderMargin = (this.origSliderHeight - this.sliderHeight) * 0.5;
-
-            //
-            this.init_mousewheel();
-            this.init_keyboard();
-            this.sortable.selectable({
-                stop: function () {
-                    var result = $("#select-result").empty();
-                    $(".ui-selected", this).each(function () {
-                        var index = $("#sortable li").index(this);
-                        coverflowApp.skipTo(index);
+                        // Trigger the right callback
+                        switch (scrollTo) {
+                            case "first":
+                                self._trigger("scrolledToFirstElement");
+                                break;
+                            case "start":
+                                self._trigger("scrolledToStartElement");
+                                break;
+                            case "last":
+                                self._trigger("scrolledToLastElement");
+                                break;
+                            case "number":
+                                self._trigger("scrolledToElementNumber", null, { "elementNumber": element });
+                                break;
+                            case "id":
+                                self._trigger("scrolledToElementId", null, { "elementId": element });
+                                break;
+                            default:
+                                break;
+                        }
+                    }
                     });
                 }
-            });
-
+            }
 
         },
+        move: function (pixels) {
+            var self = this, el = this.element, o = this.options;
+            // clear queue, move to end
+            el.data("scrollWrapper").stop(true, true);
 
-        init_slider: function (elem, direction) {
-            if (direction == 'horizontal') {
-                elem.slider({
-                    min: 0,
-                    max: $('#coverflow > *').length - 1,
-                    value: coverflowApp.defaultItem,
-                    slide: function (event, ui) {
-
-                        var current = $('.coverflowItem');
-                        coverflowApp.coverflowCtrl.coverflow('select', ui.value, true);
-                        current.removeClass('ui-selected');
-                        current.eq(ui.value).addClass('ui-selected');
-                        coverflowApp.setCaption(current.eq(ui.value).html());
-                    }
-                })
-            } else {
-                if (direction == 'vertical') {
-                    elem.slider({
-                        orientation: direction,
-                        range: "max",
-                        min: 0,
-                        max: 100,
-                        value: 0,
-                        slide: function (event, ui) {
-                            console.log('aaa');
-                            var topValue = -((100 - ui.value) * coverflowApp.difference / 100);
-                            coverflowApp.sortable.css({
-                                top: topValue
-                            });
+            // Only run this code if it's possible to scroll left or right,
+            if ((pixels < 0 && el.data("scrollWrapper").scrollLeft() > 0) || (pixels > 0 && el.data("scrollableAreaWidth") > (el.data("scrollWrapper").innerWidth() + el.data("scrollWrapper").scrollLeft()))) {
+                if (o.easingAfterMouseWheelScrolling) {
+                    el.data("scrollWrapper").animate({ scrollLeft: el.data("scrollWrapper").scrollLeft() + pixels }, { duration: o.easingAfterMouseWheelScrollingDuration, easing: o.easingAfterMouseWheelFunction, complete: function () {
+                        self._showHideHotSpots();
+                        if (o.manualContinuousScrolling) {
+                            if (pixels > 0) {
+                                self._checkContinuousSwapRight();
+                            } else {
+                                self._checkContinuousSwapLeft();
+                            }
                         }
-                    })
+                    }
+                    });
+                } else {
+                    el.data("scrollWrapper").scrollLeft(el.data("scrollWrapper").scrollLeft() + pixels);
+                    self._showHideHotSpots();
+
+                    if (o.manualContinuousScrolling) {
+                        if (pixels > 0) {
+                            self._checkContinuousSwapRight();
+                        } else {
+                            self._checkContinuousSwapLeft();
+                        }
+                    }
                 }
             }
-        },
 
-        getItems: function () {
-            var refreshedItems = $('.demo .coverflowItem');
-            return refreshedItems;
-        },
-
-        skipTo: function (itemNumber) {
-
-            var items = $('.coverflowItem');
-            this.sliderCtrl.slider("option", "value", itemNumber);
-            this.coverflowCtrl.coverflow('select', itemNumber, true);
-            items.removeClass('ui-selected');
-            items.eq(itemNumber).addClass('ui-selected');
-            this.setCaption(items.eq(itemNumber).html());
 
         },
+        /**********************************************************
+        Adding or replacing content
+        **********************************************************/
+        /*  Arguments are:
+        content - a valid URL to a Flickr feed - string
+        manipulationMethod - addFirst, addLast or replace (default) - string
+        */
+        getFlickrContent: function (content, manipulationMethod) {
+            var self = this, el = this.element;
 
-        init_mousewheel: function () {
-            $('body').mousewheel(function (event, delta) {
+            $.getJSON(content, function (data) {
+                // small square - size is 75x75
+                // thumbnail -> large - size is the longest side
+                var flickrImageSizes = [{ size: "small square", pixels: 75, letter: "_s" },
+										{ size: "thumbnail", pixels: 100, letter: "_t" },
+										{ size: "small", pixels: 240, letter: "_m" },
+										{ size: "medium", pixels: 500, letter: "" },
+										{ size: "medium 640", pixels: 640, letter: "_z" },
+										{ size: "large", pixels: 1024, letter: "_b"}];
+                var loadedFlickrImages = [];
+                var imageIdStringBuffer = [];
+                var startingIndex;
+                var numberOfFlickrItems = data.items.length;
+                var loadedFlickrImagesCounter = 0;
 
-                var speed = 1,
-                    sliderVal = coverflowApp.sliderCtrl.slider("value"),
-                    coverflowItem = 0,
-                    cflowlength = $('#coverflow > *').length - 1,
-                    leftValue = 0;
-
-                //check the deltas to find out if the user has scrolled up or down 
-                if (delta > 0 && sliderVal > 0) {
-                    sliderVal -= 1;
+                // Determine a plausible starting value for the
+                // image height
+                if (el.data("scrollableAreaHeight") <= 75) {
+                    startingIndex = 0;
+                } else if (el.data("scrollableAreaHeight") <= 100) {
+                    startingIndex = 1;
+                } else if (el.data("scrollableAreaHeight") <= 240) {
+                    startingIndex = 2;
+                } else if (el.data("scrollableAreaHeight") <= 500) {
+                    startingIndex = 3;
+                } else if (el.data("scrollableAreaHeight") <= 640) {
+                    startingIndex = 4;
                 } else {
-                    if (delta < 0 && sliderVal < cflowlength) {
-                        sliderVal += 1;
-                    }
+                    startingIndex = 5;
                 }
 
-                leftValue = -((100 - sliderVal) * coverflowApp.difference / 100); //calculate the content top from the slider position
-                if (leftValue > 0) leftValue = 0; //stop the content scrolling down too much
-                if (Math.abs(leftValue) > coverflowApp.difference) leftValue = (-1) * coverflowApp.difference; //stop the content scrolling up beyond point desired
-                coverflowItem = Math.floor(sliderVal);
-                coverflowApp.skipTo(coverflowItem);
+                // Put all items from the feed in an array.
+                // This is necessary
+                $.each(data.items, function (index, item) {
+                    loadFlickrImage(item, startingIndex);
+                });
+
+                function loadFlickrImage(item, sizeIndex) {
+                    var path = item.media.m;
+                    var imgSrc = path.replace("_m", flickrImageSizes[sizeIndex].letter);
+                    var tempImg = $("<img />").attr("src", imgSrc);
+
+                    tempImg.load(function () {
+                        // Is it still smaller? Load next size
+                        if (this.height < el.data("scrollableAreaHeight")) {
+                            // Load a bigger image, if possible
+                            if ((sizeIndex + 1) < flickrImageSizes.length) {
+                                loadFlickrImage(item, sizeIndex + 1);
+                            } else {
+                                addImageToLoadedImages(this);
+                            }
+                        }
+                        else {
+                            addImageToLoadedImages(this);
+                        }
+
+                        // Finishing stuff to do when all images have been loaded
+                        if (loadedFlickrImagesCounter === numberOfFlickrItems) {
+                            switch (manipulationMethod) {
+                                case "addFirst":
+                                    // Add the loaded content first in the scrollable area
+                                    el.data("scrollableArea").children(":first").before(loadedFlickrImages);
+                                    break;
+                                case "addLast":
+                                    // Add the loaded content last in the scrollable area
+                                    el.data("scrollableArea").children(":last").after(loadedFlickrImages);
+                                    break;
+                                default:
+                                    // Replace the content in the scrollable area
+                                    el.data("scrollableArea").html(loadedFlickrImages);
+                                    break;
+                            }
+
+                            // Recalculate the total width of the elements inside the scrollable area
+                            self.recalculateScrollableArea();
+
+                            // Determine which hotspots to show
+                            self._showHideHotSpots();
+
+                            // Trigger callback
+                            self._trigger("addedFlickrContent", null, { "addedElementIds": imageIdStringBuffer });
+                        }
+
+                    });
+                }
+
+                // Add the loaded content first or last in the scrollable area
+                function addImageToLoadedImages(imageObj) {
+                    // Calculate the scaled width
+                    var widthScalingFactor = el.data("scrollableAreaHeight") / imageObj.height;
+                    var tempWidth = Math.round(imageObj.width * widthScalingFactor);
+                    // Set an id for the image - the filename is used as an id
+                    var tempIdArr = $(imageObj).attr("src").split("/");
+                    var lastElemIndex = (tempIdArr.length - 1);
+                    tempIdArr = tempIdArr[lastElemIndex].split(".");
+                    $(imageObj).attr("id", tempIdArr[0]);
+                    // Set the height of the image to the height of the scrollable area and add the width
+                    $(imageObj).css({ "height": el.data("scrollableAreaHeight"), "width": tempWidth });
+                    // Add the id of the image to the array of id's - this
+                    // is used as a parameter when the callback is triggered
+                    imageIdStringBuffer.push(tempIdArr[0]);
+                    // Add the image to the array of loaded images
+                    loadedFlickrImages.push(imageObj);
+
+                    // Increment counter for loaded images
+                    loadedFlickrImagesCounter++;
+                }
 
             });
         },
+        /*  Arguments are:
+        content - a valid URL to an AJAX content source - string
+        manipulationMethod - addFirst, addLast or replace (default) - string
+        filterTag - a jQuery selector that matches the elements from the AJAX content
+        source that you want, for example ".myClass" or "#thisDiv" or "div" - string
+        */
+        getAjaxContent: function (content, manipulationMethod, filterTag) {
+            var self = this, el = this.element;
+            $.ajaxSetup({ cache: false });
 
-        init_keyboard: function () {
-            $(document).keydown(function (e) {
-                var current = coverflowApp.sliderCtrl.slider('value');
-                if (e.keyCode == 37) {
-                    if (current > 0) {
-                        current--;
-                        coverflowApp.skipTo(current);
+            $.get(content, function (data) {
+                var filteredContent;
+
+                if (filterTag !== undefined) {
+                    if (filterTag.length > 0) {
+                        // A bit of a hack since I can't know if the element
+                        // that the user wants is a direct child of body (= use filter)
+                        // or other types of elements (= use find)
+                        filteredContent = $("<div>").html(data).find(filterTag);
+                    } else {
+                        filteredContent = content;
                     }
                 } else {
-                    if (e.keyCode == 39) {
-                        if (current < $('#coverflow > *').length - 1) {
-                            current++;
-                            coverflowApp.skipTo(current);
-                        }
-                    }
+                    filteredContent = data;
                 }
 
+                switch (manipulationMethod) {
+                    case "addFirst":
+                        // Add the loaded content first in the scrollable area
+                        el.data("scrollableArea").children(":first").before(filteredContent);
+                        break;
+                    case "addLast":
+                        // Add the loaded content last in the scrollable area
+                        el.data("scrollableArea").children(":last").after(filteredContent);
+                        break;
+                    default:
+                        // Replace the content in the scrollable area
+                        el.data("scrollableArea").html(filteredContent);
+                        break;
+                }
 
-            })
+                // Recalculate the total width of the elements inside the scrollable area
+                self.recalculateScrollableArea();
+
+                // Determine which hotspots to show
+                self._showHideHotSpots();
+
+                // Trigger callback
+                self._trigger("addedAjaxContent");
+
+            });
         },
+        getHtmlContent: function (content, manipulationMethod, filterTag) {
+            var self = this, el = this.element;
 
-        generateList: function () {
-            this.coverflowImages.each(function (index, value) {
-                var t = $(this);
-                try {
-                    listContent += "<li class='ui-state-default coverflowItem' data-itemlink='" + (index) + "'>" + t.data('artist') + " - " + t.data('album') + "</li>";
-                } catch (e) {}
-            })
+            // No AJAX involved at all - just add raw HTML-content
+            /* Arguments are:
+            content - any raw HTML that you want - string
+            manipulationMethod - addFirst, addLast or replace (default) - string
+            filterTag - a jQuery selector that matches the elements from the AJAX content
+            source that you want, for example ".myClass" or "#thisDiv" or "div" - string
+            */
+            var filteredContent;
+            if (filterTag !== undefined) {
+                if (filterTag.length > 0) {
+                    // A bit of a hack since I can't know if the element
+                    // that the user wants is a direct child of body (= use filter)
+                    // or other types of elements (= use find)
+                    filteredContent = $("<div>").html(content).find(filterTag);
+                } else {
+                    filteredContent = content;
+                }
+            } else {
+                filteredContent = content;
+            }
+
+            switch (manipulationMethod) {
+                case "addFirst":
+                    // Add the loaded content first in the scrollable area
+                    el.data("scrollableArea").children(":first").before(filteredContent);
+                    break;
+                case "addLast":
+                    // Add the loaded content last in the scrollable area
+                    el.data("scrollableArea").children(":last").after(filteredContent);
+                    break;
+                default:
+                    // Replace the content in the scrollable area
+                    el.data("scrollableArea").html(filteredContent);
+                    break;
+            }
+
+            // Recalculate the total width of the elements inside the scrollable area
+            self.recalculateScrollableArea();
+
+            // Determine which hotspots to show
+            self._showHideHotSpots();
+
+            // Trigger callback
+            self._trigger("addedHtmlContent");
+
         },
+        /**********************************************************
+        Recalculate the scrollable area
+        **********************************************************/
+        recalculateScrollableArea: function () {
 
+            var tempScrollableAreaWidth = 0, foundStartAtElement = false, o = this.options, el = this.element;
 
-        setScrollPositions: function () {
-            $('#slider-vertical').slider('value', this.item * 5);
-            this.sortable.css('top', -this.item * 5 + -35);
+            // Add up the total width of all the items inside the scrollable area
+            el.data("scrollableArea").children(o.countOnlyClass).each(function () {
+                // Check to see if the current element in the loop is the one where the scrolling should start
+                if ((o.startAtElementId.length > 0) && (($(this).attr("id")) === o.startAtElementId)) {
+                    el.data("startingPosition", tempScrollableAreaWidth);
+                    foundStartAtElement = true;
+                }
+                tempScrollableAreaWidth = tempScrollableAreaWidth + $(this).outerWidth(true);
+
+            });
+
+            // If the element with the ID specified by startAtElementId
+            // is not found, reset it
+            if (!(foundStartAtElement)) {
+                el.data("startAtElementId", "");
+            }
+
+            // Set the width of the scrollable area
+            el.data("scrollableAreaWidth", tempScrollableAreaWidth);
+            el.data("scrollableArea").width(el.data("scrollableAreaWidth"));
+
+            // Move to the starting position
+            el.data("scrollWrapper").scrollLeft(el.data("startingPosition"));
+            el.data("scrollXPos", el.data("startingPosition"));
         },
+        /**********************************************************
+        Get current scrolling left offset
+        **********************************************************/
+        getScrollerOffset: function () {
+            var el = this.element;
 
-        handleScrollpane: function () {
-            this.scrollPane.css('overflow', 'hidden');
+            // Returns the current left offset
+            // Please remember that if the scroller is in continuous
+            // mode, the offset is not that relevant anymore since
+            // the plugin will swap the elements inside the scroller
+            // around and manipulate the offset in this process.
+            return el.data("scrollWrapper").scrollLeft();
+        },
+        /**********************************************************
+        Stopping, starting and doing the auto scrolling
+        **********************************************************/
+        stopAutoScrolling: function () {
+            var self = this, el = this.element;
 
-            //calculate the height that the scrollbar handle should be
-            difference = this.sortable.height() - this.scrollPane.height(); //eg it's 200px longer 
-            proportion = difference / this.sortable.height(); //eg 200px/500px
-            handleHeight = Math.round((1 - proportion) * this.scrollPane.height()); //set the proportional height
+            if (el.data("autoScrollingInterval") !== null) {
+                clearInterval(el.data("autoScrollingInterval"));
+                el.data("autoScrollingInterval", null);
+
+                // Check to see which hotspots should be active
+                // in the position where the scroller has stopped
+                self._showHideHotSpots();
+
+                self._trigger("autoScrollingStopped");
+            }
+        },
+        /**********************************************************
+        Start Autoscrolling
+        **********************************************************/
+        startAutoScrolling: function () {
+            var self = this, el = this.element, o = this.options;
+
+            if (el.data("enabled")) {
+                self._showHideHotSpots();
+
+                // Stop any running interval
+                clearInterval(el.data("autoScrollingInterval"));
+                el.data("autoScrollingInterval", null);
+
+                // Callback
+                self._trigger("autoScrollingStarted");
+
+                // Start interval
+                el.data("autoScrollingInterval", setInterval(function () {
+
+                    // If the scroller is not visible or
+                    // if the scrollable area is shorter than the scroll wrapper
+                    // any running auto scroll interval should stop.
+                    if (!(el.data("visible")) || (el.data("scrollableAreaWidth") <= (el.data("scrollWrapper").innerWidth()))) {
+                        // Stop any running interval
+                        clearInterval(el.data("autoScrollingInterval"));
+                        el.data("autoScrollingInterval", null);
+
+                    }
+                    else {
+
+                        // Store the old scrollLeft value to see if the scrolling has reached the end
+                        el.data("previousScrollLeft", el.data("scrollWrapper").scrollLeft());
+
+                        switch (o.autoScrollingDirection) {
+                            case "right":
+
+                                el.data("scrollWrapper").scrollLeft(el.data("scrollWrapper").scrollLeft() + o.autoScrollingStep);
+                                if (el.data("previousScrollLeft") === el.data("scrollWrapper").scrollLeft()) {
+                                    self._trigger("autoScrollingRightLimitReached");
+                                    clearInterval(el.data("autoScrollingInterval"));
+                                    el.data("autoScrollingInterval", null);
+                                    self._trigger("autoScrollingIntervalStopped");
+                                }
+                                break;
+
+                            case "left":
+                                el.data("scrollWrapper").scrollLeft(el.data("scrollWrapper").scrollLeft() - o.autoScrollingStep);
+                                if (el.data("previousScrollLeft") === el.data("scrollWrapper").scrollLeft()) {
+                                    self._trigger("autoScrollingLeftLimitReached");
+                                    clearInterval(el.data("autoScrollingInterval"));
+                                    el.data("autoScrollingInterval", null);
+                                    self._trigger("autoScrollingIntervalStopped");
+                                }
+                                break;
+
+                            case "backAndForth":
+                                if (el.data("pingPongDirection") === "right") {
+                                    el.data("scrollWrapper").scrollLeft(el.data("scrollWrapper").scrollLeft() + (o.autoScrollingStep));
+                                }
+                                else {
+                                    el.data("scrollWrapper").scrollLeft(el.data("scrollWrapper").scrollLeft() - (o.autoScrollingStep));
+                                }
+
+                                // If the scrollLeft hasnt't changed it means that the scrolling has reached
+                                // the end and the direction should be switched
+                                if (el.data("previousScrollLeft") === el.data("scrollWrapper").scrollLeft()) {
+                                    if (el.data("pingPongDirection") === "right") {
+                                        el.data("pingPongDirection", "left");
+                                        self._trigger("autoScrollingRightLimitReached");
+                                    }
+                                    else {
+                                        el.data("pingPongDirection", "right");
+                                        self._trigger("autoScrollingLeftLimitReached");
+                                    }
+                                }
+                                break;
+
+                            case "endlessLoopRight":
+
+                                // Do the auto scrolling
+                                el.data("scrollWrapper").scrollLeft(el.data("scrollWrapper").scrollLeft() + o.autoScrollingStep);
+
+                                self._checkContinuousSwapRight();
+                                break;
+                            case "endlessLoopLeft":
+
+                                // Do the auto scrolling
+                                el.data("scrollWrapper").scrollLeft(el.data("scrollWrapper").scrollLeft() - o.autoScrollingStep);
+
+                                self._checkContinuousSwapLeft();
+                                break;
+                            default:
+                                break;
+
+                        }
+                    }
+                }, o.autoScrollingInterval));
+            }
+        },
+        /**********************************************************
+        Check Continuos Swap Right
+        **********************************************************/
+        _checkContinuousSwapRight: function () {
+            var el = this.element, o = this.options;
+
+            // Get the width of the first element. When it has scrolled out of view,
+            // the element swapping should be executed. A true/false variable is used
+            // as a flag variable so the swapAt value doesn't have to be recalculated
+            // in each loop.
+            if (el.data("getNextElementWidth")) {
+
+                if ((o.startAtElementId.length > 0) && (el.data("startAtElementHasNotPassed"))) {
+                    // If the user has set a certain element to start at, set swapAt 
+                    // to that element width. This happens once.
+                    el.data("swapAt", $("#" + o.startAtElementId).outerWidth(true));
+                    el.data("startAtElementHasNotPassed", false);
+                }
+                else {
+                    // Set swapAt to the first element in the scroller
+                    el.data("swapAt", el.data("scrollableArea").children(":first").outerWidth(true));
+                }
+                el.data("getNextElementWidth", false);
+            }
+
+
+            // Check to see if the swap should be done
+            if (el.data("swapAt") <= el.data("scrollWrapper").scrollLeft()) {
+                el.data("swappedElement", el.data("scrollableArea").children(":first").detach());
+                el.data("scrollableArea").append(el.data("swappedElement"));
+                var wrapperLeft = el.data("scrollWrapper").scrollLeft();
+                el.data("scrollWrapper").scrollLeft(wrapperLeft - el.data("swappedElement").outerWidth(true));
+                el.data("getNextElementWidth", true);
+            }
+        },
+        /**********************************************************
+        Check Continuos Swap Left
+        **********************************************************/
+        _checkContinuousSwapLeft: function () {
+            var el = this.element, o = this.options;
+
+            // Get the width of the first element. When it has scrolled out of view,
+            // the element swapping should be executed. A true/false variable is used
+            // as a flag variable so the swapAt value doesn't have to be recalculated
+            // in each loop.
+
+            if (el.data("getNextElementWidth")) {
+                if ((o.startAtElementId.length > 0) && (el.data("startAtElementHasNotPassed"))) {
+                    el.data("swapAt", $("#" + o.startAtElementId).outerWidth(true));
+                    el.data("startAtElementHasNotPassed", false);
+                }
+                else {
+                    el.data("swapAt", el.data("scrollableArea").children(":first").outerWidth(true));
+                }
+
+                el.data("getNextElementWidth", false);
+            }
+
+            // Check to see if the swap should be done
+            if (el.data("scrollWrapper").scrollLeft() === 0) {
+                el.data("swappedElement", el.data("scrollableArea").children(":last").detach());
+                el.data("scrollableArea").prepend(el.data("swappedElement"));
+                el.data("scrollWrapper").scrollLeft(el.data("scrollWrapper").scrollLeft() + el.data("swappedElement").outerWidth(true));
+                el.data("getNextElementWidth", true);
+            }
+
+        },
+        restoreOriginalElements: function () {
+            var self = this, el = this.element;
+
+            // Restore the original content of the scrollable area
+            el.data("scrollableArea").html(el.data("originalElements"));
+            self.recalculateScrollableArea();
+            self.jumpToElement("first");
+        },
+        show: function () {
+            var el = this.element;
+            el.data("visible", true);
+            el.show();
+        },
+        hide: function () {
+            var el = this.element;
+            el.data("visible", false);
+            el.hide();
+        },
+        enable: function () {
+            var el = this.element;
+
+            // Set enabled to true
+            el.data("enabled", true);
+        },
+        disable: function () {
+            var self = this, el = this.element;
+
+            // Clear all running intervals
+            self.stopAutoScrolling();
+            clearInterval(el.data("rightScrollingInterval"));
+            clearInterval(el.data("leftScrollingInterval"));
+            clearInterval(el.data("hideHotSpotBackgroundsInterval"));
+
+            // Set enabled to false
+            el.data("enabled", false);
+        },
+        destroy: function () {
+            var self = this, el = this.element;
+
+            // Clear all running intervals
+            self.stopAutoScrolling();
+            clearInterval(el.data("rightScrollingInterval"));
+            clearInterval(el.data("leftScrollingInterval"));
+            clearInterval(el.data("hideHotSpotBackgroundsInterval"));
+
+            // Remove all element specific events
+            el.data("scrollingHotSpotRight").unbind("mouseover");
+            el.data("scrollingHotSpotRight").unbind("mouseout");
+            el.data("scrollingHotSpotRight").unbind("mousedown");
+
+            el.data("scrollingHotSpotLeft").unbind("mouseover");
+            el.data("scrollingHotSpotLeft").unbind("mouseout");
+            el.data("scrollingHotSpotLeft").unbind("mousedown");
+
+            el.unbind("mousenter");
+            el.unbind("mouseleave");
+
+            // Remove all elements created by the plugin
+            el.data("scrollingHotSpotRight").remove();
+            el.data("scrollingHotSpotLeft").remove();
+            el.data("scrollableArea").remove();
+            el.data("scrollWrapper").remove();
+
+            // Restore the original content of the scrollable area
+            el.html(el.data("originalElements"));
+
+            // Call the base destroy function
+            $.Widget.prototype.destroy.apply(this, arguments);
+
         }
-    };
 
 
-    coverflowApp.init_coverflow();
-
-
-
-});
-
-$(function(){	
-
-		
-		var demo = {
-
-			yScroll: function(wrapper, scrollable) {
-
-				var wrapper = $(wrapper), scrollable = $(scrollable),
-					loading = $('<div class="loading">Loading...</div>').appendTo(wrapper),
-					internal = null,
-					images	= null;
-					scrollable.hide();
-					images = scrollable.find('img');
-					completed = 0;
-					
-					images.each(function(){
-						if (this.complete) completed++;	
-					});
-					
-					if (completed == images.length){
-						setTimeout(function(){							
-							loading.hide();
-							wrapper.css({overflow: 'hidden'});						
-							scrollable.slideDown('slow', function(){
-								enable();	
-							});					
-						}, 0);	
-					}
-			
-				
-				function enable(){
-					var inactiveMargin = 99,
-						wrapperWidth = wrapper.width(),
-						wrapperHeight = wrapper.height(),
-						scrollableHeight = scrollable.outerHeight() + 2*inactiveMargin,
-						wrapperOffset = 0,
-						top = 0,
-						lastTarget = null;
-
-					
-					wrapper.mousemove(function(e){
-						lastTarget = e.target;
-						wrapperOffset = wrapper.offset();		
-						top = (e.pageY -  wrapperOffset.top) * (scrollableHeight - wrapperHeight) / wrapperHeight - inactiveMargin;
-						if (top < 0){
-							top = 0;
-						}			
-						wrapper.scrollTop(top);
-					});	
-				}			
-			}
-		}
-
-		
-		demo.yScroll('#scroll-pane', 'ul#sortable');
-
-			
-	});
+    });
+})(jQuery);

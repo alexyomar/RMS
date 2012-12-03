@@ -39,43 +39,22 @@
     <h3 style="margin: 40px 0px 10px 0px">
         ¡Disfruta de los mejores paquetes!</h3>
 </center>
-<div style="padding: 0px 100px 0px 100px">
-    <div class="demo">
-        <div class="wrapper">
-            <div id="coverflow">
-                <img src="@Url.Content("~/Content/Paquetes/Nacionales/margarita5.JPG")"  width="250" height="200"  alt="" class="popup" />
-                <img src="@Url.Content("~/Content/Paquetes/Nacionales/margaritanav2.JPG")"  width="250" height="200"  alt="" class="popup" />
-                <img src="@Url.Content("~/Content/Paquetes/Nacionales/margaritanav.JPG")"  width="250" height="200"  alt="" class="popup" />
-                <img src="@Url.Content("~/Content/Paquetes/Nacionales/margaritat.JPG")"  width="250" height="200"  alt="" class="popup" />
-                <img src="@Url.Content("~/Content/Paquetes/Nacionales/margaritabaja.JPG")"  width="250" height="200"  alt="" class="popup" />
-                @*<img src="@Url.Content("~/Content/Paquetes/Internacionales/aruba.JPG")"  width="250" height="200"  alt="" class="popup" />
-                <img src="@Url.Content("~/Content/Paquetes/Internacionales/slide1.JPG")"  width="250" height="200"  alt="" class="popup" />*@
-                <img src="@Url.Content("~/Content/Paquetes/Internacionales/bariloche.PNG")"  width="250" height="200"  alt="" class="popup" />
-                <img src="@Url.Content("~/Content/Paquetes/Internacionales/cancun.JPG")"  width="250" height="200"  alt="" class="popup" />
-                <img src="@Url.Content("~/Content/Paquetes/Internacionales/cancun.PNG")"  width="250" height="200"  alt="" class="popup" />
-                @* <img src="@Url.Content("~/Content/Paquetes/Internacionales/cartagena.JPG")"  width="250" height="200"  alt="" class="popup" />*@
-                <img src="@Url.Content("~/Content/Paquetes/Internacionales/puntacana.JPG")"  width="250" height="200"  alt="" class="popup" />
-                <img src="@Url.Content("~/Content/Paquetes/Internacionales/puntacana.PNG")"  width="250" height="200"  alt="" class="popup" />
-                <img src="@Url.Content("~/Content/Paquetes/Internacionales/slide2.JPG")"  width="250" height="200"  alt="" class="popup" />
-            </div>
-        </div>
-        <div id="imageCaption">
-            Sample Text
-        </div>
-        <div id='slider'>
-        </div>
-    </div>
-    <div class="demo-description">
-    </div>
-    <div class="listholder">
-        <div id="scroll-pane">
-            <ul id="sortable">
-            </ul>
-        </div>
-        <div id="slider-wrap">
-            <div id="slider-vertical">
-            </div>
-        </div>
+<div style="padding: 0px 60px 0px 60px">
+    <div id="coverflow" style="position:relative; width:100%; height:316px; border:2px solid #ababab padding:5px;">
+        <img src="@Url.Content("~/Content/Paquetes/Nacionales/margarita5.JPG")"  width="200" height="300"  alt="" class="popup" />
+        <img src="@Url.Content("~/Content/Paquetes/Nacionales/margaritanav2.JPG")"  width="200" height="300"  alt="" class="popup" />
+        <img src="@Url.Content("~/Content/Paquetes/Nacionales/margaritanav.JPG")"  width="200" height="300"  alt="" class="popup" />
+        <img src="@Url.Content("~/Content/Paquetes/Nacionales/margaritat.JPG")"  width="200" height="300"  alt="" class="popup" />
+        <img src="@Url.Content("~/Content/Paquetes/Nacionales/margaritabaja.JPG")"  width="200" height="300"  alt="" class="popup" />
+        @*<img src="@Url.Content("~/Content/Paquetes/Internacionales/aruba.JPG")"  width="200" height="300"  alt="" class="popup" />
+                <img src="@Url.Content("~/Content/Paquetes/Internacionales/slide1.JPG")"  width="200" height="300"  alt="" class="popup" />*@
+        <img src="@Url.Content("~/Content/Paquetes/Internacionales/bariloche.PNG")"  width="200" height="300"  alt="" class="popup" />
+        <img src="@Url.Content("~/Content/Paquetes/Internacionales/cancun.JPG")"  width="200" height="300"  alt="" class="popup" />
+        <img src="@Url.Content("~/Content/Paquetes/Internacionales/cancun.PNG")"  width="200" height="300"  alt="" class="popup" />
+        @* <img src="@Url.Content("~/Content/Paquetes/Internacionales/cartagena.JPG")"  width="200" height="300"  alt="" class="popup" />*@
+        <img src="@Url.Content("~/Content/Paquetes/Internacionales/puntacana.JPG")"  width="200" height="300"  alt="" class="popup" />
+        <img src="@Url.Content("~/Content/Paquetes/Internacionales/puntacana.PNG")"  width="200" height="300"  alt="" class="popup" />
+        <img src="@Url.Content("~/Content/Paquetes/Internacionales/slide2.JPG")"  width="200" height="300"  alt="" class="popup" />
     </div>
 </div>
 <div id="content">
@@ -117,6 +96,10 @@
 </div>
 <script>
     $(document).ready(function () {
-        $('#carousel').roundabout();
+        $('#coverflow').smoothDivScroll({
+            mousewheelScrolling: "allDirections",
+            manualContinuousScrolling: true,
+            autoScrollingMode: "onStart"
+        });
     });
 </script>
