@@ -1,6 +1,8 @@
-﻿@{
+﻿@model List<RMS.Models.Hotel>
+@{
     ViewBag.Title = "Contáctanos - Regional Marketing Services";
     Layout = "~/Views/Shared/_LayoutAGD.cshtml";
+    
 }
 <div class="banner clear">
     <h2 class="current_page right">
@@ -8,6 +10,9 @@
     </h2>
     <em class="tagline left">Realiza tu viaje con nosotros</em></div>
 <div id="content">
+    <div>
+        <img src="/Content/sliders/about.jpg" />
+    </div>
     <div class="contact left">
         <div class="message">
             <div id="alert">
@@ -29,9 +34,89 @@
                     </label>
                 </li>
                 <li>
+                    <label for="cemail">
+                        <span>Empresa:<em>*</em></span>
+                        <input type="text" name="empresa" id="empresa" />
+                    </label>
+                </li>
+                <li>
+                    <label for="cemail">
+                        <span>Celular:<em>*</em></span>
+                        <input type="text" name="celular" id="celular" />
+                    </label>
+                </li>
+                <li>
+                    <label for="cemail">
+                        <span>Fecha de Llegada:<em>*</em></span>
+                        <input type="text" name="arrive" id="arrive" />
+                    </label>
+                </li>
+                <li>
+                    <label for="cemail">
+                        <span>Fecha de Salida:<em>*</em></span>
+                        <input type="text" name="departure" id="departure" />
+                    </label>
+                </li>
+                <li>
+                    <label for="cemail">
+                        <span>Destino:<em>*</em></span>
+                        <select>
+                            <option>Margarita</option>
+                            <option>Mérida</option>
+                            <option>Gran Sabana</option>
+                            <option>Internacional</option>
+                        </select>
+                    </label>
+                </li>
+                <li>
+                    <label for="cemail">
+                        <span>Adultos:<em>*</em></span>
+                        <input type="text" name="adultos" id="adultos" />
+                    </label>
+                </li>
+                <li>
+                    <label for="cemail">
+                        <span>Niños:<em>*</em></span>
+                        <input type="text" name="ninos" id="ninos" />
+                    </label>
+                </li>
+                <li>
+                    <label for="cemail">
+                        <span>Hotel:<em>*</em></span>
+                        <select>
+                            <option>Seleccione</option>
+                            @foreach (var item in Model)
+                            {
+                                <option>@item.Name (@item.State.Name)</option>   
+                            }
+                            <option>Internacional</option>
+                        </select>
+                    </label>
+                </li>
+                <li>
+                    <label for="cemail">
+                        <span>Incluir pasajes:<em>*</em></span>
+                        <select>
+                            <option>No</option>
+                            <option>Aéreo</option>
+                            <option>Máritimo</option>
+                            <option>Terrestre</option>
+                        </select>
+                    </label>
+                </li>
+                <li>
                     <label for="csubject">
-                        <span>Asunto:<em>*</em></span>
-                        <input type="text" name="subject" id="subject" />
+                        <span>Servicios Adicionales:<em>*</em></span>
+                        <select multiple="multiple">
+                            <option>Alquiler de Vehículo</option>
+                            <option>Traslado Aeropuerto-Hotel-Aeropuerto</option>
+                            <option>Full Day Coche</option>
+                            <option>Full Day Los Roques</option>
+                            <option>Excursiones Margarita</option>
+                            <option>Excursiones Mérida</option>
+                            <option>Excursiones Gran Sabana</option>
+                            <option>Seguros de Viajes</option>
+                        </select>
                     </label>
                 </li>
                 <li>

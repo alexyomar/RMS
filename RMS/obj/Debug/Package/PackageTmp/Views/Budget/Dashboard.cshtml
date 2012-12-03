@@ -61,7 +61,7 @@
     <tfoot>
     </tfoot>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in Model.Where(u => u.IdReservationStatus.Equals(2)))
         {
             <tr>
                 <td>@Html.DisplayFor(modelItem => item.Id)
@@ -140,7 +140,7 @@
         }
     </tbody>
 </table>
-@*<br />
+<br />
 <br />
 <h2>
     Esperando pago (@Model.Count())</h2>
@@ -257,7 +257,7 @@
                     @Html.ActionLink("Detalles", "PrintableVersion", new { id = item.Id }, new { target = "_blank" })
                     |
                     @Html.ActionLink("PDF", "PrintPDF", new { id = item.Id })
-                    @*@Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
 </td> </tr> } </tbody> </table>*@
 <script type="text/javascript">
     $(document).ready(function () {

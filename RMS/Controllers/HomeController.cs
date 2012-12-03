@@ -47,10 +47,23 @@ namespace RMS.Controllers
         }
         public ActionResult Contact()
         {
+            ViewData.Model = db.Hotel.OrderBy(u => u.Name).ToList();
             return View();
         }
         [HttpPost]
-        public ActionResult Contact(string nombre)
+        public ActionResult Contact(string nombre,
+                                    string email,
+                                    string empresa,
+                                    string celular,
+                                    string arrive, 
+                                    string departure,
+                                    string destino, 
+                                    string adultos, 
+                                    string ninos, 
+                                    string hotel,
+                                    string pasajes,
+                                    string[] servicios,
+                                    string mensaje)
         {
             return View("ContactOk");
         }

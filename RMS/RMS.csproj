@@ -133,6 +133,7 @@
     <Content Include="Content\agd\images\left_arrow.png" />
     <Content Include="Content\agd\images\logo-trans.png" />
     <Content Include="Content\agd\images\mail_icon.png" />
+    <Content Include="Content\agd\images\nuvo.png" />
     <Content Include="Content\agd\images\packages.png" />
     <Content Include="Content\agd\images\portfolio_bg.png" />
     <Content Include="Content\agd\images\project.png" />
@@ -144,6 +145,7 @@
     <Content Include="Content\agd\images\project3_thumb2.jpg" />
     <Content Include="Content\agd\images\psdtuts.jpg" />
     <Content Include="Content\agd\images\quote.gif" />
+    <Content Include="Content\agd\images\regional.jpg" />
     <Content Include="Content\agd\images\right_arrow.png" />
     <Content Include="Content\agd\images\rss.png" />
     <Content Include="Content\agd\images\search_bg.png" />
