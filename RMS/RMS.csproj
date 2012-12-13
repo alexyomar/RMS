@@ -405,6 +405,13 @@
     <Content Include="Content\agd\img\ui-icons_ef8c08_256x240.png" />
     <Content Include="Content\agd\img\ui-icons_ffd27a_256x240.png" />
     <Content Include="Content\agd\img\ui-icons_ffffff_256x240.png" />
+    <Content Include="Paquetes\Internacionales\Slide1.JPG" />
+    <Content Include="Paquetes\Internacionales\Slide2.JPG" />
+    <Content Include="Paquetes\Nacionales\Slide3.JPG" />
+    <Content Include="Paquetes\Nacionales\Slide4.JPG" />
+    <Content Include="Paquetes\Internacionales\Slide5.JPG" />
+    <Content Include="Paquetes\Internacionales\Slide6.JPG" />
+    <Content Include="Paquetes\Internacionales\Slide7.JPG" />
     <Content Include="Scripts\Anivers_400.font.js" />
     <Content Include="Scripts\coda-slider.1.1.1.js" />
     <Content Include="Scripts\cufon-yui.js" />
@@ -528,7 +535,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Downloads\Brochure.ppt" />
-    <None Include="Files\paquetes2012.pdf" />
     <Content Include="Views\Budget\PartialImportar.cshtml" />
     <Content Include="Views\Budget\Dashboard.cshtml" />
     <Content Include="Views\Shared\_LayoutAGD.cshtml" />
