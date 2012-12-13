@@ -2,7 +2,7 @@
     ViewBag.Title = "Regional Marketing Services";
     Layout = "~/Views/Shared/_LayoutAGD.cshtml";
 }
-<div class="slider-wrap">
+@*<div class="slider-wrap">
     <div id="slider1" class="csw">
         <div class="panelContainer">
             <div class="panel">
@@ -35,10 +35,16 @@
             </div>
         </div>
     </div>
+</div>*@
+
+<div style="padding: 10px">
+    <center>
+        <img src="/Content/agd/images/destiny.png" />
+    </center>
 </div>
+
 <center>
-    <h3 style="margin: 40px 0px 10px 0px">
-        Paquetes Nacionales</h3>
+    <h3 style="margin: 40px 0px 10px 0px">Paquetes Nacionales</h3>
 </center>
 <div style="padding: 0px 60px 0px 60px">
     <div id="coverflow" style="position: relative; width: 100%; height: 316px; border: 2px solid #ababab padding:5px;">
@@ -53,8 +59,7 @@
         <img src="@Url.Content("~/Content/Paquetes/Nacionales/margaritat.JPG")"  width="200" height="300"  alt="" class="popup" />
     </div>
     <center>
-        <h3 style="margin: 30px 0px 10px 0px">
-            Paquetes Internacionales</h3>
+        <h3 style="margin: 30px 0px 10px 0px">Paquetes Internacionales</h3>
     </center>
     <div id="coverflow2" style="position: relative; width: 100%; height: 316px; border: 2px solid #ababab padding:5px;">
         <img src="@Url.Content("~/Content/Paquetes/Internacionales/cancun.JPG")"  width="200" height="300"  alt="" class="popup" />
@@ -69,8 +74,7 @@
 </div>
 <div id="content">
     <div class="services left">
-        <h3>
-            Te ofrecemos</h3>
+        <h3>Te ofrecemos</h3>
         <ul class="service_list">
             <li>Destinos Nacionales </li>
             <li>Destinos Internacionales </li>
@@ -83,8 +87,7 @@
         <a class="more" href="@Url.Action("About", "Home")">ver más... </a>
     </div>
     <div class="blog left">
-        <h3>
-            Dónde estamos</h3>
+        <h3>Dónde estamos</h3>
         <ul>
             <li>Centro Comercial Ciudad Tamanaco, 1era. Etapa, Piso 3, Oficina 303, Chuao, Caracas,
                 Venezuela. </li>
@@ -94,8 +97,7 @@
         </ul>
     </div>
     <div class="clients left">
-        <h3>
-            Aliados</h3>
+        <h3>Aliados</h3>
         <ul>
             <li><a href="#">
                 <img src="@Url.Content("~/Content/agd/images/regional.jpg")" width="192" height="58" alt="" /></a></li>

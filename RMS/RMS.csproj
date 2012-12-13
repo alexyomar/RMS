@@ -124,6 +124,10 @@
     <Content Include="Content\agd\images\004.jpg" />
     <Content Include="Content\agd\images\005.jpg" />
     <Content Include="Content\agd\images\006.jpg" />
+    <Content Include="Content\agd\images\007.jpg" />
+    <Content Include="Content\agd\images\008.jpg" />
+    <Content Include="Content\agd\images\009.jpg" />
+    <Content Include="Content\agd\images\010.jpg" />
     <Content Include="Content\agd\images\about_img.jpg" />
     <Content Include="Content\agd\images\address_icon.png" />
     <Content Include="Content\agd\images\ajax-loader.gif" />
@@ -137,6 +141,7 @@
     <Content Include="Content\agd\images\blog_img.jpg" />
     <Content Include="Content\agd\images\body_bg.jpg" />
     <Content Include="Content\agd\images\bullets.png" />
+    <Content Include="Content\agd\images\destiny.png" />
     <Content Include="Content\agd\images\envato.jpg" />
     <Content Include="Content\agd\images\fb_icon.png" />
     <Content Include="Content\agd\images\footer_bg.png" />
