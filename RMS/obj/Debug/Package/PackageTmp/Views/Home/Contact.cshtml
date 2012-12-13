@@ -6,7 +6,7 @@
 }
 <div class="banner clear">
     <h2 class="current_page right">
-        Contactános
+        Contáctanos
     </h2>
     <em class="tagline left">Realiza tu viaje con nosotros</em></div>
 <div id="content">
@@ -24,7 +24,7 @@
                 <li>
                     <label for="cname">
                         <span>Nombre:<em>*</em></span>
-                        <input type="text" name="name" id="nombre" />
+                        <input type="text" name="nombre" id="nombre" />
                     </label>
                 </li>
                 <li>
@@ -60,7 +60,7 @@
                 <li>
                     <label for="cemail">
                         <span>Destino:<em>*</em></span>
-                        <select>
+                        <select name="destino" id="destino">
                             <option>Margarita</option>
                             <option>Mérida</option>
                             <option>Gran Sabana</option>
@@ -83,7 +83,7 @@
                 <li>
                     <label for="cemail">
                         <span>Hotel:<em>*</em></span>
-                        <select>
+                        <select name="hotel" id="hotel">
                             <option>Seleccione</option>
                             @foreach (var item in Model)
                             {
@@ -96,7 +96,7 @@
                 <li>
                     <label for="cemail">
                         <span>Incluir pasajes:<em>*</em></span>
-                        <select>
+                        <select id="pasajes" name="pasajes">
                             <option>No</option>
                             <option>Aéreo</option>
                             <option>Máritimo</option>
@@ -107,7 +107,7 @@
                 <li>
                     <label for="csubject">
                         <span>Servicios Adicionales:<em>*</em></span>
-                        <select multiple="multiple">
+                        <select multiple="multiple" name="servicios" id="servicios">
                             <option>Alquiler de Vehículo</option>
                             <option>Traslado Aeropuerto-Hotel-Aeropuerto</option>
                             <option>Full Day Coche</option>
@@ -121,12 +121,12 @@
                 </li>
                 <li>
                     <label for="cmessage">
-                        <span>Mensaje:<em>*</em></span>
-                        <textarea name="message" id="mensaje" cols="50" rows="12"></textarea>
+                        <span>Observaciones:<em>*</em></span>
+                        <textarea name="mensaje" id="mensaje" cols="50" rows="12"></textarea>
                     </label>
                 </li>
                 <li class="submitbutton">
-                    <input type="submit" value="submit" id="csubmit" class="submit right" />
+                    <input type="submit" value="Enviar" id="csubmit" class="submit right" />
                 </li>
             </ul>
             </form>

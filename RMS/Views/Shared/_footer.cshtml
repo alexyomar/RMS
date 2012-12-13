@@ -14,9 +14,9 @@
         <h4>
             Último Tweet</h4>
         <ul class="tweet_list">
-            <li class="tweet_first tweet_odd"><a href="#" style="color: #000">30 jul.</a> <span
-                class="tweet_text">Disfruta de nuestras PAQUETES en la Isla de margarita y visita
-                nuestra pagina web. <a href="https://twitter.com/regionalviajes">Ver más</a></span></li>
+            <li class="tweet_first tweet_odd"><a href="#" style="color: #000" id="tweetdate">30
+                jul.</a> <span class="tweet_text">Disfruta de nuestras PAQUETES en la Isla de margarita
+                    y visita nuestra pagina web. <a href="https://twitter.com/regionalviajes">Ver más</a></span></li>
         </ul>
     </div>
     <div class="follow clear">
@@ -38,3 +38,16 @@
         <div class="clear">
         </div>
 </div>
+<script>
+    $(document).ready(function () {
+
+        $.getJSON("https://api.twitter.com/1/statuses/user_timeline/regionalviajes.json?callback=?", function (data) {
+            $(".tweet_text").html(data[0].text);
+            $("#tweetdate").html(parseTwitterDate(data[0].created_at));
+        });
+    });
+    function parseTwitterDate(stamp) {
+        var date = new Date(Date.parse(stamp)).toLocaleString().substr(0, 16);
+        return date.substr(0, 11);
+    }
+</script>

@@ -143,7 +143,7 @@
 <br />
 <br />
 <h2>
-    Esperando pago (@Model.Count())</h2>
+    Presupuestos (@Model.Count())</h2>
 <table class="tbl">
     <thead>
         <tr>
@@ -258,7 +258,10 @@
                     |
                     @Html.ActionLink("PDF", "PrintPDF", new { id = item.Id })
                     @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-</td> </tr> } </tbody> </table>*@
+                </td>
+            </tr> }
+    </tbody>
+</table>
 <script type="text/javascript">
     $(document).ready(function () {
         $('.tbl').dataTable({
