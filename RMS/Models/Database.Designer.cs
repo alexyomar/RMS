@@ -8,12 +8,13 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.ComponentModel;
+using System.Data.EntityClient;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
-using System.Data.EntityClient;
-using System.ComponentModel;
-using System.Xml.Serialization;
+using System.Linq;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
@@ -637,6 +638,7 @@ namespace RMS.Models
         private ObjectSet<Reservation> _Reservation;
 
         #endregion
+
         #region AddTo Methods
     
         /// <summary>
@@ -912,11 +914,11 @@ namespace RMS.Models
         }
 
         #endregion
+
     }
-    
 
     #endregion
-    
+
     #region Entities
     
     /// <summary>
@@ -945,6 +947,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1047,6 +1050,7 @@ namespace RMS.Models
         partial void OnDescriptionChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -1139,6 +1143,7 @@ namespace RMS.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -1191,6 +1196,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1701,6 +1707,7 @@ namespace RMS.Models
         partial void OnCommentChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -1781,6 +1788,7 @@ namespace RMS.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -1811,6 +1819,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1913,6 +1922,7 @@ namespace RMS.Models
         partial void OnLoweredPathChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -2015,6 +2025,7 @@ namespace RMS.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2043,6 +2054,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2121,6 +2133,7 @@ namespace RMS.Models
         partial void OnLastUpdatedDateChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -2163,6 +2176,7 @@ namespace RMS.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2191,6 +2205,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2317,6 +2332,7 @@ namespace RMS.Models
         partial void OnLastUpdatedDateChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -2397,6 +2413,7 @@ namespace RMS.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2429,6 +2446,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2555,6 +2573,7 @@ namespace RMS.Models
         partial void OnLastUpdatedDateChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -2597,6 +2616,7 @@ namespace RMS.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2627,6 +2647,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2753,6 +2774,7 @@ namespace RMS.Models
         partial void OnDescriptionChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -2817,6 +2839,7 @@ namespace RMS.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -2845,6 +2868,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2926,6 +2950,7 @@ namespace RMS.Models
         partial void OnIsCurrentVersionChanged();
 
         #endregion
+
     
     }
     
@@ -2961,6 +2986,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -3135,6 +3161,7 @@ namespace RMS.Models
         partial void OnLastActivityDateChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -3297,6 +3324,7 @@ namespace RMS.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -3337,6 +3365,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -3703,6 +3732,7 @@ namespace RMS.Models
         partial void OnDetailsChanged();
 
         #endregion
+
     
     }
     
@@ -3740,6 +3770,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -3914,6 +3945,7 @@ namespace RMS.Models
         partial void OnEmailChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -3940,6 +3972,7 @@ namespace RMS.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -3994,6 +4027,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -4456,6 +4490,7 @@ namespace RMS.Models
         partial void OnLoungesChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -4564,6 +4599,7 @@ namespace RMS.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -4592,6 +4628,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -4670,6 +4707,7 @@ namespace RMS.Models
         partial void OnNotesChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -4696,6 +4734,7 @@ namespace RMS.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -4730,6 +4769,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -4904,6 +4944,7 @@ namespace RMS.Models
         partial void OnEndMonthChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -4946,6 +4987,7 @@ namespace RMS.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -4990,6 +5032,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -5356,6 +5399,7 @@ namespace RMS.Models
         partial void OnPayLimitChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -5480,6 +5524,7 @@ namespace RMS.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -5510,6 +5555,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -5660,6 +5706,7 @@ namespace RMS.Models
         partial void OnChildrensChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -5740,6 +5787,7 @@ namespace RMS.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -5770,6 +5818,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -5920,6 +5969,7 @@ namespace RMS.Models
         partial void OnTotalPayedChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -6000,6 +6050,7 @@ namespace RMS.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -6026,6 +6077,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -6080,6 +6132,7 @@ namespace RMS.Models
         partial void OnNameChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -6106,6 +6159,7 @@ namespace RMS.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -6138,6 +6192,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -6312,6 +6367,7 @@ namespace RMS.Models
         partial void OnMaxChildrenChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -6398,6 +6454,7 @@ namespace RMS.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -6424,6 +6481,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -6478,6 +6536,7 @@ namespace RMS.Models
         partial void OnNameChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -6504,6 +6563,7 @@ namespace RMS.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -6532,6 +6592,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -6613,6 +6674,7 @@ namespace RMS.Models
         partial void OnQuantityChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -6693,6 +6755,7 @@ namespace RMS.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -6743,6 +6806,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -7085,6 +7149,7 @@ namespace RMS.Models
         partial void OnActiveChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -7149,6 +7214,7 @@ namespace RMS.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -7179,6 +7245,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -7353,6 +7420,7 @@ namespace RMS.Models
         partial void OnBuyLaterChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -7395,6 +7463,7 @@ namespace RMS.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -7421,6 +7490,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -7475,6 +7545,7 @@ namespace RMS.Models
         partial void OnNameChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -7501,6 +7572,7 @@ namespace RMS.Models
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -7529,6 +7601,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -7655,6 +7728,7 @@ namespace RMS.Models
         partial void OndefinitionChanged();
 
         #endregion
+
     
     }
     
@@ -7684,6 +7758,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -7792,6 +7867,7 @@ namespace RMS.Models
         partial void OnDescriptionChanged();
 
         #endregion
+
     
     }
     
@@ -7847,6 +7923,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -8450,6 +8527,7 @@ namespace RMS.Models
         partial void OnLastActivityDateChanged();
 
         #endregion
+
     
     }
     
@@ -8477,6 +8555,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -8558,6 +8637,7 @@ namespace RMS.Models
         partial void OnDataSizeChanged();
 
         #endregion
+
     
     }
     
@@ -8589,6 +8669,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -8724,6 +8805,7 @@ namespace RMS.Models
         partial void OnDescriptionChanged();
 
         #endregion
+
     
     }
     
@@ -8759,6 +8841,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -8948,6 +9031,7 @@ namespace RMS.Models
         partial void OnLastActivityDateChanged();
 
         #endregion
+
     
     }
     
@@ -8975,6 +9059,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -9032,6 +9117,7 @@ namespace RMS.Models
         partial void OnRoleIdChanged();
 
         #endregion
+
     
     }
     
@@ -9063,6 +9149,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -9174,6 +9261,7 @@ namespace RMS.Models
         partial void OnLoweredPathChanged();
 
         #endregion
+
     
     }
     
@@ -9201,6 +9289,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -9282,6 +9371,7 @@ namespace RMS.Models
         partial void OnLastUpdatedDateChanged();
 
         #endregion
+
     
     }
     
@@ -9307,6 +9397,7 @@ namespace RMS.Models
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -9409,9 +9500,11 @@ namespace RMS.Models
         partial void OnLastUpdatedDateChanged();
 
         #endregion
+
     
     }
 
     #endregion
+
     
 }

@@ -24,11 +24,25 @@
     <script type="text/javascript" src="@Url.Content("~/scripts/jquery.roundabout.min.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/scripts/jquery.colorbox-min.js")"></script>
     <script type="text/javascript">
-        Cufon.now();
+        var now = 0;
+        var int = self.setInterval("changeBG()", 5000);
+        var array = ["/Content/agd/Images/001.jpg", "/Content/agd/Images/002.jpg", "/Content/agd/Images/003.jpg", "/Content/agd/Images/004.jpg", "/Content/agd/Images/005.jpg", "/Content/agd/Images/006.jpg"];
+
+        function changeBG() {
+
+            now = (now + 1) % array.length;
+            $('#background').fadeOut().queue(function () {
+                $('#background').css('background-image', 'url("' + array[now] + '")');
+                $('#background').fadeIn()
+                $(this).dequeue();
+            });
+        }
     </script>
+
 </head>
 <body>
-    <div id="container">
+
+    <div id="container" style="z-index: 999">
         <div id="header">
             @Html.Partial("_header")
         </div>
@@ -36,6 +50,8 @@
         <div id="footer" class="png">
             @Html.Partial("_footer")
         </div>
+    </div>
+    <div id="background" style="width: 100%; height: 1538px; position: absolute; z-index: -1; top:0px; background-position: center top">
     </div>
 </body>
 </html>
