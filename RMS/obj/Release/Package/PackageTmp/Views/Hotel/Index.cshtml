@@ -1,0 +1,81 @@
+﻿@model IEnumerable<RMS.Models.Hotel>
+@{
+    ViewBag.Title = "Listado de Hoteles";
+}
+<ul id="crumbs">
+    <li><a href="@Url.Action("Index")">Hoteles</a></li>
+    <li>Listado de Hoteles</li>
+</ul>
+<table border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin: 30px 0px;">
+    <tr>
+        <td valign="middle">
+            <h1 style="margin: 0px; padding: 0px">
+                Listado de Hoteles</h1>
+        </td>
+        <td>
+            <a href="@Url.Action("Create")" class="button" style="float: right;">
+                <img src="../../Content/img/add.png" />
+                &nbsp;&nbsp;Crear Nuevo</a>
+        </td>
+    </tr>
+</table>
+<table class="table">
+    <tr>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Ubicación
+        </th>
+        <th>
+            Activo?
+        </th>
+        <th>
+            Puede Vender?
+        </th>
+        <th>
+            Habitaciones
+        </th>
+        <th>
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td style="text-align: left">
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.State.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Active)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CanSell)
+            </td>
+            <td>
+                @if (item.Room.Count < 1)
+                { 
+                    <span class="red">SIN ASIGNAR</span>
+                }
+                else
+                { 
+                    @item.Room.Count <span>cargadas.</span><br /> 
+                }
+            </td>
+            <td class="actions">
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Habitaciones", "Index", "Room", new { Id = item.Id }, null)
+                |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+</table>
+<br />
+<br />
+<a href="@Url.Action("Create")" class="button" style="float: right;">
+    <img src="../../Content/img/add.png" />
+    &nbsp;&nbsp;Crear Nuevo</a>

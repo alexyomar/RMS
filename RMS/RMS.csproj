@@ -129,6 +129,7 @@
     <Content Include="Content\agd\images\ajax-loader.gif" />
     <Content Include="Content\agd\images\back.jpg" />
     <Content Include="Content\agd\images\back.png" />
+    <Content Include="Content\agd\images\backnew.jpg" />
     <Content Include="Content\agd\images\backr.png" />
     <Content Include="Content\agd\images\banner_bg.png" />
     <Content Include="Content\agd\images\bgfull.jpg" />
@@ -151,6 +152,7 @@
     <Content Include="Content\agd\images\nuvo.png" />
     <Content Include="Content\agd\images\packages.png" />
     <Content Include="Content\agd\images\portfolio_bg.png" />
+    <Content Include="Content\agd\images\presentacion.png" />
     <Content Include="Content\agd\images\project.png" />
     <Content Include="Content\agd\images\project1_thumb1.jpg" />
     <Content Include="Content\agd\images\project1_thumb2.jpg" />
@@ -520,6 +522,7 @@
     <Content Include="Views\Shared\_LogOnPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
+    <Content Include="Downloads\Brochure.ppt" />
     <None Include="Files\paquetes2012.pdf" />
     <Content Include="Views\Budget\PartialImportar.cshtml" />
     <Content Include="Views\Budget\Dashboard.cshtml" />
@@ -532,6 +535,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\ContactOk.cshtml" />
     <Content Include="Views\Shared\_sidebar.cshtml" />
+    <None Include="Properties\PublishProfiles\Profile1.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

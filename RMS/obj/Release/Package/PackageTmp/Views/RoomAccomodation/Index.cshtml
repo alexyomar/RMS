@@ -1,0 +1,68 @@
+﻿@model IEnumerable<RMS.Models.RoomOccupationBed>
+@{
+    RMS.Models.Room __room = ViewBag.Room;
+    ViewBag.Title = "Listado de Camas";
+}
+<ul id="crumbs">
+    <li><a href="@Url.Action("Index", "Hotel")">Hoteles</a></li>
+    <li><a href="@Url.Action("Edit", "Hotel", new { Id = __room.IdHotel })">@__room.Hotel.Name</a></li>
+    <li><a href="@Url.Action("Index", "Room", new { Id = __room.IdHotel })">Habitaciones</a></li>
+    <li><a href="@Url.Action("Edit", "Room", new { Id = __room.Id }))">@__room.Name</a></li>
+    <li><a href="@Url.Action("Index", "RoomAccomodation", new { Id = __room.Id }))">Camas</a></li>
+    <li>Listado de Camas Asigandas</li>
+</ul>
+<table border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin: 30px 0px;">
+    <tr>
+        <td valign="middle">
+            <h1 style="margin: 0px; padding: 0px">
+                Camas Asiganadas para la habitación @__room.Name
+                <br />
+                en @__room.Hotel.Name</h1>
+        </td>
+        <td>
+            <a href="@Url.Action("Create", new { id = __room.Id })" class="button" style="float: right;">
+                <img src="../../Content/img/add.png" />
+                &nbsp;&nbsp;Crear Nueva</a>&nbsp;&nbsp; &nbsp;&nbsp; <a href="@Url.Action("Index", "Room", new { Id = __room.IdHotel })" class="button" style="float: right;">
+                    <img src="@Url.Content("~/Content/img/back.png")" />
+                    &nbsp;&nbsp;Volver</a>
+        </td>
+    </tr>
+</table>
+
+<table class="table">
+    <tr>
+        <th>
+            Cantidad
+        </th>
+        <th>
+            Tipo
+        </th>
+        <th>
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoomBed.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Eliminar", "Delete", new { IdRoom = item.IdRoom, IdRoomBed = item.IdRoomBed })
+            </td>
+        </tr>
+    }
+</table>
+<table border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin: 30px 0px;">
+    <tr>
+        <td>
+            <a href="@Url.Action("Create", new { id = __room.Id })" class="button" style="float: right;">
+                <img src="../../Content/img/add.png" />
+                &nbsp;&nbsp;Crear Nueva</a>&nbsp;&nbsp; &nbsp;&nbsp; <a href="@Url.Action("Index", "Room", new { Id = __room.IdHotel })" class="button" style="float: right;">
+                    <img src="@Url.Content("~/Content/img/back.png")" />
+                    &nbsp;&nbsp;Volver</a>
+        </td>
+    </tr>
+</table>

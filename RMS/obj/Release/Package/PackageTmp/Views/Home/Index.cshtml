@@ -1,0 +1,77 @@
+﻿@{
+    Layout = "~/Views/Shared/_website.cshtml";
+    ViewBag.Title = "Home Page";
+}
+@*<img src="@Url.Content("~/Content/Promociones/homepromo.jpg")" style="border-bottom: 1px solid #ccc;"  usemap="#Map"/>
+<map name="Map" id="Map">
+    <area shape="rect" coords="515,148,644,352" href="@Url.Content("~/Content/Promociones/VirgenValle2012.jpg")" />
+    <area shape="rect" coords="673,147,806,352" href="@Url.Content("~/Content/Promociones/octubre2012.jpg")" />
+    <area shape="rect" coords="830,147,967,351" href="@Url.Content("~/Content/Promociones/Navidad20212.jpg")" />
+    <area shape="rect" coords="712,490,954,509" href="mailto:grace.inklizian@regionalmarketing.com.ve" />
+    <area shape="rect" coords="714,557,952,576" href="mailto:miguelalvarez@regionalmarketing.com.ve" />
+</map>*@ @*<script type="text/javascript">
+               $("area").colorbox({ right: "50%" });
+</script>
+*@
+<div id="sbi_container" class="sbi_container">
+    <div class="sbi_panel" data-bg="@Url.Content("~/Content/sliders/nacional.jpg")">
+        <a href="#" class="sbi_label">Nacional</a>
+        <div class="sbi_content">
+            <ul>
+                @*<li><a class="popup"href="@Url.Content("~/Content/Promociones/octubre2012.jpg")">Margarita:
+                    Puente 12 de Octubre</a></li>*@
+                <li><a class="popup"href="@Url.Content("~/Content/Promociones/Volante-Promoción-Temporada-Baja--Web.jpg")">
+                    Margarita: Temp. Baja Hotel Puerta del Sol</a></li>
+                <li><a class="popup"href="@Url.Content("~/Content/Promociones/Volante-Promoción-Temporada-Baja--Web-2.jpg")">
+                    Margarita: Temp. Baja Hotel Flamenco</a></li>
+                @* <li><a class="popup"href="@Url.Content("~/Content/Promociones/Navidad20212.jpg")">Margarita:
+                    Navidad y Año Nuevo 2012 Hotel Portofino</a></li>*@
+                <li><a class="popup"href="@Url.Content("~/Content/Promociones/Volante-Promoción-Navidad-2012--Web.jpg")">
+                    Margarita: Navidad y Año Nuevo 2012 Hotel La Samanna</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="sbi_panel" data-bg="@Url.Content("~/Content/sliders/Internacional.jpg")">
+        <a href="#" class="sbi_label">Internacional</a>
+        <div class="sbi_content">
+            <ul>
+                <li><a class="popup" href="@Url.Content("~/Content/Promociones/Slide5.jpg")">Aruba -
+                    Puente 12 de Octubre</a></li>
+                <li><a class="popup"href="@Url.Content("~/Content/Promociones/slide1.jpg")">Aruba -
+                    Navidad y Año Nuevo 2012</a></li>
+                @*      <li><a class="popup"href="@Url.Content("~/Content/Promociones/bariloche.png")">Buenos
+                    Aires / Bariloche - Navidad y Año Nuevo 2012 </a></li>*@
+                <li><a class="popup"href="@Url.Content("~/Content/Promociones/Slide4.jpg")">Buenos Aires
+                    Combinado - Navidad y Año Nuevo 2012 </a></li>
+                <li><a class="popup"href="@Url.Content("~/Content/Promociones/Slide3.png")">Cancún -
+                    Navidad y Año Nuevo 2012 </a></li>
+                <li><a class="popup"href="@Url.Content("~/Content/Promociones/Slide2.jpg")">Punta Cana
+                    - Navidad y Año Nuevo 2012 </a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="sbi_panel" data-bg="@Url.Content("~/Content/sliders/about.jpg")">
+        <a href="#" class="sbi_label">Cotizar</a>
+        <div class="sbi_content">
+        </div>
+    </div>
+    <div class="sbi_panel" data-bg="@Url.Content("~/Content/sliders/about.jpg")">
+        <a href="#" class="sbi_label">Contacto</a>
+        <div class="sbi_content">
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $('#sbi_container').bgImageMenu({
+            defaultBg: '@Url.Content("~/Content/sliders/home.jpg")',
+            type: {
+                mode: 'seqVerticalSlideAlt',
+                speed: 250,
+                easing: 'jswing',
+                seqfactor: 100
+            }
+        });
+        $(".popup").colorbox({ right: "50%" });
+    });
+</script>

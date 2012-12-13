@@ -1,0 +1,99 @@
+﻿@model IEnumerable<RMS.Models.RoomOcupation>
+@{
+    ViewBag.Title = "Tarifas";
+    RMS.Models.Room __room = ViewBag.Room;
+}
+<ul id="crumbs">
+    <li><a href="@Url.Action("Index", "Hotel")">Hoteles</a></li>
+    <li><a href="@Url.Action("Index", "Hotel")">@__room.Hotel.Name</a></li>
+    <li><a href="@Url.Action("Index", "Room", new { Id = __room.Hotel.Id })">Habitaciones</a></li>
+    <li><a href="@Url.Action("Edit", "Room", new { Id = __room.Id })">@__room.Name</a></li>
+    <li><a href="@Url.Action("Index", "RoomRate", new { Id = __room.Id })">Tarifas</a></li>
+    <li>Listado de Tarifas</li>
+</ul>
+<table border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin: 30px 0px;">
+    <tr>
+        <td valign="middle">
+            <h1 style="margin: 0px; padding: 0px">
+                Tarifas de la Habitación @__room.Name<br />
+                en @__room.Hotel.Name</h1>
+        </td>
+        <td>
+            <a href="@Url.Action("Create", new { Id = __room.Id })" class="button" style="float: right;">
+                <img src="@Url.Content("~/Content/img/add.png")" />
+                &nbsp;&nbsp;Crear Nueva</a>&nbsp;&nbsp; &nbsp;&nbsp; <a href="@Url.Action("Batch", new { Id = __room.Id })" class="button popup" style="float: right;">
+                    <img src="@Url.Content("~/Content/img/money.png")" />
+                    &nbsp;&nbsp;Variables</a>&nbsp;&nbsp; &nbsp;&nbsp; <a href="@Url.Action("Index", "Room", new { Id = __room.Hotel.Id })" class="button" style="float: right;">
+                        <img src="@Url.Content("~/Content/img/back.png")" />
+                        &nbsp;&nbsp;Volver</a>
+        </td>
+    </tr>
+</table>
+<table id="list" cellpadding="0" cellspacing="0">
+</table>
+<div id="pager">
+</div>
+<script type="text/javascript">
+    $(".popup").colorbox({ iframe: true, width: 400, height: 450, onClosed: function () { location.reload(true); } });
+    jQuery(document).ready(function () {
+        jQuery("#list").jqGrid({
+            url: '@Url.Action("GetDataFare", new { Id = __room.Id })',
+            datatype: 'json',
+            mtype: 'GET',
+            colNames: ['Nombre', 'Cap.', 'Tarifa Rack', 'Tarifa Neta', 'Inicia', 'Termina', '% Desc 2N', '% Desc 4N', '% Desc 7N', '% Agente', '% Admon', 'Activo', 'Date'],
+            colModel: [
+            { name: 'Name', index: 'Name', width: 40, align: 'left' },
+            { name: 'Capacity', index: 'Capacity', width: 15, align: 'center' },
+            { name: 'PriceRack', index: 'PriceRack', width: 40, align: 'center' },
+            { name: 'Price', index: 'Price', width: 40, align: 'center' },
+            { name: 'DateStart', index: 'DateStart', width: 40, align: 'center' },
+            { name: 'DateEnd', index: 'DateEnd', width: 40, align: 'center' },
+            { name: 'Discount1', index: 'Discount1', width: 40, align: 'center' },
+            { name: 'Discount2', index: 'Discount2', width: 40, align: 'center' },
+            { name: 'Discount3', index: 'Discount3', width: 40, align: 'center' },
+            { name: 'PercentAgent', index: 'PercentAgent', width: 40, align: 'center' },
+            { name: 'PercentAdmin', PercentAdmin: 'Room', width: 40, align: 'center' },
+            { name: 'Active', index: 'Active', width: 40, align: 'center', formatter: 'checkbox' },
+            { name: 'Date', index: 'Date', width: 40, align: 'center'}],
+            pager: jQuery('#pager'),
+            sortname: 'Capacity',
+            width: '900',
+            height: 'auto',
+            rowNum: 10,
+            rowList: [5, 10, 20, 50],
+            sortorder: "desc",
+            viewrecords: true,
+            imgpath: '/content/themes/regional/images',
+            grouping: true,
+            groupingView: {
+                groupField: ['Date'],
+                groupDataSorted: true,
+                groupColumnShow: false,
+                groupOrder: 'asc',
+                groupText: ['<b style="font-size: 10pt">{0} - {1} Item(s)</b>']
+            },
+            caption: 'Tarifas',
+            onSelectRow: function (id) {
+                window.top.location = '@Url.Action("Edit")/' + id;
+            }
+
+        });
+        //        jQuery("#list").jqGrid('navGrid','#pager',{edit:false,add:false,del:false});
+    });
+</script>
+<table border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin: 30px 0px;">
+    <tr>
+        <td valign="middle">
+        </td>
+        <td>
+            <a href="@Url.Action("Create", new { Id = __room.Id })" class="button" style="float: right;">
+                <img src="@Url.Content("~/Content/img/add.png")" />
+                &nbsp;&nbsp;Crear Nueva</a>&nbsp;&nbsp; &nbsp;&nbsp; <a href="@Url.Action("Batch", new { Id = __room.Id })" class="popup button" style="float: right;">
+                    <img src="@Url.Content("~/Content/img/money.png")" />
+                    &nbsp;&nbsp;Variables</a>&nbsp;&nbsp; &nbsp;&nbsp; <a href="@Url.Action("Index", "Room", new { Id = __room.Hotel.Id })" class="button " style="float: right;">
+                        <img src="@Url.Content("~/Content/img/back.png")" />
+                        &nbsp;&nbsp;Volver</a>
+        </td>
+    </tr>
+</table>
+

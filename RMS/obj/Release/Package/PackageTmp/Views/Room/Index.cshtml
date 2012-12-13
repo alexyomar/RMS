@@ -1,0 +1,94 @@
+﻿@model IEnumerable<RMS.Models.Room>
+@{
+    ViewBag.Title = "Habitaciones";
+    RMS.Models.Hotel __hotel = ViewBag.Hotel;
+}
+<ul id="crumbs">
+    <li><a href="@Url.Action("Index", "Hotel")">Hoteles</a></li>
+    <li><a href="@Url.Action("Index", "Hotel")">@__hotel.Name</a></li>
+    <li><a href="@Url.Action("Index", new { Id = __hotel.Id })">Habitaciones</a></li>
+    <li>Listado de Habitaciones</li>
+</ul>
+<table border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin: 30px 0px;">
+    <tr>
+        <td valign="middle">
+            <h1 style="margin: 0px; padding: 0px">
+                Listado de Habitaciones para @__hotel.Name</h1>
+        </td>
+        <td>
+            <a href="@Url.Action("Create", new { id = __hotel.Id })" class="button" style="float: right;">
+                <img src="../../Content/img/add.png" />
+                &nbsp;&nbsp;Crear Nueva</a>&nbsp;&nbsp; &nbsp;&nbsp; <a href="@Url.Action("Index", "Hotel", new { Id = __hotel.Id })" class="button" style="float: right;">
+                    <img src="@Url.Content("~/Content/img/back.png")" />
+                    &nbsp;&nbsp;Volver</a>
+        </td>
+    </tr>
+</table>
+<table class="table">
+    <tr>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Descripción
+        </th>
+        <th>
+            Camas
+        </th>
+        <th>
+            Tarifas
+        </th>
+        <th>
+            Activo
+        </th>
+        <th>
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @if (item.RoomOccupationBed.Count < 1)
+                { 
+                    <span class="red">SIN ASIGNAR</span>
+                }
+                @foreach (var bed in item.RoomOccupationBed)
+                {
+                    @bed.Quantity <span>&nbsp;</span>@bed.RoomBed.Name<br /> 
+                }
+            </td>
+            <td>
+                @if (item.RoomOcupation.Count < 1)
+                { 
+                    <span class="red">SIN ASIGNAR</span>
+                }
+                else
+                {
+                    @item.RoomOcupation.Count <span>cargadas</span><br /> 
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Active)
+            </td>
+            <td class="actions">
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }) |
+                @Html.ActionLink("Tarifas", "Index", "RoomRate", new { id = item.Id }, null) |
+                @Html.ActionLink("Camas", "Index", "RoomAccomodation", new { id = item.Id }, null)
+            </td>
+        </tr>
+    }
+</table>
+<br />
+<br />
+<a href="@Url.Action("Create", new { id = __hotel.Id })" class="button" style="float: right;">
+    <img src="@Url.Content("~/Content/img/add.png")" />
+    &nbsp;&nbsp;Crear Nueva</a> &nbsp;&nbsp; &nbsp;&nbsp; <a href="@Url.Action("Index", "Hotel", new { Id = __hotel.Id })" class="button" style="float: right;">
+        <img src="@Url.Content("~/Content/img/back.png")" />
+        &nbsp;&nbsp;Volver</a> 

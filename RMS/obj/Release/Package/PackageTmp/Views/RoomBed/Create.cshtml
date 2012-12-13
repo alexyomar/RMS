@@ -1,0 +1,50 @@
+﻿@model RMS.Models.RoomBed
+@{
+    ViewBag.Title = "Create";
+}
+<ul id="crumbs">
+    <li><a href="@Url.Action("Index", "Hotel")">Hoteles</a></li>
+    <li><a href="@Url.Action("Index")">Tipos de Camas</a></li>
+    <li>Crear Tipo de Camas</li>
+</ul>
+<table border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin: 30px 0px;">
+    <tr>
+        <td valign="middle">
+            <h1 style="margin: 0px; padding: 0px">
+                Crear Tipo de Cama</h1>
+        </td>
+        <td>
+            <a href="@Url.Action("Index")" class="button" style="float: right;">
+                <img src="@Url.Content("~/Content/img/Back.png")" />
+                &nbsp;&nbsp;Volver</a>
+        </td>
+    </tr>
+</table>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Tipo de Cama</legend>
+        <div class="editor-label">
+            Nombre
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+        <p>
+            <input type="submit" value="Crear" />
+        </p>
+    </fieldset>
+}
+<table border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin: 30px 0px;">
+    <tr>
+        <td>
+            <a href="@Url.Action("Index")" class="button" style="float: right;">
+                <img src="@Url.Content("~/Content/img/Back.png")" />
+                &nbsp;&nbsp;Volver</a>
+        </td>
+    </tr>
+</table>

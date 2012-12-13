@@ -1,0 +1,122 @@
+﻿@{
+    ViewBag.Title = "Regional Marketing Services";
+    Layout = "~/Views/Shared/_LayoutAGD.cshtml";
+}
+<div class="slider-wrap">
+    <div id="slider1" class="csw">
+        <div class="panelContainer">
+            <div class="panel">
+                <div class="wrapper">
+                    <h2>
+                        Somos sus aliados en turismo</h2>
+                    <img class="left png" src="@Url.Content("~/Content/agd/images/hand.png")" alt="" width="288" height="165" style="border: 2px solid #CCC;" />
+                    <p>
+                        Te llevamos a donde quieras. Disponemos de atractivos destinos en temporadas altas
+                        y bajas, adaptados a sus gustos y exigencias; contando siempre con la amabilidad,
+                        disposición y vocación que nos caracteriza.
+                        <br />
+                        <br />
+                        Sólo contáctanos a través de promocionesrm@regionalmarketing.com.ve</p>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="wrapper">
+                    <h2>
+                        Los mejores paquetes te esperan</h2>
+                    <img class="left png" src="@Url.Content("~/Content/agd/images/packages.png")" alt="" width="288" height="158" />
+                    <p>
+                        Hemos preparado para tu comodidad, los más selectos destinos para que esas vacaciones
+                        sean lo más placenteras y no tengas que preocuparte por nada más que disfrutar.</p>
+                    <br />
+                    <p class="slider_links">
+                        <a href="@Url.Action("Trips", "Home")">Ver más </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<center>
+    <h3 style="margin: 40px 0px 10px 0px">
+        Paquetes Nacionales</h3>
+</center>
+<div style="padding: 0px 60px 0px 60px">
+    <div id="coverflow" style="position: relative; width: 100%; height: 316px; border: 2px solid #ababab padding:5px;">
+        <img src="@Url.Content("~/Content/Paquetes/Nacionales/margarita5.JPG")"  width="200" height="300"  alt="" class="popup" />
+        <img src="@Url.Content("~/Content/Paquetes/Nacionales/margaritanav.JPG")"  width="200" height="300"  alt="" class="popup" />
+        <img src="@Url.Content("~/Content/Paquetes/Nacionales/margaritat.JPG")"  width="200" height="300"  alt="" class="popup" />
+        <img src="@Url.Content("~/Content/Paquetes/Nacionales/margarita5.JPG")"  width="200" height="300"  alt="" class="popup" />
+        <img src="@Url.Content("~/Content/Paquetes/Nacionales/margaritanav.JPG")"  width="200" height="300"  alt="" class="popup" />
+        <img src="@Url.Content("~/Content/Paquetes/Nacionales/margaritat.JPG")"  width="200" height="300"  alt="" class="popup" />
+        <img src="@Url.Content("~/Content/Paquetes/Nacionales/margarita5.JPG")"  width="200" height="300"  alt="" class="popup" />
+        <img src="@Url.Content("~/Content/Paquetes/Nacionales/margaritanav.JPG")"  width="200" height="300"  alt="" class="popup" />
+        <img src="@Url.Content("~/Content/Paquetes/Nacionales/margaritat.JPG")"  width="200" height="300"  alt="" class="popup" />
+    </div>
+    <center>
+        <h3 style="margin: 30px 0px 10px 0px">
+            Paquetes Internacionales</h3>
+    </center>
+    <div id="coverflow2" style="position: relative; width: 100%; height: 316px; border: 2px solid #ababab padding:5px;">
+        <img src="@Url.Content("~/Content/Paquetes/Internacionales/cancun.JPG")"  width="200" height="300"  alt="" class="popup" />
+        <img src="@Url.Content("~/Content/Paquetes/Internacionales/cancun.PNG")"  width="200" height="300"  alt="" class="popup" />
+        <img src="@Url.Content("~/Content/Paquetes/Internacionales/cancun.JPG")"  width="200" height="300"  alt="" class="popup" />
+        <img src="@Url.Content("~/Content/Paquetes/Internacionales/cancun.PNG")"  width="200" height="300"  alt="" class="popup" />
+        <img src="@Url.Content("~/Content/Paquetes/Internacionales/cancun.JPG")"  width="200" height="300"  alt="" class="popup" />
+        <img src="@Url.Content("~/Content/Paquetes/Internacionales/cancun.PNG")"  width="200" height="300"  alt="" class="popup" />
+        <img src="@Url.Content("~/Content/Paquetes/Internacionales/cancun.JPG")"  width="200" height="300"  alt="" class="popup" />
+        <img src="@Url.Content("~/Content/Paquetes/Internacionales/cancun.PNG")"  width="200" height="300"  alt="" class="popup" />
+    </div>
+</div>
+<div id="content">
+    <div class="services left">
+        <h3>
+            Te ofrecemos</h3>
+        <ul class="service_list">
+            <li>Destinos Nacionales </li>
+            <li>Destinos Internacionales </li>
+            <li>Organización de Eventos Corporativos </li>
+            <li>Grupos escolares vacacacionales </li>
+            <li>Viajes de Incentivo </li>
+            <li>Grupos Feriados Bamcarios </li>
+            <li>Grupos Edad Dorada </li>
+        </ul>
+        <a class="more" href="@Url.Action("About", "Home")">ver más... </a>
+    </div>
+    <div class="blog left">
+        <h3>
+            Dónde estamos</h3>
+        <ul>
+            <li>Centro Comercial Ciudad Tamanaco, 1era. Etapa, Piso 3, Oficina 303, Chuao, Caracas,
+                Venezuela. </li>
+            <li><strong>Teléfonos: </strong>+58 212 9593217 / 9598283 / 3253617 / 3253618 / 3253619</li>
+            <li><strong>Email</strong><br />
+                promocionesrm@regionalmarketing.com.ve</li>
+        </ul>
+    </div>
+    <div class="clients left">
+        <h3>
+            Aliados</h3>
+        <ul>
+            <li><a href="#">
+                <img src="@Url.Content("~/Content/agd/images/regional.jpg")" width="192" height="58" alt="" /></a></li>
+            <li><a target="_blank" href="http://www.restaurantnuvo.com/">
+                <img src="@Url.Content("~/Content/agd/images/nuvo.png")" width="192" height="58" alt="" /></a></li>
+        </ul>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#coverflow').smoothDivScroll({
+            autoScrollingMode: "onStart",
+            autoScrollingDirection: "endlessLoopRight",
+            autoScrollingStep: 2,
+            autoScrollingInterval: 25
+        });
+        $('#coverflow2').smoothDivScroll({
+            autoScrollingMode: "onStart",
+            autoScrollingDirection: "endlessLoopLeft",
+            autoScrollingStep: 3,
+            autoScrollingInterval: 25
+        })
+    });
+</script>

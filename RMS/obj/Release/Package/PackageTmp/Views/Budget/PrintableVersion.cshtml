@@ -1,0 +1,268 @@
+﻿@model RMS.Models.Reservation
+@{
+    Layout = null;
+
+    DateTime d1 = Model.Arrival;
+    DateTime d2 = Model.Departure;
+    TimeSpan span = d2 - d1;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+</head>
+<body style="font-family: Arial, Helvetica, sans-serif; font-size: 10pt">
+    <img src="http://www.regionalmarketing.com.ve/Content/images/header.png" width="500"
+        alt="Regional Marketing" />
+    <br />
+    <br />
+    <br />
+    <h2>
+        <b>Reservación</b> N° @Model.Id (@Model.ReservationStatus.Name)
+    </h2>
+    <br />
+    <br />
+    <table border="0" cellpadding="0" cellspacing="0" style="border: solid 1px #e8eef4;
+        border-collapse: collapse; width: 100%;">
+        <tr>
+            <th style="padding: 6px 5px; text-align: center; background-color: #e8eef4; border: solid 1px #e8eef4;
+                font-weight: 700">
+                Fecha de Creación
+                <br />
+                Creation Date
+            </th>
+            <th style="padding: 6px 5px; text-align: center; background-color: #e8eef4; border: solid 1px #e8eef4;
+                font-weight: 700">
+                Llegada
+                <br />
+                Arrival
+            </th>
+            <th style="padding: 6px 5px; text-align: center; background-color: #e8eef4; border: solid 1px #e8eef4;
+                font-weight: 700">
+                Salida
+                <br />
+                Departure
+            </th>
+            <th style="padding: 6px 5px; text-align: center; background-color: #e8eef4; border: solid 1px #e8eef4;
+                font-weight: 700">
+                Noches
+                <br />
+                Nights
+            </th>
+            <th style="padding: 6px 5px; text-align: center; background-color: #e8eef4; border: solid 1px #e8eef4;
+                font-weight: 700">
+                Adultos
+                <br />
+                Adults
+            </th>
+            <th style="padding: 6px 5px; text-align: center; background-color: #e8eef4; border: solid 1px #e8eef4;
+                font-weight: 700">
+                Niños
+                <br />
+                Childrens
+            </th>
+        </tr>
+        <tr>
+            <td style="padding: 5px; border: solid 1px #e8eef4; text-align: center;">@Model.ReservationDate.ToShortDateString()
+            </td>
+            <td style="padding: 5px; border: solid 1px #e8eef4; text-align: center;">@Model.Arrival.ToShortDateString()
+            </td>
+            <td style="padding: 5px; border: solid 1px #e8eef4; text-align: center;">@Model.Departure.ToShortDateString()
+            </td>
+            <td style="padding: 5px; border: solid 1px #e8eef4; text-align: center;">@(span.TotalDays)
+            </td>
+            <td style="padding: 5px; border: solid 1px #e8eef4; text-align: center;">@Model.Adults
+            </td>
+            <td style="padding: 5px; border: solid 1px #e8eef4; text-align: center;">@Model.Childrens
+            </td>
+        </tr>
+    </table>
+    <br />
+    <br />
+    <h3>
+        <b>Datos del Cliente / Customer Information</b></h3>
+    <table border="0" cellpadding="0" cellspacing="0" style="border: solid 1px #e8eef4;
+        border-collapse: collapse; width: 100%;">
+        <tr>
+            <th style="padding: 6px 5px; text-align: left; background-color: #e8eef4; border: solid 1px #e8eef4;
+                font-weight: 700">
+                Nombre
+                <br />
+                Name:
+            </th>
+            <th style="padding: 6px 5px; text-align: left; background-color: #e8eef4; border: solid 1px #e8eef4;
+                font-weight: 700">
+                Cédula
+                <br />
+                Passport:
+            </th>
+            <th style="padding: 6px 5px; text-align: left; background-color: #e8eef4; border: solid 1px #e8eef4;
+                font-weight: 700">
+                Télefono
+                <br />
+                Phone:
+            </th>
+            <th style="padding: 6px 5px; text-align: left; background-color: #e8eef4; border: solid 1px #e8eef4;
+                font-weight: 700">
+                E-mail:
+            </th>
+        </tr>
+        <tr>
+            <td style="padding: 5px; border: solid 1px #e8eef4;">@Model.Customer.Name @Model.Customer.LastName
+            </td>
+            <td style="padding: 5px; border: solid 1px #e8eef4;">@Model.Customer.PersonalId
+            </td>
+            <td style="padding: 5px; border: solid 1px #e8eef4;">@Model.Customer.Phone
+            </td>
+            <td style="padding: 5px; border: solid 1px #e8eef4;">@Model.Customer.Email
+            </td>
+        </tr>
+    </table>
+    <br />
+    <br />
+    <h3>
+        <b>Estadía / Stay</b></h3>
+    <table border="0" cellpadding="0" cellspacing="0" style="border: solid 1px #e8eef4;
+        border-collapse: collapse; width: 100%;">
+        <tr>
+            <th style="padding: 6px 5px; text-align: left; background-color: #e8eef4; border: solid 1px #e8eef4;
+                font-weight: 700">
+                Hotel
+            </th>
+            <th style="padding: 6px 5px; text-align: left; background-color: #e8eef4; border: solid 1px #e8eef4;
+                font-weight: 700">
+                Habitación
+                <br />
+                Room
+            </th>
+            <th style="padding: 6px 5px; text-align: left; background-color: #e8eef4; border: solid 1px #e8eef4;
+                font-weight: 700">
+                Capacidad
+                <br />
+                Capacity
+            </th>
+            <th style="padding: 6px 5px; text-align: left; background-color: #e8eef4; border: solid 1px #e8eef4;
+                font-weight: 700">
+                Ocupación
+                <br />
+                Occupation
+            </th>
+            <th style="padding: 6px 5px; text-align: left; background-color: #e8eef4; border: solid 1px #e8eef4;
+                font-weight: 700">
+                Camas
+                <br />
+                Beds
+            </th>
+            <th style="padding: 6px 5px; text-align: left; background-color: #e8eef4; border: solid 1px #e8eef4;
+                font-weight: 700">
+                Precio
+                <br />
+                Price
+            </th>
+        </tr>
+        @foreach (var item in Model.ReservationRoom.GroupBy(x => new { x.RoomOcupation, x.Childrens, x.Adults }).Select(x => new { x.First().RoomOcupation, x.First().Quantity, Count = x.Count(), x.First().Adults, x.First().Childrens }))
+        {
+            decimal __comisionh = new decimal();
+            decimal __factura = new decimal();
+            decimal __margenrm = new decimal();
+            decimal __gadmon = new decimal();
+            decimal __facturab = new decimal();
+            decimal __agente = new decimal();
+            decimal __venta = new decimal();
+            decimal __margen = new decimal();
+            decimal __pmargen = new decimal();
+            decimal __days = (decimal)span.TotalDays;
+            decimal __people = 1;
+            decimal __occupation = item.Adults.Value > 0 ? item.Adults.Value : item.Childrens.Value;
+
+            __comisionh = ((item.RoomOcupation.PriceRack - item.RoomOcupation.Price) * __days * __occupation) * __people;
+            __comisionh = (__comisionh / ((item.RoomOcupation.PriceRack * __days * __occupation) * __people)) * 100;
+            __factura = ((item.RoomOcupation.PriceRack * __days * __occupation) * __people) - (((item.RoomOcupation.PriceRack * __days * __occupation) * __people) * ((decimal)Model.Discount / 100));
+            __margenrm = ((__factura - ((item.RoomOcupation.Price * __days * __occupation)) * __people) / __factura) * 100;
+            __gadmon = __factura * ((decimal)Model.PercentAdmin / 100);
+            __facturab = __factura + __gadmon;
+            __agente = __factura * ((decimal)Model.PercentAgent / 100);
+            __venta = __facturab - __agente;
+            __margen = __venta - ((item.RoomOcupation.Price * __days) * __people * __occupation);
+            __pmargen = (__margen / ((item.RoomOcupation.Price * __days) * __people * __occupation) * 100);
+            
+            <tr>
+                <td style="padding: 5px; border: solid 1px #e8eef4;">
+                    <b>@item.RoomOcupation.Room.Hotel.Name</b><br />
+                    <p style="font-size: small">
+                        Entrada:&nbsp;@item.RoomOcupation.Room.Hotel.ArrivalHour<br />
+                        Salida:&nbsp;@item.RoomOcupation.Room.Hotel.DepartureHour</p>
+                </td>
+                <td style="padding: 5px; border: solid 1px #e8eef4;">@item.RoomOcupation.Room.Name (@item.RoomOcupation.Name)
+                </td>
+                <td style="padding: 5px; border: solid 1px #e8eef4;">
+                    @if (item.RoomOcupation.Name.ToLower().Contains("niño"))
+                    {
+                        <span>-</span>
+                    }
+                    else
+                    {
+                        <p>
+                            @item.RoomOcupation.Capacity
+                        </p>
+                    }
+                </td>
+                <td style="padding: 5px; border: solid 1px #e8eef4;">
+                    @if (item.RoomOcupation.Name.ToLower().Contains("niño"))
+                    {
+                        <span>-</span>
+                    }
+                    else
+                    {
+                     
+                        <table border="0" cellpadding="5" cellspacing="2" style="font-size: small; width:100%">
+                            <tr>
+                                <td>
+                                    Adultos
+                                    <br />
+                                    Adults
+                                </td>
+                                <td>
+                                    @item.Adults
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Niños
+                                    <br />
+                                    Childrens
+                                </td>
+                                <td>
+                                    @item.Childrens
+                                </td>
+                            </tr>
+                        </table>
+                    }
+                </td>
+                <td style="padding: 5px; border: solid 1px #e8eef4; font-size: small">
+                    @if (item.RoomOcupation.Name.ToLower().Contains("niño"))
+                    {
+                        <span>-</span>
+                    }
+                    else
+                    {
+                        foreach (RMS.Models.RoomOccupationBed item2 in item.RoomOcupation.Room.RoomOccupationBed)
+                        {
+                        <span>@item2.Quantity @item2.RoomBed.Name</span><br />
+                        }
+                    }
+                </td>
+                <td style="padding: 5px; border: solid 1px #e8eef4;">
+                    Bs. @Math.Round(__facturab, 2)
+                </td>
+            </tr>
+        }
+    </table>
+    <br />
+    <br />
+    <center>
+        <b style="padding: 20px; text-align: center; background-color: #e8eef4; border: solid 1px #e8eef4;
+            font-size: 12pt">Precio Total / Total Price: Bs. @Math.Round(Model.Price, 2)</b>
+    </center>
+</body>
+</html>

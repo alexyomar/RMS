@@ -1,0 +1,53 @@
+﻿<div class="footer_menu left">
+    <h4>
+        Links</h4>
+    <ul>
+        <li><a href="@Url.Action("Start", "Home")">Inicio</a></li>
+        <li><a href="@Url.Action("About", "Home")">Quienes Somos</a></li>
+        <li><a href="@Url.Action("Trips", "Home")">Paquetes</a></li>
+        @*<li><a href="@Url.Action("News", "Home")">Blog</a></li>*@
+        <li><a href="@Url.Action("Contact", "Home")">Contáctanos</a></li>
+    </ul>
+</div>
+<div class="latest_tweets left">
+    <div class="tweet">
+        <h4>
+            Último Tweet</h4>
+        <ul class="tweet_list">
+            <li class="tweet_first tweet_odd"><a href="#" style="color: #000" id="tweetdate">30
+                jul.</a> <span class="tweet_text">Disfruta de nuestras PAQUETES en la Isla de margarita
+                    y visita nuestra pagina web. <a href="https://twitter.com/regionalviajes">Ver más</a></span></li>
+        </ul>
+    </div>
+    <div class="follow clear">
+        <a href="https://twitter.com/regionalviajes">síguenos en twitter</a></div>
+</div>
+<div class="testmonials left">
+    <h4>
+        Facebook</h4>
+    <iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FRegional-Marketing-Services-CA%2F141939109283180&amp;width=280&amp;height=200&amp;colorscheme=light&amp;show_faces=true&amp;border_color&amp;stream=false&amp;header=false&amp;appId=160550150678550"
+        scrolling="no" frameborder="0" style="border: none; overflow: hidden; width: 280px;
+        height: 200px; background-color: White" allowtransparency="true"></iframe>
+</div>
+<div class="copy clear" style="padding-top: 8px;">
+    <p class="left">
+        Copyright &copy; 2013, Regional Marketing Services, C.A., RIF: J-40087957-4 RTN:
+        11720 VT: 2964</p>
+    <p class="right">
+        @*<a href="http://www.free-css.com/">Free CSS Templates</a>*@
+        <div class="clear">
+        </div>
+</div>
+<script>
+    $(document).ready(function () {
+
+        $.getJSON("https://api.twitter.com/1/statuses/user_timeline/regionalviajes.json?callback=?", function (data) {
+            $(".tweet_text").html(data[0].text);
+            $("#tweetdate").html(parseTwitterDate(data[0].created_at));
+        });
+    });
+    function parseTwitterDate(stamp) {
+        var date = new Date(Date.parse(stamp)).toLocaleString().substr(0, 16);
+        return date.substr(0, 11);
+    }
+</script>

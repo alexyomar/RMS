@@ -1,0 +1,113 @@
+#carousel ul { list-style: none; padding: 0; margin: 0 auto; width: 42em; height: 28em; }
+#carousel li { height: 24em; width: 24em; text-align: center; cursor: pointer; }
+#carousel li img { width: 100%; }
+#carousel li.roundabout-in-focus { cursor: default; }
+#carousel li span { display: block; padding-top: 6em; }
+#slider1 .wrapper p { text-align: left; margin-right: 25px; font-size: 1.1em; line-height: 1.4em; color: #fff; }
+#slider1 .wrapper .slider_links { position: absolute; top: 105px; right: 0px; width: 300px; text-align: center; text-transform: capitalize; }
+#slider1 .wrapper .slider_links a { padding: 8px 10px; background: #7eb9c4; color: #fff; font-size: 1.1em; margin-left: 5px; text-decoration: none; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
+#slider1 .wrapper .slider_links a[href="project.html"] { padding-left: 15px; }
+#slider1 .wrapper .slider_links a:hover { background: #ffc75e; -moz-border-radius: 5px; -webkit-border-radius: 5px; color: #414141; }
+#slider1 .wrapper a:focus { outline: none; }
+#slider1 .wrapper img { border: 0; float: left; }
+#slider1 .wrapper h2 { margin-bottom: 5px; padding-bottom: 3px; text-align: left; position: absolute; top: 0px; left: 300px; }
+.stripViewer .panelContainer { text-align: left; margin: 0 15px 0 30px; }
+.slider-wrap { margin: 20px 0 0 0; position: relative; width: 100%; }
+.csw { width: 100%; height: 212px; display: none; }
+.csw .loading { margin: 50px 0; text-align: center; }
+.stripViewer { position: relative; overflow: hidden; margin: auto; width: 804px; height: 212px; clear: both; background: url(../images/slider_bg.gif) no-repeat; }
+.stripViewer .panelContainer { position: relative; left: 0; top: 0; width: 100%; list-style-type: none; }
+.stripViewer .panelContainer .panel { float: left; position: relative; width: 804px; }
+.stripViewer .panelContainer .panel .wrapper { padding: 10px 40px 20px 0px; position: relative; }
+.wrapper p { margin: 50px 0 20px 0; }
+.stripNavL, .stripNavR { position: absolute; top: 84px; text-indent: -9000em; }
+.stripNavL a, .stripNavR a { display: block; height: 44px; width: 44px; }
+.stripNavL { left: 55px; z-index: 1; }
+.stripNavR { right: 55px; z-index: 1; }
+.stripNavL { background: url(../images/left_arrow.png) no-repeat center; }
+.stripNavR { background: url(../images/right_arrow.png) no-repeat center; }
+
+/* You can alter this CSS in order to give Smooth Div Scroll your own look'n'feel */
+
+/* Invisible left hotspot */
+div.scrollingHotSpotLeft
+{
+	/* The hotspots have a minimum width of 100 pixels and if there is room the will grow
+    and occupy 15% of the scrollable area (30% combined). Adjust it to your own taste. */
+	min-width: 75px;
+	width: 10%;
+	height: 100%;
+	/* There is a big background image and it's used to solve some problems I experienced
+    in Internet Explorer 6. */
+	background-image: url(../images/big_transparent.gif);
+	background-repeat: repeat;
+	background-position: center center;
+	position: absolute;
+	z-index: 200;
+	left: 0;
+	/*  The first url is for Firefox and other browsers, the second is for Internet Explorer */
+	cursor: url(../images/cursors/cursor_arrow_left.png), url(../images/cursors/cursor_arrow_left.cur),w-resize;
+}
+
+/* Visible left hotspot */
+div.scrollingHotSpotLeftVisible
+{
+	background-image: url(../images/arrow_left.gif);				
+	background-color: #fff;
+	background-repeat: no-repeat;
+	opacity: 0.35; /* Standard CSS3 opacity setting */
+	-moz-opacity: 0.35; /* Opacity for really old versions of Mozilla Firefox (0.9 or older) */
+	filter: alpha(opacity = 35); /* Opacity for Internet Explorer. */
+	zoom: 1; /* Trigger "hasLayout" in Internet Explorer 6 or older versions */
+}
+
+/* Invisible right hotspot */
+div.scrollingHotSpotRight
+{
+	min-width: 75px;
+	width: 10%;
+	height: 100%;
+	background-image: url(../images/big_transparent.gif);
+	background-repeat: repeat;
+	background-position: center center;
+	position: absolute;
+	z-index: 200;
+	right: 0;
+	cursor: url(../images/cursors/cursor_arrow_right.png), url(../images/cursors/cursor_arrow_right.cur),e-resize;
+}
+
+/* Visible right hotspot */
+div.scrollingHotSpotRightVisible
+{
+	background-image: url(../images/arrow_right.gif);
+	background-color: #fff;
+	background-repeat: no-repeat;
+	opacity: 0.35;
+	filter: alpha(opacity = 35);
+	-moz-opacity: 0.35;
+	zoom: 1;
+}
+
+/* The scroll wrapper is always the same width and height as the containing element (div).
+   Overflow is hidden because you don't want to show all of the scrollable area.
+*/
+div.scrollWrapper
+{
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+}
+
+div.scrollableArea
+{
+	position: relative;
+	width: auto;
+	height: 100%;
+}
+
+.popup
+{
+    border:4px solid #40FF00;
+    margin:4px;
+}

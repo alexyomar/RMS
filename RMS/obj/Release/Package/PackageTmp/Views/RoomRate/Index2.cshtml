@@ -1,0 +1,115 @@
+﻿@model IEnumerable<RMS.Models.RoomOcupation>
+@{
+    ViewBag.Title = "Tarifas";
+    RMS.Models.Room __room = ViewBag.Room;
+}
+<h2>
+    Tarifas para la Habitación: @__room.Name<br />
+    @__room.Hotel.Name
+</h2>
+<table border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td>
+            @Html.ActionLink("Crear Nueva", "Create", new { Id = __room.Id })
+        </td>
+        <td>
+            &nbsp;&nbsp;&nbsp;
+            @Html.ActionLink("Variables", "Batch", new { Id = __room.Id }, new { @class = "popup" })
+        </td>
+    </tr>
+</table>
+<br />
+<br />
+<table class="table">
+    <tr>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Capacidad
+        </th>
+        <th>
+            Tarifa Rack PPN Hotel
+        </th>
+        <th>
+            Tarifa Neta PPN
+        </th>
+        <th>
+            Inicia
+        </th>
+        <th>
+            Termina
+        </th>
+        <th>
+            % Desc. 2N
+        </th>
+        <th>
+            % Desc. 4N
+        </th>
+        <th>
+            % Desc. 7N
+        </th>
+        <th>
+            % Agente
+        </th>
+        <th>
+            % G. Admon
+        </th>
+        <th>
+            Activo?
+        </th>
+        <th>
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Capacity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PriceRack)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.Label(item.DateStart.ToShortDateString())
+            </td>
+            <td>
+                @Html.Label(item.DateEnd.ToShortDateString())
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Discount1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Discount2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Discount3)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PercentAgent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PercentAdmin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Active)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+</table>
+<p>
+    @Html.ActionLink("Volver a Habitaciones", "Index", "Room", new { Id = __room.IdHotel }, null)</p>
+<script type="text/javascript">
+    $(".popup").colorbox({ iframe: true, width: 400, height: 450, onClosed: function () { location.reload(true); } });
+
+</script>

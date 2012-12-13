@@ -1,0 +1,92 @@
+﻿@model List<RMS.Models.Hotel>
+<ul id="crumbs">
+    <li><a href="#">Reportes</a></li>
+    <li>Cálculo de Tarifas</li>
+</ul>
+<table border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin: 30px 0px;">
+    <tr>
+        <td valign="middle">
+            <h1 style="margin: 0px; padding: 0px">
+                Cálculo de Tarifas</h1>
+        </td>
+    </tr>
+</table>
+<p>
+    Seleccione el hotel y el tipo de tarifas que desee visualizar.
+</p>
+<form action="@Url.Action("Index")" method="post">
+@if (ViewBag.Error != null)
+{ 
+    <span class="red">@ViewBag.Error</span>
+    <br />
+    <br />
+}
+<table border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td width="150px">
+            Hotel:
+        </td>
+        <td>
+            <select name="hotel" id="hotel" style="width: 300px">
+                <option value="0" selected="selected"></option>
+                @foreach (var item in Model)
+                {
+                    <option value="@item.Id">@item.Name</option> 
+                }
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Habitación:
+        </td>
+        <td>
+            <select name="room" id="room" style="width: 300px">
+                <option></option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Fechas:
+        </td>
+        <td>
+            <select name="fare" id="fare" style="width: 300px">
+                <option></option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <br />
+            <input type="submit" value="Ver reporte" />
+        </td>
+    </tr>
+</table>
+</form>
+<script type="text/javascript">
+    $(".datepicker").datepicker();
+
+    $('#hotel').change(function () {
+        var url = '@Url.Action("GetRoom", "Report")' + '/' + $("#hotel").val();
+        $.get(url, function (data) {
+            $.each(data, function () {
+                $('#room')
+                    .append(new Option(this.Text, this.Value, false, false));
+            });
+        });
+
+    });
+
+    $('#room').change(function () {
+        var url = '@Url.Action("GetRoomRate", "Report")' + '/' + $("#room").val();
+        $.get(url, function (data) {
+            $('#fare').empty();
+            $.each(data, function () {
+                $('#fare')
+                    .append(new Option(this.Text, this.Value, true, true));
+            });
+        });
+    });
+
+</script>

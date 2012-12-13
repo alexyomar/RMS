@@ -1,0 +1,158 @@
+﻿@model IEnumerable<RMS.Models.Reservation>
+@{
+    ViewBag.Title = "Reservaciones";
+}
+<ul id="crumbs">
+    <li><a href="#">Reservaciones</a></li>
+    <li>Listado de reservaciones</li>
+</ul>
+<table border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin: 30px 0px;">
+    <tr>
+        <td valign="middle">
+            <h1 style="margin: 0px; padding: 0px">
+                Listado de reservaciones</h1>
+        </td>
+        <td>
+            <a href="@Url.Action("Create")" class="button" style="float: right;">
+                <img src="../../Content/img/add.png" />
+                &nbsp;&nbsp;Crear Nueva </a>
+        </td>
+    </tr>
+</table>
+<table id="tabla">
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Cliente
+            </th>
+            <th>
+                Fecha
+            </th>
+            <th>
+                Límite Pago
+            </th>
+            <th width="75">
+                Total Factura
+            </th>
+            <th width="75">
+                Total Rack
+            </th>
+            <th width="75">
+                Margen
+            </th>
+            <th width="75">
+                % Margen
+            </th>
+            <th>
+                Información
+            </th>
+            <th>
+                Observaciones
+            </th>
+            <th>
+            </th>
+        </tr>
+    </thead>
+    <tfoot>
+    </tfoot>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td style="text-align: left">
+                    <span style="font-size: smaller">CI/RIF: @item.Customer.PersonalId</span>
+                    <br />
+                    <b>@Html.DisplayFor(modelItem => item.Customer.Name)&nbsp;@Html.DisplayFor(modelItem => item.Customer.LastName)</b>
+                </td>
+                <td style="font-size: 10pt;">
+                    <b>R:</b>@Html.Label(item.ReservationDate.ToShortDateString())<br />
+                    <b>L:</b>@Html.Label(item.Arrival.ToShortDateString())<br />
+                    <b>S:</b>@Html.Label(item.Departure.ToShortDateString())
+                </td>
+                <td>
+                    @if (item.PayLimit.HasValue)
+                    { 
+                        <b style="font-size: 10pt;">@item.PayLimit.Value.ToShortDateString()</b>  
+                    }
+                    else
+                    { 
+                        <b>-</b>
+                    }
+                </td>
+                <td>
+                    <b>@Html.DisplayFor(modelItem => item.Price)</b>
+                </td>
+                <td>
+                    @Math.Round(item.PriceRack, 2)
+                </td>
+                <td>
+                    @{
+
+                    decimal __facturab = new decimal();
+                    decimal __margen = new decimal();
+                    decimal __pmargen = new decimal();
+
+                    __margen = (item.Price - (item.Price * (item.PercentAdmin.Value / 100)));
+                    __facturab = item.PriceRack - (item.PriceRack * (item.Discount.Value / 100));
+                    __margen = (item.Price - (__facturab * (item.PercentAgent.Value / 100)));
+                    __margen = __margen - item.PriceBase;
+                    __pmargen = (__margen / item.PriceBase) * 100;
+        
+        
+                    }
+                    @Math.Round(__margen, 2)
+                </td>
+                <td>
+                    @Math.Round(__pmargen, 2) %
+                </td>
+                <td>
+                    Adultos: @Html.DisplayFor(modelItem => item.Adults)<br />
+                    Niños: @Html.DisplayFor(modelItem => item.Childrens)
+                </td>
+                <td>
+                    <b>@Html.DisplayFor(modelItem => item.ReservationStatus.Name)</b><br />
+                    @if (item.Discount != 0)
+                    {<span style="font-size: 8pt;">Desc:@Math.Round(item.Discount.Value, 2) %</span><br />}
+                    @if (item.PercentAdmin != 0)
+                    {<span style="font-size: 8pt;">Admon:@Math.Round(item.PercentAdmin.Value, 2)
+                        % </span>
+                        <br />}
+                    @if (item.PercentAgent != 0)
+                    {<span style="font-size: 8pt;">Agente:@Math.Round(item.PercentAgent.Value, 2)
+                        % </span>
+                        <br />}
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Detalles", "PrintableVersion", new { id = item.Id }, new { target = "_blank" })
+                    |
+                    @Html.ActionLink("PDF", "PrintPDF", new { id = item.Id })
+                    @*@Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#tabla').dataTable({
+            "bJQueryUI": true,
+            "aaSorting": [[0, 'desc']]
+        });
+    });
+
+</script>
+<table border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin: 30px 0px;">
+    <tr>
+        <td>
+            <a href="@Url.Action("Create")" class="button" style="float: right;">
+                <img src="../../Content/img/add.png" />
+                &nbsp;&nbsp;Crear Nueva </a>
+        </td>
+    </tr>
+</table>

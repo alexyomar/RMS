@@ -1,0 +1,121 @@
+﻿@model RMS.Models.Hotel
+@{
+    ViewBag.Title = "Detalles del Hotel";
+}
+<ul id="crumbs">
+    <li><a href="@Url.Action("Index")">Hoteles</a></li>
+    <li>Detalles del Hotel</li>
+</ul>
+<table border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin: 30px 0px;">
+    <tr>
+        <td valign="middle">
+            <h1 style="margin: 0px; padding: 0px">
+                Detalles de @Model.Name</h1>
+        </td>
+        <td>
+            <a href="@Url.Action("Index")" class="button" style="float: right;">
+                <img src="@Url.Content("~/Content/img/Back.png")" />
+                &nbsp;&nbsp;Volver</a>
+        </td>
+    </tr>
+</table>
+<fieldset>
+    <div class="display-label">
+        Nombre</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+    <div class="display-label">
+        Descripción</div>
+    <div class="display-field">
+        @Html.Raw(Model.Description)
+    </div>
+    <div class="display-label">
+        Dirección:</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Address)
+    </div>
+    <div class="display-label">
+        Estado:</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.State.Name)
+    </div>
+    <div class="display-label">
+        Datos de Contacto:</div>
+    <div class="display-field">
+        @Html.Raw(Model.Contact)
+    </div>
+    <div class="display-label">
+        Activo?</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Active)
+    </div>
+    <div class="display-label">
+        Puede emitir cotizaciones?</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CanSell)
+    </div>
+    @*    <div class="display-label">TripAdvisor</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TripAdvisor)
+    </div>
+
+    <div class="display-label">TripAdvisorEng</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TripAdvisorEng)
+    </div>
+
+    <div class="display-label">Map</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Map)
+    </div>*@
+    <div class="display-label">
+        Restaurantes:</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Restaurants)
+    </div>
+    <div class="display-label">
+        Piscinas:</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Pools)
+    </div>
+    <div class="display-label">
+        Posee Playa?</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Beach)
+    </div>
+    <div class="display-label">
+        Posee Estacionamiento?</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Parking)
+    </div>
+    <div class="display-label">
+        Hora de Llegada:</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ArrivalHour)
+    </div>
+    <div class="display-label">
+        Hora de Salida:</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DepartureHour)
+    </div>
+    <div class="display-label">
+        Otras Facilidades:</div>
+    <div class="display-field">
+        @Html.Raw(Model.Facilities)
+    </div>
+    <div class="display-label">
+        Salones:</div>
+    <div class="display-field">
+        @Html.Raw(Model.Lounges)
+    </div>
+</fieldset>
+<table border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin: 30px 0px;">
+    <tr>
+        <td>
+            <a href="@Url.Action("Index")" class="button" style="float: right;">
+                <img src="@Url.Content("~/Content/img/Back.png")" />
+                &nbsp;&nbsp;Volver</a>
+        </td>
+    </tr>
+</table>

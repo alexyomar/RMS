@@ -1,0 +1,117 @@
+﻿@model MembershipUserCollection
+@{
+    ViewBag.Title = "Listado de Usuarios";
+}
+<ul id="crumbs">
+    <li><a href="#">Herramientas</a></li>
+    <li>Listado de Usuarios</li>
+</ul>
+<table border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin: 30px 0px;">
+    <tr>
+        <td valign="middle">
+            <h1 style="margin: 0px; padding: 0px">
+                Listado de Usuarios</h1>
+        </td>
+        <td>
+            <a href="@Url.Action("Register")" class="button" style="float: right;">
+                <img src="@Url.Content("~/Content/img/add.png")" />
+                &nbsp;&nbsp;Crear Nuevo</a>
+        </td>
+    </tr>
+</table>
+<table class="table">
+    <tr>
+        <th>
+            Usuario
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Fecha de creación
+        </th>
+        <th>
+            Último inicio de sesión
+        </th>
+        @*        <th>
+            Aprobado?
+        </th>
+        <th>
+            Bloqueado?
+        </th>*@
+        <th>
+            En linea?
+        </th>
+        <th>
+        </th>
+    </tr>
+    @foreach (MembershipUser item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastLoginDate)
+            </td>
+            @*           <td>
+                @Html.DisplayFor(modelItem => item.IsApproved)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsLockedOut)
+            </td>
+ *@
+            <td>
+                @Html.DisplayFor(modelItem => item.IsOnline)
+            </td>
+            <td>
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.UserName }, new { @class = "delete" })
+            </td>
+        </tr>
+    }
+</table>
+<div id="dialog-confirm" title="Eliminar registro" style="display: none;">
+    <p>
+        <span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 20px 0;"></span>
+        ¿Está seguro de eliminar este usuario?</p>
+</div>
+<script type="text/javascript">
+
+    $(".delete").click(function (e) {
+        e.preventDefault();
+        var url = $(this).attr("href");
+        $("#dialog-confirm").dialog({
+            resizable: false,
+            width: 350,
+            height: 200,
+            modal: true,
+            buttons: {
+                "Eliminar": function () {
+                    window.top.location = url;
+                    $(this).dialog("close");
+                },
+                "Cancelar": function () {
+                    $(this).dialog("close");
+                }
+            }
+        });
+
+    })
+</script>
+<table border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin: 30px 0px;">
+    <tr>
+        <td valign="middle">
+        </td>
+        <td>
+            <a href="@Url.Action("Create")" class="button" style="float: right;">
+                <img src="@Url.Content("~/Content/img/add.png")" />
+                &nbsp;&nbsp;Crear Nuevo</a>
+        </td>
+    </tr>
+</table>

@@ -1,0 +1,17 @@
+﻿@model List<RMS.Models.RoomOcupation>
+@{
+    
+    Layout = null;
+    
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PrintableRoom</title>
+</head>
+<body>
+    <div>
+        @{Html.RenderPartial("RoomRate", Model);}
+    </div>
+</body>
+</html>

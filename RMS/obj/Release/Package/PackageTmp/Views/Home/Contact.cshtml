@@ -1,0 +1,150 @@
+﻿@model List<RMS.Models.Hotel>
+@{
+    ViewBag.Title = "Contáctanos - Regional Marketing Services";
+    Layout = "~/Views/Shared/_LayoutAGD.cshtml";
+    
+}
+<link href="/Content/themes/regional/jquery-ui-1.8.23.custom.css" rel="stylesheet"
+    type="text/css" />
+<div class="banner clear">
+    <h2 class="current_page right">
+        Contáctanos
+    </h2>
+    <em class="tagline left">Realiza tu viaje con nosotros</em></div>
+<div id="content">
+    <div>
+        <img src="/Content/sliders/about.jpg" />
+    </div>
+    <div class="contact left">
+        <div class="message">
+            <div id="alert">
+            </div>
+        </div>
+        <div id="form">
+            <form action="@Url.Action("Contact")" method="post" id="contactForm">
+            <ul>
+                <li>
+                    <label for="cname">
+                        <span>Nombre:<em>*</em></span>
+                        <input type="text" name="nombre" id="nombre" class="required" />
+                    </label>
+                </li>
+                <li>
+                    <label for="cemail">
+                        <span>Email:<em>*</em></span>
+                        <input type="text" name="email" id="email" class="required" />
+                    </label>
+                </li>
+                <li>
+                    <label for="cemail">
+                        <span>Empresa:<em>*</em></span>
+                        <input type="text" name="empresa" id="empresa" class="required" />
+                    </label>
+                </li>
+                <li>
+                    <label for="cemail">
+                        <span>Celular:<em>*</em></span>
+                        <input type="text" name="celular" id="celular" class="required" />
+                    </label>
+                </li>
+                <li>
+                    <label for="cemail">
+                        <span>Fecha de Salida:<em>*</em></span>
+                        <input type="text" name="departure" id="departure" class="required date" />
+                    </label>
+                </li>
+                <li>
+                    <label for="cemail">
+                        <span>Fecha de Llegada:<em>*</em></span>
+                        <input type="text" name="arrive" id="arrive" class="required date" />
+                    </label>
+                </li>
+                <li>
+                    <label for="cemail">
+                        <span>Destino:<em>*</em></span>
+                        <select name="destino" id="destino" class="required">
+                            <option>Margarita</option>
+                            <option>Mérida</option>
+                            <option>Gran Sabana</option>
+                            <option>Internacional</option>
+                        </select>
+                    </label>
+                </li>
+                <li>
+                    <label for="cemail">
+                        <span>Adultos:<em>*</em></span>
+                        <input type="text" name="adultos" id="adultos" class="required" />
+                    </label>
+                </li>
+                <li>
+                    <label for="cemail">
+                        <span>Niños:<em>*</em></span>
+                        <input type="text" name="ninos" id="ninos" class="required" />
+                    </label>
+                </li>
+                <li>
+                    <label for="cemail">
+                        <span>Hotel:<em>*</em></span>
+                        <select name="hotel" id="hotel" class="required">
+                            <option>Seleccione</option>
+                            @foreach (var item in Model)
+                            {
+                                <option>@item.Name (@item.State.Name)</option>   
+                            }
+                            <option>Internacional</option>
+                        </select>
+                    </label>
+                </li>
+                <li>
+                    <label for="cemail">
+                        <span>Incluir pasajes:<em>*</em></span>
+                        <select id="pasajes" name="pasajes" class="required">
+                            <option>No</option>
+                            <option>Aéreo</option>
+                            <option>Máritimo</option>
+                            <option>Terrestre</option>
+                        </select>
+                    </label>
+                </li>
+                <li>
+                    <label for="csubject">
+                        <span>Servicios Adicionales:<em>*</em></span>
+                        <select multiple="multiple" name="servicios" id="servicios" class="required">
+                            <option>Alquiler de Vehículo</option>
+                            <option>Traslado Aeropuerto-Hotel-Aeropuerto</option>
+                            <option>Full Day Coche</option>
+                            <option>Full Day Los Roques</option>
+                            <option>Excursiones Margarita</option>
+                            <option>Excursiones Mérida</option>
+                            <option>Excursiones Gran Sabana</option>
+                            <option>Seguros de Viajes</option>
+                        </select>
+                    </label>
+                </li>
+                <li>
+                    <label for="cmessage">
+                        <span>Observaciones:<em>*</em></span>
+                        <textarea name="mensaje" id="mensaje" cols="50" rows="12" class="required"></textarea>
+                    </label>
+                </li>
+                <li class="submitbutton">
+                    <input type="submit" value="Enviar" id="csubmit" class="submit right" />
+                </li>
+            </ul>
+            </form>
+        </div>
+    </div>
+    @Html.Partial("_sidebar")
+</div>
+<script src="/Scripts/jquery.validate.min.js" type="text/javascript"></script>
+<script>
+    $(document).ready(function () {
+        $("#contactForm").validate();
+        $(".date").datepicker(
+        {
+            onSelect: function (date) { $("#arrive").datepicker("option", "minDate", date); },
+            selectWeek: true,
+            inline: true
+        });
+    });
+</script>
