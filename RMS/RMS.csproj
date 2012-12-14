@@ -128,6 +128,10 @@
     <Content Include="Content\agd\images\008.jpg" />
     <Content Include="Content\agd\images\009.jpg" />
     <Content Include="Content\agd\images\010.jpg" />
+    <Content Include="Content\agd\images\011.jpg" />
+    <Content Include="Content\agd\images\012.jpg" />
+    <Content Include="Content\agd\images\013.jpg" />
+    <Content Include="Content\agd\images\014.jpg" />
     <Content Include="Content\agd\images\about_img.jpg" />
     <Content Include="Content\agd\images\address_icon.png" />
     <Content Include="Content\agd\images\ajax-loader.gif" />
@@ -407,11 +411,13 @@
     <Content Include="Content\agd\img\ui-icons_ffffff_256x240.png" />
     <Content Include="Paquetes\Internacionales\Slide1.JPG" />
     <Content Include="Paquetes\Internacionales\Slide2.JPG" />
+    <Content Include="Paquetes\Nacionales\Slide10.JPG" />
     <Content Include="Paquetes\Nacionales\Slide3.JPG" />
     <Content Include="Paquetes\Nacionales\Slide4.JPG" />
     <Content Include="Paquetes\Internacionales\Slide5.JPG" />
     <Content Include="Paquetes\Internacionales\Slide6.JPG" />
     <Content Include="Paquetes\Internacionales\Slide7.JPG" />
+    <Content Include="Paquetes\Nacionales\Slide9.JPG" />
     <Content Include="Scripts\Anivers_400.font.js" />
     <Content Include="Scripts\coda-slider.1.1.1.js" />
     <Content Include="Scripts\cufon-yui.js" />

@@ -26,7 +26,7 @@
     <script type="text/javascript">
         var now = 0;
         var int = self.setInterval("changeBG()", 7000);
-        var array = ["#", "/Content/agd/Images/001.jpg", "/Content/agd/Images/002.jpg", "/Content/agd/Images/003.jpg", "/Content/agd/Images/004.jpg", "/Content/agd/Images/005.jpg", "/Content/agd/Images/006.jpg", "/Content/agd/Images/007.jpg", "/Content/agd/Images/008.jpg", "/Content/agd/Images/009.jpg", "/Content/agd/Images/010.jpg"];
+        var array = ["/Content/agd/Images/001.jpg", "/Content/agd/Images/002.jpg", "/Content/agd/Images/003.jpg", "/Content/agd/Images/004.jpg", "/Content/agd/Images/005.jpg", "/Content/agd/Images/006.jpg", "/Content/agd/Images/007.jpg", "/Content/agd/Images/008.jpg", "/Content/agd/Images/009.jpg", "/Content/agd/Images/010.jpg", "/Content/agd/Images/011.jpg", "/Content/agd/Images/012.jpg", "/Content/agd/Images/013.jpg", "/Content/agd/Images/014.jpg"];
 
         function changeBG() {
 
@@ -37,17 +37,9 @@
                 $(this).dequeue();
             });
         }
-
-        $(document).ready(function () {
-            changeBG();
-        });
-
-
     </script>
-
 </head>
 <body>
-
     <div id="container" style="z-index: 999">
         <div id="header">
             @Html.Partial("_header")
@@ -57,7 +49,37 @@
             @Html.Partial("_footer")
         </div>
     </div>
-    <div id="background" style="width: 100%; height: 1538px; position: absolute; z-index: -1; top: 0px; background-position: center top">
+    <div id="background" style="width: 100%; height: 1538px; position: absolute; z-index: -1;
+        top: 0px; background-position: center top">
     </div>
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-37047238-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+</script>
+<div style="display:none">
+    <img src="/Content/agd/Images/001.jpg" alt="Alternate Text" />
+    <img src="/Content/agd/Images/002.jpg" alt="Alternate Text" />
+    <img src="/Content/agd/Images/003.jpg" alt="Alternate Text" />
+    <img src="/Content/agd/Images/004.jpg" alt="Alternate Text" />
+    <img src="/Content/agd/Images/005.jpg" alt="Alternate Text" />
+    <img src="/Content/agd/Images/006.jpg" alt="Alternate Text" />
+    <img src="/Content/agd/Images/007.jpg" alt="Alternate Text" />
+    <img src="/Content/agd/Images/008.jpg" alt="Alternate Text" />
+    <img src="/Content/agd/Images/009.jpg" alt="Alternate Text" />
+    <img src="/Content/agd/Images/010.jpg" alt="Alternate Text" />
+    <img src="/Content/agd/Images/011.jpg" alt="Alternate Text" />
+    <img src="/Content/agd/Images/012.jpg" alt="Alternate Text" />
+    <img src="/Content/agd/Images/013.jpg" alt="Alternate Text" />
+    <img src="/Content/agd/Images/014.jpg" alt="Alternate Text" />
+</div>
 </body>
 </html>
