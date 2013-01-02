@@ -411,6 +411,10 @@
     <Content Include="Content\agd\img\ui-icons_ffffff_256x240.png" />
     <Content Include="Paquetes\Internacionales\Slide1.JPG" />
     <Content Include="Paquetes\Internacionales\Slide2.JPG" />
+    <Content Include="Paquetes\Nacionales\margarita_bancarios.jpg" />
+    <Content Include="Paquetes\Nacionales\margarita_madre.jpg" />
+    <Content Include="Paquetes\Nacionales\margarita_padre.jpg" />
+    <Content Include="Paquetes\Nacionales\margarita_valentin.jpg" />
     <Content Include="Paquetes\Nacionales\Slide10.JPG" />
     <Content Include="Paquetes\Nacionales\Slide3.JPG" />
     <Content Include="Paquetes\Nacionales\Slide4.JPG" />
