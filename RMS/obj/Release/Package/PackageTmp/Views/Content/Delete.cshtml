@@ -1,0 +1,192 @@
+﻿@model RMS.Models.Content
+@{
+    ViewBag.Title = "Delete";
+    RMS.Models.ContentMedia __media = ViewBag.Media;
+}
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<ul id="crumbs">
+    <li><a href="@Url.Action("Index", "Content", new { Id = Model.IdContentType })">Página Web</a></li>
+    <li>Eliminar Contenido</li>
+</ul>
+<table border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin: 30px 0px;">
+    <tr>
+        <td valign="middle">
+            <h1 style="margin: 0px; padding: 0px">Eliminar Contenido</h1>
+        </td>
+        <td>
+            <a href="@Url.Action("Index", "Content", new { Id = Model.IdContentType })" class="button" style="float: right;">
+                <img src="@Url.Content("~/Content/img/back.png")" />
+                &nbsp;&nbsp;Volver</a>
+        </td>
+    </tr>
+</table>
+
+
+<h3>¿Está seguro de eliminar este registro?</h3>
+
+<fieldset>
+    <legend>Contenido</legend>
+
+    <div class="display-label">Título</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+
+    <div class="display-label">Descripción Corta</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Intro)
+    </div>
+
+    <div class="display-label">Descripción Larga</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+
+    <div class="display-label">Precio</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Price)
+    </div>
+
+    <div class="display-label">Ciudad</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.City)
+    </div>
+
+    <div class="display-label">País</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Country.Country1)
+    </div>
+
+
+    <div class="display-label">Activo</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Active)
+    </div>
+
+    <div class="display-label">Destacado</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Featured)
+    </div>
+
+    <div class="display-label">Fecha de Creación</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Timestamp)
+    </div>
+
+    <div class="display-label">Fecha de Modificación</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TimestampEdit)
+    </div>
+
+    <div class="editor-field">
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+
+                <td>@if (!String.IsNullOrEmpty(__media.image))
+                    {
+                    <img src="@__media.image" alt="Imagen destacada" title="Imágen destacada" width="150" height="150" />
+                    <input type="Hidden" name="metadata.imagename" value="@__media.image" />
+                    }
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="editor-label">
+        @Html.Label("Imágen 1 (formato JPG):")
+    </div>
+    <div class="editor-field">
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+
+                <td>@if (!String.IsNullOrEmpty(__media.img1))
+                    {
+                    <img src="@__media.img1" alt="Imagen 1" title="Imágen 1" width="150" height="150" />
+                    <input type="Hidden" name="metadata.img1" value="@__media.img1" />
+                    }
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="editor-label">
+        @Html.Label("Imágen 2 (formato JPG):")
+    </div>
+    <div class="editor-field">
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+
+                <td>@if (!String.IsNullOrEmpty(__media.img2))
+                    {
+                    <img src="@__media.img2" alt="Imagen 2" title="Imágen 2" width="150" height="150" />
+                    <input type="Hidden" name="metadata.img2" value="@__media.img2" />
+                    }
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="editor-label">
+        @Html.Label("Imágen 3 (formato JPG):")
+    </div>
+    <div class="editor-field">
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+
+                <td>@if (!String.IsNullOrEmpty(__media.img3))
+                    {
+                    <img src="@__media.img3" alt="Imagen 3" title="Imágen 3" width="150" height="150" />
+                    <input type="Hidden" name="metadata.img3" value="@__media.img3" />
+                    }
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="editor-label">
+        @Html.Label("Imágen 4 (formato JPG):")
+    </div>
+    <div class="editor-field">
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+
+                <td>@if (!String.IsNullOrEmpty(__media.img4))
+                    {
+                    <img src="@__media.img4" alt="Imagen 4" title="Imágen 4" width="150" height="150" />
+                    <input type="Hidden" name="metadata.img4" value="@__media.img4" />
+                    }
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="editor-label">
+        @Html.Label("Descargable (formato PDF):")
+    </div>
+    <div class="editor-field">
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+
+                <td>@if (!String.IsNullOrEmpty(__media.pdf))
+                    {
+                    <a href="@__media.pdf">Descargar PDF</a>
+                    <input type="Hidden" name="metadata.pdf" value="@__media.pdf" />
+                    }
+                </td>
+            </tr>
+        </table>
+    </div>
+    @using (Html.BeginForm())
+    {
+        <p>
+            <input type="submit" value="Eliminar" />
+        </p>
+    }
+</fieldset>
+<table border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin: 30px 0px;">
+    <tr>
+        <td valign="middle"></td>
+        <td>
+            <a href="@Url.Action("Index", "Content", new { Id = Model.IdContentType })" class="button" style="float: right;">
+                <img src="@Url.Content("~/Content/img/back.png")" />
+                &nbsp;&nbsp;Volver</a>
+        </td>
+    </tr>
+</table>

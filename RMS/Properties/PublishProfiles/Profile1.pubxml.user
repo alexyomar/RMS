@@ -7,7 +7,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   <PropertyGroup>
     <LastUsedBuildConfiguration>Release</LastUsedBuildConfiguration>
     <LastUsedPlatform>Any CPU</LastUsedPlatform>
-    <TimeStampOfAssociatedLegacyPublishXmlFile>2012-12-12T20:10:16.9332324-04:30</TimeStampOfAssociatedLegacyPublishXmlFile>
+    <TimeStampOfAssociatedLegacyPublishXmlFile>2013-01-12T17:50:08.7459519-04:30</TimeStampOfAssociatedLegacyPublishXmlFile>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/EntityFramework.dll">
@@ -20,10 +20,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/11/2012 20:58:25</publishTime>
     </File>
     <File Include="bin/RMS.dll">
-      <publishTime>12/13/2012 14:10:07</publishTime>
+      <publishTime>01/14/2013 08:19:41</publishTime>
     </File>
     <File Include="bin/RMS.pdb">
-      <publishTime>12/04/2012 10:39:31</publishTime>
+      <publishTime>01/02/2013 08:40:30</publishTime>
     </File>
     <File Include="bin/System.Data.Entity.dll">
       <publishTime>03/18/2010 19:31:26</publishTime>
@@ -71,10 +71,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/13/2012 11:31:32</publishTime>
     </File>
     <File Include="Content/agd/images/003.jpg">
-      <publishTime>12/13/2012 11:31:49</publishTime>
+      <publishTime>01/12/2013 17:50:08</publishTime>
     </File>
     <File Include="Content/agd/images/004.jpg">
-      <publishTime>12/13/2012 11:17:06</publishTime>
+      <publishTime>01/12/2013 17:50:08</publishTime>
     </File>
     <File Include="Content/agd/images/005.jpg">
       <publishTime>12/13/2012 11:16:41</publishTime>
@@ -83,16 +83,28 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/13/2012 11:27:31</publishTime>
     </File>
     <File Include="Content/agd/images/007.jpg">
-      <publishTime>12/13/2012 11:20:15</publishTime>
+      <publishTime>01/12/2013 17:50:08</publishTime>
     </File>
     <File Include="Content/agd/images/008.jpg">
       <publishTime>12/13/2012 11:26:09</publishTime>
     </File>
     <File Include="Content/agd/images/009.jpg">
-      <publishTime>12/13/2012 11:26:49</publishTime>
+      <publishTime>01/12/2013 17:50:08</publishTime>
     </File>
     <File Include="Content/agd/images/010.jpg">
-      <publishTime>12/13/2012 11:28:30</publishTime>
+      <publishTime>01/12/2013 17:50:08</publishTime>
+    </File>
+    <File Include="Content/agd/images/011.jpg">
+      <publishTime>01/12/2013 17:50:08</publishTime>
+    </File>
+    <File Include="Content/agd/images/012.jpg">
+      <publishTime>01/12/2013 17:50:08</publishTime>
+    </File>
+    <File Include="Content/agd/images/013.jpg">
+      <publishTime>01/12/2013 17:50:08</publishTime>
+    </File>
+    <File Include="Content/agd/images/014.jpg">
+      <publishTime>01/12/2013 17:50:08</publishTime>
     </File>
     <File Include="Content/agd/images/about_img.jpg">
       <publishTime>12/11/2012 20:58:19</publishTime>
@@ -943,11 +955,29 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Paquetes/Internacionales/Slide7.JPG">
       <publishTime>12/13/2012 14:00:21</publishTime>
     </File>
+    <File Include="Paquetes/Nacionales/margarita_bancarios.jpg">
+      <publishTime>01/12/2013 17:50:08</publishTime>
+    </File>
+    <File Include="Paquetes/Nacionales/margarita_madre.jpg">
+      <publishTime>01/12/2013 17:50:08</publishTime>
+    </File>
+    <File Include="Paquetes/Nacionales/margarita_padre.jpg">
+      <publishTime>01/12/2013 17:50:08</publishTime>
+    </File>
+    <File Include="Paquetes/Nacionales/margarita_valentin.jpg">
+      <publishTime>01/12/2013 17:50:08</publishTime>
+    </File>
+    <File Include="Paquetes/Nacionales/Slide10.JPG">
+      <publishTime>01/12/2013 17:50:08</publishTime>
+    </File>
     <File Include="Paquetes/Nacionales/Slide3.JPG">
       <publishTime>12/13/2012 14:00:21</publishTime>
     </File>
     <File Include="Paquetes/Nacionales/Slide4.JPG">
       <publishTime>12/13/2012 14:00:21</publishTime>
+    </File>
+    <File Include="Paquetes/Nacionales/Slide9.JPG">
+      <publishTime>01/12/2013 17:50:08</publishTime>
     </File>
     <File Include="Scripts/Anivers_400.font.js">
       <publishTime>12/11/2012 20:58:20</publishTime>
@@ -1300,11 +1330,26 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Budget/PrintableVersion.cshtml">
       <publishTime>12/11/2012 20:58:21</publishTime>
     </File>
+    <File Include="Views/Content/Create.cshtml">
+      <publishTime>01/14/2013 08:18:47</publishTime>
+    </File>
+    <File Include="Views/Content/Delete.cshtml">
+      <publishTime>01/14/2013 08:12:19</publishTime>
+    </File>
+    <File Include="Views/Content/Details.cshtml">
+      <publishTime>01/13/2013 19:42:45</publishTime>
+    </File>
+    <File Include="Views/Content/Edit.cshtml">
+      <publishTime>01/14/2013 08:18:47</publishTime>
+    </File>
+    <File Include="Views/Content/Index.cshtml">
+      <publishTime>01/14/2013 07:24:54</publishTime>
+    </File>
     <File Include="Views/Customer/Create.cshtml">
       <publishTime>12/11/2012 20:58:21</publishTime>
     </File>
     <File Include="Views/Customer/Delete.cshtml">
-      <publishTime>12/11/2012 20:58:21</publishTime>
+      <publishTime>01/14/2013 08:11:50</publishTime>
     </File>
     <File Include="Views/Customer/Details.cshtml">
       <publishTime>12/11/2012 20:58:21</publishTime>
@@ -1331,13 +1376,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/11/2012 20:58:21</publishTime>
     </File>
     <File Include="Views/Home/Start.cshtml">
-      <publishTime>12/13/2012 14:08:34</publishTime>
+      <publishTime>01/12/2013 17:50:08</publishTime>
     </File>
     <File Include="Views/Home/Trips.cshtml">
-      <publishTime>12/13/2012 14:07:36</publishTime>
+      <publishTime>01/12/2013 17:50:08</publishTime>
     </File>
     <File Include="Views/Hotel/Create.cshtml">
-      <publishTime>12/11/2012 20:58:21</publishTime>
+      <publishTime>01/13/2013 19:54:38</publishTime>
     </File>
     <File Include="Views/Hotel/Delete.cshtml">
       <publishTime>12/11/2012 20:58:21</publishTime>
@@ -1430,7 +1475,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/11/2012 20:58:21</publishTime>
     </File>
     <File Include="Views/Shared/Menu.cshtml">
-      <publishTime>12/11/2012 20:58:21</publishTime>
+      <publishTime>01/14/2013 06:34:21</publishTime>
     </File>
     <File Include="Views/Shared/_footer.cshtml">
       <publishTime>12/12/2012 20:10:16</publishTime>
@@ -1439,10 +1484,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/11/2012 20:58:21</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>12/11/2012 20:58:21</publishTime>
+      <publishTime>01/12/2013 17:50:08</publishTime>
     </File>
     <File Include="Views/Shared/_LayoutAGD.cshtml">
-      <publishTime>12/13/2012 11:35:08</publishTime>
+      <publishTime>01/12/2013 17:50:08</publishTime>
     </File>
     <File Include="Views/Shared/_LogOnPartial.cshtml">
       <publishTime>12/11/2012 20:58:21</publishTime>
@@ -1463,7 +1508,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/11/2012 20:58:21</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>12/13/2012 14:10:09</publishTime>
+      <publishTime>01/14/2013 08:19:45</publishTime>
     </File>
   </ItemGroup>
 </Project>

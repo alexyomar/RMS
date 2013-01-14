@@ -12,6 +12,11 @@
     <EntitySet Name="aspnet_Users" EntityType="RegionalModel.Store.aspnet_Users" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="aspnet_UsersInRoles" EntityType="RegionalModel.Store.aspnet_UsersInRoles" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="aspnet_WebEvent_Events" EntityType="RegionalModel.Store.aspnet_WebEvent_Events" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Content" EntityType="RegionalModel.Store.Content" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ContentFiles" EntityType="RegionalModel.Store.ContentFiles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ContentImages" EntityType="RegionalModel.Store.ContentImages" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ContentType" EntityType="RegionalModel.Store.ContentType" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Country" EntityType="RegionalModel.Store.Country" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Customer" EntityType="RegionalModel.Store.Customer" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Hotel" EntityType="RegionalModel.Store.Hotel" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="PaymentMethod" EntityType="RegionalModel.Store.PaymentMethod" store:Type="Tables" Schema="dbo" />
@@ -161,6 +166,22 @@
     <AssociationSet Name="FK__aspnet_Us__UserI__41EDCAC5" Association="RegionalModel.Store.FK__aspnet_Us__UserI__41EDCAC5">
       <End Role="aspnet_Users" EntitySet="aspnet_Users" />
       <End Role="aspnet_UsersInRoles" EntitySet="aspnet_UsersInRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Content_ContentType" Association="RegionalModel.Store.FK_Content_ContentType">
+      <End Role="ContentType" EntitySet="ContentType" />
+      <End Role="Content" EntitySet="Content" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Content_Country" Association="RegionalModel.Store.FK_Content_Country">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="Content" EntitySet="Content" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ContentFiles_Content" Association="RegionalModel.Store.FK_ContentFiles_Content">
+      <End Role="Content" EntitySet="Content" />
+      <End Role="ContentFiles" EntitySet="ContentFiles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ContentImages_Content" Association="RegionalModel.Store.FK_ContentImages_Content">
+      <End Role="Content" EntitySet="Content" />
+      <End Role="ContentImages" EntitySet="ContentImages" />
     </AssociationSet>
     <AssociationSet Name="FK_Periods_Posadas" Association="RegionalModel.Store.FK_Periods_Posadas">
       <End Role="Hotel" EntitySet="Hotel" />
@@ -346,6 +367,57 @@
     <Property Name="ExceptionType" Type="nvarchar" MaxLength="256" />
     <Property Name="Details" Type="ntext" />
   </EntityType>
+  <EntityType Name="Content">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Intro" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Price" Type="money" Nullable="false" />
+    <Property Name="City" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IdCountry" Type="int" Nullable="false" />
+    <Property Name="IdContentType" Type="int" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="Featured" Type="bit" Nullable="false" />
+    <Property Name="Timestamp" Type="datetime" Nullable="false" />
+    <Property Name="TimestampEdit" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ContentFiles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="FileGUID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="URL" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsDefault" Type="bit" Nullable="false" />
+    <Property Name="IdContent" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ContentImages">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="FileGUID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="URL" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsDefault" Type="bit" Nullable="false" />
+    <Property Name="IdContent" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ContentType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Country" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
   <EntityType Name="Customer">
     <Key>
       <PropertyRef Name="Id" />
@@ -363,7 +435,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="250" />
     <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Contact" Type="nvarchar(max)" Nullable="false" />
@@ -528,7 +600,7 @@
     <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'Regional.dbo.vw_aspnet_Applications' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'w1181361_regional.dbo.vw_aspnet_Applications' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="vw_aspnet_Applications">
     <Key>
@@ -542,7 +614,7 @@
     <Property Name="Description" Type="nvarchar" MaxLength="256" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'Regional.dbo.vw_aspnet_MembershipUsers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'w1181361_regional.dbo.vw_aspnet_MembershipUsers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="vw_aspnet_MembershipUsers">
     <Key>
@@ -588,7 +660,7 @@
     <Property Name="LastActivityDate" Type="datetime" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'Regional.dbo.vw_aspnet_Profiles' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'w1181361_regional.dbo.vw_aspnet_Profiles' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="vw_aspnet_Profiles">
     <Key>
@@ -600,7 +672,7 @@
     <Property Name="DataSize" Type="int" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'Regional.dbo.vw_aspnet_Roles' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'w1181361_regional.dbo.vw_aspnet_Roles' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="vw_aspnet_Roles">
     <Key>
@@ -616,7 +688,7 @@
     <Property Name="Description" Type="nvarchar" MaxLength="256" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'Regional.dbo.vw_aspnet_Users' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'w1181361_regional.dbo.vw_aspnet_Users' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="vw_aspnet_Users">
     <Key>
@@ -636,7 +708,7 @@
     <Property Name="LastActivityDate" Type="datetime" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'Regional.dbo.vw_aspnet_UsersInRoles' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'w1181361_regional.dbo.vw_aspnet_UsersInRoles' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="vw_aspnet_UsersInRoles">
     <Key>
@@ -647,7 +719,7 @@
     <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'Regional.dbo.vw_aspnet_WebPartState_Paths' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'w1181361_regional.dbo.vw_aspnet_WebPartState_Paths' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="vw_aspnet_WebPartState_Paths">
     <Key>
@@ -662,7 +734,7 @@
     <Property Name="LoweredPath" Type="nvarchar" Nullable="false" MaxLength="256" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'Regional.dbo.vw_aspnet_WebPartState_Shared' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'w1181361_regional.dbo.vw_aspnet_WebPartState_Shared' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="vw_aspnet_WebPartState_Shared">
     <Key>
@@ -674,7 +746,7 @@
     <Property Name="LastUpdatedDate" Type="datetime" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'Regional.dbo.vw_aspnet_WebPartState_User' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'w1181361_regional.dbo.vw_aspnet_WebPartState_User' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="vw_aspnet_WebPartState_User">
     <Key>
@@ -814,6 +886,54 @@
       </Principal>
       <Dependent Role="aspnet_UsersInRoles">
         <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Content_ContentType">
+    <End Role="ContentType" Type="RegionalModel.Store.ContentType" Multiplicity="1" />
+    <End Role="Content" Type="RegionalModel.Store.Content" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ContentType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Content">
+        <PropertyRef Name="IdContentType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Content_Country">
+    <End Role="Country" Type="RegionalModel.Store.Country" Multiplicity="1" />
+    <End Role="Content" Type="RegionalModel.Store.Content" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Content">
+        <PropertyRef Name="IdCountry" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ContentFiles_Content">
+    <End Role="Content" Type="RegionalModel.Store.Content" Multiplicity="1" />
+    <End Role="ContentFiles" Type="RegionalModel.Store.ContentFiles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Content">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ContentFiles">
+        <PropertyRef Name="IdContent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ContentImages_Content">
+    <End Role="Content" Type="RegionalModel.Store.Content" Multiplicity="1" />
+    <End Role="ContentImages" Type="RegionalModel.Store.ContentImages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Content">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ContentImages">
+        <PropertyRef Name="IdContent" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

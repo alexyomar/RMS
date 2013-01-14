@@ -445,5 +445,61 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Content">
+      <EntityTypeMapping TypeName="RegionalModel.Content">
+        <MappingFragment StoreEntitySet="Content">
+          <ScalarProperty Name="TimestampEdit" ColumnName="TimestampEdit" />
+          <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+          <ScalarProperty Name="Featured" ColumnName="Featured" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="IdContentType" ColumnName="IdContentType" />
+          <ScalarProperty Name="IdCountry" ColumnName="IdCountry" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Intro" ColumnName="Intro" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContentFiles">
+      <EntityTypeMapping TypeName="RegionalModel.ContentFiles">
+        <MappingFragment StoreEntitySet="ContentFiles">
+          <ScalarProperty Name="IdContent" ColumnName="IdContent" />
+          <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
+          <ScalarProperty Name="FileGUID" ColumnName="FileGUID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContentImages">
+      <EntityTypeMapping TypeName="RegionalModel.ContentImages">
+        <MappingFragment StoreEntitySet="ContentImages">
+          <ScalarProperty Name="IdContent" ColumnName="IdContent" />
+          <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
+          <ScalarProperty Name="FileGUID" ColumnName="FileGUID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContentType">
+      <EntityTypeMapping TypeName="RegionalModel.ContentType">
+        <MappingFragment StoreEntitySet="ContentType">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Country">
+      <EntityTypeMapping TypeName="RegionalModel.Country">
+        <MappingFragment StoreEntitySet="Country">
+          <ScalarProperty Name="Country1" ColumnName="Country" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

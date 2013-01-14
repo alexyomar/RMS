@@ -42,6 +42,10 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("RegionalModel", "FK_ReservationRoom_Reservation", "Reservation", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(RMS.Models.Reservation), "ReservationRoom", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.ReservationRoom), true)]
 [assembly: EdmRelationshipAttribute("RegionalModel", "FK_Reservations_ReservationStatus", "ReservationStatus", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(RMS.Models.ReservationStatus), "Reservation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.Reservation), true)]
 [assembly: EdmRelationshipAttribute("RegionalModel", "FK_ReservationsBuyed_Reservations", "Reservation", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(RMS.Models.Reservation), "ReservationsBuyed", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.ReservationsBuyed), true)]
+[assembly: EdmRelationshipAttribute("RegionalModel", "FK_Content_ContentType", "ContentType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(RMS.Models.ContentType), "Content", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.Content), true)]
+[assembly: EdmRelationshipAttribute("RegionalModel", "FK_Content_Country", "Country", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(RMS.Models.Country), "Content", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.Content), true)]
+[assembly: EdmRelationshipAttribute("RegionalModel", "FK_ContentFiles_Content", "Content", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(RMS.Models.Content), "ContentFiles", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.ContentFiles), true)]
+[assembly: EdmRelationshipAttribute("RegionalModel", "FK_ContentImages_Content", "Content", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(RMS.Models.Content), "ContentImages", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.ContentImages), true)]
 
 #endregion
 
@@ -636,6 +640,86 @@ namespace RMS.Models
             }
         }
         private ObjectSet<Reservation> _Reservation;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Content> Content
+        {
+            get
+            {
+                if ((_Content == null))
+                {
+                    _Content = base.CreateObjectSet<Content>("Content");
+                }
+                return _Content;
+            }
+        }
+        private ObjectSet<Content> _Content;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<ContentFiles> ContentFiles
+        {
+            get
+            {
+                if ((_ContentFiles == null))
+                {
+                    _ContentFiles = base.CreateObjectSet<ContentFiles>("ContentFiles");
+                }
+                return _ContentFiles;
+            }
+        }
+        private ObjectSet<ContentFiles> _ContentFiles;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<ContentImages> ContentImages
+        {
+            get
+            {
+                if ((_ContentImages == null))
+                {
+                    _ContentImages = base.CreateObjectSet<ContentImages>("ContentImages");
+                }
+                return _ContentImages;
+            }
+        }
+        private ObjectSet<ContentImages> _ContentImages;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<ContentType> ContentType
+        {
+            get
+            {
+                if ((_ContentType == null))
+                {
+                    _ContentType = base.CreateObjectSet<ContentType>("ContentType");
+                }
+                return _ContentType;
+            }
+        }
+        private ObjectSet<ContentType> _ContentType;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Country> Country
+        {
+            get
+            {
+                if ((_Country == null))
+                {
+                    _Country = base.CreateObjectSet<Country>("Country");
+                }
+                return _Country;
+            }
+        }
+        private ObjectSet<Country> _Country;
 
         #endregion
 
@@ -911,6 +995,46 @@ namespace RMS.Models
         public void AddToReservation(Reservation reservation)
         {
             base.AddObject("Reservation", reservation);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Content EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToContent(Content content)
+        {
+            base.AddObject("Content", content);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the ContentFiles EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToContentFiles(ContentFiles contentFiles)
+        {
+            base.AddObject("ContentFiles", contentFiles);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the ContentImages EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToContentImages(ContentImages contentImages)
+        {
+            base.AddObject("ContentImages", contentImages);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the ContentType EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToContentType(ContentType contentType)
+        {
+            base.AddObject("ContentType", contentType);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Country EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToCountry(Country country)
+        {
+            base.AddObject("Country", country);
         }
 
         #endregion
@@ -3734,6 +3858,1097 @@ namespace RMS.Models
         #endregion
 
     
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="RegionalModel", Name="Content")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Content : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Content object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="title">Initial value of the Title property.</param>
+        /// <param name="intro">Initial value of the Intro property.</param>
+        /// <param name="description">Initial value of the Description property.</param>
+        /// <param name="price">Initial value of the Price property.</param>
+        /// <param name="city">Initial value of the City property.</param>
+        /// <param name="idCountry">Initial value of the IdCountry property.</param>
+        /// <param name="idContentType">Initial value of the IdContentType property.</param>
+        /// <param name="active">Initial value of the Active property.</param>
+        /// <param name="featured">Initial value of the Featured property.</param>
+        /// <param name="timestamp">Initial value of the Timestamp property.</param>
+        /// <param name="timestampEdit">Initial value of the TimestampEdit property.</param>
+        public static Content CreateContent(global::System.Int32 id, global::System.String title, global::System.String intro, global::System.String description, global::System.Decimal price, global::System.String city, global::System.Int32 idCountry, global::System.Int32 idContentType, global::System.Boolean active, global::System.Boolean featured, global::System.DateTime timestamp, global::System.DateTime timestampEdit)
+        {
+            Content content = new Content();
+            content.Id = id;
+            content.Title = title;
+            content.Intro = intro;
+            content.Description = description;
+            content.Price = price;
+            content.City = city;
+            content.IdCountry = idCountry;
+            content.IdContentType = idContentType;
+            content.Active = active;
+            content.Featured = featured;
+            content.Timestamp = timestamp;
+            content.TimestampEdit = timestampEdit;
+            return content;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Title
+        {
+            get
+            {
+                return _Title;
+            }
+            set
+            {
+                OnTitleChanging(value);
+                ReportPropertyChanging("Title");
+                _Title = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Title");
+                OnTitleChanged();
+            }
+        }
+        private global::System.String _Title;
+        partial void OnTitleChanging(global::System.String value);
+        partial void OnTitleChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Intro
+        {
+            get
+            {
+                return _Intro;
+            }
+            set
+            {
+                OnIntroChanging(value);
+                ReportPropertyChanging("Intro");
+                _Intro = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Intro");
+                OnIntroChanged();
+            }
+        }
+        private global::System.String _Intro;
+        partial void OnIntroChanging(global::System.String value);
+        partial void OnIntroChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Description
+        {
+            get
+            {
+                return _Description;
+            }
+            set
+            {
+                OnDescriptionChanging(value);
+                ReportPropertyChanging("Description");
+                _Description = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Description");
+                OnDescriptionChanged();
+            }
+        }
+        private global::System.String _Description;
+        partial void OnDescriptionChanging(global::System.String value);
+        partial void OnDescriptionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal Price
+        {
+            get
+            {
+                return _Price;
+            }
+            set
+            {
+                OnPriceChanging(value);
+                ReportPropertyChanging("Price");
+                _Price = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Price");
+                OnPriceChanged();
+            }
+        }
+        private global::System.Decimal _Price;
+        partial void OnPriceChanging(global::System.Decimal value);
+        partial void OnPriceChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String City
+        {
+            get
+            {
+                return _City;
+            }
+            set
+            {
+                OnCityChanging(value);
+                ReportPropertyChanging("City");
+                _City = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("City");
+                OnCityChanged();
+            }
+        }
+        private global::System.String _City;
+        partial void OnCityChanging(global::System.String value);
+        partial void OnCityChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 IdCountry
+        {
+            get
+            {
+                return _IdCountry;
+            }
+            set
+            {
+                OnIdCountryChanging(value);
+                ReportPropertyChanging("IdCountry");
+                _IdCountry = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IdCountry");
+                OnIdCountryChanged();
+            }
+        }
+        private global::System.Int32 _IdCountry;
+        partial void OnIdCountryChanging(global::System.Int32 value);
+        partial void OnIdCountryChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 IdContentType
+        {
+            get
+            {
+                return _IdContentType;
+            }
+            set
+            {
+                OnIdContentTypeChanging(value);
+                ReportPropertyChanging("IdContentType");
+                _IdContentType = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IdContentType");
+                OnIdContentTypeChanged();
+            }
+        }
+        private global::System.Int32 _IdContentType;
+        partial void OnIdContentTypeChanging(global::System.Int32 value);
+        partial void OnIdContentTypeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean Active
+        {
+            get
+            {
+                return _Active;
+            }
+            set
+            {
+                OnActiveChanging(value);
+                ReportPropertyChanging("Active");
+                _Active = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Active");
+                OnActiveChanged();
+            }
+        }
+        private global::System.Boolean _Active;
+        partial void OnActiveChanging(global::System.Boolean value);
+        partial void OnActiveChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean Featured
+        {
+            get
+            {
+                return _Featured;
+            }
+            set
+            {
+                OnFeaturedChanging(value);
+                ReportPropertyChanging("Featured");
+                _Featured = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Featured");
+                OnFeaturedChanged();
+            }
+        }
+        private global::System.Boolean _Featured;
+        partial void OnFeaturedChanging(global::System.Boolean value);
+        partial void OnFeaturedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime Timestamp
+        {
+            get
+            {
+                return _Timestamp;
+            }
+            set
+            {
+                OnTimestampChanging(value);
+                ReportPropertyChanging("Timestamp");
+                _Timestamp = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Timestamp");
+                OnTimestampChanged();
+            }
+        }
+        private global::System.DateTime _Timestamp;
+        partial void OnTimestampChanging(global::System.DateTime value);
+        partial void OnTimestampChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime TimestampEdit
+        {
+            get
+            {
+                return _TimestampEdit;
+            }
+            set
+            {
+                OnTimestampEditChanging(value);
+                ReportPropertyChanging("TimestampEdit");
+                _TimestampEdit = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TimestampEdit");
+                OnTimestampEditChanged();
+            }
+        }
+        private global::System.DateTime _TimestampEdit;
+        partial void OnTimestampEditChanging(global::System.DateTime value);
+        partial void OnTimestampEditChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RegionalModel", "FK_Content_ContentType", "ContentType")]
+        public ContentType ContentType
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ContentType>("RegionalModel.FK_Content_ContentType", "ContentType").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ContentType>("RegionalModel.FK_Content_ContentType", "ContentType").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<ContentType> ContentTypeReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ContentType>("RegionalModel.FK_Content_ContentType", "ContentType");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ContentType>("RegionalModel.FK_Content_ContentType", "ContentType", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RegionalModel", "FK_Content_Country", "Country")]
+        public Country Country
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Country>("RegionalModel.FK_Content_Country", "Country").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Country>("RegionalModel.FK_Content_Country", "Country").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Country> CountryReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Country>("RegionalModel.FK_Content_Country", "Country");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Country>("RegionalModel.FK_Content_Country", "Country", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RegionalModel", "FK_ContentFiles_Content", "ContentFiles")]
+        public EntityCollection<ContentFiles> ContentFiles
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ContentFiles>("RegionalModel.FK_ContentFiles_Content", "ContentFiles");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ContentFiles>("RegionalModel.FK_ContentFiles_Content", "ContentFiles", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RegionalModel", "FK_ContentImages_Content", "ContentImages")]
+        public EntityCollection<ContentImages> ContentImages
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ContentImages>("RegionalModel.FK_ContentImages_Content", "ContentImages");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ContentImages>("RegionalModel.FK_ContentImages_Content", "ContentImages", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="RegionalModel", Name="ContentFiles")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class ContentFiles : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new ContentFiles object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="fileGUID">Initial value of the FileGUID property.</param>
+        /// <param name="uRL">Initial value of the URL property.</param>
+        /// <param name="isDefault">Initial value of the IsDefault property.</param>
+        /// <param name="idContent">Initial value of the IdContent property.</param>
+        public static ContentFiles CreateContentFiles(global::System.Int32 id, global::System.Guid fileGUID, global::System.String uRL, global::System.Boolean isDefault, global::System.Int32 idContent)
+        {
+            ContentFiles contentFiles = new ContentFiles();
+            contentFiles.Id = id;
+            contentFiles.FileGUID = fileGUID;
+            contentFiles.URL = uRL;
+            contentFiles.IsDefault = isDefault;
+            contentFiles.IdContent = idContent;
+            return contentFiles;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Guid FileGUID
+        {
+            get
+            {
+                return _FileGUID;
+            }
+            set
+            {
+                OnFileGUIDChanging(value);
+                ReportPropertyChanging("FileGUID");
+                _FileGUID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FileGUID");
+                OnFileGUIDChanged();
+            }
+        }
+        private global::System.Guid _FileGUID;
+        partial void OnFileGUIDChanging(global::System.Guid value);
+        partial void OnFileGUIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String URL
+        {
+            get
+            {
+                return _URL;
+            }
+            set
+            {
+                OnURLChanging(value);
+                ReportPropertyChanging("URL");
+                _URL = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("URL");
+                OnURLChanged();
+            }
+        }
+        private global::System.String _URL;
+        partial void OnURLChanging(global::System.String value);
+        partial void OnURLChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean IsDefault
+        {
+            get
+            {
+                return _IsDefault;
+            }
+            set
+            {
+                OnIsDefaultChanging(value);
+                ReportPropertyChanging("IsDefault");
+                _IsDefault = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsDefault");
+                OnIsDefaultChanged();
+            }
+        }
+        private global::System.Boolean _IsDefault;
+        partial void OnIsDefaultChanging(global::System.Boolean value);
+        partial void OnIsDefaultChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 IdContent
+        {
+            get
+            {
+                return _IdContent;
+            }
+            set
+            {
+                OnIdContentChanging(value);
+                ReportPropertyChanging("IdContent");
+                _IdContent = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IdContent");
+                OnIdContentChanged();
+            }
+        }
+        private global::System.Int32 _IdContent;
+        partial void OnIdContentChanging(global::System.Int32 value);
+        partial void OnIdContentChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RegionalModel", "FK_ContentFiles_Content", "Content")]
+        public Content Content
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Content>("RegionalModel.FK_ContentFiles_Content", "Content").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Content>("RegionalModel.FK_ContentFiles_Content", "Content").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Content> ContentReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Content>("RegionalModel.FK_ContentFiles_Content", "Content");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Content>("RegionalModel.FK_ContentFiles_Content", "Content", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="RegionalModel", Name="ContentImages")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class ContentImages : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new ContentImages object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="fileGUID">Initial value of the FileGUID property.</param>
+        /// <param name="uRL">Initial value of the URL property.</param>
+        /// <param name="isDefault">Initial value of the IsDefault property.</param>
+        /// <param name="idContent">Initial value of the IdContent property.</param>
+        public static ContentImages CreateContentImages(global::System.Int32 id, global::System.Guid fileGUID, global::System.String uRL, global::System.Boolean isDefault, global::System.Int32 idContent)
+        {
+            ContentImages contentImages = new ContentImages();
+            contentImages.Id = id;
+            contentImages.FileGUID = fileGUID;
+            contentImages.URL = uRL;
+            contentImages.IsDefault = isDefault;
+            contentImages.IdContent = idContent;
+            return contentImages;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Guid FileGUID
+        {
+            get
+            {
+                return _FileGUID;
+            }
+            set
+            {
+                OnFileGUIDChanging(value);
+                ReportPropertyChanging("FileGUID");
+                _FileGUID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FileGUID");
+                OnFileGUIDChanged();
+            }
+        }
+        private global::System.Guid _FileGUID;
+        partial void OnFileGUIDChanging(global::System.Guid value);
+        partial void OnFileGUIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String URL
+        {
+            get
+            {
+                return _URL;
+            }
+            set
+            {
+                OnURLChanging(value);
+                ReportPropertyChanging("URL");
+                _URL = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("URL");
+                OnURLChanged();
+            }
+        }
+        private global::System.String _URL;
+        partial void OnURLChanging(global::System.String value);
+        partial void OnURLChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean IsDefault
+        {
+            get
+            {
+                return _IsDefault;
+            }
+            set
+            {
+                OnIsDefaultChanging(value);
+                ReportPropertyChanging("IsDefault");
+                _IsDefault = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsDefault");
+                OnIsDefaultChanged();
+            }
+        }
+        private global::System.Boolean _IsDefault;
+        partial void OnIsDefaultChanging(global::System.Boolean value);
+        partial void OnIsDefaultChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 IdContent
+        {
+            get
+            {
+                return _IdContent;
+            }
+            set
+            {
+                OnIdContentChanging(value);
+                ReportPropertyChanging("IdContent");
+                _IdContent = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IdContent");
+                OnIdContentChanged();
+            }
+        }
+        private global::System.Int32 _IdContent;
+        partial void OnIdContentChanging(global::System.Int32 value);
+        partial void OnIdContentChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RegionalModel", "FK_ContentImages_Content", "Content")]
+        public Content Content
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Content>("RegionalModel.FK_ContentImages_Content", "Content").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Content>("RegionalModel.FK_ContentImages_Content", "Content").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Content> ContentReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Content>("RegionalModel.FK_ContentImages_Content", "Content");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Content>("RegionalModel.FK_ContentImages_Content", "Content", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="RegionalModel", Name="ContentType")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class ContentType : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new ContentType object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="name">Initial value of the Name property.</param>
+        public static ContentType CreateContentType(global::System.Int32 id, global::System.String name)
+        {
+            ContentType contentType = new ContentType();
+            contentType.Id = id;
+            contentType.Name = name;
+            return contentType;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RegionalModel", "FK_Content_ContentType", "Content")]
+        public EntityCollection<Content> Content
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Content>("RegionalModel.FK_Content_ContentType", "Content");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Content>("RegionalModel.FK_Content_ContentType", "Content", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="RegionalModel", Name="Country")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Country : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Country object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="country1">Initial value of the Country1 property.</param>
+        public static Country CreateCountry(global::System.Int32 id, global::System.String country1)
+        {
+            Country country = new Country();
+            country.Id = id;
+            country.Country1 = country1;
+            return country;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Country1
+        {
+            get
+            {
+                return _Country1;
+            }
+            set
+            {
+                OnCountry1Changing(value);
+                ReportPropertyChanging("Country1");
+                _Country1 = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Country1");
+                OnCountry1Changed();
+            }
+        }
+        private global::System.String _Country1;
+        partial void OnCountry1Changing(global::System.String value);
+        partial void OnCountry1Changed();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RegionalModel", "FK_Content_Country", "Content")]
+        public EntityCollection<Content> Content
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Content>("RegionalModel.FK_Content_Country", "Content");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Content>("RegionalModel.FK_Content_Country", "Content", value);
+                }
+            }
+        }
+
+        #endregion
+
     }
     
     /// <summary>
