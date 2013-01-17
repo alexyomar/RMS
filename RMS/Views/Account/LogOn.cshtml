@@ -3,8 +3,7 @@
     ViewBag.Title = "Iniciar Sesión";
     Layout = "~/Views/Shared/_LogOut.cshtml";
 }
-<h2>
-    Iniciar Sesión</h2>
+<h2>Iniciar Sesión</h2>
 <p>
     Por favor suministre las credenciales necesarias para ingresar al portal administrativo.
 </p>
@@ -41,3 +40,6 @@
         </fieldset>
     </div>
 }
+<center>
+<span style="font-size:smaller">IP: @Request.UserHostAddress</span>
+</center>

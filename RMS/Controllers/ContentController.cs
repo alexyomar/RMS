@@ -48,7 +48,7 @@ namespace RMS.Controllers
         //
         // POST: /Content/Create
 
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult Create(Content content, IEnumerable<HttpPostedFileBase> images, HttpPostedFileBase pdf, HttpPostedFileBase featured)
         {
             if (ModelState.IsValid)
@@ -137,7 +137,7 @@ namespace RMS.Controllers
         //
         // POST: /Content/Edit/5
 
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult Edit(Content content, IEnumerable<HttpPostedFileBase> images, HttpPostedFileBase pdf, HttpPostedFileBase featured, ContentMedia MetaData)
         {
             if (ModelState.IsValid)
