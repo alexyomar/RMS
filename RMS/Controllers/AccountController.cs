@@ -12,6 +12,7 @@ namespace RMS.Controllers
     public class AccountController : Controller
     {
 
+        private RegionalEntities db = new RegionalEntities();
         //
         // GET: /Account/LogOn
 
@@ -28,8 +29,31 @@ namespace RMS.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 if (Membership.ValidateUser(model.UserName, model.Password))
                 {
+
+                    MembershipUser __user = Membership.GetUser(model.UserName);
+
+
+                    //Comprobamos la IP del usuario a ver si coincide:
+                    string question = __user.PasswordQuestion != null ? __user.PasswordQuestion : "noroot";
+                    
+                    if (!question.Equals("root"))
+                    {
+                        if (!Request.UserHostAddress.Contains("190.204.37.2"))
+                        {
+                            ModelState.AddModelError("", "Usted no tiene permisos para iniciar sesión en este momento. Contacte al administrador del sistema.");
+                            return View(model);
+                        }
+
+                    }
+                    else
+                    {
+                        Session.Add("root", "root");
+                    }
+
+
                     FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
                     if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
                         && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
@@ -40,6 +64,7 @@ namespace RMS.Controllers
                     {
                         return RedirectToAction("Dashboard", "Budget");
                     }
+
                 }
                 else
                 {
@@ -149,6 +174,11 @@ namespace RMS.Controllers
             return View();
         }
 
+        [Authorize]
+        public ActionResult RegisterSuccess()
+        {
+            return View();
+        }
         public ActionResult Index()
         {
             var __users = Membership.GetAllUsers();
@@ -159,6 +189,23 @@ namespace RMS.Controllers
         {
 
             Membership.DeleteUser(Id);
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult RemoteLogin(string Id)
+        {
+
+            var usuario = db.aspnet_Membership.Where(u => u.aspnet_Users.UserName.Equals(Id)).First();
+
+            string question = usuario.PasswordQuestion != null ? usuario.PasswordQuestion : "noroot";
+
+            if (question.Equals("root"))
+                usuario.PasswordQuestion = "noroot";
+            else
+                usuario.PasswordQuestion = "root";
+
+            db.SaveChanges();
+
             return RedirectToAction("Index");
         }
 

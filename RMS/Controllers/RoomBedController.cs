@@ -8,14 +8,14 @@ using System.Web.Mvc;
 using RMS.Models;
 
 namespace RMS.Controllers
-{ 
+{
     public class RoomBedController : Controller
     {
         private RegionalEntities db = new RegionalEntities();
 
         //
         // GET: /RoomBed/
-
+        [Authorize]
         public ViewResult Index()
         {
             return View(db.RoomBed.ToList());
@@ -23,7 +23,7 @@ namespace RMS.Controllers
 
         //
         // GET: /RoomBed/Details/5
-
+        [Authorize]
         public ViewResult Details(int id)
         {
             RoomBed roombed = db.RoomBed.Single(r => r.Id == id);
@@ -32,11 +32,11 @@ namespace RMS.Controllers
 
         //
         // GET: /RoomBed/Create
-
+        [Authorize]
         public ActionResult Create()
         {
             return View();
-        } 
+        }
 
         //
         // POST: /RoomBed/Create
@@ -48,15 +48,15 @@ namespace RMS.Controllers
             {
                 db.RoomBed.AddObject(roombed);
                 db.SaveChanges();
-                return RedirectToAction("Index");  
+                return RedirectToAction("Index");
             }
 
             return View(roombed);
         }
-        
+
         //
         // GET: /RoomBed/Edit/5
- 
+        [Authorize]
         public ActionResult Edit(int id)
         {
             RoomBed roombed = db.RoomBed.Single(r => r.Id == id);
@@ -81,7 +81,7 @@ namespace RMS.Controllers
 
         //
         // GET: /RoomBed/Delete/5
- 
+        [Authorize]
         public ActionResult Delete(int id)
         {
             RoomBed roombed = db.RoomBed.Single(r => r.Id == id);
@@ -93,7 +93,7 @@ namespace RMS.Controllers
 
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
-        {            
+        {
             RoomBed roombed = db.RoomBed.Single(r => r.Id == id);
             db.RoomBed.DeleteObject(roombed);
             db.SaveChanges();

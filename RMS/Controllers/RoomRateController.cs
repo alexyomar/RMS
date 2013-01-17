@@ -15,14 +15,14 @@ namespace RMS.Controllers
 
         //
         // GET: /RoomRate/
-
+        [Authorize]
         public ViewResult Index(int id)
         {
             var roomocupation = db.RoomOcupation.Include("Room").Where(u => u.IdRoom.Equals(id));
             ViewBag.Room = db.Room.SingleOrDefault(u => u.Id.Equals(id));
             return View(roomocupation.ToList());
         }
-
+        [Authorize]
         public ViewResult Index2(int id)
         {
             var roomocupation = db.RoomOcupation.Include("Room").Where(u => u.IdRoom.Equals(id));
@@ -32,7 +32,7 @@ namespace RMS.Controllers
 
         //
         // GET: /RoomRate/Details/5
-
+        [Authorize]
         public ViewResult Details(int id)
         {
             RoomOcupation roomocupation = db.RoomOcupation.Single(r => r.Id == id);
@@ -41,7 +41,7 @@ namespace RMS.Controllers
 
         //
         // GET: /RoomRate/Create
-
+        [Authorize]
         public ActionResult Create(int id)
         {
             ViewBag.IdRoom = new SelectList(db.Room, "Id", "Name");
@@ -110,7 +110,7 @@ namespace RMS.Controllers
 
         //
         // GET: /RoomRate/Edit/5
-
+        [Authorize]
         public ActionResult Edit(int id)
         {
             RoomOcupation roomocupation = db.RoomOcupation.Single(r => r.Id == id);
@@ -137,7 +137,7 @@ namespace RMS.Controllers
 
         //
         // GET: /RoomRate/Delete/5
-
+        [Authorize]
         public ActionResult Delete(int id)
         {
             RoomOcupation roomocupation = db.RoomOcupation.Single(r => r.Id == id);
@@ -155,7 +155,7 @@ namespace RMS.Controllers
             db.SaveChanges();
             return RedirectToAction("Index", new { Id = roomocupation.IdRoom });
         }
-
+        [Authorize]
         public ActionResult Batch(int Id)
         {
             ViewBag.IdRoom = Id;
@@ -185,7 +185,7 @@ namespace RMS.Controllers
             return JavaScript("Tarifas actualizadas correctamente.");
         }
 
-
+        [Authorize]
         public ActionResult GetDataFare(string sidx, string sord, int page, int rows, int id)
         {
             var roomocupation = db.RoomOcupation.Where(u => u.IdRoom.Equals(id)).Select(x => new
@@ -213,7 +213,7 @@ namespace RMS.Controllers
                 rows = roomocupation.ToList() // .AsEnumerable() whatever
                     .Select(x => new
                     {
-                        id = x.Id,   
+                        id = x.Id,
                         cell = new object[] {
                             x.Name,                            
                             x.Capacity,

@@ -12,7 +12,7 @@ namespace RMS.Controllers
         //
         // GET: /Report/
         private RegionalEntities db = new RegionalEntities();
-
+        [Authorize]
         public ActionResult Index()
         {
             ViewData.Model = db.Hotel.ToList();
@@ -34,6 +34,7 @@ namespace RMS.Controllers
 
         }
 
+        [Authorize]
         public ActionResult RoomRate(int Id, bool print)
         {
             var __example = db.RoomOcupation.SingleOrDefault(u => u.Id.Equals(Id));
@@ -41,7 +42,6 @@ namespace RMS.Controllers
             ViewBag.Export = !print;
             return View();
         }
-
 
         public JsonResult GetRoom(int id)
         {
@@ -69,7 +69,8 @@ namespace RMS.Controllers
 
             return Json(new SelectList(__fares, "Id", "Date"), JsonRequestBehavior.AllowGet);
         }
-
+        
+        [Authorize]
         public ActionResult PrintableRoom(int rate)
         {
 

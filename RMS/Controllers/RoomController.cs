@@ -15,7 +15,7 @@ namespace RMS.Controllers
 
         //
         // GET: /Room/
-
+        [Authorize]
         public ViewResult Index(int Id)
         {
             var room = db.Room.Include("Hotel").Where(u => u.IdHotel.Equals(Id));
@@ -25,7 +25,7 @@ namespace RMS.Controllers
 
         //
         // GET: /Room/Details/5
-
+        [Authorize]
         public ViewResult Details(int id)
         {
             Room room = db.Room.Single(r => r.Id == id);
@@ -34,7 +34,7 @@ namespace RMS.Controllers
 
         //
         // GET: /Room/Create
-
+        [Authorize]
         public ActionResult Create(int Id)
         {
             ViewBag.Hotel = db.Hotel.SingleOrDefault(u => u.Id.Equals(Id));
@@ -60,7 +60,7 @@ namespace RMS.Controllers
 
         //
         // GET: /Room/Edit/5
-
+        [Authorize]
         public ActionResult Edit(int id)
         {
             Room room = db.Room.Single(r => r.Id == id);
@@ -85,7 +85,7 @@ namespace RMS.Controllers
 
         //
         // GET: /Room/Delete/5
-
+        [Authorize]
         public ActionResult Delete(int id)
         {
             Room room = db.Room.Single(r => r.Id == id);

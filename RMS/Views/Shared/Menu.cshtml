@@ -1,6 +1,6 @@
 ﻿@{
     var contenidos = new RMS.Models.RegionalEntities();
-    
+    bool root = Session["root"] != null ? true : false;
 }
 <div style="margin-right: 15px;">
     <div class="urbangreymenu">
@@ -20,12 +20,15 @@
         <ul>
             <li><a href="@Url.Action("Index", "Report")">Tarifas</a></li>
         </ul>
-        <h3 class="headerbar">Herramientas</h3>
-        <ul>
-            <li><a href="@Url.Action("Index", "Account")">Listado de Usuarios</a></li>
-            <li><a href="@Url.Action("Register", "Account")">Crear Usuario</a></li>
-            <li><a href="@Url.Action("ChangePassword", "Account")">Contraseña</a></li>
-        </ul>
+        @if (root)
+        {
+            <h3 class="headerbar">Herramientas</h3>
+            <ul>
+                <li><a href="@Url.Action("Index", "Account")">Listado de Usuarios</a></li>
+                <li><a href="@Url.Action("Register", "Account")">Crear Usuario</a></li>
+                <li><a href="@Url.Action("ChangePassword", "Account")">Contraseña</a></li>
+            </ul>
+        }
         <h3 class="headerbar">Página Web</h3>
         <ul>
 

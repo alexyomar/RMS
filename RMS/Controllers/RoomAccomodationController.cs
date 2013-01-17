@@ -15,7 +15,7 @@ namespace RMS.Controllers
 
         //
         // GET: /RoomAccomodation/
-
+        [Authorize]
         public ViewResult Index(int Id)
         {
             ViewBag.Room = db.Room.SingleOrDefault(model => model.Id.Equals(Id));
@@ -25,7 +25,7 @@ namespace RMS.Controllers
 
         //
         // GET: /RoomAccomodation/Details/5
-
+        [Authorize]
         public ViewResult Details(int id)
         {
             RoomOccupationBed roomoccupationbed = db.RoomOccupationBed.Single(r => r.IdRoom == id);
@@ -34,7 +34,7 @@ namespace RMS.Controllers
 
         //
         // GET: /RoomAccomodation/Create
-
+        [Authorize]
         public ActionResult Create(int Id)
         {
             ViewBag.Room = db.Room.SingleOrDefault(model => model.Id.Equals(Id));
@@ -44,7 +44,7 @@ namespace RMS.Controllers
 
         //
         // POST: /RoomAccomodation/Create
-
+        [Authorize]
         [HttpPost]
         public ActionResult Create(RoomOccupationBed roomoccupationbed)
         {
@@ -74,7 +74,7 @@ namespace RMS.Controllers
 
         //
         // GET: /RoomAccomodation/Edit/5
-
+        [Authorize]
         public ActionResult Edit(int IdRoom, int IdRoomBed)
         {
             RoomOccupationBed roomoccupationbed = db.RoomOccupationBed.Single(r => r.IdRoom == IdRoom && r.IdRoomBed == IdRoomBed);
@@ -85,7 +85,7 @@ namespace RMS.Controllers
 
         //
         // POST: /RoomAccomodation/Edit/5
-
+        [Authorize]
         [HttpPost]
         public ActionResult Edit(RoomOccupationBed roomoccupationbed)
         {
@@ -103,7 +103,7 @@ namespace RMS.Controllers
 
         //
         // GET: /RoomAccomodation/Delete/5
-
+        [Authorize]
         public ActionResult Delete(int IdRoom, int IdRoomBed)
         {
             RoomOccupationBed roomoccupationbed = db.RoomOccupationBed.Single(r => r.IdRoom == IdRoom && r.IdRoomBed == IdRoomBed);
@@ -112,7 +112,7 @@ namespace RMS.Controllers
 
         //
         // POST: /RoomAccomodation/Delete/5
-
+         [Authorize]
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int IdRoom, int IdRoomBed)
         {

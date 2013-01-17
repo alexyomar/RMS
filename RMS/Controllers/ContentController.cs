@@ -16,7 +16,7 @@ namespace RMS.Controllers
 
         //
         // GET: /Content/
-
+        [Authorize]
         public ViewResult Index(int Id)
         {
             var content = db.Content.Include("ContentType").Include("Country");
@@ -27,7 +27,7 @@ namespace RMS.Controllers
 
         //
         // GET: /Content/Details/5
-
+        [Authorize]
         public ViewResult Details(int id)
         {
             Content content = db.Content.Single(c => c.Id == id);
@@ -36,7 +36,7 @@ namespace RMS.Controllers
 
         //
         // GET: /Content/Create
-
+        [Authorize]
         public ActionResult Create(int Id)
         {
             ViewBag.IdContentType = new SelectList(db.ContentType, "Id", "Name", Id);
@@ -105,7 +105,7 @@ namespace RMS.Controllers
 
         //
         // GET: /Content/Edit/5
-
+        [Authorize]
         public ActionResult Edit(int id)
         {
             Content content = db.Content.Single(c => c.Id == id);
@@ -144,7 +144,7 @@ namespace RMS.Controllers
             {
 
                 content.TimestampEdit = DateTime.Now;
-                
+
                 db.Content.Attach(content);
                 db.ObjectStateManager.ChangeObjectState(content, EntityState.Modified);
                 db.SaveChanges();
@@ -167,7 +167,7 @@ namespace RMS.Controllers
                     db.SaveChanges();
                 }
                 int i = 1;
-                
+
                 foreach (var item in images)
                 {
                     if (item != null)
@@ -206,7 +206,7 @@ namespace RMS.Controllers
                             db.SaveChanges();
                         }
 
-                       
+
 
                         db.ContentImages.AddObject(__newimage);
                         db.SaveChanges();
@@ -232,10 +232,10 @@ namespace RMS.Controllers
                     db.SaveChanges();
                 }
 
-                return RedirectToAction("Index", new  { Id = content.IdContentType });
+                return RedirectToAction("Index", new { Id = content.IdContentType });
             }
 
-            
+
 
             ViewBag.IdContentType = new SelectList(db.ContentType, "Id", "Name", content.IdContentType);
             ViewBag.IdCountry = new SelectList(db.Country, "Id", "Country1", content.IdCountry);
@@ -244,7 +244,7 @@ namespace RMS.Controllers
 
         //
         // GET: /Content/Delete/5
-
+        [Authorize]
         public ActionResult Delete(int id)
         {
             Content content = db.Content.Single(c => c.Id == id);

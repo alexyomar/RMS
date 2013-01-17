@@ -17,24 +17,25 @@ namespace RMS.Controllers
     {
         private RegionalEntities db = new RegionalEntities();
 
+        [Authorize]
         public ViewResult Index()
         {
             var reservation = db.Reservation.Include("Customer").Include("ReservationStatus").OrderByDescending(x => x.Id);
             return View(reservation.ToList());
         }
-
+        [Authorize]
         public ViewResult Dashboard()
         {
             var reservation = db.Reservation.Include("Customer").Include("ReservationStatus").OrderByDescending(x => x.Id);
             return View(reservation);
         }
-
+        [Authorize]
         public ViewResult Details(int id)
         {
             Reservation reservation = db.Reservation.Single(r => r.Id == id);
             return View(reservation);
         }
-
+        [Authorize]
         public ActionResult Create(int? Id)
         {
             ViewBag.Customer = db.Customer.ToList();

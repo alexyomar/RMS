@@ -9,8 +9,7 @@
 <table border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin: 30px 0px;">
     <tr>
         <td valign="middle">
-            <h1 style="margin: 0px; padding: 0px">
-                Listado de Usuarios</h1>
+            <h1 style="margin: 0px; padding: 0px">Listado de Usuarios</h1>
         </td>
         <td>
             <a href="@Url.Action("Register")" class="button" style="float: right;">
@@ -21,17 +20,15 @@
 </table>
 <table class="table">
     <tr>
-        <th>
-            Usuario
+        <th>Usuario
         </th>
-        <th>
-            Email
+        <th>Email
         </th>
-        <th>
-            Fecha de creación
+        <th>Fecha de creación
         </th>
-        <th>
-            Último inicio de sesión
+        <th>Último inicio de sesión
+        </th>
+        <th>Inicio remoto
         </th>
         @*        <th>
             Aprobado?
@@ -39,14 +36,14 @@
         <th>
             Bloqueado?
         </th>*@
-        <th>
-            En linea?
+        <th>En linea?
         </th>
-        <th>
-        </th>
+        <th></th>
     </tr>
     @foreach (MembershipUser item in Model)
     {
+        bool root = item.PasswordQuestion != null ? (item.PasswordQuestion.ToLower().Equals("root") ? true : false) : false;
+        
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.UserName)
@@ -60,6 +57,11 @@
             <td>
                 @Html.DisplayFor(modelItem => item.LastLoginDate)
             </td>
+            <td>
+                @Html.DisplayFor(a => root)
+                <br />
+                @Html.ActionLink("Cambiar", "RemoteLogin", new { id = item.UserName })
+            </td>
             @*           <td>
                 @Html.DisplayFor(modelItem => item.IsApproved)
             </td>
@@ -71,6 +73,7 @@
                 @Html.DisplayFor(modelItem => item.IsOnline)
             </td>
             <td>
+
                 @Html.ActionLink("Eliminar", "Delete", new { id = item.UserName }, new { @class = "delete" })
             </td>
         </tr>
@@ -79,7 +82,8 @@
 <div id="dialog-confirm" title="Eliminar registro" style="display: none;">
     <p>
         <span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 20px 0;"></span>
-        ¿Está seguro de eliminar este usuario?</p>
+        ¿Está seguro de eliminar este usuario?
+    </p>
 </div>
 <script type="text/javascript">
 
@@ -106,8 +110,7 @@
 </script>
 <table border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin: 30px 0px;">
     <tr>
-        <td valign="middle">
-        </td>
+        <td valign="middle"></td>
         <td>
             <a href="@Url.Action("Create")" class="button" style="float: right;">
                 <img src="@Url.Content("~/Content/img/add.png")" />
