@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html >
+
+<html xmlns:fb="http://ogp.me/ns/fb#">
+<head>
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Areas/Web/Content/css/website.css")" rel="stylesheet" />
+
+    @RenderSection("Scripts", required: false)
+</head>
+<body>
+    <div id="main">
+        <div class="content">
+            <div id="botonera">
+                <a id="logo" href="@Url.Action("Index", "VE")"></a>
+                <a id="paquetes" href="@Url.Action("Seccion", "VE", new { Id = 1, name = "Paquetes" })"></a>
+                <a id="hoteles" href="@Url.Action("Seccion", "VE", new { Id = 7, name = "Hoteles" })"></a>
+                <a id="excursiones" href="@Url.Action("Seccion", "VE", new { Id = 4, name = "Excursiones" })"></a>
+                <a id="circuitos" href="@Url.Action("Seccion", "VE", new { Id = 2, name = "Circuitos" })"></a>
+                <a id="cruceros" href="@Url.Action("Seccion", "VE", new { Id = 3, name = "Cruceros" })"></a>
+                <a id="autos" href="@Url.Action("Seccion", "VE", new { Id = 5, name = "Autos" })"></a>
+                <a id="eventos" href="@Url.Action("Seccion", "VE", new { Id = 8, name = "Eventos" })"></a>
+                <a id="seguros" href="@Url.Action("Seccion", "VE", new { Id = 6, name = "Seguros" })"></a>
+            </div>
+            @RenderBody()
+            <div id="footer">
+            </div>
+            <p style="text-align: center; font-size: 11px; padding: 10px;">
+                ©2013 Regional Marketing Services, C.A. - Todos los derechos reservados.<br />
+                RIF: J-40087957-4  RTN: 11720  VT: 2964
+            </p>
+        </div>
+    </div>
+    <div id="background">
+        <img src="/Areas/Web/Content/images/bg/Fondos-RM3.jpg" />
+    </div>
+</body>
+</html>
