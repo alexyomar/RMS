@@ -23,6 +23,51 @@
             </div>
             @RenderBody()
             <div id="footer">
+                <div id="nav1">
+                    <ul>
+
+                        <li><a href="@Url.Action("Seccion", "VE", new { Id = 1, name = "Paquetes" })">Paquetes</a></li>
+                        <li><a href="@Url.Action("Seccion", "VE", new { Id = 7, name = "Hoteles" })">Hoteles</a></li>
+                        <li><a href="@Url.Action("Seccion", "VE", new { Id = 4, name = "Excursiones" })">Excursiones</a></li>
+                        <li><a href="@Url.Action("Seccion", "VE", new { Id = 2, name = "Circuitos" })">Circuitos</a></li>
+                        <li><a href="@Url.Action("Seccion", "VE", new { Id = 3, name = "Cruceros" })">Cruceros</a></li>
+                        <li><a href="@Url.Action("Seccion", "VE", new { Id = 5, name = "Autos" })">Autos</a></li>
+                        <li><a href="@Url.Action("Seccion", "VE", new { Id = 8, name = "Eventos" })">Eventos</a></li>
+                        <li><a href="@Url.Action("Seccion", "VE", new { Id = 6, name = "Seguros" })">Seguros</a></li>
+                    </ul>
+                </div>
+                <div id="nav2">
+                    <ul>
+                        <li><a href="@Url.Action("Index", "VE")">Inicio</a></li>
+                        <li><a href="@Url.Action("Nosotros", "VE")">Nosotros</a></li>
+                        <li><a href="@Url.Action("Cotizaciones", "VE")">Cotizaciones</a></li>
+                        <li><a href="@Url.Action("Reservaciones", "VE")">Reservaciones</a></li>
+                        <li><a href="@Url.Action("Contáctenos", "VE")">Contáctenos</a></li>
+                    </ul>
+                </div>
+                <div id="nav3">
+                    <table>
+                        <tr>
+                            <td style="vertical-align: top">
+                                <h1>¿Dondé estamos?</h1>
+                                <br />
+                                <p style="font-size: small">
+                                    Centro Comercial Ciudad Tamanaco, 1era. Etapa,
+                        <br />
+                                    Piso 3, Oficina 303, Chuao, Caracas, Venezuela.<br />
+                                    Teléfonos:<b> +58 212 9593217 / 9598283 
+                        <br />
+                                        3253617 / 3253618 / 3253619</b><br />
+                                    <br />
+                                    <a href="mailto:promocionesrm@regionalmarketing.com.ve">promocionesrm@regionalmarketing.com.ve</a>
+                                </p>
+                            </td>
+                            <td style="vertical-align: top">
+                                <iframe width="255" height="170" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" style="border: 1px solid #808080" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=es-419&amp;geocode=&amp;q=CCCT+Caracas&amp;aq=&amp;sll=37.913973,-122.301343&amp;sspn=0.115792,0.264187&amp;t=p&amp;ie=UTF8&amp;hq=CCCT&amp;hnear=Caracas,+Libertador,+Distrito+Metropolitano+de+Caracas,+Venezuela&amp;cid=9977758859026869094&amp;ll=10.485364,-66.854038&amp;spn=0.015614,0.021801&amp;z=14&amp;output=embed"></iframe>
+                        </tr>
+                    </table>
+
+                </div>
             </div>
             <p style="text-align: center; font-size: 11px; padding: 10px;">
                 ©2013 Regional Marketing Services, C.A. - Todos los derechos reservados.<br />
@@ -31,7 +76,7 @@
         </div>
     </div>
     <div id="background">
-        <img src="/Areas/Web/Content/images/bg/Fondos-RM3.jpg" />
+        <img src="/Areas/Web/Content/images/bg/5.jpg" />
     </div>
 </body>
 </html>

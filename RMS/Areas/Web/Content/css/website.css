@@ -1,4 +1,6 @@
-﻿/* Reset Elements*/
+﻿@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,300,600,800|PT+Sans+Caption:400,700);
+
+/* Reset Elements*/
 html, body, div, span, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 abbr, address, cite, code,
@@ -20,21 +22,51 @@ time, mark, audio, video {
     background: transparent;
 }
 
+a:link {
+    color: #474748;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #474748;
+    text-decoration: none;
+}
+
+
+a:hover {
+    color: #a3bd31;
+    text-decoration: none;
+}
+
+a:active {
+    color: #a3bd31;
+    text-decoration: none;
+}
+
+b {
+    font-weight: 600;
+}
 
 body {
     background-color: #fff;
-    font-family: Arial, Tahoma;
+    font-family: 'Open Sans', sans-serif;
     font-size: 14px;
     color: #666569;
+    font-weight: 300;
 }
 
 h1 {
     font-size: 20px;
+    font-family: 'PT Sans Caption', sans-serif;
+    font-weight: 700;
+    color: #a3bd31;
 }
 
 h2 {
     font-size: 16px;
     font-weight: 400;
+    font-family: 'Roboto', sans-serif;
+    color: #a3bd31;
 }
 
 .header {
@@ -45,8 +77,8 @@ h2 {
     height: 41px;
     line-height: 41px;
     background-repeat: no-repeat;
-    padding-left:20px;
-    color:#fff;
+    padding-left: 20px;
+    color: #fff;
 }
 
 #background {
@@ -55,7 +87,6 @@ h2 {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url(../images/bg/bg2.png);
     background-position: top center;
     background-repeat: no-repeat;
     z-index: 0;
@@ -194,6 +225,7 @@ h2 {
     background-image: url(../images/layout/eventos_ov.png);
 }
 
+
 #seguros:hover {
     background-image: url(../images/layout/seguros_ov.png);
 }
@@ -252,6 +284,11 @@ h2 {
             margin-left: 10px;
         }
 
+
+    #datacontainer h1, #datacontainer h2 {
+        color: #666569;
+    }
+
     #datacontainer .data .imagen {
         width: 203px;
         height: 172px;
@@ -289,8 +326,7 @@ h2 {
     padding: 10px;
     width: 926px;
     max-height: 700px;
-    overflow-x:hidden;
-    
+    overflow-x: hidden;
 }
 
 #footer {
@@ -299,3 +335,33 @@ h2 {
     background-image: url(../images/layout/footer.png);
     margin: 0px auto;
 }
+
+    #footer ul {
+        list-style: square;
+        color: #a3bd31;
+    }
+
+
+    #footer #nav1 {
+        width: 190px;
+        float: left;
+        padding: 20px 0px 0px 55px;
+        height: 213px;
+        line-height: 20px;
+        font-size: 13px;
+    }
+
+    #footer #nav2 {
+        width: 150px;
+        float: left;
+        padding: 20px 0px 0px 15px;
+        height: 213px;
+        line-height: 20px;
+        font-size: 13px;
+    }
+
+    #footer #nav3 {
+        float: left;
+        padding: 20px 0px 0px 10px;
+        height: 213px;
+    }
