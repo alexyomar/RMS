@@ -90,6 +90,7 @@ h2 {
     background-position: top center;
     background-repeat: no-repeat;
     z-index: 0;
+    background: url(../images/bg/Fondos-RM3.jpg);
 }
 
 #main {
@@ -278,6 +279,7 @@ h2 {
         line-height: 41px;
         background: url(../images/layout/bar.png);
         margin: 0 auto;
+        font-weight:600;
     }
 
         #datacontainer .bar span {
@@ -365,3 +367,24 @@ h2 {
         padding: 20px 0px 0px 10px;
         height: 213px;
     }
+
+.field-validation-error {
+    color: #f00;
+    font-weight: 800;
+}
+
+.required {
+    width: 50%;
+}
+.sidebar { width: 220px; height: 623px; padding: 55px 0 0 80px; background: url(../images/sidebar_bg.png) no-repeat 0 10%; font-size:14px; }
+.sidebar ul { padding: 20px 0 10px 0; color: #184403; list-style:none; }
+.sidebar li { padding-top: 10px; }
+.facebook { background: url(../images/fb_icon.png) no-repeat left 50%; padding-left: 40px; }
+.twitter { background: url(../images/twtr_icon.png) no-repeat left bottom; padding-left: 40px; }
+.mail { background: url(../images/mail_icon.png) no-repeat left 90%; padding-left: 40px; }
+.address { background: url(../images/address_icon.png) no-repeat 0 30%; padding-left: 40px; }
+.sidebar li a { color: #184403; }
+.sidebar li a:hover { color: #fff; }
+.editor-field {
+
+}

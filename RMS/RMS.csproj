@@ -87,6 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Areas\Web\Controllers\VEController.cs" />
+    <Compile Include="Areas\Web\Models\CotizacionModel.cs" />
     <Compile Include="Areas\Web\webAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BudgetController.cs" />
@@ -161,6 +162,7 @@
     <Content Include="Areas\Web\Content\images\bg\7.jpg" />
     <Content Include="Areas\Web\Content\images\bg\8.jpg" />
     <Content Include="Areas\Web\Content\images\bg\9.jpg" />
+    <Content Include="Areas\Web\Content\images\bg\Fondos-RM4.jpg" />
     <Content Include="Areas\Web\Content\images\layout\banner.jpg" />
     <Content Include="Areas\Web\Content\images\layout\bannerint.jpg" />
     <Content Include="Areas\Web\Content\images\layout\bar.png" />
@@ -231,7 +233,7 @@
     <Content Include="Content\agd\images\013.jpg" />
     <Content Include="Content\agd\images\014.jpg" />
     <Content Include="Content\agd\images\about_img.jpg" />
-    <Content Include="Content\agd\images\address_icon.png" />
+    <Content Include="Areas\Web\Content\images\address_icon.png" />
     <Content Include="Content\agd\images\ajax-loader.gif" />
     <Content Include="Content\agd\images\back.jpg" />
     <Content Include="Content\agd\images\back.png" />
@@ -245,7 +247,7 @@
     <Content Include="Content\agd\images\bullets.png" />
     <Content Include="Content\agd\images\destiny.png" />
     <Content Include="Content\agd\images\envato.jpg" />
-    <Content Include="Content\agd\images\fb_icon.png" />
+    <Content Include="Areas\Web\Content\images\fb_icon.png" />
     <Content Include="Content\agd\images\footer_bg.png" />
     <Content Include="Content\agd\images\footer_button.png" />
     <Content Include="Content\agd\images\footer_button_h.png" />
@@ -255,7 +257,7 @@
     <Content Include="Content\agd\images\hr.png" />
     <Content Include="Content\agd\images\left_arrow.png" />
     <Content Include="Content\agd\images\logo-trans.png" />
-    <Content Include="Content\agd\images\mail_icon.png" />
+    <Content Include="Areas\Web\Content\images\mail_icon.png" />
     <Content Include="Content\agd\images\nuvo.png" />
     <Content Include="Content\agd\images\packages.png" />
     <Content Include="Content\agd\images\portfolio_bg.png" />
@@ -275,11 +277,11 @@
     <Content Include="Content\agd\images\search_bg.png" />
     <Content Include="Content\agd\images\sform_bg.jpg" />
     <Content Include="Content\agd\images\sform_bg_h.jpg" />
-    <Content Include="Content\agd\images\sidebar_bg.png" />
+    <Content Include="Areas\Web\Content\images\sidebar_bg.png" />
     <Content Include="Content\agd\images\slider_bg.gif" />
     <Content Include="Content\agd\images\themeforest.jpg" />
     <Content Include="Content\agd\images\twitter_bg.png" />
-    <Content Include="Content\agd\images\twtr_icon.png" />
+    <Content Include="Areas\Web\Content\images\twtr_icon.png" />
     <Content Include="Content\images\border1.png" />
     <Content Include="Content\images\border2.png" />
     <Content Include="Content\images\download.png" />
@@ -372,6 +374,7 @@
     <Content Include="Areas\Web\Views\VE\Index.cshtml" />
     <Content Include="Areas\Web\Views\VE\Seccion.cshtml" />
     <Content Include="Areas\Web\Views\VE\PartialContenido.cshtml" />
+    <Content Include="Areas\Web\Views\VE\Cotizacion.cshtml" />
     <None Include="Content\agd\images\Thumbs.db" />
     <None Include="Content\img\103.girrf" />
     <Content Include="Content\img\103.gif" />
@@ -668,7 +671,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Web\Models\" />
     <Folder Include="Content\Promociones\" />
   </ItemGroup>
   <ItemGroup>
