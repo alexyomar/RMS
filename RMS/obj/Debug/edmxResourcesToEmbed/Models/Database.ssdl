@@ -12,6 +12,8 @@
     <EntitySet Name="aspnet_Users" EntityType="RegionalModel.Store.aspnet_Users" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="aspnet_UsersInRoles" EntityType="RegionalModel.Store.aspnet_UsersInRoles" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="aspnet_WebEvent_Events" EntityType="RegionalModel.Store.aspnet_WebEvent_Events" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Banner" EntityType="RegionalModel.Store.Banner" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BannerType" EntityType="RegionalModel.Store.BannerType" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Content" EntityType="RegionalModel.Store.Content" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ContentFiles" EntityType="RegionalModel.Store.ContentFiles" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ContentImages" EntityType="RegionalModel.Store.ContentImages" store:Type="Tables" Schema="dbo" />
@@ -166,6 +168,10 @@
     <AssociationSet Name="FK__aspnet_Us__UserI__41EDCAC5" Association="RegionalModel.Store.FK__aspnet_Us__UserI__41EDCAC5">
       <End Role="aspnet_Users" EntitySet="aspnet_Users" />
       <End Role="aspnet_UsersInRoles" EntitySet="aspnet_UsersInRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Banner_BannerType" Association="RegionalModel.Store.FK_Banner_BannerType">
+      <End Role="BannerType" EntitySet="BannerType" />
+      <End Role="Banner" EntitySet="Banner" />
     </AssociationSet>
     <AssociationSet Name="FK_Content_ContentType" Association="RegionalModel.Store.FK_Content_ContentType">
       <End Role="ContentType" EntitySet="ContentType" />
@@ -366,6 +372,24 @@
     <Property Name="RequestUrl" Type="nvarchar" MaxLength="1024" />
     <Property Name="ExceptionType" Type="nvarchar" MaxLength="256" />
     <Property Name="Details" Type="ntext" />
+  </EntityType>
+  <EntityType Name="Banner">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="URL" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Timestamp" Type="datetime" Nullable="false" />
+    <Property Name="Featured" Type="bit" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="IdBannerType" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BannerType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Content">
     <Key>
@@ -886,6 +910,18 @@
       </Principal>
       <Dependent Role="aspnet_UsersInRoles">
         <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Banner_BannerType">
+    <End Role="BannerType" Type="RegionalModel.Store.BannerType" Multiplicity="1" />
+    <End Role="Banner" Type="RegionalModel.Store.Banner" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BannerType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Banner">
+        <PropertyRef Name="IdBannerType" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

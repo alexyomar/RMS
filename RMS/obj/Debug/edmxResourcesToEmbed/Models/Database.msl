@@ -501,5 +501,25 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Banner">
+      <EntityTypeMapping TypeName="RegionalModel.Banner">
+        <MappingFragment StoreEntitySet="Banner">
+          <ScalarProperty Name="IdBannerType" ColumnName="IdBannerType" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Featured" ColumnName="Featured" />
+          <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BannerType">
+      <EntityTypeMapping TypeName="RegionalModel.BannerType">
+        <MappingFragment StoreEntitySet="BannerType">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

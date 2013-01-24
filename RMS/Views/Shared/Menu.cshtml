@@ -32,6 +32,8 @@
         <h3 class="headerbar">Página Web</h3>
         <ul>
 
+            <li><a href="@Url.Action("Index", "Banner")">Banners</a></li>
+
             @foreach (var item in contenidos.ContentType.ToList())
             {
                 <li><a href="@Url.Action("Index", "Content", new { Id = item.Id })">@item.Name</a></li>    

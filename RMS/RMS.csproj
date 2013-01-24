@@ -90,6 +90,7 @@
     <Compile Include="Areas\Web\Models\CotizacionModel.cs" />
     <Compile Include="Areas\Web\webAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BannerController.cs" />
     <Compile Include="Controllers\BudgetController.cs" />
     <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
@@ -261,7 +262,7 @@
     <Content Include="Content\agd\images\nuvo.png" />
     <Content Include="Content\agd\images\packages.png" />
     <Content Include="Content\agd\images\portfolio_bg.png" />
-    <Content Include="Content\agd\images\presentacion.png" />
+    <Content Include="Areas\Web\Content\images\presentacion.png" />
     <Content Include="Content\agd\images\project.png" />
     <Content Include="Content\agd\images\project1_thumb1.jpg" />
     <Content Include="Content\agd\images\project1_thumb2.jpg" />
@@ -374,7 +375,9 @@
     <Content Include="Areas\Web\Views\VE\Index.cshtml" />
     <Content Include="Areas\Web\Views\VE\Seccion.cshtml" />
     <Content Include="Areas\Web\Views\VE\PartialContenido.cshtml" />
-    <Content Include="Areas\Web\Views\VE\Cotizacion.cshtml" />
+    <Content Include="Areas\Web\Views\VE\Cotizaciones.cshtml" />
+    <Content Include="Areas\Web\Views\VE\Nosotros.cshtml" />
+    <Content Include="Areas\Web\Views\VE\Contactenos.cshtml" />
     <None Include="Content\agd\images\Thumbs.db" />
     <None Include="Content\img\103.girrf" />
     <Content Include="Content\img\103.gif" />
@@ -432,7 +435,7 @@
     <Content Include="Content\Paquetes\Nacionales\margaritat.JPG" />
     <Content Include="Content\Paquetes\Nacionales\margaritanav2.jpg" />
     <Content Include="Content\Paquetes\Nacionales\margaritabaja.jpg" />
-    <Content Include="Content\sliders\about.jpg" />
+    <Content Include="Areas\Web\Content\images\about.jpg" />
     <Content Include="Content\sliders\home.jpg" />
     <Content Include="Content\sliders\internacional.jpg" />
     <Content Include="Content\sliders\nacional.jpg" />
@@ -668,6 +671,11 @@
     <Content Include="Views\Content\Create.cshtml" />
     <Content Include="Views\Content\Edit.cshtml" />
     <Content Include="Views\Content\Delete.cshtml" />
+    <Content Include="Views\Banner\Index.cshtml" />
+    <Content Include="Views\Banner\Details.cshtml" />
+    <Content Include="Views\Banner\Create.cshtml" />
+    <Content Include="Views\Banner\Edit.cshtml" />
+    <Content Include="Views\Banner\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

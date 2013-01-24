@@ -10,6 +10,16 @@
 <body>
     <div id="main">
         <div class="content">
+            <div id="links">
+                <table>
+                    <tr>
+                        <td><a href="@Url.Action("Nosotros", "VE")">Nosotros</a></td>
+                        <td><a href="@Url.Action("Cotizaciones", "VE")">Cotizaciones</a></td>
+                        @*<td><a href="@Url.Action("Reservaciones", "VE")">Reservaciones</a></td>*@
+                        <td><a href="@Url.Action("Contactenos", "VE")">Contáctenos</a></td>
+                    </tr>
+                </table>
+            </div>
             <div id="botonera">
                 <a id="logo" href="@Url.Action("Index", "VE")"></a>
                 <a id="paquetes" href="@Url.Action("Seccion", "VE", new { Id = 1, name = "Paquetes" })"></a>
@@ -40,9 +50,9 @@
                     <ul>
                         <li><a href="@Url.Action("Index", "VE")">Inicio</a></li>
                         <li><a href="@Url.Action("Nosotros", "VE")">Nosotros</a></li>
-                        <li><a href="@Url.Action("Cotizaciones", "VE")">Cotizaciones</a></li>
+                        @*<li><a href="@Url.Action("Cotizaciones", "VE")">Cotizaciones</a></li>*@
                         <li><a href="@Url.Action("Reservaciones", "VE")">Reservaciones</a></li>
-                        <li><a href="@Url.Action("Contáctenos", "VE")">Contáctenos</a></li>
+                        <li><a href="@Url.Action("Contactenos", "VE")">Contáctenos</a></li>
                     </ul>
                 </div>
                 <div id="nav3">
@@ -59,7 +69,7 @@
                         <br />
                                         3253617 / 3253618 / 3253619</b><br />
                                     <br />
-                                    <a href="mailto:promocionesrm@regionalmarketing.com.ve">promocionesrm@regionalmarketing.com.ve</a>
+                                    <a href="mailto:promocionesrm@regionalmarketing.com.ve">promocionesrm@regionalmarketing.com.ve</a>
                                 </p>
                             </td>
                             <td style="vertical-align: top">

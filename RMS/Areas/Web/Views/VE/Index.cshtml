@@ -1,6 +1,10 @@
 ﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Web/Views/Shared/_LayoutPage.cshtml";
+    IEnumerable<RMS.Models.Banner> __banners = ViewBag.Banners as IEnumerable<RMS.Models.Banner>;
+    RMS.Models.Banner __destacado = ViewBag.Destacado as RMS.Models.Banner;
+    if (__destacado == null){
+        __destacado = new RMS.Models.Banner();}
 }
 
 @section Scripts
@@ -42,24 +46,21 @@
 
     <div id="sliderContainer">
         <div id="mySlides">
-            <div id="slide1" class="slide">
-                <img src="@Url.Content("~/Areas/Web/Content/banners/jflow-sample-slide1.jpg")" />
-            </div>
-            <div id="slide2" class="slide">
-                <img src="@Url.Content("~/Areas/Web/Content/banners/jflow-sample-slide2.jpg")" />
-            </div>
-            <div id="slide3" class="slide">
-                <img src="@Url.Content("~/Areas/Web/Content/banners/jflow-sample-slide3.jpg")" />
-            </div>
-            <div id="slide4" class="slide">
-                <img src="@Url.Content("~/Areas/Web/Content/banners/jflow-sample-slide4.jpg")" />
-            </div>
+            @foreach (var item in __banners)
+            {
+                <div class="slide">
+                    <img src="@Url.Content(item.URL)" />
+                </div>
+            }
+
+
         </div>
         <div id="myController">
-            <span class="jFlowControl"></span>
-            <span class="jFlowControl"></span>
-            <span class="jFlowControl"></span>
-            <span class="jFlowControl"></span>
+            @foreach (var item in __banners)
+            {
+                <span class="jFlowControl"></span>
+            }
+
         </div>
         <div class="jFlowPrev"></div>
         <div class="jFlowNext"></div>
@@ -71,6 +72,7 @@
     <tr>
         <td>
             <div id="destacados">
+                <img src="@__destacado.URL" width="380" height="512"/>
             </div>
         </td>
         <td>

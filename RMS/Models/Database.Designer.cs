@@ -46,6 +46,7 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("RegionalModel", "FK_Content_Country", "Country", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(RMS.Models.Country), "Content", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.Content), true)]
 [assembly: EdmRelationshipAttribute("RegionalModel", "FK_ContentFiles_Content", "Content", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(RMS.Models.Content), "ContentFiles", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.ContentFiles), true)]
 [assembly: EdmRelationshipAttribute("RegionalModel", "FK_ContentImages_Content", "Content", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(RMS.Models.Content), "ContentImages", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.ContentImages), true)]
+[assembly: EdmRelationshipAttribute("RegionalModel", "FK_Banner_BannerType", "BannerType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(RMS.Models.BannerType), "Banner", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(RMS.Models.Banner), true)]
 
 #endregion
 
@@ -720,6 +721,38 @@ namespace RMS.Models
             }
         }
         private ObjectSet<Country> _Country;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Banner> Banner
+        {
+            get
+            {
+                if ((_Banner == null))
+                {
+                    _Banner = base.CreateObjectSet<Banner>("Banner");
+                }
+                return _Banner;
+            }
+        }
+        private ObjectSet<Banner> _Banner;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<BannerType> BannerType
+        {
+            get
+            {
+                if ((_BannerType == null))
+                {
+                    _BannerType = base.CreateObjectSet<BannerType>("BannerType");
+                }
+                return _BannerType;
+            }
+        }
+        private ObjectSet<BannerType> _BannerType;
 
         #endregion
 
@@ -1035,6 +1068,22 @@ namespace RMS.Models
         public void AddToCountry(Country country)
         {
             base.AddObject("Country", country);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Banner EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToBanner(Banner banner)
+        {
+            base.AddObject("Banner", banner);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the BannerType EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToBannerType(BannerType bannerType)
+        {
+            base.AddObject("BannerType", bannerType);
         }
 
         #endregion
@@ -3858,6 +3907,344 @@ namespace RMS.Models
         #endregion
 
     
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="RegionalModel", Name="Banner")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Banner : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Banner object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="uRL">Initial value of the URL property.</param>
+        /// <param name="timestamp">Initial value of the Timestamp property.</param>
+        /// <param name="featured">Initial value of the Featured property.</param>
+        /// <param name="active">Initial value of the Active property.</param>
+        /// <param name="idBannerType">Initial value of the IdBannerType property.</param>
+        public static Banner CreateBanner(global::System.Int32 id, global::System.String uRL, global::System.DateTime timestamp, global::System.Boolean featured, global::System.Boolean active, global::System.Int32 idBannerType)
+        {
+            Banner banner = new Banner();
+            banner.Id = id;
+            banner.URL = uRL;
+            banner.Timestamp = timestamp;
+            banner.Featured = featured;
+            banner.Active = active;
+            banner.IdBannerType = idBannerType;
+            return banner;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String URL
+        {
+            get
+            {
+                return _URL;
+            }
+            set
+            {
+                OnURLChanging(value);
+                ReportPropertyChanging("URL");
+                _URL = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("URL");
+                OnURLChanged();
+            }
+        }
+        private global::System.String _URL;
+        partial void OnURLChanging(global::System.String value);
+        partial void OnURLChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime Timestamp
+        {
+            get
+            {
+                return _Timestamp;
+            }
+            set
+            {
+                OnTimestampChanging(value);
+                ReportPropertyChanging("Timestamp");
+                _Timestamp = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Timestamp");
+                OnTimestampChanged();
+            }
+        }
+        private global::System.DateTime _Timestamp;
+        partial void OnTimestampChanging(global::System.DateTime value);
+        partial void OnTimestampChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean Featured
+        {
+            get
+            {
+                return _Featured;
+            }
+            set
+            {
+                OnFeaturedChanging(value);
+                ReportPropertyChanging("Featured");
+                _Featured = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Featured");
+                OnFeaturedChanged();
+            }
+        }
+        private global::System.Boolean _Featured;
+        partial void OnFeaturedChanging(global::System.Boolean value);
+        partial void OnFeaturedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean Active
+        {
+            get
+            {
+                return _Active;
+            }
+            set
+            {
+                OnActiveChanging(value);
+                ReportPropertyChanging("Active");
+                _Active = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Active");
+                OnActiveChanged();
+            }
+        }
+        private global::System.Boolean _Active;
+        partial void OnActiveChanging(global::System.Boolean value);
+        partial void OnActiveChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 IdBannerType
+        {
+            get
+            {
+                return _IdBannerType;
+            }
+            set
+            {
+                OnIdBannerTypeChanging(value);
+                ReportPropertyChanging("IdBannerType");
+                _IdBannerType = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IdBannerType");
+                OnIdBannerTypeChanged();
+            }
+        }
+        private global::System.Int32 _IdBannerType;
+        partial void OnIdBannerTypeChanging(global::System.Int32 value);
+        partial void OnIdBannerTypeChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RegionalModel", "FK_Banner_BannerType", "BannerType")]
+        public BannerType BannerType
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<BannerType>("RegionalModel.FK_Banner_BannerType", "BannerType").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<BannerType>("RegionalModel.FK_Banner_BannerType", "BannerType").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<BannerType> BannerTypeReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<BannerType>("RegionalModel.FK_Banner_BannerType", "BannerType");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<BannerType>("RegionalModel.FK_Banner_BannerType", "BannerType", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="RegionalModel", Name="BannerType")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class BannerType : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new BannerType object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="name">Initial value of the Name property.</param>
+        public static BannerType CreateBannerType(global::System.Int32 id, global::System.String name)
+        {
+            BannerType bannerType = new BannerType();
+            bannerType.Id = id;
+            bannerType.Name = name;
+            return bannerType;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("RegionalModel", "FK_Banner_BannerType", "Banner")]
+        public EntityCollection<Banner> Banner
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Banner>("RegionalModel.FK_Banner_BannerType", "Banner");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Banner>("RegionalModel.FK_Banner_BannerType", "Banner", value);
+                }
+            }
+        }
+
+        #endregion
+
     }
     
     /// <summary>
