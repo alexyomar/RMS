@@ -1,6 +1,5 @@
 ﻿@model IEnumerable<RMS.Models.Content>
 @{
-    ViewBag.Title = "Seccion";
     Layout = "~/Areas/Web/Views/Shared/_LayoutPage.cshtml";
 }
 
@@ -19,9 +18,6 @@
             $(".vermas").colorbox();
         });
     </script>
-
-
-
 }
 
 <div id="datacontainer">
@@ -30,7 +26,7 @@
     </div>
     <div class="data">
         <div class="bar">
-            <span>Listado</span>
+            <span>Listado de @(((string)ViewBag.Title).Split(new char[] { '-' }).First())</span>
         </div>
 
         <table cellpadding="0" cellspacing="0" width="100%">
@@ -38,14 +34,19 @@
             {
                 <tr>
                     <td style="width: 213px; padding: 5px;">
-                        <div class="imagen"></div>
+                        <div class="imagen">
+                            @if (item.ContentImages.Count() > 0)
+                            {
+                                <img src="@Url.Content(item.ContentImages.Where(u => u.IsDefault.Equals(true)).First().URL)" width="203" height="172"/>
+                            }
+                        </div>
                     </td>
                     <td style="vertical-align: top; padding: 5px;">
 
                         <h1>@Html.DisplayFor(modelItem => item.Title)</h1>
                         <h2>@Html.DisplayFor(modelItem => item.City) - @Html.DisplayFor(modelItem => item.Country.Country1)</h2>
                         <br />
-                        <p>@Html.DisplayFor(modelItem => item.Intro)</p>
+                        <p>@Html.Raw(item.Intro)</p>
 
                     </td>
                     <td style="text-align: center; width: 135px; vertical-align: top">
@@ -63,7 +64,5 @@
                 </tr>
             }
         </table>
-
-
     </div>
 </div>

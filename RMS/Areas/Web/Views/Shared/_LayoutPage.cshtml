@@ -50,8 +50,9 @@
                     <ul>
                         <li><a href="@Url.Action("Index", "VE")">Inicio</a></li>
                         <li><a href="@Url.Action("Nosotros", "VE")">Nosotros</a></li>
-                        @*<li><a href="@Url.Action("Cotizaciones", "VE")">Cotizaciones</a></li>*@
-                        <li><a href="@Url.Action("Reservaciones", "VE")">Reservaciones</a></li>
+                        <li><a href="@Url.Action("Cotizaciones", "VE")">Cotizaciones</a></li>
+                        @*<li><a href="@Url.Action("Reservaciones", "VE")">Reservaciones</a></li>*@
+                        <li><a href="@Url.Action("LogOn", "Account", new { Area = "" }) ">Intranet Corporativa</a></li>
                         <li><a href="@Url.Action("Contactenos", "VE")">Contáctenos</a></li>
                     </ul>
                 </div>
@@ -73,7 +74,7 @@
                                 </p>
                             </td>
                             <td style="vertical-align: top">
-                                <iframe width="255" height="170" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" style="border: 1px solid #808080" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=es-419&amp;geocode=&amp;q=CCCT+Caracas&amp;aq=&amp;sll=37.913973,-122.301343&amp;sspn=0.115792,0.264187&amp;t=p&amp;ie=UTF8&amp;hq=CCCT&amp;hnear=Caracas,+Libertador,+Distrito+Metropolitano+de+Caracas,+Venezuela&amp;cid=9977758859026869094&amp;ll=10.485364,-66.854038&amp;spn=0.015614,0.021801&amp;z=14&amp;output=embed"></iframe>
+                            <iframe width="255" height="170" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" style="border: 1px solid #808080" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=es-419&amp;geocode=&amp;q=CCCT+Caracas&amp;aq=&amp;sll=37.913973,-122.301343&amp;sspn=0.115792,0.264187&amp;t=p&amp;ie=UTF8&amp;hq=CCCT&amp;hnear=Caracas,+Libertador,+Distrito+Metropolitano+de+Caracas,+Venezuela&amp;cid=9977758859026869094&amp;ll=10.485364,-66.854038&amp;spn=0.015614,0.021801&amp;z=14&amp;output=embed"></iframe>
                         </tr>
                     </table>
 
@@ -87,5 +88,35 @@
     </div>
     <div id="background">
     </div>
+    <div id="background2">
+    </div>
+
+    <script type="text/javascript">
+        var now = 0;
+        var int = self.setInterval("changeBG()", 10000);
+
+        var array = ["/Fondos/002.jpg", "/Fondos/003.jpg", "/Fondos/004.jpg", "/Fondos/005.jpg", "/Fondos/006.jpg", "/Fondos/007.jpg", "/Fondos/008.jpg", "/Fondos/001.jpg"];
+        var divactive = "#background";
+        var divbg = "#background2";
+        function changeBG() {
+
+            now = (now + 1) % array.length;
+            $(divbg).css('background-image', 'url("' + array[now] + '")');
+            $(divbg).show();
+            $(divactive).fadeOut(2000);
+            $(this).dequeue();
+
+            if (divbg == "#background2") {
+                divbg = "#background";
+                divactive = "#background2"
+            }
+            else {
+                divactive = "#background";
+                divbg = "#background2"
+            }
+            $(divactive).css('z-index', '0');
+            $(divbg).css('z-index', '1');
+        }
+    </script>
 </body>
 </html>

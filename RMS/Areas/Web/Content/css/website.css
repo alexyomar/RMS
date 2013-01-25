@@ -27,6 +27,11 @@ a:link {
     text-decoration: none;
 }
 
+a:visited {
+    color: #474748;
+    text-decoration: none;
+}
+
 
 a:hover {
     color: #a3bd31;
@@ -59,8 +64,15 @@ h1 {
 
 h2 {
     font-size: 16px;
-    font-weight: 400;
-    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    font-family: 'Open Sans', sans-serif;
+    color: #a3bd31;
+}
+
+h3 {
+    font-size: 15px;
+    font-weight: 800;
+    font-family: 'Open Sans', sans-serif;
     color: #a3bd31;
 }
 
@@ -82,10 +94,23 @@ h2 {
     left: 0;
     right: 0;
     bottom: 0;
-    background-position: top center;
+    background-position: top right;
+    background-repeat: no-repeat;
+    z-index: 1;
+    background: url(/Fondos/001.jpg);
+}
+
+#background2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-position: top right;
     background-repeat: no-repeat;
     z-index: 0;
-    background: url(../images/bg/Fondos-RM3.jpg);
+    display:none;
+
 }
 
 #main {
@@ -93,7 +118,7 @@ h2 {
     top: 0px;
     left: 0;
     right: 0;
-    z-index: 1;
+    z-index: 5;
 }
 
 .content {

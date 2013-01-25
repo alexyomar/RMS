@@ -484,6 +484,14 @@
     <Content Include="Content\themes\base\jquery.ui.slider.css" />
     <Content Include="Content\themes\base\jquery.ui.tabs.css" />
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Fondos\001.jpg" />
+    <Content Include="Fondos\002.jpg" />
+    <Content Include="Fondos\003.jpg" />
+    <Content Include="Fondos\004.jpg" />
+    <Content Include="Fondos\005.jpg" />
+    <Content Include="Fondos\006.jpg" />
+    <Content Include="Fondos\007.jpg" />
+    <Content Include="Fondos\008.jpg" />
     <Content Include="Global.asax" />
     <Content Include="header.jpg" />
     <Content Include="Content\agd\img\button_bg.png" />
