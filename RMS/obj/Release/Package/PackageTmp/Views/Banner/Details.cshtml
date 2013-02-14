@@ -1,0 +1,40 @@
+﻿@model RMS.Models.Banner
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Banner</legend>
+
+    <div class="display-label">URL</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.URL)
+    </div>
+
+    <div class="display-label">Timestamp</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Timestamp)
+    </div>
+
+    <div class="display-label">Featured</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Featured)
+    </div>
+
+    <div class="display-label">Active</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Active)
+    </div>
+
+    <div class="display-label">BannerType</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BannerType.Name)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

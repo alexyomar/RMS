@@ -1,0 +1,516 @@
+﻿@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,300,600,800|PT+Sans+Caption:400,700);
+
+/* Reset Elements*/
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+
+a:link {
+    color: #474748;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #474748;
+    text-decoration: none;
+}
+
+
+a:hover {
+    color: #a3bd31;
+    text-decoration: none;
+}
+
+a:active {
+    color: #a3bd31;
+    text-decoration: none;
+}
+
+b {
+    font-weight: 600;
+}
+
+body {
+    background-color: #fff;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    color: #666569;
+    font-weight: 300;
+}
+
+h1 {
+    font-size: 20px;
+    font-family: 'PT Sans Caption', sans-serif;
+    font-weight: 700;
+    color: #a3bd31;
+}
+
+h2 {
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'Open Sans', sans-serif;
+    color: #a3bd31;
+}
+
+h3 {
+    font-size: 15px;
+    font-weight: 800;
+    font-family: 'Open Sans', sans-serif;
+    color: #a3bd31;
+}
+
+.header {
+    display: block;
+    background-color: blue;
+    background: url(../images/layout/header.png);
+    width: 870px;
+    height: 41px;
+    line-height: 41px;
+    background-repeat: no-repeat;
+    padding-left: 20px;
+    color: #fff;
+}
+
+#background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-position: top right;
+    background-repeat: no-repeat;
+    z-index: 1;
+    background: url(/Fondos/001.jpg);
+}
+
+#background2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-position: top right;
+    background-repeat: no-repeat;
+    z-index: 0;
+    display:none;
+
+}
+
+#main {
+    position: absolute;
+    top: 0px;
+    left: 0;
+    right: 0;
+    z-index: 5;
+}
+
+.content {
+    width: 1002px;
+    position: relative;
+    margin: 0 auto;
+    background: url(../images/layout/bg2.png) repeat-y;
+}
+
+.banners {
+    width: 1000px;
+    position: relative;
+}
+
+/* BOTONERA */
+#links {
+    font-size: smaller;
+    width: 973px;
+    margin: 0 auto;
+}
+
+    #links a {
+        color: #fff;
+        text-shadow:2px 2px 2px #474748;
+    }
+
+        #links a:hover {
+            color: #184403;
+        }
+
+    #links table {
+        padding-top: 5px;
+        margin-left: auto;
+        margin-right: 6px;
+    }
+
+    #links td {
+        padding: 0px 5px;
+    }
+
+#botonera {
+    margin: 0 auto;
+    position: relative;
+    width: 973px;
+    height: 76px;
+    padding: 5px 0px 20px 0px;
+}
+
+#logo {
+    float: left;
+    height: 76px;
+    background-image: url(../images/layout/logo.png);
+    display: block;
+    width: 217px;
+}
+
+#paquetes {
+    float: left;
+    height: 76px;
+    background-image: url(../images/layout/paquetes.png);
+    display: block;
+    width: 98px;
+}
+
+#hoteles {
+    float: left;
+    height: 76px;
+    background-image: url(../images/layout/hoteles.png);
+    display: block;
+    width: 93px;
+}
+
+#excursiones {
+    float: left;
+    height: 76px;
+    background-image: url(../images/layout/excursiones.png);
+    display: block;
+    width: 113px;
+}
+
+#circuitos {
+    float: left;
+    height: 76px;
+    background-image: url(../images/layout/circuitos.png);
+    display: block;
+    width: 101px;
+}
+
+#cruceros {
+    float: left;
+    height: 76px;
+    background-image: url(../images/layout/cruceros.png);
+    display: block;
+    width: 101px;
+}
+
+#autos {
+    float: left;
+    height: 76px;
+    background-image: url(../images/layout/autos.png);
+    display: block;
+    width: 74px;
+}
+
+#eventos {
+    float: left;
+    height: 76px;
+    background-image: url(../images/layout/eventos.png);
+    display: block;
+    width: 83px;
+}
+
+#seguros {
+    float: left;
+    height: 76px;
+    background-image: url(../images/layout/seguros.png);
+    display: block;
+    width: 93px;
+}
+
+#logo:hover {
+    background-image: url(../images/layout/logo_ov.png);
+}
+
+#paquetes:hover {
+    background-image: url(../images/layout/paquetes_ov.png);
+}
+
+#hoteles:hover {
+    background-image: url(../images/layout/hoteles_ov.png);
+}
+
+#excursiones:hover {
+    background-image: url(../images/layout/excursiones_ov.png);
+}
+
+#circuitos:hover {
+    background-image: url(../images/layout/circuitos_ov.png);
+}
+
+#cruceros:hover {
+    background-image: url(../images/layout/cruceros_ov.png);
+}
+
+#autos:hover {
+    background-image: url(../images/layout/autos_ov.png);
+}
+
+#eventos:hover {
+    background-image: url(../images/layout/eventos_ov.png);
+}
+
+
+#seguros:hover {
+    background-image: url(../images/layout/seguros_ov.png);
+}
+/* Controles */
+
+#destacados {
+    background-image: url(../images/layout/destacados.png);
+    width: 380px;
+    height: 512px;
+    margin-left: 10px;
+}
+
+#destinos {
+    background-image: url(../images/layout/destinos.png);
+    width: 595px;
+    height: 512px;
+    margin: 5px 5px 5px 10px;
+}
+
+#facebookcontainer {
+    width: 595px;
+    margin: 5px 5px 10px 10px;
+}
+
+#twittercontainer {
+    width: 380px;
+    margin-left: 10px;
+}
+
+#datacontainer {
+    width: 984px;
+    background: url(../images/layout/bgint.png);
+    border: 1px solid #ccc;
+    margin: 0px auto 15px auto;
+}
+
+    #datacontainer .banner {
+        width: 984px;
+        height: 164px;
+    }
+
+    #datacontainer .data {
+        width: 932px;
+        padding: 10px;
+    }
+
+    #datacontainer .bar {
+        width: 952px;
+        height: 41px;
+        line-height: 41px;
+        background: url(../images/layout/bar.png);
+        margin: 0 auto;
+        font-weight: 600;
+    }
+
+        #datacontainer .bar span {
+            margin-left: 10px;
+        }
+
+
+    #datacontainer h1, #datacontainer h2 {
+        color: #666569;
+    }
+
+    #datacontainer .data .imagen {
+        width: 203px;
+        height: 172px;
+        background: url(../images/layout/imghotel.png);
+    }
+
+    #datacontainer .data .precio {
+        width: 132px;
+        height: 88px;
+        background: url(../images/layout/precio.png);
+        margin: 30px auto 10px auto;
+        color: #fff;
+    }
+
+        #datacontainer .data .precio label {
+            font-size: 14px;
+            font-weight: 800;
+            line-height: 24px;
+        }
+
+        #datacontainer .data .precio span {
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+    #datacontainer .data .vermas {
+        display: block;
+        width: 132px;
+        height: 35px;
+        background: url(../images/layout/btnvermas.png);
+        margin: 0 auto;
+    }
+
+#contentdata {
+    padding: 10px;
+    width: 926px;
+    max-height: 700px;
+    overflow-x: hidden;
+}
+
+#footer {
+    width: 986px;
+    height: 213px;
+    background-image: url(../images/layout/footer.png);
+    margin: 0px auto;
+}
+
+    #footer ul {
+        list-style: square;
+        color: #a3bd31;
+    }
+
+
+    #footer #nav1 {
+        width: 190px;
+        float: left;
+        padding: 20px 0px 0px 55px;
+        height: 213px;
+        line-height: 20px;
+        font-size: 13px;
+    }
+
+    #footer #nav2 {
+        width: 150px;
+        float: left;
+        padding: 20px 0px 0px 15px;
+        height: 213px;
+        line-height: 20px;
+        font-size: 13px;
+    }
+
+    #footer #nav3 {
+        float: left;
+        padding: 20px 0px 0px 10px;
+        height: 213px;
+    }
+
+.field-validation-error {
+    color: #f00;
+    font-weight: 800;
+}
+
+.required {
+    width: 50%;
+}
+
+.sidebar {
+    width: 220px;
+    height: 623px;
+    padding: 55px 0 0 80px;
+    background: url(../images/sidebar_bg.png) no-repeat 0 10%;
+    font-size: 14px;
+}
+
+    .sidebar ul {
+        padding: 20px 0 10px 0;
+        color: #184403;
+        list-style: none;
+    }
+
+    .sidebar li {
+        padding-top: 10px;
+    }
+
+.facebook {
+    background: url(../images/fb_icon.png) no-repeat left 50%;
+    padding-left: 40px;
+}
+
+.twitter {
+    background: url(../images/twtr_icon.png) no-repeat left bottom;
+    padding-left: 40px;
+}
+
+.mail {
+    background: url(../images/mail_icon.png) no-repeat left 90%;
+    padding-left: 40px;
+}
+
+.address {
+    background: url(../images/address_icon.png) no-repeat 0 30%;
+    padding-left: 40px;
+}
+
+.sidebar li a {
+    color: #184403;
+}
+
+    .sidebar li a:hover {
+        color: #fff;
+    }
+
+.editor-field {
+    margin: 5px 0px;
+}
+
+#content {
+    overflow: hidden;
+    width: 898px;
+    margin: 0 auto;
+}
+
+blockquote {
+    background: #fff;
+    margin: 20px 30px;
+    padding: 5px 15px 5px 20px;
+    color: #000;
+    font-style: italic;
+    border-left: 10px double #28224e;
+}
+
+
+.about {
+    width: 580px;
+    padding: 40px 0;
+}
+
+    .about img {
+        border: 5px solid #bbb;
+    }
+
+    .about blockquote span {
+        margin: 0 5px;
+        font-size: 1.2em;
+    }
+
+
+cite {
+    text-align: right;
+    color: #eaeaea;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-style: italic;
+    border-top: 1px solid #646464;
+    width: 100%;
+    display: block;
+    margin-top: 10px;
+    letter-spacing: .1em;
+}

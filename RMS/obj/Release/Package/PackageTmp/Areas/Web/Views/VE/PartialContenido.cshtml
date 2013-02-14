@@ -1,0 +1,67 @@
+﻿@model RMS.Models.Content
+@{
+    bool __hasdownload = Model.ContentFiles.Count() > 0 ? true : false;
+    
+}
+<div id="contentdata">
+    <h1 class="header">@Html.DisplayFor(model => model.Title)
+    </h1>
+    <ul id="myGallery">
+        @if (Model.ContentImages.Count() > 0)
+        {
+            foreach (var item in Model.ContentImages)
+            {
+            <li>
+                <img src="@Url.Content(item.URL)" /></li>
+            }
+        }
+
+
+
+    </ul>
+
+
+    <small><i>Última actualización: @Model.TimestampEdit</i></small>
+    <br />
+    <table style="width: 890px;" cellpadding="0" cellspacing="0">
+        <tr>
+            <td style="vertical-align: middle">
+                <h2><b>Precio: Bs. @Math.Round(Model.Price, 2)</b></h2>
+            </td>
+            <td style="text-align: right; vertical-align: middle"><a href="@Url.Action("Cotizaciones")">
+                <img src="@Url.Content("~/Areas/Web/Content/images/layout/reservar.png")" alt="reservar" /></a></td>
+
+        </tr>
+
+    </table>
+
+    <br />
+    <br />
+    <div style="width: 896px;">
+        @Html.Raw(Model.Description)
+    </div>
+    <br />
+    <br />
+    <center>
+        @if (__hasdownload)
+        {
+            <a href="@Url.Content(Model.ContentFiles.First().URL)">
+                <h2>Descargar Folleto Informativo</h2>
+            </a>
+        }
+    </center>
+    <br />
+    <br />
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#myGallery').galleryView({
+            filmstrip_style: 'showall',
+            filmstrip_position: 'right',
+            frame_height: 32,
+            frame_width: 50
+        });
+    });
+
+</script>

@@ -1,0 +1,103 @@
+﻿@model IEnumerable<RMS.Models.BannerType>
+@{
+    ViewBag.Title = "Index";
+}
+
+<ul id="crumbs">
+    <li><a href="#">Página Web</a></li>
+    <li>Banners</li>
+</ul>
+<table border="0" cellpadding="0" cellspacing="0" style="width: 100%; margin: 30px 0px;">
+    <tr>
+        <td valign="middle">
+            <h1 style="margin: 0px; padding: 0px">Listado de Banners</h1>
+        </td>
+        <td>
+            <a href="@Url.Action("Create")" class="button" style="float: right;">
+                <img src="../../Content/img/add.png" />
+                &nbsp;&nbsp;Crear Nuevo </a>
+        </td>
+    </tr>
+</table>
+<h3 class="red">Nota Importante:</h3>
+<p>
+</p>
+<p></p>
+<ul>
+    <li>Para cambiar el order a los banners, solo debe <b>presionar el link de subir</b>, y este se colocará de primero.</li>
+    <li>En las secciones internas y en el banner de temporada destacada, <b>solo se mostrará el primer banner de la lista, los demás serán omitidos.</b></li>
+
+</ul>
+
+
+@foreach (var item in Model)
+{
+    if (item.Banner.Count() > 0)
+    {
+    <h2>@item.Name</h2>
+    
+    
+    <table class="tbl">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Fecha de Creación
+                </th>
+                <th>URL
+                </th>
+
+                @*<th>Featured
+            </th>
+            <th>Active
+            </th>
+            <th>BannerType
+            </th>*@
+                <th></th>
+            </tr>
+        </thead>
+        <tfoot>
+        </tfoot>
+        <tbody>
+            @foreach (var banner in item.Banner.OrderByDescending(u => u.Timestamp))
+            { 
+                <tr>
+                    <td></td>
+                    <td>
+                        @Html.DisplayFor(modelItem => banner.Timestamp)
+                    </td>
+                    <td>
+                        <img src="@Url.Content(banner.URL)" alt="Alternate Text" width="600" height="180"  />
+                    </td>
+
+                    @*<td>
+                    @Html.DisplayFor(modelItem => banner.Featured)
+                </td>@
+                <td>
+                    @Html.DisplayFor(modelItem => banner.Active)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => banner.BannerType.Name)
+                </td>*@
+                    <td>
+                        @Html.ActionLink("Subir", "Edit", new { id = banner.Id }) |  
+                     @Html.ActionLink("Eliminar", "Delete", new { id = banner.Id })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+
+    }
+}
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.tbl').dataTable({
+            "bJQueryUI": true
+        });
+    });
+
+</script>

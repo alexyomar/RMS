@@ -1,0 +1,210 @@
+﻿@model RMS.Areas.Web.Models.CotizacionModel
+@{
+    ViewBag.Title = "Cotizacion";
+    Layout = "~/Areas/Web/Views/Shared/_LayoutPage.cshtml";
+}
+
+@section Scripts
+{
+
+    <script type="text/javascript" src="@Url.Content("~/Areas/Web/Scripts/jquery-1.9.0.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("input").addClass("required");
+            $("textarea").addClass("required");
+
+        });
+    </script>
+
+}
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true) 
+    <div id="datacontainer">
+        <div class="data">
+            <div class="bar">
+                <span>Cotización en Línea</span>
+            </div>
+
+            <table>
+                <tr>
+                    <td style="width: 600px; vertical-align: top;">
+                        <div style="margin-left: 20px">
+                            <br />
+                            <p>En Regional Marketing Services nos comprometemos a enviarle la cotización que solicita a la brevedad posible.</p>
+                            <br />
+                            Completa toda la información del formulario para brindarte una mejor calidad de servicio.
+                            <br />
+                            <br />
+                            <fieldset>
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.Nombre)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.EditorFor(model => model.Nombre)
+                                    @Html.ValidationMessageFor(model => model.Nombre)
+                                </div>
+
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.Cedula)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.EditorFor(model => model.Cedula)
+                                    @Html.ValidationMessageFor(model => model.Cedula)
+                                </div>
+
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.Email)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.EditorFor(model => model.Email)
+                                    @Html.ValidationMessageFor(model => model.Email)
+                                </div>
+
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.Direccion)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.EditorFor(model => model.Direccion)
+                                    @Html.ValidationMessageFor(model => model.Direccion)
+                                </div>
+
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.Pais)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.EditorFor(model => model.Pais)
+                                    @Html.ValidationMessageFor(model => model.Pais)
+                                </div>
+
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.Estado)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.EditorFor(model => model.Estado)
+                                    @Html.ValidationMessageFor(model => model.Estado)
+                                </div>
+
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.TelefonoHab)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.EditorFor(model => model.TelefonoHab)
+                                    @Html.ValidationMessageFor(model => model.TelefonoHab)
+                                </div>
+
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.TelefonoCel)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.EditorFor(model => model.TelefonoCel)
+                                    @Html.ValidationMessageFor(model => model.TelefonoCel)
+                                </div>
+
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.QueReservar)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.EditorFor(model => model.QueReservar)
+                                    @Html.ValidationMessageFor(model => model.QueReservar)
+                                </div>
+
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.Adultos)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.EditorFor(model => model.Adultos)
+                                    @Html.ValidationMessageFor(model => model.Adultos)
+                                </div>
+
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.Ninos)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.EditorFor(model => model.Ninos)
+                                    @Html.ValidationMessageFor(model => model.Ninos)
+                                </div>
+
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.Edades)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.EditorFor(model => model.Edades)
+                                    @Html.ValidationMessageFor(model => model.Edades)
+                                </div>
+
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.Ida)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.EditorFor(model => model.Ida)
+                                    @Html.ValidationMessageFor(model => model.Ida)
+                                </div>
+
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.Regreso)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.EditorFor(model => model.Regreso)
+                                    @Html.ValidationMessageFor(model => model.Regreso)
+                                </div>
+
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.Traslado)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.DropDownListFor(model => model.Traslado, new SelectList(Enum.GetValues(typeof(RMS.Areas.Web.Models.CotizacionModel.__Booleano))))
+                                    @Html.ValidationMessageFor(model => model.Traslado)
+                                </div>
+
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.Boleto)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.DropDownListFor(model => model.Boleto, new SelectList(Enum.GetValues(typeof(RMS.Areas.Web.Models.CotizacionModel.__Booleano))))
+                                    @Html.ValidationMessageFor(model => model.Boleto)
+                                </div>
+
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.Comentarios)
+                                </div>
+                                <div class="editor-field">
+                                    @Html.EditorFor(model => model.Comentarios)
+                                    @Html.ValidationMessageFor(model => model.Comentarios)
+                                </div>
+                                <p>
+                                    <input type="submit" value="Envíar" />
+                                </p>
+                            </fieldset>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="sidebar right">
+                            <h1 style="padding-top: 8px">Búscanos</h1>
+                            <ul>
+                                <li class="facebook"><a href="http://www.facebook.com/pages/Regional-Marketing-Services-CA/141939109283180"
+                                    target="_blank">Facebook</a></li>
+                                <li class="twitter"><a target="_blank" href="http://twitter.com/regionalviajes">Twitter</a></li>
+                                <li class="mail"><a href="mailto:promocionesrm@regionalmarketing.com.ve">Email </a></li>
+                                <li class="address">+58 212 9593217 / 9598283
+            <br />
+                                    3253617 / 3253618 / 3253619
+            <br />
+                                    C.C.C.T, 1era. Etapa,
+            <br />
+                                    Piso 3, Oficina 303,<br />
+                                    Chuao, Caracas, Venezuela. </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+
+}
+
