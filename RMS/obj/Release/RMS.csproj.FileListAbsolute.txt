@@ -1,7 +1,5 @@
 C:\Users\Alexyomar\Documents\GitHub\RMS\RMS\bin\RMS.dll
 C:\Users\Alexyomar\Documents\GitHub\RMS\RMS\bin\RMS.pdb
-C:\Users\Alexyomar\Documents\GitHub\RMS\RMS\bin\EntityFramework.dll
-C:\Users\Alexyomar\Documents\GitHub\RMS\RMS\bin\itextsharp.dll
 C:\Users\Alexyomar\Documents\GitHub\RMS\RMS\bin\System.Data.Entity.dll
 C:\Users\Alexyomar\Documents\GitHub\RMS\RMS\bin\System.Web.Entity.dll
 C:\Users\Alexyomar\Documents\GitHub\RMS\RMS\bin\System.Web.Helpers.dll

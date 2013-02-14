@@ -148,6 +148,12 @@
       <End Role="Content" EntitySet="Content" />
       <End Role="ContentImages" EntitySet="ContentImages" />
     </AssociationSet>
+    <EntitySet Name="Banner" EntityType="RegionalModel.Banner" />
+    <EntitySet Name="BannerType" EntityType="RegionalModel.BannerType" />
+    <AssociationSet Name="FK_Banner_BannerType" Association="RegionalModel.FK_Banner_BannerType">
+      <End Role="BannerType" EntitySet="BannerType" />
+      <End Role="Banner" EntitySet="Banner" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="aspnet_Applications">
     <Key>
@@ -1002,6 +1008,38 @@
       </Principal>
       <Dependent Role="ContentImages">
         <PropertyRef Name="IdContent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Banner">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="URL" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="Timestamp" Nullable="false" Precision="3" />
+    <Property Type="Boolean" Name="Featured" Nullable="false" />
+    <Property Type="Boolean" Name="Active" Nullable="false" />
+    <Property Type="Int32" Name="IdBannerType" Nullable="false" />
+    <NavigationProperty Name="BannerType" Relationship="RegionalModel.FK_Banner_BannerType" FromRole="Banner" ToRole="BannerType" />
+  </EntityType>
+  <EntityType Name="BannerType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Banner" Relationship="RegionalModel.FK_Banner_BannerType" FromRole="BannerType" ToRole="Banner" />
+  </EntityType>
+  <Association Name="FK_Banner_BannerType">
+    <End Type="RegionalModel.BannerType" Role="BannerType" Multiplicity="1" />
+    <End Type="RegionalModel.Banner" Role="Banner" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BannerType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Banner">
+        <PropertyRef Name="IdBannerType" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
