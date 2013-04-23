@@ -529,6 +529,7 @@
     <Content Include="Paquetes\Internacionales\Slide1.JPG" />
     <Content Include="Paquetes\Internacionales\Slide10.JPG" />
     <Content Include="Paquetes\Internacionales\Slide11.JPG" />
+    <Content Include="Paquetes\Internacionales\Slide11A.PNG" />
     <Content Include="Paquetes\Internacionales\Slide12.JPG" />
     <Content Include="Paquetes\Internacionales\Slide2.JPG" />
     <Content Include="Paquetes\Internacionales\Slide3.JPG" />
@@ -544,6 +545,11 @@
     <Content Include="Paquetes\Nacionales\Slide10.JPG" />
     <Content Include="Paquetes\Nacionales\Slide13.JPG" />
     <Content Include="Paquetes\Nacionales\Slide14.JPG" />
+    <Content Include="Paquetes\Nacionales\Slide15.JPG" />
+    <Content Include="Paquetes\Nacionales\Slide16.JPG" />
+    <Content Include="Paquetes\Nacionales\Slide2.PNG" />
+    <Content Include="Paquetes\Nacionales\Slide3.PNG" />
+    <Content Include="Paquetes\Nacionales\Slide4.PNG" />
     <Content Include="Scripts\Anivers_400.font.js" />
     <Content Include="Scripts\coda-slider.1.1.1.js" />
     <Content Include="Scripts\cufon-yui.js" />

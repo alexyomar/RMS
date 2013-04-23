@@ -109,8 +109,7 @@ h3 {
     background-position: top right;
     background-repeat: no-repeat;
     z-index: 0;
-    display:none;
-
+    display: none;
 }
 
 #main {
@@ -142,7 +141,7 @@ h3 {
 
     #links a {
         color: #fff;
-        text-shadow:2px 2px 2px #474748;
+        text-shadow: 2px 2px 2px #474748;
     }
 
         #links a:hover {
@@ -321,7 +320,7 @@ h3 {
     #datacontainer .bar {
         width: 952px;
         height: 41px;
-        line-height: 41px;
+        line-height: 34px;
         background: url(../images/layout/bar.png);
         margin: 0 auto;
         font-weight: 600;
